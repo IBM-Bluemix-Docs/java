@@ -1,2 +1,2 @@
-# java-microprofile
-java-microprofile
+# java
+java
