@@ -98,8 +98,7 @@ Spring Cloud is a collection of integrations between third-party cloud technolog
 
 Spring Cloud projects follow the general Spring approach of favouring convention over configuration. Most capabilities are enabled by adding the right dependency at build time.
 
-See the official [Spring Cloud Project Site]
-(https://spring.io/projects/spring-cloud){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") for more information about Spring Cloud projects and supported technologies.
+See the official [Spring Cloud Project Site](https://spring.io/projects/spring-cloud){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") for more information about Spring Cloud projects and supported technologies.
 
 ### Spring Cloud with Kubernetes
 {: #spring-cloud-kubernetes}
