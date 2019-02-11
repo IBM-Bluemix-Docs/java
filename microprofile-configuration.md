@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-02-05"
+lastupdated: "2019-02-11"
 
 ---
 {:new_window: target="_blank"}
@@ -71,4 +71,4 @@ And that's all there is to it!
 For more information about MicroProfile Config, see:
 
 * [Eclipse MicroProfile Config – what is it?](https://www.eclipse.org/community/eclipse_newsletter/2017/september/article3.php){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
-* OpenLiberty Guide: [Configuring microservices](https://openliberty.io/guides/microprofile-config.html)
+* OpenLiberty Guide: [Configuring microservices](https://openliberty.io/guides/microprofile-config.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
