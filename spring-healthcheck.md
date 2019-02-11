@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-02-05"
+lastupdated: "2019-02-11"
 
 ---
 
@@ -38,7 +38,6 @@ There are some behavior differences with Spring Boot actuator between versions. 
 The Spring Boot 2 actuator defines an `/actuator/health endpoint`, which returns a `{"status": "UP"}` payload when all is well. This endpoint is enabled by default, and requires no application code.
 
 An example of an unauthenticated successful health check using the Spring Boot 2 Actuator:
-<!-- Spring Boot 2 test project: https://github.com/IBM/spring-alarm-application -->
 
 ```
 $ curl -i localhost:8080/actuator/health
@@ -77,7 +76,6 @@ You can override the default behavior of the health endpoint with properties or 
 {: #spring-liveness-boot2}
 
 The Actuator framework is Spring Boot 2 is its own mini-REST-framework that can be extended with custom endpoints. This means that we can add a simple liveness endpoint that is managed in the same way the built-in health indicator is. A custom liveness endpoint can be trivially declared like this:
-<!-- Spring Boot 2 test project: https://github.com/IBM/spring-alarm-application -->
 
 ```java
 @Endpoint(id="liveness")
