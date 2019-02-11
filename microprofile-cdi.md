@@ -44,6 +44,7 @@ CDI Bean defining annotations must be discovered. CDI annotation scanning can be
 The presence of an empty `beans.xml` or a `beans.xml` with `bean-discovery-mode="all"` makes all potential objects CDI beans. Otherwise, only objects with CDI bean-defining annotations are CDI beans.
 
 ## CDI Scopes
+{: #cdi-scopes}
 
 CDI scope type annotations control the bean's lifecycle:
 
@@ -55,6 +56,7 @@ CDI scope type annotations control the bean's lifecycle:
 The CDI container creates and destroys bean instances according to their defined scope, associates them with the appropriate context, and then injects them as dependencies in other objects.
 
 ## CDI Bean injection
+{: #cdi-inject}
 
 CDI will inject defined beans into other components via `@Inject`. For instance, the following POJO `MyBean` is a CDI bean:
 

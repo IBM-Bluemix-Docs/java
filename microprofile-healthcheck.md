@@ -15,12 +15,13 @@ lastupdated: "2019-02-05"
 {:note: .note}
 {:important: .important}
 
-# Liveness and Readiness Checks with JAX-RS
-{: #mp-healthcheck}
+# Health checks with JAX-RS
+{: #jaxrs-healthcheck}
 
 As discussed in the prior section, Kubernetes provides multiple methods for integrating health probes, including execution of a command, as well as network checking through TCP or HTTP endpoints. Although it is possible to implement any of these probes in the Java language, a JAX-RS implementation of HTTP probes and MicroProfile Health will be discussed in detail here.
 
 ## Defining a readiness JAX-RS endpoint
+{: #mp-readiness}
 
 A mimimal readiness endpoint looks something like the following:
 
@@ -44,6 +45,7 @@ An endpoint like this in an application deployed in WebSphere Liberty achieves a
 Always remember the role and purpose of fault tolerance: microservices are expected to handle failure and disruption in communications with downstream services. Only include checks for capabilities that have no feasible fallback inside a readiness check.
 
 ## Defining a liveness JAX-RS endpoint
+{: #jaxrs-liveness}
 
 A liveness probe should be deliberate about what it checks, as a failure will result in immediate termination of the process. A simple liveness endpoint can look something like this:
 
@@ -64,6 +66,7 @@ The liveness probe implementation can be extended to consult process local condi
 To avoid restart cycles, the initialDelaySeconds attribute for the liveness check should be longer than the longest expected server start time. For a Java application server that commonly takes 30 seconds to start, choose a larger value, such as 60 seconds.
 
 ## Using the MicroProfile Health API
+{: #mp-health-api}
 
 The [MicroProfile Health API](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_microprofile_healthcheck.html) (mpHealth ) defines a framework to simplify the implementation of health checks. Version 1.0 of the mpHealth API only defines a single endpoint. The next version will provide two, one for liveness, and one for readiness.
 
