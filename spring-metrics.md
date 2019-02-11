@@ -38,7 +38,7 @@ Basic out-of-the-box metrics are supplied in Spring via the Spring Boot Actuator
 If you are still on Spring Boot 1.5.x, then metrics (and actuators) work a little differently. Micrometer was made the standard for Spring metrics as of Spring Boot 2.0, but backports were made available for Boot 1.5.x, enabling consistent practices for creating and gathering metrics in cloud-native Spring Boot applications. More importantly, Micrometer supports a variety of monitoring systems, including Prometheus, that make it a better choice than the Boot 1.5.x metrics system for cloud deployments.
 {: note}
 
-## Micrometer Metrics
+## Micrometer metrics
 {: #spring-metrics-micrometer}
 
 Micrometer abstracts the concept of a destination for metrics via its interface `MeterRegistry`. The `MeterRegistry` provides the way for the application to obtain custom counters, gauges, timers, etc. If multiple destinations are required, Micrometer supplies a `CompositeMeterRegistry` implementation, allowing the application to be isolated from the actual configured destinations for metrics.
@@ -49,7 +49,7 @@ Spring allows for customization of the `MeterRegistry` Bean, via a `MeterRegistr
 
 When naming metrics, Spring and Micrometer recommend following a naming comvention that splits words with a `.` rather than using camelCase or `_`, or other approaches. This is because Micrometer will be relaying those metrics to the configured destination(s), and will perform any name conversions as needed to meet the requirements of the destinations.
 
-## Configuring Metrics with Spring Boot
+## Configuring metrics with Spring Boot
 {: #spring-metrics-configuration}
 
 The following sections will outline how enable Spring Boot Actuator metrics using Micrometer to collect metrics and provide an endpoint for Prometheus for each release, starting with Spring Boot 2 as the most current.

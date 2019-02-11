@@ -125,6 +125,7 @@ kubectl logs trader-54b4d579f7-4zvzk -n stock-trader -c trader | grep message | 
 Liberty has a few primitive console messages that are not JSON formatted. Using `grep` ensures that `jq` will only parse lines containing a message field.
 
 ## Additional features
+{: #mp-json-log-output}
 
 Guidelines for using log levels, like when to use `logger.info` or `logger.fine`, is something that each organization or project has to make decisions on. However, we expect that these interfaces are necessary and useful in almost any project.
 

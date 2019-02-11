@@ -33,6 +33,7 @@ To use the MicroProfile Config API in your application, you need to add the foll
   <scope>provided</scope>
 </dependency>
 ```
+{: codeblock}
 
 ## Injecting Configuration
 {: #mp-config-inject}
