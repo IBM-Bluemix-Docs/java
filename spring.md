@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-02-05"
+lastupdated: "2019-02-11"
 
 ---
 
@@ -117,11 +117,3 @@ Finally, Spring Cloud Kubernetes augments the default Spring Boot Actuator healt
 
 For more information, check the [Spring Cloud Kubernetes documentation](https://cloud.spring.io/spring-cloud-static/spring-cloud-kubernetes/2.1.0.RC1/single/spring-cloud-kubernetes.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
 
-
-<!--
-### Spring Cloud Streams
-{: #spring-cloud-streams}
-
-
-:FIXME:
--->
