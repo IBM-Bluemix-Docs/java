@@ -23,7 +23,7 @@ The Spring Platform is an ecosystem of projects that aim to make it simpler to c
 ## Spring Framework
 {: #spring-framework}
 
-The Spring Framework was introduced in 2002, and has released a new major version approximately every 3 years since. The framework comprises a large set of components (referred to as Spring Modules) that cover everything from REST Endpoints to Database Abstractions. With its most recent release in 2017, Spring Framework 5 introduced updated JDK support, alongside with WebFlux an new module for reactive programming based on [Project Reactor](https://projectreactor.io/{: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+The Spring Framework was introduced in 2002, and has released a new major version approximately every 3 years since. The framework comprises a large set of components (referred to as Spring Modules) that cover everything from REST Endpoints to Database Abstractions. With its most recent release in 2017, Spring Framework 5 introduced updated JDK support, alongside with WebFlux an new module for reactive programming based on [Project Reactor](https://projectreactor.io/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
 Spring Framework 4.3 is the last feature branch, with support through 2020. Applications using older versions of Spring should be migrated to Spring Framework 5.
 
@@ -50,7 +50,7 @@ The comprehensive documentation for Spring Boot is here:
 ## Selecting Spring Framework or Spring Boot
 {: #spring-framework-or-boot}
 
-For new cloud native applications, if you choose to use Spring Framework, you should also use Spring Boot. Spring Boot simplifies configuration and assembly of Spring-based applications, and provides features, like Spring Actuator, that simplify creating [cloud native applications](/docs/java?topic=cloud-native-overview#overview).
+For new cloud native applications, if you choose to use Spring Framework, you should also use Spring Boot. Spring Boot simplifies configuration and assembly of Spring-based applications, and provides features, like Spring Actuator, that simplify creating [cloud native applications](/docs/java/overview.html).
 
 ### Spring Boot Actuator
 {: #spring-boot-actuator}
@@ -88,7 +88,7 @@ public class Example {
 
 Spring Boot has two controls to configure which Actuators are active at runtime, Actuators can be "enabled", and "exposed". To be able be reachable, an Actuator must be both. By default many endpoints are enabled, but only health and info are exposed. Additionally if Spring Security is enabled for the application, access must be explicitly allowed to the Actuator endpoints.
 
-The Actuator in Spring Boot 1 has its own security configuration, usually configured in application.properties. Instead of "enabled" and "exposed", there is "enabled", and "sensitive". Sensitive endpoints require authentication if served over HTTP. By default, the /metrics endpoint of the Spring Boot Actuator is enabled in Spring Boot 1, but it is considered sensitive and thus requires authorization, or to be set as not sensitive. For some environments, configuring Spring Security might be the right answer, but in Kubernetes, metrics endpoints remain internal to the cluster. For more information check the [Spring Boot 1 Actuator docs](https://docs.spring.io/spring-boot/docs/1.5.2.RELEASE/reference/htmlsingle/#production-ready)
+The Actuator in Spring Boot 1 has its own security configuration, usually configured in application.properties. Instead of "enabled" and "exposed", there is "enabled", and "sensitive". Sensitive endpoints require authentication if served over HTTP. By default, the /metrics endpoint of the Spring Boot Actuator is enabled in Spring Boot 1, but it is considered sensitive and thus requires authorization, or to be set as not sensitive. For some environments, configuring Spring Security might be the right answer, but in Kubernetes, metrics endpoints remain internal to the cluster. For more information, check the [Spring Boot 1 Actuator docs](https://docs.spring.io/spring-boot/docs/1.5.2.RELEASE/reference/htmlsingle/#production-ready).
 {: note}
 
 ## Spring Cloud
