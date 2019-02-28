@@ -37,6 +37,6 @@ OpenJDK with OpenJ9 binaries are freely available from the Java community hub at
 ## Many Java Frameworks
 {: #frameworks}
 
-OpenJDK and OpenJ9 provide a solid foundation for any Java application, but application frameworks are often used to manage common concerns. Enterprise applications, for example, are typically built using either [Java EE (and Jakarta EE)](/docs/java?topic=mp-overview), or [Spring](/docs/java?topic=java-spring-overview).  [MicroProfile](/docs/java?topic=mp-overview) brings a faster  development pace and support for cloud-native concepts to Java EE.
+OpenJDK and OpenJ9 provide a solid foundation for any Java application, but application frameworks are often used to manage common concerns. Enterprise applications, for example, are typically built using either [Java EE (and Jakarta EE)](/docs/java?topic=mp-overview), or [Spring](/docs/java?topic=java-spring-overview).  [MicroProfile](/docs/java?topic=java-jee-overview#microprofile) brings a faster  development pace and support for cloud-native concepts to Java EE.
 
 [WebSphere Liberty](/docs/java?topic=java-liberty) is a fast, dynamic, and easy-to-use Java application server, based on the open-source Open Liberty project. It provides a flexible, fit-for-purpose, enterprise grade runtime for Java EE and Spring applications.
