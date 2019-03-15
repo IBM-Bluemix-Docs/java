@@ -2,7 +2,9 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-02-05"
+lastupdated: "2019-03-15"
+
+subcollection: java
 
 ---
 
@@ -18,7 +20,7 @@ lastupdated: "2019-02-05"
 # Open Liberty and WebSphere Liberty
 {: #liberty}
 
-[Open Liberty](https://openliberty.io/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") is a lightweight open-source Java runtime built using modular *features*. [WebSphere Liberty](https://developer.ibm.com/wasdev/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon"). is a commercial version of Open Liberty. Liberty features support the following application frameworks:
+[Open Liberty](https://openliberty.io/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") is a lightweight open-source Java runtime built using modular *features*. [WebSphere Liberty](https://developer.ibm.com/wasdev/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") is a commercial version of Open Liberty. Liberty features support the following application frameworks:
 
 * [MicroProfile](https://microprofile.io/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon"), an open source project defining new standards and APIs to accelerate and simplify the creation of microservices.
 * [Jakarta EE](https://jakarta.ee){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") and [Java EE](https://www.oracle.com/technetwork/java/javaee/overview/index.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon"), including features for individual specifications, like JNDI or JAX-RS.

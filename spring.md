@@ -2,7 +2,9 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-02-11"
+lastupdated: "2019-03-15"
+
+subcollection: java
 
 ---
 
@@ -36,7 +38,7 @@ The comprehensive documentation for Spring Framework is here:
 ## Spring Boot
 {: #spring-boot}
 
-Spring Boot was introduced in 2014, to "improve containerless web application architectures". Its goal was to move configuration from XML into code. Spring Boot provides mechanisms for creating applications based on an opinionted view of what technologies should be used. Spring Boot applications are Spring applications, and use a programming model unique to that ecosystem.
+Spring Boot was introduced in 2014, to "improve containerless web application architectures". Its goal was to move configuration from XML into code. Spring Boot provides mechanisms for creating applications based on an opinionated view of what technologies should be used. Spring Boot applications are Spring applications, and use a programming model unique to that ecosystem.
 
 Spring Boot emphasizes convention over configuration, and uses a combination of annotations and classpath discovery to enable additional functions. By default, Spring Boot applications are built into a self-contained runnable jar file that includes all required dependencies (including an embedded Tomcat server). Applications can alternately be packaged as war files deployed to an application server.
 
@@ -50,7 +52,7 @@ The comprehensive documentation for Spring Boot is here:
 ## Selecting Spring Framework or Spring Boot
 {: #spring-framework-or-boot}
 
-For new cloud native applications, if you choose to use Spring Framework, you should also use Spring Boot. Spring Boot simplifies configuration and assembly of Spring-based applications, and provides features, like Spring Actuator, that simplify creating [cloud native applications](/docs/cloud-native/overview.html).
+For new cloud native applications, if you choose to use Spring Framework, you should also use Spring Boot. Spring Boot simplifies configuration and assembly of Spring-based applications, and provides features, like Spring Actuator, that simplify creating [cloud native applications](/docs/cloud-native?topic=cloud-native-overview#overview).
 
 ### Spring Boot Actuator
 {: #spring-boot-actuator}
@@ -67,12 +69,12 @@ Spring Boot Actuator defines a collection of endpoints that are useful for inspe
 
 The structure and behavior of Spring Boot Actuator changed significantly between Spring Boot 1 and Spring Boot 2. The Boot 1 Actuator sat alongside the application, with separate configuration and security mechanisms. The Boot 2 version is more capable, and uses a security model that integrates with the rest of the Spring application.
 
-The behavior changes are particularly relevant if you are migrating a Boot 1 application to Boot 2. Read the Actuator section of the [Boot 1 to Boot 2 migration guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#spring-boot-actuator) for more details.
+The behavior changes are particularly relevant if you are migrating a Boot 1 application to Boot 2. Read the Actuator section of the [Boot 1 to Boot 2 migration guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#spring-boot-actuator){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") for more details.
 {: tip}
 
-In Boot 2, the Actuator acts as mini-REST framework. All endpoints are under an `/actuator` context. Endpoints for performing health checks, or gathering metrics, application or other environment information are provided. For a complete list, check the [Actuator documentation](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/production-ready-features.html#production-ready).
+In Boot 2, the Actuator acts as mini-REST framework. All endpoints are under an `/actuator` context. Endpoints for performing health checks, or gathering metrics, application or other environment information are provided. For a complete list, check the [Actuator documentation](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/production-ready-features.html#production-ready){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
-It is easy to create your own Actuator endpoint using a `@SpringComponent`:
+It is easy to create your own Actuator endpoint using a Spring `@Component`:
 
 ```java
 @Endpoint(id="example")
@@ -88,7 +90,7 @@ public class Example {
 
 Spring Boot has two controls to configure which Actuators are active at runtime, Actuators can be "enabled", and "exposed". To be able be reachable, an Actuator must be both. By default many endpoints are enabled, but only health and info are exposed. Additionally if Spring Security is enabled for the application, access must be explicitly allowed to the Actuator endpoints.
 
-The Actuator in Spring Boot 1 has its own security configuration, usually configured in application.properties. Instead of "enabled" and "exposed", there is "enabled", and "sensitive". Sensitive endpoints require authentication if served over HTTP. By default, the /metrics endpoint of the Spring Boot Actuator is enabled in Spring Boot 1, but it is considered sensitive and thus requires authorization, or to be set as not sensitive. For some environments, configuring Spring Security might be the right answer, but in Kubernetes, metrics endpoints remain internal to the cluster. For more information, check the [Spring Boot 1 Actuator docs](https://docs.spring.io/spring-boot/docs/1.5.2.RELEASE/reference/htmlsingle/#production-ready).
+The Actuator in Spring Boot 1 has its own security configuration, usually configured in application.properties. Instead of "enabled" and "exposed", there is "enabled", and "sensitive". Sensitive endpoints require authentication if served over HTTP. By default, the /metrics endpoint of the Spring Boot Actuator is enabled in Spring Boot 1, but it is considered sensitive and thus requires authorization, or to be set as not sensitive. For some environments, configuring Spring Security might be the right answer, but in Kubernetes, metrics endpoints remain internal to the cluster. For more information, check the [Spring Boot 1 Actuator docs](https://docs.spring.io/spring-boot/docs/1.5.2.RELEASE/reference/htmlsingle/#production-ready){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 {: note}
 
 ## Spring Cloud
@@ -116,3 +118,11 @@ Finally, Spring Cloud Kubernetes augments the default Spring Boot Actuator healt
 
 For more information, check the [Spring Cloud Kubernetes documentation](https://cloud.spring.io/spring-cloud-static/spring-cloud-kubernetes/2.1.0.RC1/single/spring-cloud-kubernetes.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
 
+
+<!--
+### Spring Cloud Streams
+{: #spring-cloud-streams}
+
+
+:FIXME:
+-->

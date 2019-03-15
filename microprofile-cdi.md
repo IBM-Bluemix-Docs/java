@@ -2,7 +2,9 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-02-05"
+lastupdated: "2019-03-15"
+
+subcollection: java
 
 ---
 
@@ -25,7 +27,7 @@ MicroProfile specifications (e.g. MicroProfile Config, MicroProfile JWT etc.) ta
 ## CDI Beans
 {: #cdi-bean}
 
-CDI operates on _beans_. CDI beans are created using [Bean-defining annotations](https://docs.jboss.org/cdi/spec/2.0/cdi-spec.html). Almost every plain old java object (POJO) that has either a constructor with no arguments or a constructor with the `@Inject` annotation can be a bean.
+CDI operates on _beans_. CDI beans are created using [Bean-defining annotations](https://docs.jboss.org/cdi/spec/2.0/cdi-spec.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon"). Almost every plain old java object (POJO) that has either a constructor with no arguments or a constructor with the `@Inject` annotation can be a bean.
 
 CDI Bean defining annotations must be discovered. CDI annotation scanning can be enabled using a `beans.xml` file ia the `META-INF` folder for a jar archive or the `WEB-INF` folder for a war archive. This file can be empty, or it can contain something like the following content:
 

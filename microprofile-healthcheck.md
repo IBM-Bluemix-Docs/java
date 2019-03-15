@@ -2,7 +2,9 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-02-05"
+lastupdated: "2019-03-15"
+
+subcollection: java
 
 ---
 
@@ -68,7 +70,7 @@ To avoid restart cycles, the initialDelaySeconds attribute for the liveness chec
 ## Using the MicroProfile Health API
 {: #mp-health-api}
 
-The [MicroProfile Health API](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_microprofile_healthcheck.html) (mpHealth ) defines a framework to simplify the implementation of health checks. Version 1.0 of the mpHealth API only defines a single endpoint. The next version will provide two, one for liveness, and one for readiness.
+The [MicroProfile Health API](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_microprofile_healthcheck.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") (mpHealth) defines a framework to simplify the implementation of health checks. Version 1.0 of the mpHealth API only defines a single endpoint. The next version will provide two, one for liveness, and one for readiness.
 
 To use the MicroProfile Health API with Liberty, add the `mpHealth` feature to `server.xml`:
 
@@ -114,8 +116,9 @@ readinessProbe:
 
 ```
 {: codeblock}
+
 As mentioned earlier, you can use different logics to indicate readiness and liveness. You can use MicroProfile Health to indicate readiness check and then create a JAX-RS endpoint for readiness check or vice versa. The next version of MicroProfile Health will provide two end points, one for liveness and the other for readiness.
 
 OpenLiberty has a hands-on guide that provides an example of how to add custom checks to the MicroProfile Health endpoint: https://openliberty.io/guides/microprofile-health.html
 
-You can override the default behavior of the MicroProfile health endpoint as described in [Performing MicroProfile health checks](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_microprofile_healthcheck.html).
+You can override the default behavior of the MicroProfile health endpoint as described in [Performing MicroProfile health checks](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_microprofile_healthcheck.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").

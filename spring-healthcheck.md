@@ -2,7 +2,9 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-02-11"
+lastupdated: "2019-03-15"
+
+subcollection: java
 
 ---
 
@@ -38,6 +40,7 @@ There are some behavior differences with Spring Boot actuator between versions. 
 The Spring Boot 2 actuator defines an `/actuator/health endpoint`, which returns a `{"status": "UP"}` payload when all is well. This endpoint is enabled by default, and requires no application code.
 
 An example of an unauthenticated successful health check using the Spring Boot 2 Actuator:
+<!-- Spring Boot 2 test project: https://github.com/IBM/spring-alarm-application -->
 
 ```
 $ curl -i localhost:8080/actuator/health
@@ -70,7 +73,7 @@ Date: Fri, 07 Dec 2018 23:09:09 GMT
 
 Note the inclusion of some H2 data base information. This is an example of Spring Actuator automatically adding checks for backing services. In this case, the application is using JDBC, and the H2 driver was discovered on the classpath.
 
-You can override the default behavior of the health endpoint with properties or code, as described in the [Spring Boot Reference Guide for 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/html/production-ready-endpoints.html#production-ready-health).
+You can override the default behavior of the health endpoint with properties or code, as described in the [Spring Boot Reference Guide for 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
 ### Liveness probe in Spring Boot 2
 {: #spring-liveness-boot2}
@@ -179,7 +182,7 @@ Content-Length: 221
 ```
 {: screen}
 
-You can override the default behavior of the health endpoint with properties or code, as described in the [Spring Boot Reference v1.5.x](https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#_auto_configured_healthindicators).
+You can override the default behavior of the health endpoint with properties or code, as described in the [Spring Boot Reference v1.5.x](https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#_auto_configured_healthindicators){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
 ### Liveness probe in Spring Boot 1
 {: #spring-liveness-boot1}
@@ -198,7 +201,6 @@ public class Liveness {
 }
 ```
 {: codeblock}
-
 ```
 $ curl -i localhost:8080/liveness
 HTTP/1.1 200

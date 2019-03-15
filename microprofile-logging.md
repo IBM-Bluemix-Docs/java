@@ -2,7 +2,9 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-02-05"
+lastupdated: "2019-03-15"
+
+subcollection: java
 
 ---
 
@@ -63,7 +65,7 @@ if (logger.isLoggable(Level.FINE)) {
 ```
 {: codeblock}
 
-For more information about log levels, and configuration details, see [WebSphere Liberty Troubleshooting guide](https://www.ibm.com/support/knowledgecenter/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_logging.html) and the [java.util.logging API documentation](https://docs.oracle.com/javase/8/docs/api/java/util/logging/package-summary.html).
+For more information about log levels, and configuration details, see [WebSphere Liberty Troubleshooting guide](https://www.ibm.com/support/knowledgecenter/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_logging.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") and the [java.util.logging API documentation](https://docs.oracle.com/javase/8/docs/api/java/util/logging/package-summary.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
 ## JSON logging with Liberty
 {: #mp-json-logging}
@@ -145,12 +147,12 @@ To something more like this:
 ```
 {: codeblock}
 
-Another alternative is to use the `WLP_LOGGING_CONSOLE_FORMAT` environment variable, as described in [Logging and Trace documentation](https://www.ibm.com/support/knowledgecenter/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_logging.html). This is similar to the example above: you can set the `WLP_LOGGING_CONSOLE_FORMAT` variable to either `basic` (the default) or `json`.
+Another alternative is to use the `WLP_LOGGING_CONSOLE_FORMAT` environment variable, as described in [Logging and Trace documentation](https://www.ibm.com/support/knowledgecenter/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_logging.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon"). This is similar to the example above: you can set the `WLP_LOGGING_CONSOLE_FORMAT` variable to either `basic` (the default) or `json`.
 
 ## Kibana dashboards for Liberty
 {: #liberty-kibana}
 
-Along with the new JSON logging feature, Liberty provides pre-built Kibana dashboards [that you can download from GitHub](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_icp_json_logging.html). Follow the instructions at the link to install them. Two new dashboards should be available:
+Along with the new JSON logging feature, Liberty provides pre-built Kibana dashboards [that you can download from GitHub](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_icp_json_logging.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon"). Follow the instructions at the link to install them. Two new dashboards should be available:
 
 ![](images/microprofile-logging-image4.png){width="6.05in" height="2.6090627734033247in"}
 
@@ -160,16 +162,16 @@ When you click on the dashboard for problem determination you can see this:
 
 The dashboard is interactive. For example, if you click on **INFO** in the legend for the **Liberty Message** widget, the **Liberty Messages Search** widget below will filter itself to just the `loglevel=INFO` messages. The dashboard will federate log data from across all of your Liberty-based microservices, filtering out other system logs.
 
-There are additional Kibana and Grafana dashboards associated with the Liberty helm chart. They are available as [extensions to the Liberty cloud pak](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards).
+There are additional Kibana and Grafana dashboards associated with the Liberty helm chart. They are available as [extensions to the Liberty cloud pak](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
 ## Next Steps
 {: #next_steps notoc}
 
-For more information about customizing log messages with appenders, log levels, and configuration details, see the official [Spring Boot reference for logging](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html).
+For more information about customizing log messages with appenders, log levels, and configuration details, see the official [Spring Boot reference for logging](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
 Learn more about viewing the logs in each of our deployment environments:
 
-* [Kubernetes Logs](https://kubernetes.io/docs/concepts/cluster-administration/logging/)
-* [{{site.data.keyword.openwhisk}} Logs & Monitoring](/docs/openwhisk/openwhisk_logs.html#openwhisk_logs)
-* [{{site.data.keyword.cloud_notm}} Log Analysis](/docs/services/CloudLogAnalysis/log_analysis_ov.html#log_analysis_ov)
-* [{{site.data.keyword.cloud_notm}} Private ELK stack](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.2/manage_metrics/logging_elk.html)
+* [Kubernetes Logs](https://kubernetes.io/docs/concepts/cluster-administration/logging/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
+* [{{site.data.keyword.openwhisk}} Logs & Monitoring](/docs/openwhisk?topic=cloud-functions-openwhisk_logs#openwhisk_logs)
+* [{{site.data.keyword.cloud_notm}} Log Analysis](/docs/services/CloudLogAnalysis?topic=cloudloganalysis-log_analysis_ov#log_analysis_ov)
+* [{{site.data.keyword.cloud_notm}} Private ELK stack](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.2/manage_metrics/logging_elk.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")

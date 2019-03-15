@@ -2,7 +2,9 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-02-05"
+lastupdated: "2019-03-15"
+
+subcollection: java
 
 ---
 
@@ -299,7 +301,7 @@ metadata:
 ```
 {: codeblock}
 
-For more information about using Micrometer with Spring Boot one, see [https://micrometer.io/docs/ref/spring/1.5](https://micrometer.io/docs/ref/spring/1.5).
+For more information about using Micrometer with Spring Boot one, see [https://micrometer.io/docs/ref/spring/1.5](https://micrometer.io/docs/ref/spring/1.5){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
 ## Timing invocations with Micrometer
 {: #spring-metrics-timing}
@@ -340,7 +342,6 @@ To make application-domain-specific measurements, you will need to create your o
 * A `Gauge` measures and returns the observed value when the meter is published (or queried).
 * A `Timer` tracks how many times an event has happened, and the cumulative elapsed time for that event. 
 * A `DistributionSummary` is similar to a `Timer`, it also tracks a distribution of events, but it does not measure time.
-
 
 New Meters are created either using helper methods on the `MeterRegistry`, or the Meter's fluent builder. 
 

@@ -2,7 +2,9 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-02-05"
+lastupdated: "2019-03-15"
+
+subcollection: java
 
 ---
 
@@ -26,18 +28,14 @@ Istio is not capable of offering fallback capabilities, because fallback require
 
 ```java
 @GET
-
 @Fallback(fallbackMethod="myFallback")
-
 public String callService() {
     //call servicer b
     return  bclient.hello();
-
 }
 
 public String myFallback() {
     return "Greetings\... This is a fallback!";
-
 }
 ```
 {: codeblock}
@@ -58,4 +56,4 @@ data:
 ```
 {: codeblock}
 
-For more information on the comparison of Istio Fault Tolerance and MicroProfile Fault Tolerance, please refer to [this blog](https://www.eclipse.org/community/eclipse_newsletter/2018/september/MicroProfile_istio.php) written by Emily Jiang.
+For more information on the comparison of Istio Fault Tolerance and MicroProfile Fault Tolerance, please refer to [this blog](https://www.eclipse.org/community/eclipse_newsletter/2018/september/MicroProfile_istio.php){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") written by Emily Jiang.

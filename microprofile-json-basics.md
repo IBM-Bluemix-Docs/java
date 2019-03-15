@@ -2,7 +2,9 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-02-05"
+lastupdated: "2019-03-15"
+
+subcollection: java
 
 ---
 
@@ -18,9 +20,10 @@ lastupdated: "2019-02-05"
 # JSON Handling with JSON-P and JSON-B
 {: #mp-json}
 
-[JSON-B (JSON-Binding, JSR 367)](http://json-b.net/) and [JSON-P (JSON-Parsing, JSR 374)](https://javaee.github.io/jsonp/) are two Java API specifications that define how Java classes and JSON objects can interact. JSON-P provides a Java API for processing JSON-formatted data. JSON-B provides a binding layer on top of JSON-P, making it easier to convert objects to and from JSON. In most cases, JSON-B should be used in preference to the lower-level JSON-P.
+[JSON-B (JSON-Binding, JSR 367)](http://json-b.net/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") and [JSON-P (JSON-Parsing, JSR 374)](https://javaee.github.io/jsonp/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") are two Java API specifications that define how Java classes and JSON objects can interact. JSON-P provides a Java API for processing JSON-formatted data. JSON-B provides a binding layer on top of JSON-P, making it easier to convert objects to and from JSON. In most cases, JSON-B should be used in preference to the lower-level JSON-P.
 
 ## JSON-B
+{: #java-json-b}
 
 With **JSON-B** , conversion to and from JSON is achieved using a Plain Old Java Object (POJO) with a getter/setter method for each field. For example:
 
@@ -110,6 +113,7 @@ Avoid over-exposure of internal details. Several annotations can help you contro
 {: tip}
 
 ## JSON-P
+{: #java-json-p}
 
 Before JSON-B existed (which arrived as part of Java EE 8), **JSON-P** (JSON-Parsing) was a standardized way to interact with JSON within Java code. Prior to this, there were various proprietary JSON parsing libraries, such as IBM's JSON4J. JSON-P can be used to parse JSON you've received from a REST call, or to construct JSON you can return from your own JAX-RS methods.
 
