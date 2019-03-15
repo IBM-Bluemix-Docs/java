@@ -2,9 +2,12 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-01-14"
+lastupdated: "2019-03-15"
+
+subcollection: java
 
 ---
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
@@ -124,7 +127,7 @@ Hystrix supports both semaphore and queue-based bulkheads. The following snippet
 
 The Hystrix Spring starter has one extra trick up it's sleeve, it will enhance the default `/health` endpoint for the application (supplied via a Spring Actuator, for more check the the [Metrics Topic](/docs/java?topic=java-spring-metrics#spring-metrics)).
 
-If the health endpoint is [configured to include extra detail](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health), then Circuit breaker status will be included with the health check information. (This behavior is disabled by default).
+If the health endpoint is [configured to include extra detail](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon"), then Circuit breaker status will be included with the health check information. (This behavior is disabled by default).
 
 ```
 {
