@@ -4,6 +4,8 @@ copyright:
   years: 2018, 2019
 lastupdated: "2019-03-15"
 
+keywords: health check spring, spring health endpoint, spring-boot-actuator, liveness probe spring, readiness probe spring, spring kubernetes probe
+
 subcollection: java
 
 ---

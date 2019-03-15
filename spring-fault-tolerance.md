@@ -4,6 +4,8 @@ copyright:
   years: 2018, 2019
 lastupdated: "2019-03-15"
 
+keywords: fault tolerance spring, hystrix spring, netflix spring, hystrixcommand spring, bulkhead spring, circuit breaker spring
+
 subcollection: java
 
 ---

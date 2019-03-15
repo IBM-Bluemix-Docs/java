@@ -4,6 +4,8 @@ copyright:
   years: 2019
 lastupdated: "2019-03-15"
 
+keywords: json-b, json-p, json-binding, json response, pojo object, pojo, jsonobject, jsonobjectbuilder, java api json
+
 subcollection: java
 
 ---

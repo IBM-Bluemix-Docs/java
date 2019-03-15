@@ -4,6 +4,8 @@ copyright:
   years: 2019
 lastupdated: "2019-03-15"
 
+keywords: open liberty java, websphere liberty java, jakarta, webpshere docker, liberty docker, liberty docker images, installutility, microprofile java, dual layer docker, develop microservices
+
 subcollection: java
 
 ---

@@ -4,6 +4,8 @@ copyright:
   years: 2018, 2019
 lastupdated: "2019-03-15"
 
+keywords: spring environment, spring credentials, ibm-cloud-spring-boot-service-bind, service bindings spring, vcap_services spring, access credential spring
+
 subcollection: java
 
 ---
@@ -30,6 +32,8 @@ The [{{site.data.keyword.cloud_notm}} Spring Service Bindings](https://github.co
 For more information about the `mappings.json` file, see [Working with injected service credentials](/docs/java?topic=cloud-native-configuration#portable-credentials).
 
 ### Adding the library to your Spring application
+{: #spring-add-service-library}
+
 To use the {{site.data.keyword.cloud_notm}} Spring Service Bindings library, include the `ibm-cloud-spring-boot-service-bind` dependency in your `pom.xml` or `build.gradle` file:
 
 **Maven example**:
@@ -51,6 +55,8 @@ dependencies {
 {: codeblock}
 
 ### Accessing credentials
+{: #spring-access-credentials}
+
 To access service configuration in your code you can use the `@Value` annotation, or use the Spring framework Environment class `getProperty()` method.
 
 Example: Accessing configuration data for an IBM Cloudant NoSQL DB service:

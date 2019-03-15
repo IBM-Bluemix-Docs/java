@@ -4,6 +4,8 @@ copyright:
   years: 2019
 lastupdated: "2019-03-15"
 
+keywords: openjdk, open j9, download openjdk, java frameworks, adoptopenjdk, eclipse openj9, openj9 binaries, openjdk binaries, microprofile framework, jakarta
+
 subcollection: java
 
 ---
@@ -34,7 +36,7 @@ Together, OpenJDK and Eclipse OpenJ9 provide improved performance and serviceabi
 ### Downloading OpenJDK with OpenJ9
 {: #downloads}
 
-OpenJDK with OpenJ9 binaries are freely available from the Java community hub at [AdoptOpenJDK](https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").  AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure. Docker images are also available on [Dockerhub](https://hub.docker.com/u/adoptopenjdk){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+OpenJDK with OpenJ9 binaries are freely available from the Java community hub at [AdoptOpenJDK](https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon"). AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure. Docker images are also available on [Dockerhub](https://hub.docker.com/u/adoptopenjdk){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
 ## Java frameworks
 {: #frameworks}

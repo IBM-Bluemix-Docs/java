@@ -4,6 +4,8 @@ copyright:
   years: 2019
 lastupdated: "2019-03-15"
 
+keywords: spring framework, spring reference, spring boot, boot actuator, spring kubernetes
+
 subcollection: java
 
 ---

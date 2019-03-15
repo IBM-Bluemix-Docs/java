@@ -4,6 +4,8 @@ copyright:
   years: 2019
 lastupdated: "2019-03-15"
 
+keywords: spring metrics, configure metrics spring, micrometer spring, micrometer, spring boot 2, spring actuator, prometheus spring
+
 subcollection: java
 
 ---

@@ -4,6 +4,8 @@ copyright:
   years: 2019
 lastupdated: "2019-03-15"
 
+keywords: java ee, jakarta ee, microprofile overview, cloud native java, cloud native microprofile
+
 subcollection: java
 
 ---
@@ -27,7 +29,7 @@ subcollection: java
 
 Technologies introduced in Java EE7 and EE8 are well-suited for creating microservices in Java, with support for annotations, light-weight protocols and asynchronous interaction patterns. Concurrency utilities in Java EE7 provide a straight-forward mechanism for using reactive libraries like RxJava in a container-friendly way.
 
-In September 2017, Oracle, supported by IBM and Red Hat, announced that Java EE was going to move to the Eclipse Foundation, as Jakarta EE. racle will continue to own everything associated with Java EE, up to and including Java EE 8, but all future development of this Enterprise Java platform after Java EE 8 will be at the Eclipse Foundation under the guidance of the Jakarta EE working group. In early 2018, Oracle started the large effort of re-licensing and contributing the Java EE technologies including APIs, RIs, TCKs and associated project documentation to the EE4J project.
+In September 2017, Oracle, supported by IBM and Red Hat, announced that Java EE was going to move to the Eclipse Foundation, as Jakarta EE. Oracle continues to own everything associated with Java EE, up to and including Java EE 8, but all future development of this Enterprise Java platform after Java EE 8 will be at the Eclipse Foundation under the guidance of the Jakarta EE working group. In early 2018, Oracle started the large effort of re-licensing and contributing the Java EE technologies including APIs, RIs, TCKs and associated project documentation to the EE4J project.
 
 ## MicroProfile
 {: #microprofile}

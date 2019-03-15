@@ -4,6 +4,8 @@ copyright:
   years: 2019
 lastupdated: "2019-03-15"
 
+keywords: mpmetrics microprofile, mpmetrics, prometheus java, metrics java, microprofile metrics
+
 subcollection: java
 
 ---
@@ -26,7 +28,7 @@ For example, in our Portfolio microservice, we are asserting that we would like 
 
 import org.eclipse.microprofile.metrics.annotation.Counted;
 
-And then we add the @Counted annotation to the createPortfolio method:
+And then we add the `@Counted` annotation to the `createPortfolio` method:
 
 ```java
 @POST
@@ -37,8 +39,7 @@ And then we add the @Counted annotation to the createPortfolio method:
 public JsonObject createPortfolio(@PathParam("owner") String owner) throws SQLException {
 ```
 
-To build this code, we need to add the following stanza to our Maven pom.xml:
-
+To build this code, we need to add the following stanza to our Maven `pom.xml`:
 ```xml
 <dependency>
   <groupId>org.eclipse.microprofile</groupId>

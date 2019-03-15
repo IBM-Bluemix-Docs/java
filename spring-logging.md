@@ -4,6 +4,8 @@ copyright:
   years: 2018, 2019
 lastupdated: "2019-03-15"
 
+keywords: spring logging, spring logger, logback spring, debug spring, json log spring, consoleappender spring, spring boot log
+
 subcollection: java
 
 ---

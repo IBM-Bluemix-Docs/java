@@ -4,6 +4,8 @@ copyright:
   years: 2019
 lastupdated: "2019-03-15"
 
+keywords: microprofile api, microprofile cdi, microprofile config api, config api, store properties multiple sources
+
 subcollection: java
 
 ---

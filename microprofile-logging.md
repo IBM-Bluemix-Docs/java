@@ -4,6 +4,8 @@ copyright:
   years: 2019
 lastupdated: "2019-03-15"
 
+keywords: java logging, log level java, debug java, json log java, json log help, kibana liberty, liberty messages
+
 subcollection: java
 
 ---
