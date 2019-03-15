@@ -161,7 +161,7 @@ $ docker logs --tail 5 -f <container-id> | jq .message
 {: screen}
 
 ## Next Steps
-{: #next_steps notoc}
+{: #spring-logging-next-steps notoc}
 
 For more information about customizing log messages with appenders, log levels, and configuration details, see the official [Spring Boot reference for logging](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 

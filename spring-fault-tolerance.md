@@ -93,7 +93,7 @@ Learn more by checking out the Spring-based [Hystrix Circuit Breaker](https://sp
 {: tip}
 
 ### Using Timeouts
-{: #timeout}
+{: #spring-timeout}
 
 When invoking a remote service, it may not return immediately, it may take a while, or it may take forever. Hystrix gives you the
 ability to define what is acceptable for your application. A simple addition to the `HystrixCommand` annotation can be used to change the timeout value from the default value of 1 second:
@@ -109,7 +109,7 @@ ability to define what is acceptable for your application. A simple addition to 
 {: codeblock}
 
 ### Using Bulkheads
-{: #bulkhead}
+{: #spring-bulkhead}
 
 Hystrix supports both semaphore and queue-based bulkheads. The following snippet shows how to configure a queue-based bulkhead that allocates 4 threads and limits the number of outstanding requests to 10:
 
@@ -125,7 +125,7 @@ Hystrix supports both semaphore and queue-based bulkheads. The following snippet
 {: codeblock}
 
 ### Circuit Breaker Status
-{: #breaker-status}
+{: #spring-breaker-status}
 
 The Hystrix Spring starter has one extra trick up it's sleeve, it will enhance the default `/health` endpoint for the application (supplied via a Spring Actuator, for more check the the [Metrics Topic](/docs/java?topic=java-spring-metrics#spring-metrics)).
 
@@ -145,7 +145,7 @@ If the health endpoint is [configured to include extra detail](https://docs.spri
 {: screen}
 
 ## Next Steps
-{: #next_steps notoc}
+{: #spring-tolerance-next-steps notoc}
 
 For more on Hystrix configuration, see the [Hystrix Configuration Wiki](https://github.com/Netflix/Hystrix/wiki/Configuration){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 

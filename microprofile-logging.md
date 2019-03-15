@@ -167,7 +167,7 @@ The dashboard is interactive. For example, if you click on **INFO** in the legen
 There are additional Kibana and Grafana dashboards associated with the Liberty helm chart. They are available as [extensions to the Liberty cloud pak](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
 ## Next Steps
-{: #next_steps notoc}
+{: #mp-logging-next-steps notoc}
 
 For more information about customizing log messages with appenders, log levels, and configuration details, see the official [Spring Boot reference for logging](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
