@@ -101,6 +101,7 @@ management.endpoints.web.exposure.include=health,liveness,...
 ```
 {: codeblock}
 
+
 ```
 $ curl -i localhost:8080/actuator/liveness
 HTTP/1.1 200

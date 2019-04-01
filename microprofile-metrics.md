@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-03-27"
 
 keywords: mpmetrics microprofile, mpmetrics, prometheus java, metrics java, microprofile metrics
 
@@ -22,13 +22,16 @@ subcollection: java
 # Metrics with MicroProfile
 {: #mp-metrics}
 
-MicroProfile provides `mpMetrics`, which let you annotate your source code saying what you'd like to track in your application. Note that, while `mpMetrics` is a great addition to MicroProfile, it does have some issues with how it integrates with Prometheus, tracked in issue #136: https://github.ibm.com/ibmcloud/CloudNative/issues/135. :FIXME:
+MicroProfile provides a Metrics capability that lets you use simple annotations to add custom metrics to your application. You just add the `mpMetrics-1.1` feature to your `server.xml` to enable this. Note you can optionally also add the `monitor-1.0` feature, if you'd like additional app server specific metrics (like about JDBC connection pools, for example).
 
-For example, in our Portfolio microservice, we are asserting that we would like for it to track a count of how many portfolios have been created. We do this first by importing the Counted annotation:
+Import the `@Counted` annotation to create a simple counter:
 
+```java
 import org.eclipse.microprofile.metrics.annotation.Counted;
+```
+{: codeblock}
 
-And then we add the `@Counted` annotation to the `createPortfolio` method:
+Then use the `@Counted` annotation to create a simple counter. This example counts how many times the `createPortfolio` method has been called:
 
 ```java
 @POST
@@ -38,6 +41,7 @@ And then we add the `@Counted` annotation to the `createPortfolio` method:
 @RolesAllowed({"StockTrader"})
 public JsonObject createPortfolio(@PathParam("owner") String owner) throws SQLException {
 ```
+{: codeblock}
 
 To build this code, we need to add the following stanza to our Maven `pom.xml`:
 ```xml
@@ -49,6 +53,7 @@ To build this code, we need to add the following stanza to our Maven `pom.xml`:
   <scope>provided</scope>
 </dependency>
 ```
+{: codeblock}
 
 With that in place, every time the createPortfolio JAX-RS method gets called, the counter will be incremented. We can invoke the `GET /metrics` URI to see both jvm (classloading, heap, and garbage collection statistics) and application-defined metrics. The `GET /metrics/application` URI will return only application-defined metrics. We can hit this REST GET API via the curl CLI, using the assigned port (32388 in this example):
 
@@ -72,9 +77,9 @@ As you can see, it has counted that we have created 2 portfolios. A few things o
 
 You can view the output of this REST GET endpoint in your web browser as well:
 
-![](images/microprofile-metrics-image1.png){width="6.655in" height="0.9289271653543307in"}
+![REST GET endpoint web browser](images/microprofile-metrics-image1.png "REST GET endpoint web browser"){: caption="Figure 1. REST GET endpoint web browser" caption-side="bottom"}
 
-Note that by default, the `/metrics` endpoint requires https and login credentials be passed. But Liberty 18.0.0.3 introduced the following stanza you can put in your server.xml to say you want this endpoint to allow http and to be unauthenticated:
+Note that by default, the `/metrics` endpoint requires https and login credentials be passed. Liberty 18.0.0.3 introduced the following stanza you can put in your server.xml to say you want this endpoint to allow http and to be unauthenticated:
 
 ```xml
 <mpMetrics authentication="false"/>
@@ -82,4 +87,3 @@ Note that by default, the `/metrics` endpoint requires https and login credentia
 
 This makes configuring the Prometheus scraper to hit this endpoint much easier.
 
-**To Do:** Describe configuring the Prometheus scraper to hit this endpoint, and show a Grafana chart of it.

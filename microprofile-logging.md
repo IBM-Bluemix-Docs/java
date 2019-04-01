@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-03-27"
 
 keywords: java logging, log level java, debug java, json log java, json log help, kibana liberty, liberty messages
 
@@ -156,11 +156,11 @@ Another alternative is to use the `WLP_LOGGING_CONSOLE_FORMAT` environment varia
 
 Along with the new JSON logging feature, Liberty provides pre-built Kibana dashboards [that you can download from GitHub](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_icp_json_logging.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon"). Follow the instructions at the link to install them. Two new dashboards should be available:
 
-![](images/microprofile-logging-image4.png){width="6.05in" height="2.6090627734033247in"}
+![Kibana dashboards](images/microprofile-logging-image4.png "Kibana dashboards"){: caption="Figure 1. Kibana dashboards" caption-side="bottom"}
 
 When you click on the dashboard for problem determination you can see this:
 
-![](images/microprofile-logging-image5.png){width="6.5in" height="5.125in"}
+![Kibana dashboard details](images/microprofile-logging-image5.png "Kibana dashboard details"){: caption="Figure 2. Kibana dashboard details" caption-side="bottom"}
 
 The dashboard is interactive. For example, if you click on **INFO** in the legend for the **Liberty Message** widget, the **Liberty Messages Search** widget below will filter itself to just the `loglevel=INFO` messages. The dashboard will federate log data from across all of your Liberty-based microservices, filtering out other system logs.
 
