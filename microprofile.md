@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-04"
 
 keywords: java ee, jakarta ee, microprofile overview, cloud native java, cloud native microprofile
 
@@ -38,4 +38,4 @@ While Java EE provides a solid foundation to create microservices, it needed tec
 
 The MicroProfile community is focused on rapid innovation around microservices and Enterprise Java. This community builds and integrates technologies that are best suited for cloud-native applications that follow microservices architectural patterns. Each MicroProfile release contains a set of technologies. MicroProfile 1.0, released in 2016, contained a subset of specifications from Java EE 7 that provide a set of core capabilities for lightweight microservices: CDI 1.2, JAX-RS 2.0 and JSON-P 1.0. The MicroProfile platform includes technologies to address unique cloud concerns, like configuration injection, fault tolerance, health checks, metrics, open tracing. It also defines vendor-agnostic standards for working with OpenAPI definitions and creating REST clients that make it easier to consume REST APIs, and for JWT propagation to address application security concerns.
 
-To start participating in the open source group, visit [https://microprofile.io/](https://microprofile.io/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") or [http://www.eclipse.org/microprofile](http://www.eclipse.org/microprofile){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+To start participating in the open source group, visit [https://microprofile.io/](https://microprofile.io/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") or [https://projects.eclipse.org/projects/technology.microprofile](https://projects.eclipse.org/projects/technology.microprofile){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
