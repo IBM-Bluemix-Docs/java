@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-27"
+lastupdated: "2019-04-04"
 
 keywords: java logging, log level java, debug java, json log java, json log help, kibana liberty, liberty messages
 
@@ -129,7 +129,7 @@ kubectl logs trader-54b4d579f7-4zvzk -n stock-trader -c trader | grep message | 
 Liberty has a few primitive console messages that are not JSON formatted. Using `grep` ensures that `jq` will only parse lines containing a message field.
 
 ## Additional features
-{: #mp-json-log-output}
+{: #mp-log-features}
 
 Guidelines for using log levels, like when to use `logger.info` or `logger.fine`, is something that each organization or project has to make decisions on. However, we expect that these interfaces are necessary and useful in almost any project.
 
