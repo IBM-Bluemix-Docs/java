@@ -114,8 +114,6 @@ readinessProbe:
   exec:
     command: ["sh", "-c", "curl -s http://localhost:9080/health | grep -q service-a"]
   initialDelaySeconds: 40
-
-
 ```
 {: codeblock}
 

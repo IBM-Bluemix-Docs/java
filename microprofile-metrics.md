@@ -44,6 +44,7 @@ public JsonObject createPortfolio(@PathParam("owner") String owner) throws SQLEx
 {: codeblock}
 
 To build this code, we need to add the following stanza to our Maven `pom.xml`:
+
 ```xml
 <dependency>
   <groupId>org.eclipse.microprofile</groupId>
@@ -86,4 +87,3 @@ Note that by default, the `/metrics` endpoint requires https and login credentia
 ```
 
 This makes configuring the Prometheus scraper to hit this endpoint much easier.
-
