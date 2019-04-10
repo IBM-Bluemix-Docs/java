@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-09"
 
 keywords: spring metrics, configure metrics spring, micrometer spring, micrometer, spring boot 2, spring actuator, prometheus spring
 
@@ -24,12 +24,12 @@ subcollection: java
 
 As of Spring Framework 5, metrics in Spring are now handled by Micrometer. Micrometer is a framework that describes itself as "SLF4J for Metrics". Just like SLF4J acts as a vendor-neutral API for logging that can connect to various different logging backends, Micrometer provides a vendor-neutral API with which to instrument and measure your code, and then supply those metrics onwards to a variety of metrics aggregators, such as Prometheus, DataDog or Influx/Telegraph. 
 
-In this manner Spring is able to remain flexible in its approach toward metrics, and integrate into a wide variety of cloud native architectures. It doesn't matter if your component is targetting Prometheus for it's metrics today, but in it's next deployment it will need to target Statsd, changing is a simple matter of modifying the dependencies and if the metrics are Push based, supplying destination information for the metrics via application.properties. Spring & Micrometer will figure out what to do at runtime, based on which dependencies they find on the application classpath.
+The Micrometer framework allows Spring to integrate into a wide variety of cloud-native architectures. Adding support for Prometheus or Statsd is a simple matter of modifying dependencies, and if the metrics collector is push-based, providing destination information in `application.properties`. Spring and Micrometer determine what to do at runtime based on which dependencies they find on the application's class path.
 
 ## Enabling Metrics
 {: #spring-metrics-enabling}
 
-Basic out-of-the-box metrics are supplied in Spring via the Spring Boot Actuator,  which requires the spring-boot-starter-actuator dependency in your `pom.xml` file:  
+Basic out-of-the-box metrics are supplied by the Spring Boot Actuator, which requires the `spring-boot-starter-actuator` dependency in your `pom.xml` file:  
 
 ```xml
 <dependency>
@@ -39,7 +39,7 @@ Basic out-of-the-box metrics are supplied in Spring via the Spring Boot Actuator
 ```
 {: codeblock}
 
-If you are still on Spring Boot 1.5.x, then metrics (and actuators) work a little differently. Micrometer was made the standard for Spring metrics as of Spring Boot 2.0, but backports were made available for Boot 1.5.x, enabling consistent practices for creating and gathering metrics in cloud-native Spring Boot applications. More importantly, Micrometer supports a variety of monitoring systems, including Prometheus, that make it a better choice than the Boot 1.5.x metrics system for cloud deployments.
+If you are still on Spring Boot 1.5.x, then metrics (and actuators) work a little differently. Micrometer was made the standard for Spring metrics in Spring Boot 2.0, but backports were made available for Boot 1.5.x, enabling consistent practices for creating and gathering metrics in cloud-native Spring Boot applications. More importantly, Micrometer supports a variety of monitoring systems, including Prometheus, that make it a better choice than the Boot 1.5.x metrics system for cloud deployments.
 {: note}
 
 ## Micrometer metrics

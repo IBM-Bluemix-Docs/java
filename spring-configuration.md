@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-09"
 
 keywords: spring environment, spring credentials, ibm-cloud-spring-boot-service-bind, service bindings spring, vcap_services spring, access credential spring
 
@@ -37,6 +37,7 @@ For more information about the `mappings.json` file, see [Working with injected 
 To use the {{site.data.keyword.cloud_notm}} Spring Service Bindings library, include the `ibm-cloud-spring-boot-service-bind` dependency in your `pom.xml` or `build.gradle` file:
 
 **Maven example**:
+
 ```xml
 <dependency>
    <groupId>com.ibm.cloud</groupId>
@@ -47,6 +48,7 @@ To use the {{site.data.keyword.cloud_notm}} Spring Service Bindings library, inc
 {: codeblock}
 
 **Gradle example**:
+
 ```json
 dependencies {
     compile group: 'com.ibm.cloud', name: 'ibm-cloud-spring-boot-service-bind', version: '1.1.1'
@@ -76,7 +78,7 @@ Example: Accessing configuration data for an IBM Cloudant NoSQL DB service:
 {: codeblock}
 
 ## Next Steps
-{: #next notoc}
+{: #spring-config-next-steps notoc}
 
 For more information on Spring Boot:
 
