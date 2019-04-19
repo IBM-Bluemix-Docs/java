@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-19"
 
 keywords: spring framework, spring reference, spring boot, boot actuator, spring kubernetes
 
@@ -48,7 +48,7 @@ Spring Boot is now at version 2.0, released in 2018. Maintenance of 1.5.x branch
 
 The comprehensive documentation for Spring Boot is here:
 
-* [Spring Boot Reference Guide for 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
+* [Spring Boot Reference Guide for 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
 * [Spring Boot Reference Guide for 1.5.x](https://docs.spring.io/spring-boot/docs/1.5.x/reference/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
 
 ## Selecting Spring Framework or Spring Boot
