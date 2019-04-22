@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-22"
 
 keywords: health check spring, spring health endpoint, spring-boot-actuator, liveness probe spring, readiness probe spring, spring kubernetes probe
 
@@ -80,7 +80,7 @@ You can override the default behavior of the health endpoint with properties or 
 ### Liveness probe in Spring Boot 2
 {: #spring-liveness-boot2}
 
-The Actuator framework is Spring Boot 2 is its own mini-REST-framework that can be extended with custom endpoints. This means that we can add a simple liveness endpoint that is managed in the same way the built-in health indicator is. A custom liveness endpoint can be trivially declared like this:
+The Actuator framework in Spring Boot 2 is its own mini-REST-framework that can be extended with custom endpoints. This means that we can add a simple liveness endpoint that is managed in the same way the built-in health indicator is. A custom liveness endpoint can be trivially declared like this:
 
 ```java
 @Endpoint(id="liveness")
