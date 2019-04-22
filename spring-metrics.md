@@ -303,7 +303,7 @@ metadata:
 ```
 {: codeblock}
 
-For more information about using Micrometer with Spring Boot one, see [https://micrometer.io/docs/ref/spring/1.5](https://micrometer.io/docs/ref/spring/1.5){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+For more information about using Micrometer with Spring Boot 1, see [https://micrometer.io/docs/ref/spring/1.5](https://micrometer.io/docs/ref/spring/1.5){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
 ## Timing invocations with Micrometer
 {: #spring-metrics-timing}

@@ -22,13 +22,14 @@ subcollection: java
 # JSON Handling with JSON-P and JSON-B
 {: #mp-json}
 
-[JSON-B (JSON-Binding, JSR 367)](http://json-b.net/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") and [JSON-P (JSON-Processing, JSR 374)](https://javaee.github.io/jsonp/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") are two Java API specifications that define how Java classes and JSON objects can interact. JSON-P provides a Java API for processing JSON-formatted data. JSON-B provides a binding layer on top of JSON-P, making it easier to convert objects to and from JSON. In most cases, JSON-B should be used in preference to the lower-level JSON-P.
+[JSON-B (JSON-Binding, JSR 367)](http://json-b.net/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") and [JSON-P (JSON-Processing, JSR 374)](https://javaee.github.io/jsonp/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") are two Java&trade API specifications that define how Java&trade classes and JSON objects can interact. JSON-P provides a Java&trade API for processing JSON-formatted data. JSON-B provides a binding layer on top of JSON-P, making it easier to convert objects to and from JSON. In most cases, JSON-B should be used in preference to the lower-level JSON-P.
 
 ## JSON-B
 {: #java-json-b}
 
-With **JSON-B**, conversion to and from JSON is achieved using a Plain Old Java Object (POJO) with a getter/setter method for each field. For example:
+With **JSON-B**, conversion to and from JSON is achieved by using a Plain Old Java Object (POJO) with a getter and setter method for each field.
 
+For example:
 ```java
 public class Employee {
   private String fName;
@@ -84,7 +85,7 @@ public class Address {
 ```
 {: codeblock}
 
-To use JSON-B with Liberty, you need the `jsonb-1.0` feature enabled in your `server.xml`. You can also use `microProfile-2.0`, which gives you all of the MP features, including JSON-B and JSON-P.
+To use JSON-B with Liberty, you need the `jsonb-1.0` feature that is enabled in your `server.xml` file. You can also use `microProfile-2.0`, which gives you all of the MP features, including JSON-B and JSON-P.
 
 In your JAX-RS class, you'd use the following to create a `Person` object with the fields shown earlier:
 
@@ -94,7 +95,7 @@ Employee me = new Employee("John Alcorn", 228264, "Senior Software Engineer", my
 ```
 {: codeblock}
 
-JSON-B will automatically convert JSON into a defined object. For example, if you use the MicroProfile REST client to make an outbound call to a service with a POJO as a return type, JSON-B will automatically convert the JSON response into a POJO object, which you can then use to retrieve attributes:
+JSON-B automatically converts JSON into a defined object. For example, if you use the MicroProfile REST client to make an outbound call to a service with a POJO as a return type, JSON-B automatically converts the JSON response into a POJO object, which you can then use to retrieve attributes:
 
 ```java
 // mpRestClient: outbound client request returning a POJO
@@ -106,7 +107,7 @@ String city = address.getCity();
 ```
 {: codeblock}
 
-JSON-B also provides a parser that will take a String representation of a JSON object and will give you back the corresponding JSON-B object. To use this, you need to add the following import statements to your microservice class:
+JSON-B also provides a parser that takes a String representation of a JSON object, and gives you back the corresponding JSON-B object. To use the parser, you need to add the following import statements to your microservice class:
 
 ```java
 import javax.json.bind.Jsonb;
@@ -124,13 +125,13 @@ Employee employee = jsonb.fromJson(myJSON, Employee.class);
 
 Everything is strongly typed with JSON-B. If you get a field name wrong, for example, you would see a compile failure since there wouldn't be such a method. Creating POJOs can be tedious, but most IDEs support generating getters and setters once the fields are defined, which helps.
 
-Avoid over-exposure of internal details. Several annotations can help you control how your objects are converted to and from JSON: `@JsonbTransient` identifies fields that should not be converted at all, and `@JsonbNillable` specifies how null values should be handled. `@JsonbAdapter` implementations can further customize how data is serialised and deserialized for additional isolation between the wire format and the internal implementation.
+Avoid over-exposure of internal details. Several annotations can help you control how your objects are converted to and from JSON: @JsonbTransient identifies fields that should not be converted at all, and @JsonbNillable specifies how null values should be handled. @JsonbAdapter implementations can further customize how data is serialized and deserialized for added isolation between the wire format and the internal implementation.
 {: tip}
 
 ## JSON-P
 {: #java-json-p}
 
-Before JSON-B existed (which arrived as part of Java EE 8), **JSON-P** (JSON-Processing) was a standardized way to interact with JSON within Java code. Prior to this, there were various proprietary JSON parsing libraries, such as IBM's JSON4J. JSON-P can be used to parse JSON you've received from a REST call, or to construct JSON you can return from your own JAX-RS methods.
+Before JSON-B existed (which arrived as part of Java EE 8), **JSON-P** (JSON-Processing) was a standardized way to interact with JSON within Java code. Before this, there were various proprietary JSON parsing libraries, such as IBM's JSON4J. JSON-P can be used to parse JSON received from a REST call, or to construct JSON you can return from your own JAX-RS methods.
 
 Using JSON-P requires the `jsonp-1.0` feature be enabled in your `server.xml` (or the `microProfile-2.0` convenience feature, which enables all of the MP technologies).
 
@@ -145,9 +146,9 @@ import javax.json.JsonObjectBuilder;
 ```
 {: codeblock}
 
-To work with JSON received from a REST API call, you call the `get` method on a `JsonObject`, passing in the key for the field you want. To continue our `Employee` example above, if you received a `JsonObject` that you called `employee`, you would call `employee.get("name")` to find out the person's name, or `employee.get("title")` to get their job title. JSON-P is a lot like dealing with a `Map` in Java, as a comparison.
+To work with JSON received from a REST API call, you call the `get` method on a `JsonObject`, passing in the key for the field you want. To continue the `Employee` example, if you received a `JsonObject` that you called `employee`, you would call `employee.get("name")` to find out the person's name, or `employee.get("title")` to get their job title. JSON-P is a lot like dealing with a `Map` in Java&trade, as a comparison.
 
-Now, say you want to build such a JSON object in your Java code. JSON-P uses a builder pattern: use a `JsonObjectBuilder` to add each value, then call `build()` to produce the `JsonObject`, like such:
+Now, say you want to build such a JSON object in your Java&trade code. JSON-P uses a builder pattern: use a `JsonObjectBuilder` to add each value, then call `build()` to produce the `JsonObject`, like such:
 
 ```java
 JsonObjectBuilder addressBuilder = Json.createObjectBuilder();
@@ -170,6 +171,6 @@ JsonObject employee = employeeBuilder.build();
 ```
 {: codeblock}
 
-Note that a `JsonObject` in JSON-P is immutable, unlike with JSON-B. If you want to update fields, you have to create a new `JsonObject`, duplicate the fields, and then make changes. Making your own POJOs with copy constructors can help here.
+A `JsonObject` in JSON-P is immutable, unlike with JSON-B. If you want to update fields, you must create a new `JsonObject`, duplicate the fields, and then make changes. Making your own POJOs with copy constructors can help here.
 
 JSON-B and JSON-P are both supported by the MicroProfile Rest Client for proper serialization and deserialization, but type-safety and compile-time feedback make JSON-B the preferred choice.
