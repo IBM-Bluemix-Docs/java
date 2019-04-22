@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-04-19"
+lastupdated: "2019-04-22"
 
 keywords: spring framework, spring reference, spring boot, boot actuator, spring kubernetes
 
@@ -22,14 +22,14 @@ subcollection: java
 # Spring
 {: #spring-overview}
 
-The Spring Platform is an ecosystem of projects that aim to make it simpler to create Java applications. Usually the term "Spring" refers to the Spring Framework, but it is also used generically to refer to any project that is part of, or uses Spring based technologies, including Spring Boot.
+The Spring Platform is an ecosystem of projects that aim to make it simpler to create Java&trade applications. Usually the term "Spring" refers to the Spring Framework, but it is also used generically to refer to any project that is part of, or uses Spring-based technologies, including Spring Boot.
 
 ## Spring Framework
 {: #spring-framework}
 
-The Spring Framework was introduced in 2002, and has released a new major version approximately every 3 years since. The framework comprises a large set of components (referred to as Spring Modules) that cover everything from REST Endpoints to Database Abstractions. With its most recent release in 2017, Spring Framework 5 introduced updated JDK support, alongside with WebFlux an new module for reactive programming based on [Project Reactor](https://projectreactor.io/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+The Spring Framework was introduced in 2002, and has released a major version approximately every 3 years. The framework comprises a large set of components (referred to as Spring Modules) that cover everything from REST endpoints to database abstractions. With its most recent release in 2017, Spring Framework 5 introduced updated JDK support, and WebFlux. WebFlux is a new module for reactive programming based on [Project Reactor](https://projectreactor.io/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
-Spring Framework 4.3 is the last feature branch, with support through 2020. Applications using older versions of Spring should be migrated to Spring Framework 5.
+Spring Framework 4.3 is the last feature branch for Spring Framework 4.x, with support through 2020. Applications that use older versions of Spring should be migrated to Spring Framework 5.
 
 The comprehensive documentation for Spring Framework is here:
 
@@ -40,11 +40,11 @@ The comprehensive documentation for Spring Framework is here:
 ## Spring Boot
 {: #spring-boot}
 
-Spring Boot was introduced in 2014, to "improve containerless web application architectures". Its goal was to move configuration from XML into code. Spring Boot provides mechanisms for creating applications based on an opinionated view of what technologies should be used. Spring Boot applications are Spring applications, and use a programming model unique to that ecosystem.
+Spring Boot was introduced in 2014, to "improve containerless web application architectures". Its goal was to move configuration from XML into code. Spring Boot provides mechanisms for creating applications based on an opinionated view of what technologies are to be used. Spring Boot applications are Spring applications, and use a programming model unique to that ecosystem.
 
-Spring Boot emphasizes convention over configuration, and uses a combination of annotations and classpath discovery to enable additional functions. By default, Spring Boot applications are built into a self-contained runnable jar file that includes all required dependencies (including an embedded Tomcat server). Applications can alternately be packaged as war files deployed to an application server.
+Spring Boot emphasizes convention over configuration, and uses a combination of annotations and class path discovery to enable additional functions. By default, Spring Boot applications are built into a self-contained runnable JAR file that includes all required dependencies (including an embedded Tomcat server). Applications can alternately be packaged as war files deployed to an application server.
 
-Spring Boot is now at version 2.0, released in 2018. Maintenance of 1.5.x branch will stop in August of 2019.
+Spring Boot is now at version 2.0, which released in 2018. Maintenance of 1.5.x branch ends in August of 2019.
 
 The comprehensive documentation for Spring Boot is here:
 
@@ -74,9 +74,9 @@ The structure and behavior of Spring Boot Actuator changed significantly between
 The behavior changes are particularly relevant if you are migrating a Boot 1 application to Boot 2. Read the Actuator section of the [Boot 1 to Boot 2 migration guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#spring-boot-actuator){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") for more details.
 {: tip}
 
-In Boot 2, the Actuator acts as mini-REST framework. All endpoints are under an `/actuator` context. Endpoints for performing health checks, or gathering metrics, application or other environment information are provided. For a complete list, check the [Actuator documentation](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/production-ready-features.html#production-ready){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+In Boot 2, the Actuator acts as mini-REST framework. All endpoints are under an `/actuator` context. Endpoints for performing health checks, or gathering metrics, application, or other environment information are provided. For a complete list, check the [Actuator documentation](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/production-ready-features.html#production-ready){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
-It is easy to create your own Actuator endpoint using a Spring `@Component`:
+It is easy to create your own Actuator endpoint by using a Spring `@Component`:
 
 ```java
 @Endpoint(id="example")
@@ -98,25 +98,25 @@ The Actuator in Spring Boot 1 has its own security configuration, usually config
 ## Spring Cloud
 {: #spring-cloud}
 
-Spring Cloud is a collection of integrations between third-party cloud technologies and the Spring programming model. It aims to provide assistance to developers building Spring applications for deployment to the cloud. The breadth of coverage attained Spring Cloud is made possible by its modular nature, each project within Spring Cloud is focused on a particular technology or set of technologies.
+Spring Cloud is a collection of integrations between third-party cloud technologies and the Spring programming model. It aims to assist developers that build Spring applications for deployment to the cloud. The breadth of coverage that is attained by Spring Cloud is made possible by its modular nature, as each project within Spring Cloud is focused on a particular technology or set of technologies.
 
-Spring Cloud projects follow the general Spring approach of favouring convention over configuration. Most capabilities are enabled by adding the right dependency at build time.
+Spring Cloud projects follow the general Spring approach of favoring convention over configuration. Most capabilities are enabled by adding the right dependency at build time.
 
 See the official [Spring Cloud Project Site](https://spring.io/projects/spring-cloud){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") for more information about Spring Cloud projects and supported technologies.
 
 ### Spring Cloud with Kubernetes
 {: #spring-cloud-kubernetes}
 
-Spring Cloud Kubernetes is a Spring Cloud project intended to make various tasks easier for Spring applications running in Kubernetes. Spring Cloud Kubernetes offers implementations of common Spring interfaces that map onto Kubernetes concepts and services.
+Spring Cloud Kubernetes is a Spring Cloud project that is intended to make various tasks easier for Spring applications that run in Kubernetes. Spring Cloud Kubernetes offers implementations of common Spring interfaces that map onto Kubernetes concepts and services.
 
-Historically, Spring has used Netflix libraries like Eureka as a Service Registry and Ribbon as a client side Load Balancer. In Kubernetes environments, both of these roles are fulfilled by Kubernetes itself, making the application-level capabilities redundant. Spring Cloud Kubernetes adapts Spring abstractions like `DiscoveryClient` to underlying Kubernetes mechanisms.
+Historically, Spring uses Netflix libraries like Eureka, as a Service Registry, and Ribbon as a client-side Load Balancer. In Kubernetes environments, both of these roles are fulfilled by Kubernetes itself, making the application-level capabilities redundant. Spring Cloud Kubernetes adapts Spring abstractions like `DiscoveryClient` to underlying Kubernetes mechanisms.
 
-Care should be taken if using Ribbon discovery via Spring Cloud Kubernetes in a cluster with Istio installed where Istio is being used to affect service routing. Client side load balancing implies the client wishes to select the destination service itself, while Istio may be attempting to route the call elsewhere. Only one of these can win, leading to disagreement over how a call should have been routed. This combination should be avoided if at all possible.
+Use caution if you are using Ribbon discovery through Spring Cloud Kubernetes in a cluster with Istio installed, where Istio is being used to affect service routing. Client-side load balancing implies the client wants to select the destination service itself, while Istio can be attempting to route the call elsewhere. Only one of these can win, leading to disagreement over how a call can be routed. This combination should be avoided if at all possible.
 {: note}
 
-In addition, Spring Cloud Kubernetes offers integration between Kubernetes ConfigMaps and Secrets to Spring `@Autowired` configuration beans. This includes strategies for handling dynamic changes to ConfigMaps and Secrets made while the application is running.
+In addition, Spring Cloud Kubernetes offers integration between Kubernetes ConfigMaps and Secrets to Spring `@Autowired` configuration beans. This includes strategies for handling dynamic changes to `ConfigMaps` and `Secrets` made while the application is running.
 
-Finally, Spring Cloud Kubernetes augments the default Spring Boot Actuator health endpoint to include additional information related to the deployment.
+Finally, Spring Cloud Kubernetes augments the default Spring Boot Actuator health endpoint to include additional information that is related to the deployment.
 
 For more information, check the [Spring Cloud Kubernetes documentation](https://cloud.spring.io/spring-cloud-static/spring-cloud-kubernetes/2.1.0.RC1/single/spring-cloud-kubernetes.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
 

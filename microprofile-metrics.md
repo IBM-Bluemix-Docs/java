@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-27"
+lastupdated: "2019-04-22"
 
 keywords: mpmetrics microprofile, mpmetrics, prometheus java, metrics java, microprofile metrics
 
@@ -22,7 +22,7 @@ subcollection: java
 # Metrics with MicroProfile
 {: #mp-metrics}
 
-MicroProfile provides a Metrics capability that lets you use simple annotations to add custom metrics to your application. You just add the `mpMetrics-1.1` feature to your `server.xml` to enable this. Note you can optionally also add the `monitor-1.0` feature, if you'd like additional app server specific metrics (like about JDBC connection pools, for example).
+MicroProfile provides a Metrics capability for adding custom metrics to your application by using simple annotations. To enable this feature, add the `mpMetrics-1.1` feature to your `server.xml`. You can optionally add the `monitor-1.0` feature if you'd like to see more app server-specific metrics (like about JDBC connection pools, for example).
 
 Import the `@Counted` annotation to create a simple counter:
 
@@ -31,7 +31,7 @@ import org.eclipse.microprofile.metrics.annotation.Counted;
 ```
 {: codeblock}
 
-Then use the `@Counted` annotation to create a simple counter. This example counts how many times the `createPortfolio` method has been called:
+Then, use the `@Counted` annotation to create a simple counter, as shown in the following example that counts how many times the `createPortfoloio` method is called: 
 
 ```java
 @POST
@@ -43,7 +43,7 @@ public JsonObject createPortfolio(@PathParam("owner") String owner) throws SQLEx
 ```
 {: codeblock}
 
-To build this code, we need to add the following stanza to our Maven `pom.xml`:
+To build this code, add the following stanza to Maven's `pom.xml` file:
 
 ```xml
 <dependency>
@@ -56,7 +56,11 @@ To build this code, we need to add the following stanza to our Maven `pom.xml`:
 ```
 {: codeblock}
 
-With that in place, every time the createPortfolio JAX-RS method gets called, the counter will be incremented. We can invoke the `GET /metrics` URI to see both jvm (classloading, heap, and garbage collection statistics) and application-defined metrics. The `GET /metrics/application` URI will return only application-defined metrics. We can hit this REST GET API via the curl CLI, using the assigned port (32388 in this example):
+With that in place, the counter is incremented every time the `createPortfolio` JAX-RS method is called. 
+
+You can invoke the `GET /metrics` URI to see both JVM (class loading, heap, and garbage collection statistics) and application-defined metrics. The `GET /metrics/application` URI returns application-defined metrics only. 
+
+You can access the REST GET API through the curl CLI by using the assigned port (32388 in this example):
 
 ```
 Johns-MacBook-Pro-8:StockTrader jalcorn$ curl http://9.42.2.107:32388/metrics/application
@@ -71,19 +75,20 @@ Johns-MacBook-Pro-8:StockTrader jalcorn$
 ```
 {: screen}
 
-As you can see, it has counted that we have created 2 portfolios. A few things of note:
+As you can see, two portfolios are counted as expected. 
 
-- This is an in-memory counter: if the pod is restarted, the value will be reset to zero; if there are multiple replicas, each will have its own (localized) value.
-- The "# HELP" text is what we specified as the description in the `@Counted` annotation.
+A few things of note:
+- This is an in-memory counter: If the pod is restarted, the value is reset to zero; if there are multiple replicas, each has its own unique value.
+- The "# HELP" text is what is specified as the description in the `@Counted` annotation.
 
 You can view the output of this REST GET endpoint in your web browser as well:
 
 ![REST GET endpoint web browser](images/microprofile-metrics-image1.png "REST GET endpoint web browser"){: caption="Figure 1. REST GET endpoint web browser" caption-side="bottom"}
 
-Note that by default, the `/metrics` endpoint requires https and login credentials be passed. Liberty 18.0.0.3 introduced the following stanza you can put in your server.xml to say you want this endpoint to allow http and to be unauthenticated:
+By default, the `/metrics` endpoint requires https and login credentials be passed. Liberty 18.0.0.3 introduced the following stanza that you can put in your `server.xml` to define this endpoint to allow http and to be unauthenticated:
 
 ```xml
 <mpMetrics authentication="false"/>
 ```
 
-This makes configuring the Prometheus scraper to hit this endpoint much easier.
+The Prometheus scraper configuration is simplified to make accessing the endpoint easier.

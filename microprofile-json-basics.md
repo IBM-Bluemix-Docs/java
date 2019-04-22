@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-27"
+lastupdated: "2019-04-22"
 
 keywords: json-b, json-p, json-binding, json response, pojo object, pojo, jsonobject, jsonobjectbuilder, java api json
 
@@ -27,7 +27,7 @@ subcollection: java
 ## JSON-B
 {: #java-json-b}
 
-With **JSON-B** , conversion to and from JSON is achieved using a Plain Old Java Object (POJO) with a getter/setter method for each field. For example:
+With **JSON-B**, conversion to and from JSON is achieved using a Plain Old Java Object (POJO) with a getter/setter method for each field. For example:
 
 ```java
 public class Employee {
@@ -86,7 +86,7 @@ public class Address {
 
 To use JSON-B with Liberty, you need the `jsonb-1.0` feature enabled in your `server.xml`. You can also use `microProfile-2.0`, which gives you all of the MP features, including JSON-B and JSON-P.
 
-In your JAX-RS class, you'd use the following to create a Person object with the fields shown earlier:
+In your JAX-RS class, you'd use the following to create a `Person` object with the fields shown earlier:
 
 ```java
 Address myAddress = new Address("501-B101", "4205 S Miami Blvd", "Durham", "NC", "27703");
