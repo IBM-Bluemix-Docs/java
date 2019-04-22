@@ -54,7 +54,7 @@ The comprehensive documentation for Spring Boot is here:
 ## Selecting Spring Framework or Spring Boot
 {: #spring-framework-or-boot}
 
-For new cloud native applications, if you choose to use Spring Framework, you should also use Spring Boot. Spring Boot simplifies configuration and assembly of Spring-based applications, and provides features, like Spring Actuator, that simplify creating [cloud native applications](/docs/cloud-native?topic=cloud-native-overview#overview).
+For new cloud native applications, if you choose to use Spring Framework, you should also use Spring Boot. Spring Boot simplifies configuration and assembly of Spring-based applications, and provides features, like Spring Actuator, that simplify creating [cloud native applications](/docs/java?topic=cloud-native-overview#overview).
 
 ### Spring Boot Actuator
 {: #spring-boot-actuator}
