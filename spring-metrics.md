@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-04-22"
+lastupdated: "2019-04-23"
 
 keywords: spring metrics, configure metrics spring, micrometer spring, micrometer, spring boot 2, spring actuator, prometheus spring
 
@@ -70,7 +70,7 @@ management.endpoints.web.exposure.include=health,metrics
 ```
 {: codeblock}
 
-Verify that the metrics endpoint has been enabled by checking the `/actuator` endpoint. The output looks something like this when you run the application locally (using `jq` to pretty print the json response):
+Verify that the metrics endpoint has been enabled by checking the `/actuator` endpoint. The output looks something like this when you run the application locally and use `jq` to pretty print the json response:
 
 ```
 $ curl -s localhost:8080/actuator | jq .
