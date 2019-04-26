@@ -29,9 +29,9 @@ Le applicazioni Java&trade; sono disponibili in un'ampia gamma di modelli e dime
 
 Il progetto OpenJDK&trade; è l'implementazione di riferimento open source del linguaggio Java e fornisce compatibilità e stabilità delle API ai programmi utente. La [piattaforma Java SE](https://docs.oracle.com/javase/8/docs/){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno"), è composta da API e dalla JVM. La JVM è il motore di esecuzione responsabile dell'esecuzione dell'applicazione Java.
 
-Il [progetto Eclipse OpenJ9](https://www.eclipse.org/openj9/index.html){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno") offre una JVM alternativa che sostituisce la JVM Hotspot in OpenJDK. La JVM OpenJ9 è stata resa disponibile come open source da {{site.data.keyword.IBM}} nel settembre del 2017, anche se per esso si può risalire a una data molto antecedente. OpenJ9 fornisce la sua tecnologia a 3000 prodotti {{site.data.keyword.IBM}}, incluso {{site.data.keyword.appserver_short}}, da più di dieci anni.
+Il [progetto Eclipse OpenJ9](https://www.eclipse.org/openj9/index.html){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno") offre una JVM alternativa che sostituisce la JVM Hotspot in OpenJDK. La JVM OpenJ9 è stata resa disponibile come open source da {{site.data.keyword.IBM}} nel settembre del 2017, anche se per esso si può risalire a una data molto antecedente.OpenJ9 fornisce la sua tecnologia a 3000 prodotti {{site.data.keyword.IBM}}, incluso {{site.data.keyword.appserver_short}}, da più di dieci anni.
 
-Insieme, OpenJDK e Eclipse OpenJ9 offrono prestazioni e servizi migliorati per le applicazioni Java native del cloud che vanno ben oltre i tradizionali runtime Java basati su Hotspot. 
+Insieme, OpenJDK e Eclipse OpenJ9 offrono prestazioni e servizi migliorati per le applicazioni Java native del cloud che vanno ben oltre i tradizionali runtime Java basati su Hotspot.
 
 ### Download di OpenJDK con OpenJ9
 {: #downloads}
