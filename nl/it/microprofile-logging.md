@@ -119,7 +119,7 @@ troverai qualcosa di simile a questo nei log:
 
 L'output JSON completo è molto utile per l'archiviazione e le ricerche nei log ma non molto facile da leggere. Potresti dover esaminare il contenuto del log in una finestra di terminale utilizzando `kubectl`. Fortunatamente è disponibile come ausilio uno strumento di riga di comando denominato `jq`.
 
-`jq` ti consente di filtrare e di evidenziare il campo o i campi di cui hai bisogno. Ad esempio, se vuoi vedere solo il campo `message` ed escludere dal filtro tutto il resto:
+`jq` ti consente di filtrare e di evidenziare il campo o i campi di cui hai bisogno. Ad esempio, se vuoi vedere solo il campo `message` ed escludere dal filtro tutto il resto: 
 
 ```
 kubectl logs trader-54b4d579f7-4zvzk -n stock-trader -c trader | grep message | jq .message -r
@@ -128,14 +128,14 @@ kubectl logs trader-54b4d579f7-4zvzk -n stock-trader -c trader | grep message | 
 
 Liberty ha alcuni messaggi della console primitiva che non hanno una formattazione JSON. L'utilizzo di `grep` garantisce che `jq` analizzerà solo le righe che contengono un campo di messaggio.
 
-## Funzioni aggiuntive
+## Funzioni aggiuntive 
 {: #mp-log-features}
 
-Le linee guida per l'utilizzo dei livelli di log, come quando utilizzi `logger.info` o `logger.fine`, sono elementi che devono essere decisi da ciascun progetto o da ciascuna organizzazione. Tuttavia, ci aspettiamo che queste interfacce siano necessarie e utili in quasi tutti i progetti.
+Le linee guida per l'utilizzo dei livelli di log, come quando utilizzi `logger.info` o `logger.fine`, sono elementi che devono essere decisi da ciascun progetto o da ciascuna organizzazione. Tuttavia, ci aspettiamo che queste interfacce siano necessarie e utili in quasi tutti i progetti. 
 
-Una prassi ottimale consiste nell'utilizzare le variabili di ambiente (fornite al pod tramite le mappe di configurazione Kube o i segreti) in ogni campo pertinente nel file `server.xml`. Ciò ti consente di modificare la configurazione della registrazione senza dover ricreare e ridistribuire la tua immagine Docker.
+Una prassi ottimale consiste nell'utilizzare le variabili di ambiente (fornite al pod tramite le mappe di configurazione Kube o i segreti) in ogni campo pertinente nel file `server.xml`. Ciò ti consente di modificare la configurazione della registrazione senza dover ricreare e ridistribuire la tua immagine Docker. 
 
-Ad esempio, per utilizzare le variabili di ambiente per impostare gli attributi di registrazione dettagliati, devi modificare la stanza proveniente dall'esempio precedente:
+Ad esempio, per utilizzare le variabili di ambiente per impostare gli attributi di registrazione dettagliati, devi modificare la stanza proveniente dall'esempio precedente: 
 
 ```xml
 <logging consoleLogLevel="INFO" consoleFormat="json" consoleSource="message,trace,accessLog,ffdc" />
@@ -154,15 +154,15 @@ Un'altra alternativa consiste nell'utilizzare la variabile di ambiente `WLP_LOGG
 ## Dashboard Kibana per Liberty
 {: #liberty-kibana}
 
-Insieme alla nuova funzione di registrazione JSON, Liberty fornisce dashboard Kibana precostruiti [che puoi scaricare da GitHub](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_icp_json_logging.html){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno"). Segui le istruzioni presenti nel link per installarli. Dovrebbero essere disponibili due nuovi dashboard:
+Insieme alla nuova funzione di registrazione JSON, Liberty fornisce dashboard Kibana precostruiti [che puoi scaricare da GitHub](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_icp_json_logging.html){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno"). Segui le istruzioni presenti nel link per installarli. Dovrebbero essere disponibili due nuovi dashboard: 
 
 ![Dashboard Kibana](images/microprofile-logging-image4.png "Dashboard Kibana")
 
-Quando fai clic sul dashboard per la determinazione dei problemi, puoi vedere questo:
+Quando fai clic sul dashboard per la determinazione dei problemi, puoi vedere questo: 
 
 ![Dettagli dashboard Kibana](images/microprofile-logging-image5.png "Dettagli dashboard Kibana")
 
-Il dashboard è interattivo. Ad esempio, se fai clic su **INFO** nella legenda del widget **Liberty Message**, il widget **Liberty Messages Search** al suo interno si filtrerà alla ricerca dei soli messaggi `loglevel=INFO`. Il dashboard federerà i dati di log da tutti i tuoi microservizi basati su Liberty, escludendo dal filtro gli altri log di sistema.
+Il dashboard è interattivo. Ad esempio, se fai clic su **INFO** nella legenda del widget **Liberty Message**, il widget **Liberty Messages Search** al suo interno si filtrerà alla ricerca dei soli messaggi `loglevel=INFO`. Il dashboard federerà i dati di log da tutti i tuoi microservizi basati su Liberty, escludendo dal filtro gli altri log di sistema. 
 
 Ci sono altri dashboard Kibana e Grafana associati al grafico helm Liberty. Sono disponibili come [estensioni al pacchetto cloud Liberty](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno").
 

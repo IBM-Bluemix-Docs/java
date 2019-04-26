@@ -75,7 +75,7 @@ public class MyBean {
 ```
 {: codeblock}
 
-Comme `@ApplicationScoped` est défini, une seule instance sera créée. Dans l'exemple suivant, la portée de `MyRestEndPoint` est `@RequestScoped`, ce qui signifie qu'une instance sera créée pour chaque demande. CDI injectera la même instance `MyBean` dans chacune.
+Comme `@ApplicationScoped` est défini, une seule instance sera créée. Dans l'exemple suivant, la portée de `MyRestEndPoint` est `@RequestScoped`, ce qui signifie qu'une instance sera créée pour chaque demande. CDI injectera la même instance `MyBean` dans chacune. 
 
 ```java
 @RequestScoped
@@ -94,5 +94,5 @@ public class MyRestEndPoint {
 
 CDI gère le cycle de vie de ces beans :
 
-* Utilisez une méthode annotée avec `@PostConstruct` au lieu d'un constructeur pour initialiser votre bean. Il sera invoqué après que le conteneur CDI aura injecté les dépendances et les beans associés dans le contexte approprié.
+* Utilisez une méthode annotée avec `@PostConstruct` au lieu d'un constructeur pour initialiser votre bean. Il sera invoqué après que le conteneur CDI aura injecté les dépendances et les beans associés dans le contexte approprié. 
 * Utilisez une méthode annotée avec `@PreDestroy` pour nettoyer votre bean. Il sera invoqué avant la suppression des dépendances.

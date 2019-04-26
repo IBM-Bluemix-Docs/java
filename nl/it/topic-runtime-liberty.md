@@ -33,7 +33,7 @@ subcollection: java
 ## Ottimizzato per Docker
 {: #liberty-optimized}
 
-Quando i sistemi automatizzati come Kubernetes eseguono il push di immagini del contenitore, la dimensione dell'immagine inizia ad essere importante. I livelli nelle immagini Docker vengono memorizzati nella cache per poterti essere di supporto. Data la sua architettura modulare, Liberty offre una pipeline di impacchettamento efficiente per i contenitori Docker, rendendolo un'ottima struttura operativa per gli ambienti cloud. Un'immagine di base può essere utilizzata per supportare molti carichi di lavoro, consentendo nel contempo al footprint della risorsa dei contenitori in esecuzione di variare in base ai requisiti del servizio.
+Quando i sistemi automatizzati come Kubernetes eseguono il push di immagini del contenitore, la dimensione dell'immagine inizia ad essere importante. I livelli nelle immagini Docker vengono memorizzati nella cache per poterti essere di supporto. Data la sua architettura modulare, Liberty offre una pipeline di impacchettamento efficiente per i contenitori Docker, rendendolo un'ottima struttura operativa per gli ambienti cloud. Un'immagine di base può essere utilizzata per supportare molti carichi di lavoro, consentendo nel contempo al footprint della risorsa dei contenitori in esecuzione di variare in base ai requisiti del servizio. 
 
 Liberty offre strumenti e supporto ottimizzato per convertire i fat jar di Spring Boot in contenitori Docker ottimizzati e compatti che sfruttano i livelli dell'immagine Docker memorizzati nella cache per migliorare la durata del ciclo e i tempi di pubblicazione. Eseguendo il push di dipendenze della libreria che cambiano raramente in un livello separato e conservando solo le classi dell'applicazione nel livello superiore, le ricreazioni e le ridistribuzioni iterative saranno molto più veloci. Vedi ulteriori informazioni su [Creating Dual Layer Docker images for Spring Boot apps](https://openliberty.io/blog/2018/07/02/creating-dual-layer-docker-images-for-spring-boot-apps.html){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno").
 
@@ -46,7 +46,7 @@ Open Liberty e WebSphere Liberty forniscono una gamma di immagini di base che pu
 2. open-liberty:javaee8 o websphere-liberty:javaee8
 3. open-liberty:springBoot2 o websphere-liberty:springBoot2
 
-Controlla [websphere-liberty](https://hub.docker.com/_/websphere-liberty/){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno") o [open-liberty](https://hub.docker.com/_/open-liberty/){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno") su Docker Hub per l'elenco più aggiornato delle immagini di base.
+Controlla [websphere-liberty](https://hub.docker.com/_/websphere-liberty/){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno") o [open-liberty](https://hub.docker.com/_/open-liberty/){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno") su Docker Hub per l'elenco più aggiornato delle immagini di base. 
 
 ### Open Liberty e Docker
 {: #openliberty-docker}
@@ -70,9 +70,9 @@ Per altri esempi e altro codice funzionante, consulta le seguenti guide di Open 
 
 Ci sono alcune differenze tra Open Liberty e la versione commerciale, WebSphere Liberty. Una delle più significative per la creazione delle immagini Docker è che il comando `installUtility` non è disponibile in Open Liberty.
 
-WebSphere Liberty supporta gli stessi modelli di personalizzazione di base di OpenLiberty per le immagini Docker, ma la progettazione intrinsecamente modulare di Liberty rende semplice (e normale) la creazione di un'immagine personalizzata che contiene un'applicazione e la serie specifica di funzioni che richiede. WebSphere Liberty dispone di un'immagine per un kernel senza funzione, [websphere-liberty:kernel](https://github.com/WASdev/ci.docker/blob/9d28dfba4d20596f89b393bc9e3ae8295feec469/ga/developer/kernel/Dockerfile){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno"), che costituisce una solida base per un'immagine effettivamente personalizzata.
+WebSphere Liberty supporta gli stessi modelli di personalizzazione di base di OpenLiberty per le immagini Docker, ma la progettazione intrinsecamente modulare di Liberty rende semplice (e normale) la creazione di un'immagine personalizzata che contiene un'applicazione e la serie specifica di funzioni che richiede. WebSphere Liberty dispone di un'immagine per un kernel senza funzione, [websphere-liberty:kernel](https://github.com/WASdev/ci.docker/blob/9d28dfba4d20596f89b393bc9e3ae8295feec469/ga/developer/kernel/Dockerfile){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno"), che costituisce una solida base per un'immagine effettivamente personalizzata. 
 
-La [documentazione sull'immagine websphere-liberty](https://hub.docker.com/_/websphere-liberty/){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno") descrive il seguente Dockerfile semplice di 3 righe necessario per creare un'immagine personalizzata:
+La [documentazione sull'immagine websphere-liberty](https://hub.docker.com/_/websphere-liberty/){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno") descrive il seguente Dockerfile semplice di 3 righe necessario per creare un'immagine personalizzata: 
 
 ```docker
 FROM websphere-liberty:kernel
@@ -81,7 +81,7 @@ RUN installUtility install --acceptLicense defaultServer
 ```
 {: codeblock}
 
-Lo strumento `installUtility` ricerca le funzioni di cui hai bisogno nel tuo file `server.xml` che non sono già disponibili nella tua immagine Liberty. Scaricherà quindi tali funzioni e le installerà nella tua immagine Docker. Questo approccio creerà un'immagine minima, ma l'elenco di funzioni implicite nel file `server.xml` non funzionerà correttamente con i livelli Docker memorizzati nella cache. Qualsiasi modifica al file `server.xml` invaliderà il livello con le funzioni installate, richiedendo la reinstallazione delle funzioni mancanti alla successiva creazione dell'immagine.
+Lo strumento `installUtility` ricerca le funzioni di cui hai bisogno nel tuo file `server.xml` che non sono già disponibili nella tua immagine Liberty. Scaricherà quindi tali funzioni e le installerà nella tua immagine Docker. Questo approccio creerà un'immagine minima, ma l'elenco di funzioni implicite nel file `server.xml` non funzionerà correttamente con i livelli Docker memorizzati nella cache. Qualsiasi modifica al file `server.xml` invaliderà il livello con le funzioni installate, richiedendo la reinstallazione delle funzioni mancanti alla successiva creazione dell'immagine. 
 
 Un modo migliore per creare immagini personalizzate è quello di richiamare `installUtility` con un elenco esplicito di funzioni. Ciò creerà ancora un'immagine minima, ma funzionerà molto meglio al momento della creazione, poiché il livello dell'immagine può essere memorizzato nella cache e riutilizzato indipendentemente dalle modifiche alla configurazione del server. Ad esempio, quanto segue creerà un'immagine personalizzata utilizzando una sottoserie delle funzioni per supportare un'applicazione che utilizza JAX-RS, JNDI e WebSocket:
 
@@ -101,7 +101,7 @@ COPY server.xml /config/
 Il modo in cui strutturi la tua immagine Docker dipende da alcuni fattori:
 
 1. In che misura desideri che la tua immagine di base sia riutilizzabile o personalizzata?
-    Questi passi producono l'immagine più piccola possibile, potenzialmente a spese del riutilizzo se le funzioni di ogni applicazione sono diverse. Tuttavia, avere immagini personalizzate molto piccole significa che l'applicazione può essere distribuita rapidamente tra gli host Docker. Se non sei sicuro, inizia con uno delle immagini pregenerate dal Docker Hub per il riutilizzo massimo.
+    Questi passi producono l'immagine più piccola possibile, potenzialmente a spese del riutilizzo se le funzioni di ogni applicazione sono diverse. Tuttavia, avere immagini personalizzate molto piccole significa che l'applicazione può essere distribuita rapidamente tra gli host Docker. Se non sei sicuro, inizia con uno delle immagini pregenerate dal Docker Hub per il riutilizzo massimo. 
 2. Con quale frequenza aggiorni questa immagine?
     Se l'applicazione viene aggiornata molto spesso, ad esempio in una pipeline CI/CD, è utile strutturare l'immagine in modo che il livello modificato più di frequente (spesso le tue classi applicazione o il file binario dell'applicazione) si trovi all'inizio. Ciò riduce il numero di livelli che devono essere ricreati quando l'applicazione viene modificata e l'immagine viene ricreata, velocizzando i tempi di creazione e di distribuzione.
 

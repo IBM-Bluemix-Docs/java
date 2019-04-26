@@ -1,0 +1,50 @@
+{:navgroup: .navgroup}
+{:topicgroup: .topicgroup}
+
+{: .toc subcollection="java" audience="platform" arm="4088036" href="/docs/java/overview.html" path="java"}
+Programación con Java en IBM Cloud
+
+    {: .navgroup id="learn"}
+    overview.md
+    /cloud-native/toc
+    topic-runtime-liberty.md
+    
+    {:topicgroup}
+    MicroProfile y Jakarta-EE
+        microprofile.md
+        microprofile-cdi.md
+        microprofile-json-basics.md
+    spring.md
+
+    {: .topicgroup}
+    Enlaces relacionados
+        [IBM Developer: Java](https://developer.ibm.com/technologies/java/)
+        [IBM Developer: Spring](https://developer.ibm.com/technologies/spring/)
+        [Centro de arquitectura](https://www.ibm.com/cloud/garage/category/architectures)
+    {: .navgroup-end}
+
+    {: .navgroup id="howto"}
+    {: .topicgroup}
+    MicroProfile y Jakarta-EE
+        microprofile-configuration.md
+        microprofile-healthcheck.md
+        microprofile-logging.md
+        microprofile-metrics.md
+        microprofile-fault-tolerance.md
+
+    {: .topicgroup}
+    Spring
+        spring-configuration.md
+        spring-healthcheck.md
+        spring-logging.md
+        spring-metrics.md
+        spring-fault-tolerance.md
+    {: .navgroup-end}
+
+    {: .navgroup id="reference"}
+    [Documentos de API](https://cloud.ibm.com/apidocs)
+    {: .navgroup-end}
+
+    {: .navgroup id="help"}
+    [dW Answers](https://developer.ibm.com/answers/topics/java.html)
+    {: .navgroup-end}

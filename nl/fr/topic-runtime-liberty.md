@@ -51,7 +51,7 @@ Consultez [websphere-liberty](https://hub.docker.com/_/websphere-liberty/){: new
 ### Open Liberty et Docker
 {: #openliberty-docker}
 
-Choisissez l'image la plus appropriée pour votre application dans la [liste des images disponible sur le hub Docker](https://hub.docker.com/_/open-liberty/){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lie externe") (par exemple`open-liberty:microProfile`) et créez un fichier Docker pour votre service avec `FROM`. Ajoutez les commandes pour copier votre application et la configuration de votre serveur dans la nouvelle image. Exemple :
+Choisissez l'image la plus appropriée pour votre application dans la [liste des images disponible sur le hub Docker](https://hub.docker.com/_/open-liberty/){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lie externe") (par exemple `open-liberty:microProfile`) et créez un fichier Docker pour votre service avec `FROM`. Ajoutez les commandes pour copier votre application et la configuration de votre serveur dans la nouvelle image. Exemple :
 
 ```docker
 FROM open-liberty:microProfile\

@@ -22,7 +22,7 @@ subcollection: java
 # Métriques avec Spring
 {: #spring-metrics}
 
-A partir de Spring Framework 5, les métriques dans Spring sont traitées par Micrometer. Micrometer est une infrastructure qui se décrit elle-même comme "SLF4J for Metrics". De la même manière que SLF4J agit en tant qu'API non liée à un fournisseur pour la consignation et peut se connecter à différents backends de consignation, Micrometer offre une API non liée à un fournisseur pour instrumenter et mesurer votre code, puis fournir ces mesures à différents agrégateurs de métriques, tels que Prometheus, DataDog ou Influx/Telegraph.
+A partir de Spring Framework 5, les métriques dans Spring sont traitées par Micrometer. Micrometer est une infrastructure qui se décrit elle-même comme "SLF4J for Metrics". De la même manière que SLF4J agit en tant qu'API non liée à un fournisseur pour la consignation et peut se connecter à différents backends de consignation, Micrometer offre une API non liée à un fournisseur pour instrumenter et mesurer votre code, puis fournir ces mesures à différents agrégateurs de métriques, tels que Prometheus, DataDog ou Influx/Telegraph. 
 
 L'infrastructure Micrometer permet à Spring de s'intégrer à une grande variété d'architectures natives du cloud. Pour activer la prise en charge de Prometheus ou Statsd, il vous suffit de modifier les dépendances, et si le collecteur de métriques est de type Push, de fournir des informations de destination dans `application.properties`. Spring et Micrometer déterminent ce qu'il faut faire au moment de l'exécution en fonction des dépendances qu'ils trouvent sur le chemin de classe de l'application.
 

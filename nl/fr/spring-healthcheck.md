@@ -22,7 +22,7 @@ subcollection: java
 # Diagnostics d'intégrité avec Spring
 {: #spring-healthcheck}
 
-Le noeud final d'intégrité fourni par l'actionneur Spring Boot est lié au cycle de vie de l'application. Il ne sera pas accessible tant que l'application n'aura pas été démarrée, et cessera d'être disponible dès que l'application sera arrêtée (ce qui se produit avant que le processus s'arrête). Spring Boot Actuator ajoutera automatiquement des indicateurs d'intégrité supplémentaires pour les technologies détectées sur le chemin d'accès aux classes. Par exemple, si votre application utilise JDBC, le noeud final d'intégrité inclura des tests de base pour s'assurer que le magasin de données de secours est accessible. Le noeud final d'intégrité défini par l'actionneur est mieux adapté aux sondes de disponibilité pour cette raison.
+Le noeud final d'intégrité fourni par l'actionneur Spring Boot est lié au cycle de vie de l'application. Il ne sera pas accessible tant que l'application n'aura pas été démarrée, et cessera d'être disponible dès que l'application sera arrêtée (ce qui se produit avant que le processus s'arrête). Spring Boot Actuator ajoutera automatiquement des indicateurs d'intégrité supplémentaires pour les technologies détectées sur le chemin d'accès aux classes. Par exemple, si votre application utilise JDBC, le noeud final d'intégrité inclura des tests de base pour s'assurer que le magasin de données de secours est accessible. Le noeud final d'intégrité défini par l'actionneur est mieux adapté aux sondes de disponibilité pour cette raison. 
 
 Activez Spring Boot Actuator en ajoutant la dépendance `spring-boot-actuator` à votre fichier `pom.xml` :
 

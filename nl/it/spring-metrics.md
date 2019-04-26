@@ -24,7 +24,7 @@ subcollection: java
 
 A partire da Spring Framework 5, le metriche in Spring sono ora gestite da Micrometer. Micrometer è un framework che descrive se stesso come "SLF4J per le metriche". Proprio come SLF4J funge da API indipendente dal fornitore per la registrazione che può connettersi a diversi backend di registrazione, Micrometer fornisce un'API indipendente dal fornitore con cui strumentare e misurare il tuo codice e inoltrare quindi tali metriche a una gamma di aggregatori di metriche, come Prometheus, DataDog o Influx/Telegraph. 
 
-Il framework Micrometer consente a Spring di integrarsi in un'ampia gamma di architetture native del cloud. L'aggiunta del supporto per Prometheus o Statsd è una semplice questione di modifica delle dipendenze e, se il raccoglitore di metriche è basato sui push, fornendo le informazioni sulla destinazione in `application.properties`, Spring and Micrometer determinano cosa fare al runtime in base a quali dipendenze trovano nel percorso classi dell'applicazione.
+Il framework Micrometer consente a Spring di integrarsi in un'ampia gamma di architetture native del cloud. L'aggiunta del supporto per Prometheus o Statsd è una semplice questione di modificare le dipendenze e, se il raccoglitore delle metriche è basato sui push, di fornire le informazioni sulla destinazione in `application.properties`. Spring e Micrometer determinano cosa fare al runtime in base a quali dipendenze rilevano nel percorso classi dell'applicazione.
 
 ## Abilitazione delle metriche
 {: #spring-metrics-enabling}
@@ -354,14 +354,14 @@ Ad esempio, per utilizzare un `Counter` in un `RestController` potresti fare qua
 ```java
 @RestController
 public class MyController {
-    
+
     private final Counter myCounter;
-    
+
     public MyController(MeterRegistry meterRegistry) {
-    
+
         // Create the counter using the helper method on the builder
         myCounter = meterRegistry.counter("my.counter", "mytagname", "mytagvalue");
-        
+
     }
 ```
 {: codeblock}
