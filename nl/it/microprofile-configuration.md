@@ -22,7 +22,7 @@ subcollection: java
 # Configurazione con MicroProfile
 {: #mp-configuration}
 
-L'API MicroProfile Config consente la memorizzazione delle proprietà di configurazione dell'applicazione in più origini, consentendoti di scrivere il tuo codice senza percorsi di codice specifici per l'ambiente. L'API utilizza [CDI](/docs/java?topic=java-mp-cdi#mp-cdi) per inserire le proprietà con dei valori specificati.
+L'API MicroProfile Config consente la memorizzazione delle proprietà di configurazione dell'applicazione in più origini, consentendoti di scrivere il tuo codice senza percorsi di codice specifici per l'ambiente.L'API utilizza [CDI](/docs/java?topic=java-mp-cdi#mp-cdi) per inserire le proprietà con dei valori specificati.
 
 ## Prerequisiti
 {: #mp-config-prereq}
@@ -67,7 +67,7 @@ Puoi anche specificare un valore predefinito che verrà utilizzato se non sarà 
 
 ```java
 @Inject
-@ConfigProperty(name = "WATSON_URL", defaultValue = "https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21") 
+@ConfigProperty(name = "WATSON_URL", defaultValue = "https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21")
 String watsonService;
 ```
 {: codeblock}
