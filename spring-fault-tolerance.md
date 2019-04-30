@@ -16,7 +16,7 @@ subcollection: java
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
-{:note: . note}
+{:note: .note}
 
 # Fault tolerance with Spring
 {: #spring-tolerance}

@@ -24,7 +24,7 @@ subcollection: java
 
 CDI is a central element in both Jakarta-EE and MicroProfile, as it is used to wire various components together. CDI defines **contexts** to specify and manage bean lifecycles, and uses **dependency injection** to satisfy declared dependencies in a dynamic and type safe way. CDI also uses a loosely coupled event and interceptor model, and provides a powerful and flexible portable extension mechanism for other frameworks to define their own CDI beans or update existing components.
 
-MicroProfile specifications (for exmaple, MicroProfile Config, MicroProfile JWT) take CDI-first approach, relying on the CDI extension mechanism to enhance existing standards (like JAX-RS) with new capabilities. CDI 1.2 is part of MicroProfile 1.0 release and thereafter (MicroProfile 2.0 moves up to CDI 2.0).
+MicroProfile specifications (for example, MicroProfile Config, MicroProfile JWT) take CDI-first approach, relying on the CDI extension mechanism to enhance existing standards (like JAX-RS) with new capabilities. CDI 1.2 is part of MicroProfile 1.0 release and thereafter (MicroProfile 2.0 moves up to CDI 2.0).
 
 ## CDI beans
 {: #cdi-bean}
