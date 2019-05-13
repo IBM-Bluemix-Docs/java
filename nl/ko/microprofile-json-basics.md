@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-27"
+lastupdated: "2019-04-30"
 
 keywords: json-b, json-p, json-binding, json response, pojo object, pojo, jsonobject, jsonobjectbuilder, java api json
 
@@ -22,13 +22,14 @@ subcollection: java
 # JSON-P 및 JSON-B를 사용한 JSON 처리
 {: #mp-json}
 
-[JSON-B(JSON-Binding, JSR 367)](http://json-b.net/){: new_window} ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘") 및 [JSON-P(JSON-Processing, JSR 374)](https://javaee.github.io/jsonp/){: new_window} ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")는 Java 클래스와 JSON 오브젝트가 상호작용하는 방법을 정의하는 두 개의 Java API 스펙입니다. JSON-P는 JSON 형식 데이터를 처리하기 위해 Java API를 제공합니다. JSON-B는 JSON-P의 맨 위에 바인딩 계층을 제공하며, 이를 통해 오브젝트를 JSON으로 그리고 그 반대로 쉽게 변환할 수 있습니다. 대부분의 경우 JSON-B는 하위 레벨 JSON-P에 우선하여 사용되어야 합니다.
+[JSON-B(JSON-Binding, JSR 367)](http://json-b.net/){: new_window} ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘") 및 [JSON-P(JSON-Processing, JSR 374)](https://javaee.github.io/jsonp/){: new_window} ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")는 Java&trade 클래스와 JSON 오브젝트가 상호작용하는 방법을 정의하는 두 개의 Java&trade API 스펙입니다. JSON-P는 JSON 형식 데이터를 처리하기 위해 Java&trade API를 제공합니다. JSON-B는 JSON-P의 맨 위에 바인딩 계층을 제공하며, 이를 통해 오브젝트를 JSON으로 그리고 그 반대로 쉽게 변환할 수 있습니다. 대부분의 경우 JSON-B는 하위 레벨 JSON-P에 우선하여 사용되어야 합니다.
 
 ## JSON-B
 {: #java-json-b}
 
-**JSON-B**를 사용하면 각 필드에 대해 getter/setter 메소드와 함께 POJO(Plain Old Java Object)를 사용하여 JSON에서의 변환이 이루어집니다. 예를 들어, 다음과 같습니다.
+**JSON-B**를 사용하면 각 필드에 대해 getter 및 setter 메소드와 함께 POJO(Plain Old Java Object)를 사용하여 JSON에서의 변환이 이루어집니다.
 
+예를 들어, 다음과 같습니다.
 ```java
 public class Employee {
   private String fName;
@@ -84,9 +85,9 @@ public class Address {
 ```
 {: codeblock}
 
-Liberty에서 JSON-B를 사용하려면 `server.xml`에서 `jsonb-1.0` 기능이 사용 가능해야 합니다. 또한 `microProfile-2.0`을 사용할 수 있으며, 이는 JSON-B 및 JSON-P를 포함한 모든 MP 기능을 제공합니다.
+Liberty에서 JSON-B를 사용하려면 `server.xml` 파일에서 `jsonb-1.0` 기능이 사용 가능해야 합니다. 또한 `microProfile-2.0`을 사용할 수 있으며, 이는 JSON-B 및 JSON-P를 포함한 모든 MP 기능을 제공합니다.
 
-JAX-RS 클래스에서 다음을 사용하여 이전에 표시된 필드에서 개인 오브젝트를 작성합니다.
+JAX-RS 클래스에서 다음을 사용하여 이전에 표시된 필드에서 `Person` 오브젝트를 작성합니다.
 
 ```java
 Address myAddress = new Address("501-B101", "4205 S Miami Blvd", "Durham", "NC", "27703");
@@ -106,7 +107,7 @@ String city = address.getCity();
 ```
 {: codeblock}
 
-또한 JSON-B는 JSON 오브젝트에 대한 문자열 표시를 사용하고 해당 JSON-B 오브젝트를 다시 제공하는 구문 분석기를 제공합니다. 이를 사용하려면 다음 import 문을 마이크로서비스 클래스에 추가해야 합니다.
+또한 JSON-B는 JSON 오브젝트에 대한 문자열 표시를 사용하고 해당 JSON-B 오브젝트를 다시 제공하는 구문 분석기를 제공합니다. 구문 분석기를 사용하려면 다음 import 문을 마이크로서비스 클래스에 추가해야 합니다.
 
 ```java
 import javax.json.bind.Jsonb;
@@ -145,9 +146,9 @@ import javax.json.JsonObjectBuilder;
 ```
 {: codeblock}
 
-REST API 호출에서 수신된 JSON 관련 작업을 수행하려면 원하는 필드의 키를 전달하여 `JsonObject`에서 `get` 메소드를 호출합니다. 위의 `Employee` 예제를 계속하기 위해서는 `employee`를 호출한 `JsonObject`를 수신한 경우 `employee.get("name")`를 호출하여 사용자의 이름을 찾거나 `employee.get("title")`을 호출하여 직위를 찾습니다. JSON-P는 예를 들어 Java의 `Map` 처리와 매우 유사합니다.
+REST API 호출에서 수신된 JSON 관련 작업을 수행하려면 원하는 필드의 키를 전달하여 `JsonObject`에서 `get` 메소드를 호출합니다. `Employee` 예제를 계속하기 위해서는 `employee`를 호출한 `JsonObject`를 수신한 경우 `employee.get("name")`을 호출하여 사용자의 이름을 찾거나 `employee.get("title")`을 호출하여 직위를 찾습니다. JSON-P는 예를 들어 Java&trade의 `Map` 처리와 매우 유사합니다.
 
-이제 Java 코드로 이와 같은 JSON 오브젝트를 빌드하려고 합니다. JSON-P는 빌더 패턴을 사용합니다. 다음과 같이 `JsonObjectBuilder`를 사용하여 값을 각각 추가한 다음 `build()`를 호출하여 `JsonObject`를 생성하십시오.
+이제 Java&trade 코드로 이와 같은 JSON 오브젝트를 빌드하려고 합니다. JSON-P는 빌더 패턴을 사용합니다. 다음과 같이 `JsonObjectBuilder`를 사용하여 값을 각각 추가한 다음 `build()`를 호출하여 `JsonObject`를 생성하십시오.
 
 ```java
 JsonObjectBuilder addressBuilder = Json.createObjectBuilder();

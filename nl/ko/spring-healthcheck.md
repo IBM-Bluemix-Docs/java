@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-22"
 
 keywords: health check spring, spring health endpoint, spring-boot-actuator, liveness probe spring, readiness probe spring, spring kubernetes probe
 
@@ -80,7 +80,7 @@ Date: Fri, 07 Dec 2018 23:09:09 GMT
 ### Spring Boot 2의 활동 상태 프로브
 {: #spring-liveness-boot2}
 
-Actuator 프레임워크는 Spring Boot 2이며 사용자 정의 엔드포인트로 확장할 수 있는 고유 미니 REST 프레임워크입니다. 즉, 기본 제공 상태 표시기와 같은 방식으로 관리되는 단순한 활동 상태 엔드포인트를 추가할 수 있습니다. 사용자 정의 활동 상태 엔드포인트는 다음과 같이 간단하게 선언할 수 있습니다.
+Spring Boot 2의 Actuator 프레임워크는 사용자 정의 엔드포인트로 확장할 수 있는 고유 미니 REST 프레임워크입니다. 즉, 기본 제공 상태 표시기와 같은 방식으로 관리되는 단순한 활동 상태 엔드포인트를 추가할 수 있습니다. 사용자 정의 활동 상태 엔드포인트는 다음과 같이 간단하게 선언할 수 있습니다.
 
 ```java
 @Endpoint(id="liveness")

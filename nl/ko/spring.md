@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-22"
 
 keywords: spring framework, spring reference, spring boot, boot actuator, spring kubernetes
 
@@ -22,14 +22,14 @@ subcollection: java
 # Spring
 {: #spring-overview}
 
-Spring 플랫폼은 Java 애플리케이션을 쉽게 작성할 수 있게 하는 프로젝트의 에코시스템입니다. 대개 "Spring"이라는 용어는 Spring Framework를 나타내지만 일반적으로 그 일부인 프로젝트를 나타내거나 Spring Boot를 포함한 Spring 기반 기술을 사용하는 프로젝트를 나타내는 데 사용됩니다.
+Spring 플랫폼은 Java&trade 애플리케이션을 쉽게 작성할 수 있게 하는 프로젝트의 에코시스템입니다. 대개 "Spring"이라는 용어는 Spring Framework를 나타내지만 일반적으로 그 일부인 프로젝트를 나타내거나 Spring Boot를 포함한 Spring 기반 기술을 사용하는 프로젝트를 나타내는 데 사용됩니다.
 
 ## Spring Framework
 {: #spring-framework}
 
-Spring Framework는 2002년에 출시되었으며 이후 약 3년마다 새로운 주 버전을 출시했습니다. 프레임워크는 REST 엔드포인트부터 데이터베이스 추상화까지 모든 것을 포함하는 대형 컴포넌트 세트(Spring 모듈이라고 함)로 구성됩니다. 2017년 최신 릴리스의 경우 Spring Framework 5는 [Project Reactor](https://projectreactor.io/){: new_window} ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")를 기반으로 하는 반응형 프로그래밍을 위한 새 모듈인 WebFlux와 함께 업데이트된 JDK 지원을 도입했습니다.
+Spring Framework는 2002년에 출시되었으며 이후 약 3년마다 주 버전을 출시했습니다. 프레임워크는 REST 엔드포인트부터 데이터베이스 추상화까지 모든 것을 포함하는 대형 컴포넌트 세트(Spring 모듈이라고 함)로 구성됩니다. 2017년 최신 릴리스를 통해 Spring Framework 5에서는 업데이트된 JDK 지원 및 WebFlux를 소개했습니다. WebFlux는 [Project Reactor](https://projectreactor.io/){: new_window} ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")을 기반으로 하는 반응형 프로그래밍을 위한 새로운 모듈입니다.
 
-Spring Framework 4.3은 최근 기능 분기이며 2020년까지 지원됩니다. 이전 버전의 Spring을 사용하는 애플리케이션은 Spring Framework 5로 마이그레이션해야 합니다.
+Spring Framework 4.3은 Spring Framework 4.x의 최신 기능 분기이며 2020년까지 지원됩니다. 이전 버전의 Spring을 사용하는 애플리케이션은 Spring Framework 5로 마이그레이션해야 합니다.
 
 Spring Framework에 대한 종합적인 문서는 다음과 같습니다.
 
@@ -48,13 +48,13 @@ Spring Boot의 버전은 이제 2.0이며 2018년에 출시되었습니다. 1.5.
 
 Spring Boot에 대한 종합적인 문서는 다음과 같습니다.
 
-* [2.1.x의 Spring Boot 참조 안내서](https://docs.spring.io/spring-boot/docs/2.1.x/reference){: new_window} ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")
+* [2.1.x의 Spring Boot 참조 안내서](https://docs.spring.io/spring-boot/docs/2.1.x/reference/){: new_window} ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")
 * [1.5.x의 Spring Boot 참조 안내서](https://docs.spring.io/spring-boot/docs/1.5.x/reference/){: new_window} ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")
 
 ## Spring Framework 또는 Spring Boot 선택
 {: #spring-framework-or-boot}
 
-새 클라우드 고유 애플리케이션에서 Spring Framework를 사용하도록 선택한 경우 Spring Boot도 사용해야 합니다. Spring Boot는 Spring 기반 애플리케이션의 구성과 어셈블리를 단순화하고 [클라우드 고유 애플리케이션](/docs/cloud-native?topic=cloud-native-overview#overview) 작성을 단순화하는 Spring Actuator와 같은 기능을 제공합니다.
+새 클라우드 고유 애플리케이션에서 Spring Framework를 사용하도록 선택한 경우 Spring Boot도 사용해야 합니다. Spring Boot는 Spring 기반 애플리케이션의 구성과 어셈블리를 단순화하고 [클라우드 고유 애플리케이션](/docs/java?topic=cloud-native-overview#overview) 작성을 단순화하는 Spring Actuator와 같은 기능을 제공합니다.
 
 ### Spring Boot Actuator
 {: #spring-boot-actuator}
@@ -98,7 +98,7 @@ Spring Boot 1의 Actuator에 자체 보안 구성이 있으며 대개 applicatio
 ## Spring Cloud
 {: #spring-cloud}
 
-Spring Cloud는 서드파티 클라우드 기술과 Spring 프로그래밍 모델 간 통합의 콜렉션입니다. 또한 클라우드에 배치할 Spring 애플리케이션을 빌드하는 개발자를 지원하고자 합니다. Spring Cloud에서 얻을 수 있는 적용 범위는 모듈식 네이처로 가능하며 Spring Cloud 내 각 프로젝트는 특정 기술 또는 기술 세트에 중점을 두고 있습니다.
+Spring Cloud는 서드파티 클라우드 기술과 Spring 프로그래밍 모델 간 통합의 콜렉션입니다. 이는 클라우드에 배치할 Spring 애플리케이션을 빌드하는 개발자를 지원하기 위해 제공됩니다. Spring Cloud 내 각 프로젝트는 특정 기술 또는 기술 세트에 중점을 두고 있으므로, Spring Cloud에서 얻을 수 있는 적용 범위는 모듈식 네이처를 통해 가능하게 됩니다.
 
 Spring Cloud 프로젝트는 구성에 대해 기존에 사용된 일반적인 Spring 방법을 따릅니다. 대부분의 기능은 빌드 시 올바른 종속성을 추가하여 사용할 수 있습니다.
 
@@ -111,10 +111,10 @@ Spring Cloud Kubernetes는 Kubernetes에서 실행되는 Spring 애플리케이�
 
 그동안 Spring은 Eureka와 같은 Netflix 라이브러리를 서비스 레지스트리로, Ribbon을 클라이언트 측 로드 밸런서로 사용했습니다. Kubernetes 환경에서는 이러한 역할이 모두 Kubernetes 자체에서 수행되어 애플리케이션 레벨 기능이 중복됩니다. Spring Cloud Kubernetes는 `DiscoveryClient`와 같은 Spring 추상화를 기본 Kubernetes 메커니즘에 맞게 조정합니다.
 
-Istio가 사용되어 서비스 라우팅에 영향을 주는 경우 Istio가 설치된 클러스터에서 Spring Cloud Kubernetes를 통해 Ribbon 검색을 사용하게 되면 주의해야 합니다. 클라이언트 측 로드 밸런싱의 경우 클라이언트는 대상 서비스 자체를 선택하려고 하는 반면 Istio는 다른 위치에서 호출 라우팅을 시도할 수 있습니다. 이 중 하나만 가능하기 때문에 호출을 라우팅한 방법에 대한 의견 차이가 발생합니다. 가능한 한 이 조합은 피해야 합니다.
+Istio가 사용되어 서비스 라우팅에 영향을 주는 경우 Istio가 설치된 클러스터에서 Spring Cloud Kubernetes를 통해 Ribbon 검색을 사용하게 되면 주의해야 합니다. 클라이언트 측 로드 밸런싱의 경우 클라이언트는 대상 서비스 자체를 선택하려고 하는 반면, Istio는 다른 위치에서 호출 라우팅을 시도할 수 있습니다. 이 중 하나만 가능하기 때문에 호출을 라우팅한 방법에 대한 의견 차이가 발생합니다. 가능한 한 이 조합은 피해야 합니다.
 {: note}
 
-또한 Spring Cloud Kubernetes는 Kubernetes 구성 맵과 시크릿 간 통합을 Spring `@Autowired` 구성 Bean에 제공합니다. 여기에는 애플리케이션 실행 중에 작성된 구성 맵과 시크릿에 대한 동적 변경을 처리하기 위한 전략이 포함됩니다.
+또한 Spring Cloud Kubernetes는 Kubernetes 구성 맵과 시크릿 간 통합을 Spring `@Autowired` 구성 Bean에 제공합니다. 여기에는 애플리케이션 실행 중에 작성된 `ConfigMaps` 및 `Secrets`에 대한 동적 변경을 처리하기 위한 전략이 포함됩니다.
 
 마지막으로 Spring Cloud Kubernetes는 배치와 관련된 추가 정보를 포함하도록 기본 Spring Boot Actuator 상태 엔드포인트를 보강합니다.
 

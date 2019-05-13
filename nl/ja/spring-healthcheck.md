@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-22"
 
 keywords: health check spring, spring health endpoint, spring-boot-actuator, liveness probe spring, readiness probe spring, spring kubernetes probe
 
@@ -22,7 +22,7 @@ subcollection: java
 # Spring によるヘルス・チェック
 {: #spring-healthcheck}
 
-Spring Boot Actuator によって提供されるヘルス・エンドポイントは、アプリケーションのライフサイクルと結び付いています。アプリケーションが開始するまで、エンドポイントに到達することはできません。また、アプリケーションが停止すると (これはプロセスがシャットダウンする前に生じます)、エンドポイントは使用不可になります。Spring Boot Actuator は、クラスパスで検出されたテクノロジーのために、追加のヘルス・インディケーターを自動的に追加します。例えば、アプリケーションで JDBC を使用する場合、ヘルス・エンドポイントには、バッキング・データ・ストアにアクセスできることを確認するためのいくつかの基本的なテストが含まれています。この理由により、Actuator が定義するヘルス・エンドポイントは、readiness プローブとして使用するためにより適しています。
+Spring Boot Actuator によって提供されるヘルス・エンドポイントは、アプリケーションのライフサイクルと結び付いています。アプリケーションが開始するまで、エンドポイントに到達することはできません。また、アプリケーションが停止すると (これはプロセスがシャットダウンする前に生じます)、エンドポイントは使用不可になります。 Spring Boot Actuator は、クラスパスで検出されたテクノロジーのために、追加のヘルス・インディケーターを自動的に追加します。 例えば、アプリケーションで JDBC を使用する場合、ヘルス・エンドポイントには、バッキング・データ・ストアにアクセスできることを確認するためのいくつかの基本的なテストが含まれています。 この理由により、Actuator が定義するヘルス・エンドポイントは、readiness プローブとして使用するためにより適しています。
 
 Spring Boot Actuator を使用可能にするには、以下のように `spring-boot-actuator` 依存関係を `pom.xml` ファイルに追加します。
 
@@ -34,12 +34,12 @@ Spring Boot Actuator を使用可能にするには、以下のように `spring
 ```
 {: codeblock}
 
-Spring Boot Actuator のバージョン間には、いくつかの動作の相違があります。以下の 2 つのセクションを使用して、Spring Boot の両方のバージョンで、liveness と readiness のチェックを作成する方法を検討します。まず最新版である 2 から始めます。
+Spring Boot Actuator のバージョン間には、いくつかの動作の相違があります。 以下の 2 つのセクションを使用して、Spring Boot の両方のバージョンで、liveness と readiness のチェックを作成する方法を検討します。まず最新版である 2 から始めます。
 
 ## Spring Boot 2 でのヘルス・チェック
 {: #spring-health-boot2}
 
-Spring Boot 2 Actuator は `/actuator/health endpoint` を定義します。これは、すべてが正常であれば `{"status": "UP"}` ペイロードを返します。このエンドポイントはデフォルトで有効になっていて、アプリケーション・コードを必要としません。
+Spring Boot 2 Actuator は `/actuator/health endpoint` を定義します。これは、すべてが正常であれば `{"status": "UP"}` ペイロードを返します。 このエンドポイントはデフォルトで有効になっていて、アプリケーション・コードを必要としません。
 
 以下は、Spring Boot 2 Actuator を使用した非認証の成功したヘルス・チェックの例です。
 <!-- Spring Boot 2 test project: https://github.com/IBM/spring-alarm-application -->
@@ -55,7 +55,7 @@ Date: Fri, 07 Dec 2018 23:09:09 GMT
 ```
 {: screen}
 
-示されているように、ヘルス・エンドポイントはデフォルトで単純な UP または DOWN の状況を返します。自動化されたヘルス・チェックのためには、この単純なペイロードで通常は十分です。詳細なヘルス情報は、以下のプロパティーを `application.properties` に設定することにより使用可能になります。
+示されているように、ヘルス・エンドポイントはデフォルトで単純な UP または DOWN の状況を返します。 自動化されたヘルス・チェックのためには、この単純なペイロードで通常は十分です。 詳細なヘルス情報は、以下のプロパティーを `application.properties` に設定することにより使用可能になります。
 
 ```properties
 management.endpoint.health.show-details=always
@@ -73,14 +73,14 @@ Date: Fri, 07 Dec 2018 23:09:09 GMT
 ```
 {: screen}
 
-いくつかの H2 データベース情報が含まれていることに注目してください。この例では、Spring Actuator がバッキング・サービスのためのチェックを自動的に追加しています。このケースでは、アプリケーションは JDBC を使用し、クラスパス上に H2 ドライバーが検出されました。
+いくつかの H2 データベース情報が含まれていることに注目してください。 この例では、Spring Actuator がバッキング・サービスのためのチェックを自動的に追加しています。 このケースでは、アプリケーションは JDBC を使用し、クラスパス上に H2 ドライバーが検出されました。
 
 [Spring Boot Reference Guide for 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン") で説明されているように、プロパティーまたはコードを使用して、ヘルス・エンドポイントのデフォルトの動作をオーバーライドできます。
 
 ### Spring Boot 2 での Liveness プローブ
 {: #spring-liveness-boot2}
 
-Spring Boot 2 の Actuator フレームワークは、カスタム・エンドポイントによって拡張可能な独自の mini-REST-framework です。つまり、標準装備のヘルス・インディケーターと同じ方法で管理される単純な liveness エンドポイントを追加できます。カスタムの liveness エンドポイントは、以下のように簡単に宣言できます。
+Spring Boot 2 の Actuator フレームワークは、カスタム・エンドポイントによって拡張可能な独自の mini-REST-framework です。 つまり、標準装備のヘルス・インディケーターと同じ方法で管理される単純な liveness エンドポイントを追加できます。 カスタムの liveness エンドポイントは、以下のように簡単に宣言できます。
 
 ```java
 @Endpoint(id="liveness")
@@ -143,7 +143,7 @@ spec:
 ## Spring Boot 1 でのヘルス・チェック
 {: #spring-health-boot1}
 
-Spring Boot 1 アクチュエーターは、`/health` エンドポイントを定義します。これは、すべてが正常であれば、`{"status": "UP"}` ペイロードを返します。エンドポイントは権限を必要としませんが、権限が構成されていて呼び出し元に権限が付与されている場合は、追加情報が応答に含められます。
+Spring Boot 1 アクチュエーターは、`/health` エンドポイントを定義します。これは、すべてが正常であれば、`{"status": "UP"}` ペイロードを返します。 エンドポイントは権限を必要としませんが、権限が構成されていて呼び出し元に権限が付与されている場合は、追加情報が応答に含められます。
 
 以下は、Spring Boot 1 Actuator を使用した非認証の成功したヘルス・チェックの例です。
 

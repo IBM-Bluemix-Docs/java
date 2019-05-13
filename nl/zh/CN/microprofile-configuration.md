@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-22"
 
 keywords: microprofile api, microprofile cdi, microprofile config api, config api, store properties multiple sources
 
@@ -22,7 +22,7 @@ subcollection: java
 # 使用 MicroProfile 进行配置
 {: #mp-configuration}
 
-MicroProfile Config API 支持应用程序配置属性存储在多个源中，从而允许您在不使用特定于环境的代码路径的情况下编写代码。该 API 使用 [CDI](/docs/java?topic=java-mp-cdi#mp-cdi) 来注入值指定的属性。
+MicroProfile Config API 支持应用程序配置属性存储在多个源中，从而您可以在不使用特定于环境的代码路径的情况下编写代码。该 API 使用 [CDI](/docs/java?topic=java-mp-cdi#mp-cdi) 向应用程序注入值指定的属性。
 
 ## 先决条件
 {: #mp-config-prereq}
@@ -54,7 +54,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 ```
 {: codeblock}
 
-要将名为 `WATSON_URL` 的属性的值注入 `watsonService` 变量，请使用类似下面的内容：
+要将名为 `WATSON_URL` 属性的值注入 `watsonService` 变量，请参阅以下示例：
 
 ```java
 @Inject 
@@ -63,7 +63,7 @@ String watsonService;
 ```
 {: codeblock}
 
-此外，还可以指定在找不到指定的属性时将使用的缺省值：
+此外，您还可以指定在找不到指定的属性时使用的缺省值：
 
 ```java
 @Inject 

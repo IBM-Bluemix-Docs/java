@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-22"
 
 keywords: spring framework, spring reference, spring boot, boot actuator, spring kubernetes
 
@@ -22,14 +22,14 @@ subcollection: java
 # Spring
 {: #spring-overview}
 
-Spring Platform 是一种项目生态系统，旨在简化创建 Java 应用程序的过程。通常，术语“Spring”是指 Spring Framework，但也用于泛指属于基于 Spring 的技术（包括 Spring Boot）一部分或使用这些技术的任何项目。
+Spring Platform 是一种项目生态系统，旨在简化创建 Java&trade 应用程序的过程。通常，术语“Spring”是指 Spring Framework，但也用于泛指属于基于 Spring 的技术（包括 Spring Boot）一部分或使用这些技术的任何项目。
 
 ## Spring Framework
 {: #spring-framework}
 
-Spring Framework 于 2002 年推出，此后大约每 3 年发布一个新的主版本。该框架包含大量组件（称为 Spring 模块），涵盖了从 REST 端点到数据库抽象的所有内容。在 2017 年的最新发行版中，Spring Framework 5 推出了更新的 JDK 支持，与 WebFlux 一起作为一个新模块，用于基于 [Project Reactor](https://projectreactor.io/){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标") 的反应式编程。
+Spring Framework 于 2002 年推出，此后大约每 3 年发布一个主版本。该框架包含大量组件（称为 Spring 模块），涵盖了从 REST 端点到数据库抽象的所有内容。在 2017 年的最新发行版中，Spring Framework 5 推出了更新的 JDK 支持和 WebFlux。WebFlux 是一个新模块，用于基于 [Project Reactor ](https://projectreactor.io/){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标") 的反应式编程。
 
-Spring Framework 4.3 是最新的功能分支，会一直支持到 2020 年。使用旧版本 Spring 的应用程序应该迁移到 Spring Framework 5。
+Spring Framework 4.3 是 Spring Framework 4.x 最新的功能分支，会一直支持到 2020 年。使用旧版本 Spring 的应用程序应该迁移到 Spring Framework 5。
 
 Spring Framework 的综合文档如下：
 
@@ -44,17 +44,17 @@ Spring Boot 于 2014 年推出，用于“改进无容器 Web 应用程序体系
 
 相对于配置，Spring Boot 更注重惯例，并使用注释和类路径发现的组合来启用其他功能。缺省情况下，Spring Boot 应用程序会构建成包括所有必需依赖项（包括嵌入的 Tomcat 服务器）的自包含可运行 JAR 文件。应用程序可选择打包为部署到应用程序服务器的 WAR 文件。
 
-Spring Boot 现在为 V2.0，于 2018 年发布。对 1.5.x 分支的维护将于 2019 年 8 月停止。
+Spring Boot 现在为 V2.0，于 2018 年发布。对 1.5.x 分支的维护将于 2019 年 8 月结束。
 
 Spring Boot 的综合文档如下：
 
-* [Spring Boot 2.1.x 参考指南](https://docs.spring.io/spring-boot/docs/2.1.x/reference){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")
+* [Spring Boot 2.1.x 参考指南](https://docs.spring.io/spring-boot/docs/2.1.x/reference/){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")
 * [Spring Boot 1.5.x 参考指南](https://docs.spring.io/spring-boot/docs/1.5.x/reference/){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")
 
 ## 选择 Spring Framework 或 Spring Boot
 {: #spring-framework-or-boot}
 
-对于新的云本机应用程序，如果选择使用 Spring Framework，那么还应该同时使用 Spring Boot。Spring Boot 简化了基于 Spring 的应用程序的配置和组合，并提供了多种功能（如 Spring Actuator）来简化创建[云本机应用程序](/docs/cloud-native?topic=cloud-native-overview#overview)。
+对于新的云本机应用程序，如果选择使用 Spring Framework，那么还应该同时使用 Spring Boot。Spring Boot 简化了基于 Spring 的应用程序的配置和组合，并提供了多种功能（如 Spring Actuator）来简化创建[云本机应用程序](/docs/java?topic=cloud-native-overview#overview)。
 
 ### Spring Boot Actuator
 {: #spring-boot-actuator}
@@ -109,12 +109,12 @@ Spring Cloud 项目遵循惯例重于配置的一般 Spring 方法。大多数�
 
 Spring Cloud Kubernetes 是一个 Spring Cloud 项目，旨在为 Kubernetes 中运行的 Spring 应用程序简化各种任务。Spring Cloud Kubernetes 提供了对用于映射到 Kubernetes 概念和服务的常用 Spring 接口的实现。
 
-一直以来，Spring 都是使用 Netflix 库（如 Eureka）作为服务注册表，使用 Ribbon 作为客户机端负载均衡器。在 Kubernetes 环境中，这两个角色都由 Kubernetes 自身履行，从而使应用程序级别的功能成为冗余。Spring Cloud Kubernetes 调整了 Spring 抽象（如 `DiscoveryClient`），使其适用于底层 Kubernetes 机制。
+一直以来，Spring 都是使用 Netflix 库（如 Eureka）作为服务注册表，并使用 Ribbon 作为客户机端负载均衡器。在 Kubernetes 环境中，这两个角色都由 Kubernetes 自身履行，从而使应用程序级别的功能成为冗余。Spring Cloud Kubernetes 调整了 Spring 抽象（如 `DiscoveryClient`），使其适用于底层 Kubernetes 机制。
 
 如果在安装了 Istio（用于影响服务路由）的集群中，通过 Spring Cloud Kubernetes 来使用 Ribbon 发现，那么应格外谨慎。客户机端负载均衡意味着客户机希望选择目标服务本身，而 Istio 却可能在尝试将调用路由到其他位置。这两者只有一个可以成功，导致对调用应该如何进行路由产生分岐。应该尽可能避免此组合。
 {: note}
 
-此外，Spring Cloud Kubernetes 提供了 Kubernetes ConfigMap 和 Secret 与 Spring `@Autowired` 配置 Bean 之间的集成。这包括用于处理应用程序运行期间对 ConfigMap 和 Secret 进行的动态更改的策略。
+此外，Spring Cloud Kubernetes 提供了 Kubernetes ConfigMap 和 Secret 与 Spring `@Autowired` 配置 Bean 之间的集成。这包括用于处理应用程序运行期间对 `ConfigMaps` 和 `Secrets` 进行的动态更改的策略。
 
 最后，Spring Cloud Kubernetes 会扩充缺省 Spring Boot Actuator 运行状况端点，以包含与部署相关的其他信息。
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-27"
+lastupdated: "2019-04-30"
 
 keywords: json-b, json-p, json-binding, json response, pojo object, pojo, jsonobject, jsonobjectbuilder, java api json
 
@@ -22,13 +22,14 @@ subcollection: java
 # 使用 JSON-P 和 JSON-B 进行 JSON 处理
 {: #mp-json}
 
-[JSON-B（JSON-Binding，JSR 367）](http://json-b.net/){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标") 和 [JSON-P（JSON-Processing，JSR 374）](https://javaee.github.io/jsonp/){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标") 是两种 Java API 规范，定义了 Java 类和 JSON 对象可以如何进行交互。JSON-P 提供的 Java API 用于处理 JSON 格式数据。JSON-B 在 JSON-P 的基础上提供了一个绑定层，能更轻松地在对象与 JSON 之间进行相互转换。在大多数情况下，JSON-B 应优先于较低级别的 JSON-P 进行使用。
+[JSON-B (JSON-Binding, JSR 367)](http://json-b.net/){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标") 和 [JSON-P (JSON-Processing, JSR 374)](https://javaee.github.io/jsonp/){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标") 是两个 Java&trade API 规范，用于定义 Java&trade 类与 JSON 对象如何进行交互。JSON-P 提供的 Java&trade API 用于处理 JSON 格式数据。JSON-B 在 JSON-P 的基础上提供了一个绑定层，能更轻松地在对象与 JSON 之间进行相互转换。在大多数情况下，JSON-B 应优先于较低级别的 JSON-P 进行使用。
 
 ## JSON-B
 {: #java-json-b}
 
-使用 **JSON-B** 将普通旧式 Java 对象 (POJO) 用于每个字段的 getter/setter 方法，可实现与 JSON 之间的相互转换。例如：
+使用 **JSON-B** 将普通旧式 Java 对象 (POJO) 用于每个字段的 getter 方法和 setter 方法，可实现与 JSON 之间的相互转换。
 
+例如：
 ```java
 public class Employee {
   private String fName;
@@ -84,9 +85,9 @@ public class Address {
 ```
 {: codeblock}
 
-要将 JSON-B 用于 Liberty，需要在 `server.xml` 中启用 `jsonb-1.0` 功能。此外，还可以使用 `microProfile-2.0`，这将为您提供所有 MP 功能，包括 JSON-B 和 JSON-P。
+要将 JSON-B 用于 Liberty，需要 `server.xml` 中启用的 `jsonb-1.0` 功能。此外，还可以使用 `microProfile-2.0`，这将为您提供所有 MP 功能，包括 JSON-B 和 JSON-P。
 
-在 JAX-RS 类中，您将使用以下内容来创建具有先前所示字段的“个人”对象：
+在 JAX-RS 类中，您将使用以下内容来创建具有先前所示字段的`个人`对象：
 
 ```java
 Address myAddress = new Address("501-B101", "4205 S Miami Blvd", "Durham", "NC", "27703");
@@ -145,9 +146,9 @@ import javax.json.JsonObjectBuilder;
 ```
 {: codeblock}
 
-要使用从 REST API 调用收到的 JSON，可以对 `JsonObject` 调用 `get` 方法，并传入所需字段的键。继续上面的 `Employee` 示例，如果收到名为 `employee` 的 `JsonObject`，那么将调用 `employee.get("name")` 来查找此人的姓名，或者调用 `employee.get("title")` 来获取其职位。作为对照，JSON-P 非常类似于在 Java 中处理 `Map`。
+要使用从 REST API 调用收到的 JSON，可以对 `JsonObject` 调用 `get` 方法，并传入所需字段的键。继续上面的 `Employee` 示例，如果收到名为 `employee` 的 `JsonObject`，那么将调用 `employee.get("name")` 来查找此人的姓名，或者调用 `employee.get("title")` 来获取其职位。作为对照，JSON-P 非常类似于在 Java&trade 中处理 `Map`。
 
-现在，假设要在 Java 代码中构建此类 JSON 对象。JSON-P 使用的构建器模式为：使用 `JsonObjectBuilder` 添加每个值，然后调用 `build()` 以生成 `JsonObject`，如下所示：
+现在，假设要在 Java&trade 代码中构建此类 JSON 对象。JSON-P 使用的构建器模式为：使用 `JsonObjectBuilder` 添加每个值，然后调用 `build()` 以生成 `JsonObject`，如下所示：
 
 ```java
 JsonObjectBuilder addressBuilder = Json.createObjectBuilder();
@@ -170,6 +171,6 @@ JsonObject employee = employeeBuilder.build();
 ```
 {: codeblock}
 
-请注意，JSON-P 中的 `JsonObject` 是不可变的，这与 JSON-B 不同。如果要更新字段，必须创建新的 `JsonObject`，复制这些字段，然后进行更改。在此，使用副本构造函数创建您自己的 POJO 会很有帮助。
+JSON-P 中的 `JsonObject` 是不可变的，这与 JSON-B 不同。如果要更新字段，必须创建新的 `JsonObject`，复制这些字段，然后进行更改。在此，使用副本构造函数创建您自己的 POJO 会很有帮助。
 
 MicroProfile Rest Client 同时支持 JSON-B 和 JSON-P 用于正确的序列化和反序列化，但 JSON-B 凭借类型安全和编译时反馈功能成为首选。

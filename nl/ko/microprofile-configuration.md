@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-22"
 
 keywords: microprofile api, microprofile cdi, microprofile config api, config api, store properties multiple sources
 
@@ -22,7 +22,7 @@ subcollection: java
 # MicroProfile을 사용한 구성
 {: #mp-configuration}
 
-MicroProfile Config API를 사용하면 애플리케이션 구성 특성을 여러 소스에 저장할 수 있으며 이를 통해 사용자는 환경 특정 코드 경로 없이 코드를 작성할 수 있습니다. API는 [CDI](/docs/java?topic=java-mp-cdi#mp-cdi)를 사용하여 값 지정 특성을 삽입합니다.
+MicroProfile Config API를 사용하면 애플리케이션 구성 특성을 여러 소스에 저장할 수 있으며 이를 통해 사용자는 환경 특정 코드 경로 없이 코드를 작성할 수 있습니다. API는 [CDI](/docs/java?topic=java-mp-cdi#mp-cdi)를 사용하여 값 지정 특성을 애플리케이션에 삽입합니다.
 
 ## 선행 조건
 {: #mp-config-prereq}
@@ -54,7 +54,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 ```
 {: codeblock}
 
-`WATSON_URL` 특성 값을 `watsonService` 변수에 삽입하려면 다음과 같이 사용하십시오.
+`WATSON_URL`이라는 특성의 값을 `watsonService` 변수에 삽입하려면 다음 예를 참조하십시오.
 
 ```java
 @Inject 

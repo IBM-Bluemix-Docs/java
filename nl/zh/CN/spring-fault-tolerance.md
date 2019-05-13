@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-22"
 
 keywords: fault tolerance spring, hystrix spring, netflix spring, hystrixcommand spring, bulkhead spring, circuit breaker spring
 
@@ -16,13 +16,14 @@ subcollection: java
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
+{:note: .note}
 
 # 使用 Spring 实现容错
 {: #spring-tolerance}
 
-创建弹性系统对置于其中的所有服务提出了要求。云环境的动态性质要求服务设计为准备好并正常应对意外事件。
+创建弹性系统对置于其中的所有服务提出了要求。云环境的动态性质要求将服务设计为能够对意外事件做出正常响应。
 
-Spring 使用 [Netflix Hystrix](https://github.com/Netflix/Hystrix/wiki){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标") 容错库来支持应用程序级别的容错问题。Hystrix 提供对回退、断路器、隔板和关联度量值的支持。 
+Spring 使用 [Netflix Hystrix](https://github.com/Netflix/Hystrix/wiki){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标") 容错库来支持应用程序级别的容错问题。使用 Hystrix，您可以创建回退、断路器、隔板和关联度量值。
 
 此信息基于[云本机开发：容错](/docs/java?topic=cloud-native-fault-tolerance#fault-tolerance)中描述的容错实践而构建。
 {: note}
@@ -30,9 +31,9 @@ Spring 使用 [Netflix Hystrix](https://github.com/Netflix/Hystrix/wiki){: new_w
 ## 将 Hystrix 用于 Spring 应用程序
 {: #spring-hystrix-starter}
 
-为了使 Hystrix 更容易在 Spring 应用程序中使用，提供了一个 Spring Boot 入门模板，支持使用带注释的方法在应用程序中集成 Hystrix。
+为了使 Hystrix 更容易在 Spring 应用程序中使用，为您提供了一个 Spring Boot 入门模板，以支持使用带注释的方法在应用程序中集成 Hystrix。
 
-将以下单个依赖项添加到应用程序会引入 Hystrix。 
+要添加 Hystrix，请添加以下依赖项：
 
 ```xml
 <dependency>
@@ -42,7 +43,7 @@ Spring 使用 [Netflix Hystrix](https://github.com/Netflix/Hystrix/wiki){: new_w
 ```
 {: codeblock}
 
-与其他许多 Spring 入门模板类似，要向 Spring 指示您希望在应用程序中使用该功能，请对主应用程序类添加相应注释。要支持 Spring 处理 Hystrix 注释以执行断路操作，请添加 `@EnableCircuitBreaker`。
+要使 Spring 能够使用此新功能，请向主应用程序类添加注释，并通过添加 `@EnableCircuitBreaker` 来支持 Spring 处理 Hystrix 注释以执行断路操作。
 
 ```java
 @SpringBootApplication
@@ -58,11 +59,12 @@ public class MyApplication {
 ### 使用 HystrixCommand 定义回退
 {: #spring-fallback}
 
-要向方法添加断路行为，请使用 `@HystrixCommand` 对其进行注释。Spring 将在使用 `@EnableCircuitBreaker` 注释的应用程序中查找这些方法，并使用 Hystrix 功能对其打包以监视错误/超时，并在需要时调用相应的替代行为。 
+要向方法添加断路行为，请使用 `@HystrixCommand` 对其进行注释。Spring 将在使用 `@EnableCircuitBreaker` 注释的应用程序中查找这些方法，并使用 Hystrix 支持对其打包以监视错误和超时。然后，Spring 会根据需要调用相应的替代行为。
 
-仅 `@Component` 或 `@Service` 中的方法上支持 `@HystrixCommand`。{: note}
+仅 `@Component` 或 `@Service` 中的方法支持 `@HystrixCommand` 注释。
+{: note}
 
-以下 `@HystrixCommand` 注释会对 `service()` 调用打包，以提供断路行为。如果 `service()` 方法失败或电路为开路，那么代理将调用 `fallback()` 方法。
+以下 `@HystrixCommand` 注释会对 `service()` 调用打包，以提供断路器行为。如果 `service()` 方法失败或电路为开路，那么代理将调用 `fallback()` 方法。
 
 ```java
 @Autowired
@@ -95,7 +97,9 @@ class MicroService {
 ### 使用超时
 {: #spring-timeout}
 
-调用远程服务时，可能不会立即返回，可能需要一段时间才能返回，或者可能永远不会返回。通过 Hystrix，您能够定义应用程序可接受的情况。可以在 `HystrixCommand` 注释中添加简单内容，以将超时值更改为缺省 1 秒之外的值：
+您的应用程序如何响应未响应的远程服务？可能需要等一段时间，或者永远无响应。通过 Hystrix，您能够定义应用程序可以接受的等待时间。
+
+可以在 `HystrixCommand` 注释中添加简单内容，以将超时值从缺省值 1 秒更改为 30 秒：
 
 ```java
 @HystrixCommand(
@@ -126,9 +130,9 @@ Hystrix 支持基于信标和基于队列的隔板。以下片段说明了如何
 ### 断路器状态
 {: #spring-breaker-status}
 
-Hystrix Spring 入门模板还有一个额外的秘密武器，可增强应用程序的缺省 `/health` 端点（通过 Spring Actuator 提供；有关更多信息，请查看[度量值主题](/docs/java?topic=java-spring-metrics#spring-metrics)）。
+Hystrix Spring 入门模板还有一个额外的秘密武器，可增强应用程序的缺省 `/health` 端点（通过 Spring Actuator 提供，有关更多信息，请参阅 [Spring 的度量值](/docs/java?topic=java-spring-metrics#spring-metrics)）。
 
-如果运行状况端点[配置为包含额外详细信息](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")，那么运行状况检查信息将包含断路器状态。（缺省情况下，此行为处于禁用状态）。
+如果运行状况端点[配置为包含额外详细信息 ](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")，那么运行状况检查信息将包含断路器状态。（缺省情况下，此行为处于禁用状态）。
 
 ```
 {

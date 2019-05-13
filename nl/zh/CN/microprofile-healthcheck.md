@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-27"
+lastupdated: "2019-04-23"
 
 keywords: health check jax-rs, jax-rs endpoint, jax-rs status, readiness jax-rs, liveness jax-rs, microprofile health
 
@@ -22,12 +22,12 @@ subcollection: java
 # 使用 JAX-RS 进行运行状况检查
 {: #jaxrs-healthcheck}
 
-如前一节所述，Kubernetes 提供了多种用于集成运行状况探测器的方法，包括执行命令，以及通过 TCP 或 HTTP 端点进行网络检查。虽然可以用 Java 语言实现其中任何探测器，但在此将详细讨论 HTTP 探测器和 MicroProfile 运行状况的 JAX-RS 实现。
+如前一节所述，Kubernetes 提供了多种用于集成运行状况探测器的方法，包括执行命令，以及通过 TCP 或 HTTP 端点进行网络检查。虽然可以用 Java&trade 语言实现其中任何探测器，但在此会详细讨论 HTTP 探测器和 MicroProfile 运行状况的 JAX-RS 实现。
 
 ## 定义就绪性 JAX-RS 端点
 {: #mp-readiness}
 
-一个极简的就绪性端点类似于以下内容：
+一个极简的就绪性端点类似于以下示例：
 
 ```java
 @Path("ready")
@@ -44,7 +44,7 @@ public class ReadinessEndpoint {
 ```
 {: codeblock}
 
-在 WebSphere Liberty 中部署的应用程序中，像上例中这样的端点无需额外的工作，就可实现某种程度的就绪性行为。在应用程序启动之前，Liberty 向运行状况端点的请求会失败，并返回相应的 503 响应。应该对此基本实现进行扩展，以包含必需的功能。例如，考虑评估 `@ApplicationScoped` CDI 资源，以确保依赖项注入处理完成。实现了探测器后，可以通过配置 HTTP 探测器类型来启用该探测器，如前一节中所述。
+在 WebSphere Liberty 中部署的应用程序中，像上例中这样的端点无需更多的工作，就可实现某种程度的就绪性行为。在应用程序运行之前，Liberty 向运行状况端点的请求会失败，并返回相应的 503 响应。应该对此基本实现进行扩展，以包含必需的功能。例如，考虑评估 `@ApplicationScoped` CDI 资源，以确保依赖项注入处理完成。实现了探测器后，可以通过配置 HTTP 探测器类型来启用该探测器，如前一节中所述。
 
 请务必记住容错的作用和目的：微服务需要处理与下游服务的通信中的故障和中断。因此，在就绪性检查内仅包含针对没有可行回退的功能的检查内容。
 
@@ -67,12 +67,12 @@ public class LivenessEndpoint {
 
 可以扩展活性探测器实现，以查询指示不可恢复的进程状态的进程本地状况。然而，此类检查面临的挑战往往在于，如果能够执行这样的处理，说明服务器的运行状况可能足够正常，可以执行其他请求。出于这一原因，“极简”原则应随时应用于活性检查实现。对活性源进行编码以启用探测器端点后，就可以在容器编排源中启用 HTTP 活性端点，如上一章所述。
 
-为了避免重新启动周期，活性检查的 initialDelaySeconds 属性应该长于预期的最长服务器启动时间。对于通常需要 30 秒才能启动的 Java 应用程序服务器，请选择更大的值，例如 60 秒。
+为了避免重新启动周期，活性检查的 initialDelaySeconds 属性应该长于预期的最长服务器启动时间。对于通常需要 30 秒才能启动的 Java&trade 应用程序服务器，请选择更大的值，例如 60 秒。
 
 ## 使用 MicroProfile 运行状况 API
 {: #mp-health-api}
 
-[MicroProfile 运行状况 API](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_microprofile_healthcheck.html){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标") (mpHealth) 定义了一个框架，用于简化运行状况检查的实现。mpHealth API V1.0 仅定义了一个端点。下一个版本将提供两个端点，一个用于活性，一个用于就绪性。
+[MicroProfile 运行状况 API](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_microprofile_healthcheck.html){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标") (mpHealth) 定义了一个框架，用于简化运行状况检查的实现。`mpHealth` API V1.0 定义了一个端点。下一个版本将提供两个端点，一个用于活性，一个用于就绪性。
 
 要将 MicroProfile 运行状况 API 与 Liberty 配合使用，请将 `mpHealth` 功能添加到 `server.xml`：
 
@@ -83,7 +83,7 @@ public class LivenessEndpoint {
 ```
 {: codeblock}
 
-然后，可以使用浏览器通过访问 `/health` 端点来检查应用程序的状态。当一切正常时，代码会返回有效内容 `{"outcome": "UP"}`。下面说明了如何使用 MicroProfile 运行状况 API 来指示 pod 是处于运行正常还是就绪状态。`call` 方法允许开发者提供检查算法来指示 pod 的运行状态。像内存即将不足这样的情况可以明确地指示 pod 的运行状况。检查下游数据库连接可能是有效的 pod 就绪性检查方法。如果没有特定检查，您可以使用以下内容来指示 pod 是处于活动状态还是就绪状态。
+然后，可以使用浏览器通过访问 `/health` 端点来检查应用程序的状态。当一切正常时，代码会返回有效内容 `{"outcome": "UP"}`。以下代码说明了如何使用 MicroProfile 运行状况 API 来指示 pod 是处于运行正常还是就绪状态。`call` 方法允许开发者提供检查算法来指示 pod 的运行状态。像内存即将不足这样的情况可以明确地指示 pod 的运行状况。检查下游数据库连接可能是有效的 pod 就绪性检查方法。如果没有特定检查，您可以使用以下内容来指示 pod 是处于活动状态还是就绪状态。
 
 ```java
 import org.eclipse.microprofile.health.Health;

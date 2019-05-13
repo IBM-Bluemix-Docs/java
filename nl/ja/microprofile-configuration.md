@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-22"
 
 keywords: microprofile api, microprofile cdi, microprofile config api, config api, store properties multiple sources
 
@@ -22,7 +22,7 @@ subcollection: java
 # MicroProfile による構成
 {: #mp-configuration}
 
-MicroProfile Config API を使用すると、アプリケーション構成プロパティーを複数のソースに保管できるため、環境固有のコード・パスなしでコードを書くことができます。API は [CDI](/docs/java?topic=java-mp-cdi#mp-cdi) を使用して、値が指定されたプロパティーを注入します。
+MicroProfile Config API を使用すると、アプリケーション構成プロパティーを複数のソースに保管できるため、環境固有のコード・パスなしでコードを書くことができます。API は [CDI](/docs/java?topic=java-mp-cdi#mp-cdi) を使用して、値が指定されたプロパティーをアプリケーションに注入します。
 
 ## 前提条件
 {: #mp-config-prereq}
@@ -54,7 +54,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 ```
 {: codeblock}
 
-`WATSON_URL` という名前のプロパティーの値を `watsonService` 変数に注入するには、次のようにします。
+`WATSON_URL` という名前のプロパティーの値を `watsonService` 変数に注入するには、以下の例を参照してください。
 
 ```java
 @Inject 
