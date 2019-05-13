@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-27"
+lastupdated: "2019-04-22"
 
 keywords: mpmetrics microprofile, mpmetrics, prometheus java, metrics java, microprofile metrics
 
@@ -22,7 +22,7 @@ subcollection: java
 # Métricas con MicroProfile
 {: #mp-metrics}
 
-MicroProfile proporciona una prestación de métricas que le permite utilizar anotaciones simples para añadir métricas personalizadas a la aplicación. Basta con añadir la característica `mpMetrics-1.1` a `server.xml` para habilitar esta opción. Tenga en cuenta que, opcionalmente, también puede añadir la característica `monitor-1.0` si desea más métricas específicas del servidor de apps (como, por ejemplo, las agrupaciones de conexiones JDBC).
+MicroProfile proporciona una función Metrics para añadir métricas personalizadas a su aplicación utilizando anotaciones simples. Para habilitar esta característica, añada la característica `mpMetrics-1.1` a `server.xml`. De manera opcional, puede añadir la característica `monitor-1.0` si desea ver más métricas específicas del servidor de la app (como agrupaciones de conexiones JDBC, por ejemplo).
 
 Importe la anotación `@Counted` para crear un contador simple:
 
@@ -31,7 +31,7 @@ import org.eclipse.microprofile.metrics.annotation.Counted;
 ```
 {: codeblock}
 
-A continuación, utilice la anotación `@Counted` para crear un contador simple. Este ejemplo cuenta el número de veces que se ha llamado al método `createPortfolio`:
+A continuación, utilice la anotación `@Counted` para crear un contador simple, tal como se muestra en el ejemplo siguiente, que cuenta cuántas veces se llama al método `createPortfoloio`: 
 
 ```java
 @POST
@@ -43,7 +43,7 @@ public JsonObject createPortfolio(@PathParam("owner") String owner) throws SQLEx
 ```
 {: codeblock}
 
-Para crear este código, tenemos que añadir la stanza siguiente a nuestro `pom.xml` de Maven:
+Para compilar este código, añada la stanza siguiente al archivo `pom.xml` de Maven:
 
 ```xml
 <dependency>
@@ -56,7 +56,11 @@ Para crear este código, tenemos que añadir la stanza siguiente a nuestro `pom.
 ```
 {: codeblock}
 
-De este modo, cada vez que se llame al método createPortfolio JAX-RS, el contador se incrementará. Podemos invocar el URI `GET /metrics` para ver las métricas de jvm (estadísticas de carga de clases, almacenamiento dinámico y recogida de basura) y las definidas por la aplicación. El URI `GET /metrics/application` sólo devolverá métricas definidas por la aplicación. Se puede alcanzar esta API GET de REST mediante la CLI de curl, utilizando el puerto asignado (32388 en este ejemplo):
+De este modo, el contador se incrementará cada vez que se llame al método `createPortfolio` de JAX-RS. 
+
+Puede invocar el URI `GET /metrics` para ver tanto las métricas de JVM (estadísticas de carga de clase, almacenamiento dinámico y recogida de basura) como las definidas por la aplicación. El URI `GET /metrics/application` devuelve únicamente métricas definidas por la aplicación. 
+
+Puede acceder a la API REST GET a través de la CLI de curl utilizando el puerto asignado (32388 en este ejemplo):
 
 ```
 Johns-MacBook-Pro-8:StockTrader jalcorn$ curl http://9.42.2.107:32388/metrics/application
@@ -71,19 +75,22 @@ Johns-MacBook-Pro-8:StockTrader jalcorn$
 ```
 {: screen}
 
-Como puede ver, ha contado que hemos creado dos portafolios. Varios puntos destacados:
+Como puede ver, se cuentan dos portfolios tal como se esperaba. 
 
-- Se trata de un contador en memoria: si se reinicia el pod, el valor se restablecerá a cero; si hay varias réplicas, cada una tendrá su propio valor (localizado).
-- El texto de "# HELP" es lo que hemos especificado como descripción en la anotación `@Counted`.
+Varios puntos destacados:
+- Se trata de un contador en memoria: si se reinicia el pod, el valor se restablece a cero; si hay varias réplicas, cada una tiene su propio valor exclusivo.
+- El texto de "# HELP" es lo que se especifica como descripción en la anotación `@Counted`.
 
 También puede ver la salida de este punto final GET de REST en el navegador web:
 
-![Navegador web de punto final GET de REST](images/microprofile-metrics-image1.png "Navegador web de punto final GET de REST")
+![Navegador web de punto final GET REST](images/microprofile-metrics-image1.png "Navegador web de punto final GET REST")
+{: caption="Figura 1. Navegador web de punto final GET REST" caption-side="bottom"}
 
-Tenga en cuenta que, de forma predeterminada, el punto final `/metrics` requiere que se pasen las credenciales de inicio de sesión y https. En Liberty 18.0.0.3 se introdujo la stanza siguiente, que puede poner en server.xml para indicar que desea que este punto final permita http y no tenga autenticación:
+De forma predeterminada, el punto final `/metrics` requiere que se pasen las credenciales de inicio de sesión y https. En Liberty 18.0.0.3 se introdujo la stanza siguiente que puede poner en
+`server.xml` para definir que este punto final permite http y que se desautentique:
 
 ```xml
 <mpMetrics authentication="false"/>
 ```
 
-Esto hace que la configuración del recopilador de Prometheus alcance este punto final con mucha más facilidad.
+Se ha simplificado la configuración del scraper Prometheus para hacer más fácil el acceso al punto final.

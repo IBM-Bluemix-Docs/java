@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-22"
 
 keywords: microprofile api, microprofile cdi, microprofile config api, config api, store properties multiple sources
 
@@ -22,7 +22,7 @@ subcollection: java
 # Configuração com MicroProfile
 {: #mp-configuration}
 
-A API de configuração do MicroProfile permite que as propriedades de configuração do aplicativo sejam armazenadas em múltiplas origens, permitindo que você grave seu código sem caminhos de código específicos do ambiente. A API usa [CDI](/docs/java?topic=java-mp-cdi#mp-cdi) para injetar as propriedades especificadas do valor.
+A API MicroProfile Config permite que as propriedades de configuração de aplicativo sejam armazenadas em múltiplas origens para que seja possível gravar código sem caminhos de código específicos do ambiente. A API usa o [CDI](/docs/java?topic=java-mp-cdi#mp-cdi) para injetar valor nas propriedades especificadas em seu aplicativo.
 
 ## Pré-requisito
 {: #mp-config-prereq}
@@ -54,7 +54,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 ```
 {: codeblock}
 
-Para injetar o valor de uma propriedade denominada `WATSON_URL` na variável `watsonService`, use algo semelhante a isto:
+Para injetar o valor de uma propriedade denominada `WATSON_URL` na variável `watsonService`, consulte este exemplo:
 
 ```java
 @Inject 
@@ -63,7 +63,7 @@ String watsonService;
 ```
 {: codeblock}
 
-Também é possível especificar um valor padrão que será usado se não for possível localizar a propriedade nomeada:
+Também pode-se especificar um valor padrão que é usado quando não é possível localizar a propriedade nomeada:
 
 ```java
 @Inject 

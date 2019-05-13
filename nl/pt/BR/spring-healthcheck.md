@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-22"
 
 keywords: health check spring, spring health endpoint, spring-boot-actuator, liveness probe spring, readiness probe spring, spring kubernetes probe
 
@@ -80,7 +80,7 @@ Observe a inclusão de algumas informações de base de dados H2. Este é um exe
 ### Análise de atividade no Spring Boot 2
 {: #spring-liveness-boot2}
 
-A estrutura do Actuator no Spring Boot 2 é sua própria estrutura mini-REST que pode ser estendida com terminais customizados. Isso significa que podemos incluir um terminal de atividade simples que é gerenciado da mesma maneira que o indicador de funcionamento integrado. Um terminal de atividade customizado pode ser declarado trivialmente assim:
+A estrutura do Actuador no Spring Boot 2 é sua própria miniestrutura REST que pode ser ampliada com terminais customizados. Isso significa que podemos incluir um terminal de atividade simples que é gerenciado da mesma maneira que o indicador de funcionamento integrado. Um terminal de atividade customizado pode ser declarado trivialmente assim:
 
 ```java
 @Endpoint(id="liveness")

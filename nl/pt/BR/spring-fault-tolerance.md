@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-22"
 
 keywords: fault tolerance spring, hystrix spring, netflix spring, hystrixcommand spring, bulkhead spring, circuit breaker spring
 
@@ -16,23 +16,24 @@ subcollection: java
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
+{:note: .note}
 
 # Tolerância a falhas com o Spring
 {: #spring-tolerance}
 
-A criação de um sistema resiliente impõe requisitos em todos os serviços dentro dele. A natureza dinâmica dos ambientes de nuvem exige que os serviços sejam projetados para serem preparados e, respondam normalmente, ao inesperado.
+A criação de um sistema resiliente impõe requisitos em todos os serviços dentro dele. A natureza dinâmica dos ambientes de nuvem exige que os serviços sejam projetados para responder de forma normal ao inesperado.
 
-O Spring usa a biblioteca de tolerância a falhas do [Netflix Hystrix](https://github.com/Netflix/Hystrix/wiki){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo") para suportar preocupações de tolerância a falhas no nível do aplicativo. O Hystrix fornece suporte para fallbacks, disjuntores, anteparas e métricas associadas. 
+O Spring usa a biblioteca de tolerância a falhas do [Netflix Hystrix](https://github.com/Netflix/Hystrix/wiki){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo") para suportar preocupações de tolerância a falhas no nível do aplicativo. Com o Hystrix, é possível criar fallbacks, disjuntores, anteparas e métricas associadas.
 
-Estas informações são compiladas em práticas de tolerância a falhas descritas em [Desenvolvimento nativo de nuvem: tolerância a falhas](/docs/java?topic=cloud-native-fault-tolerance#fault-tolerance).
+Essas informações são construídas sobre as práticas de tolerância a falhas que estão descritas em [Desenvolvimento nativo de nuvem: tolerância a falhas](/docs/java?topic=cloud-native-fault-tolerance#fault-tolerance).
 {: note}
 
 ## Usando o Hystrix com um Aplicativo Spring
 {: #spring-hystrix-starter}
 
-Para tornar o Hystrix mais fácil de usar em um aplicativo Spring, há um Spring Boot Starter que permite que uma abordagem anotada integre o Hystrix em seu aplicativo.
+Para tornar o Hystrix mais fácil de usar em um aplicativo Spring, há um Spring Boot Starter que permite que uma abordagem anotada integre o Hystrix a seu aplicativo.
 
-Incluir essa única dependência em seu aplicativo o trará o Hystrix. 
+Para incluir o Hystrix, inclua a dependência a seguir:
 
 ```xml
 <dependency>
@@ -42,7 +43,7 @@ Incluir essa única dependência em seu aplicativo o trará o Hystrix.
 ```
 {: codeblock}
 
-Semelhante a muitos outros Spring Starters, para indicar ao Spring que você deseja usar a funcionalidade no aplicativo, você inclui uma anotação de sua classe de aplicativo principal. Para ativar o processamento de Spring das anotações Hystrix para disjuntor, inclua `@EnableCircuitBreaker`.
+Para que o Spring use essa nova função, inclua uma anotação em sua classe de aplicativo principal e ative o processamento da Spring das anotações do Hystrix para a quebra de circuito, incluindo `@EnableCircuitBreaker`.
 
 ```java
 @SpringBootApplication
@@ -58,11 +59,12 @@ public class MyApplication {
 ### Usando HystrixCommand para definir um fallback
 {: #spring-fallback}
 
-Para incluir um comportamento de disjuntor em um método, você anota-o com `@HystrixCommand`. O Spring localizará esses métodos em um aplicativo anotado com `@EnableCircuitBreaker` e os agrupará com a funcionalidade Hystrix para monitorar erros/tempos limites e chamar o comportamento alternativo apropriado quando necessário. 
+Para incluir o comportamento do disjuntor em um método, anote-o com `@HystrixCommand`. O Spring descobre métodos em um aplicativo que é anotado com `@EnableCircuitBreaker` e agrupa-os com o suporte do Hystrix para monitorar erros e tempos limites. Em seguida, o Spring chama o comportamento alternativo apropriado quando necessário.
 
-`@HystrixCommand` é suportado somente em métodos em um `@Component` ou `@Service` {: note}
+A anotação `@HystrixCommand` é suportada somente em métodos em um `@Component` ou `@Service`.
+{: note}
 
-A anotação `@HystrixCommand` a seguir agrupa a chamada de `service()` para fornecer o comportamento do disjuntor. O proxy chamará o método `fallback()` se o método `service()` falhar ou se o circuito estiver aberto.
+A anotação `@HystrixCommand` a seguir agrupa a chamada `service()` para fornecer o comportamento do disjuntor. O proxy chamará o método `fallback()` se o método `service()` falhar ou se o circuito estiver aberto.
 
 ```java
 @Autowired private MicroService myService;
@@ -90,10 +92,12 @@ public String value() throws Exception {
 Saiba mais, verificando o exemplo do [Hystrix Circuit Breaker](https://spring.io/guides/gs/circuit-breaker/){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo") baseado em Spring.
 {: tip}
 
-### Usando tempos limites
+### Usando Tempos Limites
 {: #spring-timeout}
 
-Ao chamar um serviço remoto, talvez ele não retorne imediatamente; ele pode demorar um pouco ou pode demorar muito. O Hystrix fornece a capacidade de definir o que é aceitável para seu aplicativo. Uma adição simples à anotação `HystrixCommand` pode ser usada para mudar o valor de tempo limite do valor padrão de 1 segundo:
+Como seu aplicativo responde a um serviço remoto que não está respondendo? A espera pode demorar um pouco ou pode levar uma eternidade. O Hystrix fornece a capacidade de definir qual quantia de tempo de espera é aceitável para seu aplicativo.
+
+Uma adição simples à anotação `HystrixCommand` pode ser usada para mudar o valor de tempo limite do valor padrão de 1 segundo a 30 segundos:
 
 ```java
 @HystrixCommand(
@@ -108,7 +112,7 @@ Ao chamar um serviço remoto, talvez ele não retorne imediatamente; ele pode de
 ### Usando anteparas
 {: #spring-bulkhead}
 
-O Hystrix suporta as anteparas semáforos e baseadas em fila. O fragmento a seguir mostra como configurar uma antepara com base em fila que aloca 4 encadeamentos e limita o número de solicitações pendentes para 10:
+O Hystrix suporta as anteparas semáforos e baseadas em fila. O fragmento a seguir mostra como configurar uma antepara baseada em fila que aloca quatro encadeamentos e limita o número de solicitações pendentes para 10:
 
 ```java
 @HystrixCommand(
@@ -124,9 +128,9 @@ O Hystrix suporta as anteparas semáforos e baseadas em fila. O fragmento a segu
 ### Status do disjuntor
 {: #spring-breaker-status}
 
-O iniciador Hystrix Spring tem um truque extra na manga: ele aprimorará o terminal padrão `/health` para o aplicativo (fornecido por meio de um Spring Actuator, para saber mais, confira o [Tópico Métricas](/docs/java?topic=java-spring-metrics#spring-metrics)).
+O iniciador do Hystrix Spring tem um truque extra na manga, ele aprimora o terminal `/health` padrão para o aplicativo, que é fornecido por meio de um Spring Actuator. Para obter mais informações, consulte [Métricas com Spring](/docs/java?topic=java-spring-metrics#spring-metrics)).
 
-Se o terminal de funcionamento estiver [configurado para incluir detalhes extras](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo"), o status do Disjuntor será incluído com as informações de verificação de funcionamento. (Esse comportamento é desativado por padrão).
+Se o terminal de funcionamento estiver [configurado para incluir detalhes extras](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo"), o status do disjuntor será incluído com as informações de verificação de funcionamento. (Esse comportamento é desativado por padrão).
 
 ```
 {

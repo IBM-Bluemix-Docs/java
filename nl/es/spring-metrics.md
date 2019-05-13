@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-04-09"
+lastupdated: "2019-04-23"
 
 keywords: spring metrics, configure metrics spring, micrometer spring, micrometer, spring boot 2, spring actuator, prometheus spring
 
@@ -22,14 +22,14 @@ subcollection: java
 # Métricas con Spring
 {: #spring-metrics}
 
-A partir de Spring Framework 5, las métricas de Spring las maneja Micrometer. Micrometer es una infraestructura que se describe a sí misma como "SLF4J para métricas". Igual que SLF4J actúa como una API neutral de proveedor para el registro que puede conectarse a varios programas de fondo de registro diferentes, Micrometer proporciona una API neutral de proveedor con la que instrumentar y medir el código, y luego proporcionar esas métricas en adelante a una variedad de agregadores de métricas, como Prometheus, DataDog o Influx/Telegraph. 
+A partir de Spring Framework 5, las métricas de Spring las maneja Micrometer. Micrometer es una infraestructura que se describe a sí misma como "SLF4J para métricas". Igual que SLF4J actúa como una API neutral de proveedor para el registro que puede conectarse a varios programas de fondo de registro diferentes, Micrometer proporciona una API neutral de proveedor con la que instrumentar y medir el código, y luego proporcionar esas métricas en adelante a los diversos agregadores de métricas, como Prometheus, DataDog o Influx/Telegraph. 
 
 La infraestructura de Micrometer permite que Spring se integre en una gran variedad de arquitecturas nativas en la nube. La adición de soporte para Prometheus o Statsd sólo es cuestión de modificar de dependencias, y si el recopilador de métricas está basado en push, proporcionar información de destino en `application.properties`. Spring y Micrometer determinan qué hacer en tiempo de ejecución en función de las dependencias que encuentran en la vía de acceso de clases de la aplicación.
 
 ## Habilitación de métricas
 {: #spring-metrics-enabling}
 
-Spring Boot Actuator suministra métricas básicas listas para utilizar, y necesita la dependencia `spring-boot-starter-actuator` en el archivo `pom.xml`:  
+Spring Boot Actuator suministra métricas básicas, y necesita la dependencia `spring-boot-starter-actuator` en el archivo `pom.xml`:  
 
 ```xml
 <dependency>
@@ -39,19 +39,19 @@ Spring Boot Actuator suministra métricas básicas listas para utilizar, y neces
 ```
 {: codeblock}
 
-Si aún utiliza Spring Boot 1.5.x, las métricas (y los Actuators) funcionan de forma diferente. Micrometer se ha convertido en el estándar para las métricas de Spring en Spring Boot 2.0, pero hay disponibles puertos de respaldo para Boot 1.5.x, lo que permite prácticas coherentes para crear y recopilar métricas en aplicaciones Spring Boot nativas de la nube. Lo que es más importante, Micrometer da soporte a varios sistemas de supervisión, incluido Prometheus, que lo convierten en una opción más adecuada que el sistema de métricas de Boot 1.5.x para los despliegues en la nube.
+Si aún utiliza Spring Boot 1.5.x, las métricas (y los Actuators) funcionan de forma diferente. Micrometer se ha convertido en el estándar para las métricas de Spring en Spring Boot 2.0, pero hay disponibles puertos de respaldo para Boot 1.5.x, lo que permite prácticas coherentes para crear y recopilar métricas en aplicaciones Spring Boot nativas de la nube. Lo que es más importante, Micrometer da soporte a diversos sistemas de supervisión, incluido Prometheus, que lo convierten en una opción más adecuada que el sistema de métricas de Boot 1.5.x para los despliegues en la nube.
 {: note}
 
 ## Métricas de Micrometer
 {: #spring-metrics-micrometer}
 
-Micrometer abstrae el concepto de destino para las métricas mediante su interfaz `MeterRegistry`. `MeterRegistry` proporciona el modo de que la aplicación obtenga contadores personalizados, medidores, temporizadores, etc. Si se necesitan varios destinos, Micrometer suministra una implementación de `CompositeMeterRegistry` que permite aislar la aplicación de los destinos reales configurados para las métricas.
+Micrometer abstrae el concepto de destino para las métricas mediante su interfaz `MeterRegistry`. `MeterRegistry` proporciona el modo de que la aplicación obtenga contadores personalizados, medidores y temporizadores. Si se necesitan varios destinos, Micrometer suministra una implementación de `CompositeMeterRegistry` que permite aislar la aplicación de los destinos reales configurados para las métricas.
 
 En cualquiera de las versiones de Spring Boot, cuando se habilita un punto final de métrica basado en Micrometer, Spring Boot crea automáticamente un `CompositeMeterRegistry` y lo pone a disposición de la aplicación como un `Bean`. El registro se llena automáticamente con las implementaciones de `MeterRegistry` soportadas que se encuentran en la vía de acceso de clases. Para dar soporte a varios sistemas de supervisión, o cambiar entre ellos, basta con modificar las dependencias en el archivo pom.xml. 
 
-Spring permite la personalización del bean `MeterRegistry` mediante `MeterRegistryCustomizer`, que también es un Bean. Cuando Spring identifica la presencia de un bean de este tipo de Bean, se le da la oportunidad de configurar el `MeterRegistry` global antes de que se informe de cualquier métrica. A menudo se utiliza este método para añadir etiquetas comunes a `MeterRegistry`, como DataCenter o EnvironmentType.
+Spring permite la personalización del bean `MeterRegistry` a través de `MeterRegistryCustomizer`, que también es un bean. Cuando Spring identifica la presencia de un bean de este tipo, puede configurar el `MeterRegistry` global antes de que se informe de cualquier métrica. A menudo se utiliza este método para añadir etiquetas comunes a `MeterRegistry`, DataCenter o EnvironmentType.
 
-Cuando se nombran métricas, Spring y Micrometer recomiendan seguir un convenio de denominación que divide palabras con `.` en lugar de utilizar escritura camelCase o `_`, u otros métodos. Esto se debe a que Micrometer transmitirá esas métricas a los destinos configurados y realizará las conversiones de nombres según sea necesario para cumplir los requisitos de los destinos.
+Cuando se nombran métricas, Spring y Micrometer recomiendan seguir un convenio de denominación que divide palabras con `.` en lugar de utilizar bicapitalización o `_`, u otros métodos. Esto se debe a que Micrometer transmite esas métricas a los destinos configurados y realiza las conversiones de nombres según sea necesario para cumplir los requisitos de los destinos.
 
 ## Configuración de métricas con Spring Boot
 {: #spring-metrics-configuration}
@@ -70,7 +70,7 @@ management.endpoints.web.exposure.include=health,metrics
 ```
 {: codeblock}
 
-Verifique que el punto final de métricas se ha habilitado comprobando el punto final `/actuator`. La salida será similar a la siguiente, al ejecutar la aplicación localmente (utilizando `jq` para mostrar la respuesta json):
+Verifique que el punto final de métricas se ha habilitado comprobando el punto final `/actuator`. La salida tiene un aspecto similar a este al ejecutar la aplicación en local y utilizar `jq` para imprimir con formato la respuesta JSON:
 
 ```
 $ curl -s localhost:8080/actuator | jq .
@@ -95,7 +95,7 @@ $ curl -s localhost:8080/actuator | jq .
 ```
 {: screen}
 
-Al visitar el punto final `/actuator/metrics` se emitirá una lista con formato json de métricas disponibles que será similar a la siguiente:
+El acceso al punto final `/actuator/metrics` muestra una lista con formato JSON de las métricas disponibles, que puede tener un aspecto similar al siguiente:
 
 ```
 $ curl -s localhost:8080/actuator/metrics | jq .
@@ -147,9 +147,9 @@ Para obtener más información acerca de cómo personalizar el comportamiento de
 ### Habilitación del soporte de Prometheus en Spring Boot 2
 {: #spring-prometheus-boot2}
 
-Prometheus requiere que la aplicación aloje un punto final que el servidor Prometheus lea para obtener las métricas. El alojamiento de este punto final en Spring se basa en que la aplicación ya tiene la capacidad de suministrar los datos, lo que significa que el punto final de Prometheus sólo soporta aplicaciones Spring Boot que utilizan Spring MVC, Spring WebFlux o Jersey.
+Prometheus requiere que la aplicación aloje un punto final que el servidor Prometheus debe leer para obtener las métricas. El alojamiento de este punto final en Spring se basa en que la aplicación ya tiene la capacidad de suministrar los datos, lo que significa que el punto final de Prometheus sólo soporta aplicaciones Spring Boot que utilizan Spring MVC, Spring WebFlux o Jersey.
 
-Para habilitar el punto final de Prometheus, añada la dependencia adicional siguiente en `pom.xml`:
+Para habilitar el punto final de Prometheus, añada la dependencia siguiente en `pom.xml`:
 
 ```xml
 <dependency>
@@ -276,7 +276,7 @@ endpoints.prometheus.sensitive=false
 ```
 {: codeblock}
 
-La salida producida por el punto final /prometheus es similar a la de Spring Boot 2:
+La salida producida por el punto final `/prometheus` es similar a la de Spring Boot 2:
 
 ```
 $ curl -s localhost:8080/prometheus
@@ -343,13 +343,13 @@ Para realizar las medidas específicas del dominio de aplicaciones, tendrá que 
 * Un valor `Counter` realiza un seguimiento de un valor que sólo puede aumentar.
 * Un valor `Gauge` mide y devuelve el valor observado cuando se publica el medidor (o se consulta).
 * Un valor `Timer` realiza un seguimiento del número de veces que se ha producido un suceso y el tiempo transcurrido acumulado para dicho suceso. 
-* Un valor `DistributionSummary` es similar a un valor `Timer`, también realiza un seguimiento de una distribución de sucesos, pero no mide el tiempo.
+* Un valor `DistributionSummary` es similar a un valor `Timer`, pero también realiza un seguimiento de una distribución de sucesos y no mide el tiempo.
 
 Los nuevos medidores se crean utilizando métodos de ayuda en el valor `MeterRegistry`, o bien en el compilador fluido del medidor. 
 
 Al trabajar en el código de aplicación, cree el `Meter` en el constructor (pasando `MeterRegistry` como un parámetro) o en un método `@PostConstruct` después de que se haya inyectado `MeterRegistry`.
 
-Por ejemplo, para utilizar un valor `Counter` dentro de `RestController`, puede indicar algo como lo siguiente:
+Por ejemplo, para utilizar un valor `Counter` dentro de `RestController`, puede hacer algo como lo siguiente:
 
 ```java
 @RestController
@@ -366,7 +366,7 @@ public class MyController {
 ```
 {: codeblock}
 
-A continuación, dentro de los métodos de servicio, puede actualizar el valor de medidor como corresponda:
+A continuación, dentro de los métodos de servicio, puede actualizar el valor de medidor:
 
 ```java
 @GetMapping("/")

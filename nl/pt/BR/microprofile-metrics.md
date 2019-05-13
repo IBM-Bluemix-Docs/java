@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-27"
+lastupdated: "2019-04-22"
 
 keywords: mpmetrics microprofile, mpmetrics, prometheus java, metrics java, microprofile metrics
 
@@ -22,7 +22,7 @@ subcollection: java
 # Métricas com MicroProfile
 {: #mp-metrics}
 
-O MicroProfile fornece um recurso de Métricas que permite que você use anotações simples para incluir métricas customizadas em seu aplicativo. Você apenas inclui o recurso `mpMetrics-1.1` em seu `server.xml` para ativar isso. Observe que é possível, opcionalmente, incluir também o recurso `monitor-1.0`, se desejar que métricas adicionais específicas do servidor de app (sobre os conjuntos de conexões JDBC, por exemplo).
+O MicroProfile fornece um recurso de Métricas para incluir métricas customizadas em seu aplicativo, usando anotações simples. Para ativar esse recurso, inclua o recurso `mpMetrics-1.1` em seu `server.xml`. Opcionalmente, é possível incluir o recurso `monitor-1.0` se desejar ver mais métricas específicas do servidor de aplicativos (como sobre os conjuntos de conexões JDBC, por exemplo).
 
 Importe a anotação `@Counted` para criar um contador simples:
 
@@ -31,7 +31,7 @@ import org.eclipse.microprofile.metrics.annotation.Counted;
 ```
 {: codeblock}
 
-Em seguida, use a anotação `@Counted` para criar um contador simples. Esse exemplo conta quantas vezes o método `createPortfolio` foi chamado:
+Em seguida, use a anotação `@Counted` para criar um contador simples, conforme mostrado no exemplo a seguir que conta o número de vezes que o método `createPortfoloio` é chamado: 
 
 ```java
 @POST
@@ -43,7 +43,7 @@ public JsonObject createPortfolio(@PathParam("owner") String owner) throws SQLEx
 ```
 {: codeblock}
 
-Para construir esse código, é necessário incluir a sub-rotina a seguir em nosso Maven `pom.xml`:
+Para construir esse código, inclua a sub-rotina a seguir no arquivo `pom.xml` do Maven:
 
 ```xml
 <dependency>
@@ -56,7 +56,11 @@ Para construir esse código, é necessário incluir a sub-rotina a seguir em nos
 ```
 {: codeblock}
 
-Com isso no lugar, toda vez que o método createPortfolio JAX-RS for chamado, o contador será incrementado. Podemos chamar o URI `GET /metrics` para ver as métricas jvm (classloading, heap e estatísticas de coleta de lixo) e as métricas definidas pelo aplicativo. O URI `GET /metrics/application` retornará somente métricas definidas pelo aplicativo. Podemos atingir essa API GET de REST por meio da CLI curl, usando a porta designada (32388 nesse exemplo):
+Com isso em vigor, o contador é incrementado toda vez que o método JAX-RS `createPortfolio` é chamado. 
+
+É possível chamar o URI `GET /metrics` para ver as métricas da JVM (estatísticas de carregamento de classe, heap e coleta de lixo) e as definidas pelo aplicativo. O URI `GET /metrics/application` retorna somente as métricas definidas pelo aplicativo. 
+
+É possível acessar a API de REST GET por meio da CLI curl usando a porta designada (32388 neste exemplo):
 
 ```
 Johns-MacBook-Pro-8:StockTrader jalcorn$ curl http://9.42.2.107:32388/metrics/application
@@ -71,19 +75,20 @@ Johns-MacBook-Pro-8:StockTrader jalcorn$
 ```
 {: screen}
 
-Como você pode ver, ele contou que nós criamos 2 portfólios. Algumas coisas a notar:
+Como é possível ver, dois portfólios são contados conforme esperado. 
 
-- Este é um contador na memória: se o pod for reiniciado, o valor será reconfigurado para zero; se houver várias réplicas, cada uma terá seu próprio valor (localizado).
-- O texto "# HELP" é o que especificamos como a descrição na anotação `@Counted`.
+Algumas coisas a notar:
+- Este é um contador na memória: se o pod for reiniciado, o valor será reconfigurado para zero; se houver múltiplas réplicas, cada uma terá seu próprio valor exclusivo.
+- O texto "# HELP" é o que está especificado como a descrição na anotação `@Counted`.
 
 É possível visualizar a saída desse terminal GET de REST em seu navegador da web também:
 
 ![Navegador da web do terminal GET de REST](images/microprofile-metrics-image1.png "Navegador da web do terminal GET de REST")
 
-Observe que, por padrão, o terminal `/metrics` requer que https e credenciais de login sejam passados. O Liberty 18.0.0.3 introduziu a sub-rotina a seguir que é possível colocar em seu server.xml para dizer que você deseja que esse terminal permita http e para não ser autenticado:
+Por padrão, o terminal `/metrics` requer que o https e as credenciais de login sejam passados. O Liberty 18.0.0.3 introduziu a sub-rotina a seguir que você pode colocar em seu `server.xml` para definir esse terminal para permitir http e para ser não autenticado:
 
 ```xml
 <mpMetrics authentication="false"/>
 ```
 
-Isso torna a configuração do escrêiper da Prometheus para atingir esse terminal muito mais fácil.
+A configuração do extrator Prometheus é simplificada para tornar o acesso ao terminal mais fácil.

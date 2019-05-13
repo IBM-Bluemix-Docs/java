@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-27"
+lastupdated: "2019-04-30"
 
 keywords: json-b, json-p, json-binding, json response, pojo object, pojo, jsonobject, jsonobjectbuilder, java api json
 
@@ -27,8 +27,9 @@ subcollection: java
 ## JSON-B
 {: #java-json-b}
 
-Con **JSON-B**, la conversión a y desde JSON se consigue utilizando un POJO (Plain Old Java Object) con un método get/set para cada campo. Por ejemplo:
+Con **JSON-B**, la conversión a y desde JSON se consigue utilizando un POJO (Plain Old Java Object) con un método get y set para cada campo.
 
+Por ejemplo:
 ```java
 public class Employee {
   private String fName;
@@ -86,7 +87,7 @@ public class Address {
 
 Para utilizar JSON-B con Liberty, debe tener la característica `jsonb-1.0` habilitada en el archivo `server.xml`. También puede utilizar `microProfile-2.0`, que le proporciona todas las características de MP, incluidos JSON-B y JSON-P.
 
-En la clase JAX-RS, debe utilizar lo siguiente para crear un objeto de persona con los campos mostrados anteriormente:
+En la clase JAX-RS, debe utilizar lo siguiente para crear un objeto `Person` con los campos mostrados anteriormente:
 
 ```java
 Address myAddress = new Address("501-B101", "4205 S Miami Blvd", "Durham", "NC", "27703");
@@ -94,7 +95,7 @@ Employee me = new Employee("John Alcorn", 228264, "Senior Software Engineer", my
 ```
 {: codeblock}
 
-JSON-B convertirá automáticamente JSON en un objeto definido. Por ejemplo, si utiliza el cliente REST de MicroProfile REST para realizar una llamada saliente a un servicio con un POJO como tipo de retorno, JSON-B convertirá automáticamente la respuesta JSON en un objeto POJO, que puede utilizar entonces para recuperar atributos:
+JSON-B convierte automáticamente JSON en un objeto definido. Por ejemplo, si utiliza el cliente REST de MicroProfile REST para realizar una llamada saliente a un servicio con un POJO como tipo de retorno, JSON-B convertirá automáticamente la respuesta JSON en un objeto POJO, que puede utilizar entonces para recuperar atributos:
 
 ```java
 // mpRestClient: solicitud de cliente saliente que devuelve un POJO
@@ -106,7 +107,7 @@ String city = address.getCity();
 ```
 {: codeblock}
 
-JSON-B también proporciona un analizador que tomará una representación de serie de un objeto JSON y le devolverá el objeto JSON-B correspondiente. Para utilizar esta opción, debe añadir las siguientes sentencias de importación a la clase de microservicio:
+JSON-B también proporciona un analizador que acepta una representación de serie de un objeto JSON y le devuelve el objeto JSON-B correspondiente. Para utilizar el analizador, debe añadir las siguientes sentencias de importación a la clase de microservicio:
 
 ```java
 import javax.json.bind.Jsonb;
@@ -124,7 +125,7 @@ Employee employee = jsonb.fromJson(myJSON, Employee.class);
 
 JSON-B cuenta con una definición estricta de tipos. Si se equivoca en un nombre de campo, por ejemplo, verá un error de compilación, ya que no existirá ese método. La creación de POJO puede ser tediosa, pero la mayoría de los IDE soportan la generación de métodos get y set una vez que se definen los campos, lo que sirve de ayuda.
 
-Evite la sobreexposición de detalles internos. Hay varias anotaciones que le pueden ayudar a controlar cómo se convierten los objetos a y desde JSON: `@JsonbTransient` identifica los campos que no se deben convertir y `@JsonbNillable` especifica cómo gestionar los valores nulos. Con las implementaciones de `@JsonbAdapter` se puede personalizar cómo serializar y deserializar los datos para obtener aislamiento adicional entre el formato de cable y la implementación interna.
+Evite la sobreexposición de detalles internos. Hay varias anotaciones que le pueden ayudar a controlar cómo se convierten los objetos a y desde JSON: `@JsonbTransient` identifica los campos que no se deben convertir y `@JsonbNillable` especifica cómo gestionar los valores nulos. Con las implementaciones de `@JsonbAdapter` se puede personalizar cómo serializar y deserializar los datos para obtener un aislamiento añadido entre el formato de cable y la implementación interna.
 {: tip}
 
 ## JSON-P
@@ -145,7 +146,7 @@ import javax.json.JsonObjectBuilder;
 ```
 {: codeblock}
 
-Para trabajar con JSON recibido de una llamada de API REST, llame al método `get` en un `JsonObject` y pase la clave para el campo que desee. Para continuar con el ejemplo anterior de `Employee`, si recibiese un `JsonObject` al que denominase `employee`, tendría que llamar a `employee.get("name")` para averiguar el nombre de la persona o a `employee.get("title")` para obtener su puesto de trabajo. JSON-P es muy parecido a tratar con un `Map` en Java, como una comparación.
+Para trabajar con JSON recibido de una llamada de API REST, llame al método `get` en un `JsonObject` y pase la clave para el campo que desee. Para continuar con el ejemplo de `Employee`, si recibiese un `JsonObject` al que denominase `employee`, tendría que llamar a `employee.get("name")` para averiguar el nombre de la persona o a `employee.get("title")` para obtener su puesto de trabajo. JSON-P es muy parecido a tratar con un `Map` en Java, como una comparación.
 
 Ahora, pongamos que desea crear dicho objeto JSON en el código Java. JSON-P utiliza un patrón de compilador: utilice un `JsonObjectBuilder` para añadir cada valor y, a continuación, llame a `build()` para producir el `JsonObject`, como por ejemplo:
 
@@ -170,6 +171,6 @@ JsonObject employee = employeeBuilder.build();
 ```
 {: codeblock}
 
-Tenga en cuenta que un `JsonObject` en JSON-P es inmutable, a diferencia de JSON-B. Si desea actualizar campos, tiene que crear un nuevo `JsonObject`, duplicar los campos y, a continuación, realizar cambios. En este caso, puede resultar útil hacer sus propios POJO con constructores de copia.
+Un `JsonObject` en JSON-P es inmutable, a diferencia de JSON-B. Si desea actualizar campos, debe crear un nuevo `JsonObject`, duplicar los campos y, a continuación, realizar cambios. En este caso, puede resultar útil hacer sus propios POJO con constructores de copia.
 
 Tanto JSON-B como JSON-P son compatibles con el cliente Rest de MicroProfile para una serialización y deserialización adecuadas, pero la seguridad de tipo y la retroalimentación de tiempo de compilación hacen de JSON-B la opción preferida.

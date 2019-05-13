@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-22"
 
 keywords: health check spring, spring health endpoint, spring-boot-actuator, liveness probe spring, readiness probe spring, spring kubernetes probe
 
@@ -80,7 +80,7 @@ Puede alterar temporalmente el comportamiento predeterminado del punto final hea
 ### Prueba de actividad en Spring Boot 2
 {: #spring-liveness-boot2}
 
-La infraestructura del Actuator en Spring Boot 2 es su propia infraestructura miniREST que se puede ampliar con puntos finales personalizados. Esto significa que podemos añadir un punto final de actividad simple que se gestiona de la misma forma que el indicador de estado incorporado. Un punto final de actividad personalizado puede declararse de forma trivial de este modo:
+La infraestructura de Actuator en Spring Boot 2 es su propia infraestructura miniREST que se puede ampliar con puntos finales personalizados. Esto significa que podemos añadir un punto final de actividad simple que se gestiona de la misma forma que el indicador de estado incorporado. Un punto final de actividad personalizado puede declararse de forma trivial de este modo:
 
 ```java
 @Endpoint(id="liveness")

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-22"
 
 keywords: fault tolerance spring, hystrix spring, netflix spring, hystrixcommand spring, bulkhead spring, circuit breaker spring
 
@@ -16,13 +16,14 @@ subcollection: java
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
+{:note: .note}
 
 # Tolerancia a errores con Spring
 {: #spring-tolerance}
 
-La creación de un sistema resistente impone requisitos en todos los servicios que hay dentro de él. La naturaleza dinámica de los entornos de nube demanda que los servicios estén diseñados para estar preparados para lo inesperado y responder de forma adecuada.
+La creación de un sistema resistente impone requisitos en todos los servicios que hay dentro de él. La naturaleza dinámica de los entornos en la nube demanda que los servicios estén diseñados para responder de forma adecuada a lo inesperado.
 
-Spring utiliza la biblioteca de tolerancia a errores de [Netflix Hystrix](https://github.com/Netflix/Hystrix/wiki){: new_window} ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo") para dar soporte a problemas de tolerancia a errores de nivel de aplicación. Hystrix proporciona soporte para las reservas, los interruptores automáticos, las barreras aislantes y las métricas asociadas. 
+Spring utiliza la biblioteca de tolerancia a errores de [Netflix Hystrix](https://github.com/Netflix/Hystrix/wiki){: new_window} ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo") para dar soporte a problemas de tolerancia a errores de nivel de aplicación. Con Hystrix, puede crear retrocesos, interruptores, barreras y métricas asociadas.
 
 Esta información se basa en las prácticas de tolerancia a errores que se describen en [Desarrollo nativo en la nube: tolerancia a errores](/docs/java?topic=cloud-native-fault-tolerance#fault-tolerance).
 {: note}
@@ -32,7 +33,7 @@ Esta información se basa en las prácticas de tolerancia a errores que se descr
 
 Para facilitar el uso de Hystrix dentro de una aplicación Spring, hay un Spring Boot Starter que habilita un enfoque anotado para integrar Hystrix dentro de su aplicación.
 
-Al añadir esta dependencia única a la aplicación, se añadirá Hystrix. 
+Para añadir Hystrix, añada la dependencia siguiente:
 
 ```xml
 <dependency>
@@ -42,7 +43,7 @@ Al añadir esta dependencia única a la aplicación, se añadirá Hystrix.
 ```
 {: codeblock}
 
-Al igual que muchos otros Iniciadores de Spring, para indicar a Spring que desea utilizar la funcionalidad de la aplicación, añada una anotación a la clase de aplicación principal. Para habilitar el proceso de Spring de las anotaciones de Hystrix para la interrupción automática, añada `@EnableCircuitBreaker`.
+Para que Spring pueda utilizar esta nueva función, añada una anotación en su clase de aplicación principal y habilite el proceso de Spring de las anotaciones de Hystrix para interruptores añadiendo `@EnableCircuitBreaker`.
 
 ```java
 @SpringBootApplication
@@ -58,11 +59,12 @@ public class MyApplication {
 ### Uso de HystrixCommand para definir una reserva
 {: #spring-fallback}
 
-Para añadir un comportamiento de interrupción automática a un método, anótelo con `@HystrixCommand`. Spring encontrará estos métodos dentro de una aplicación anotada con `@EnableCircuitBreaker` y los envolverá con la funcionalidad de Hystrix para supervisar los errores/tiempos de espera e invocar el comportamiento alternativo adecuado cuando sea necesario. 
+Para añadir un comportamiento de interruptor a un método, anótelo con `@HystrixCommand`. Spring descubre métodos dentro de una aplicación que están anotados con `@EnableCircuitBreaker` y los envuelve con el soporte de Hystrix para supervisar errores y tiempos de espera. A continuación, Spring invoca el comportamiento alternativo adecuado cuando sea necesario.
 
-`@HystrixCommand` sólo está soportado en los métodos de un `@Component` o `@Service` {: note}
+La anotación `@HystrixCommand` solo se admite en métodos de un `@Component` o `@Service`.
+{: note}
 
-La siguiente anotación `@HystrixCommand` envuelve la invocación `service()` para proporcionar el comportamiento de interrupción automática. El proxy llamará al método `fallback()` si falla el método `service()` o si el circuito está abierto.
+La anotación `@HystrixCommand` siguiente envuelve la invocación de `service()` para proporcionar un comportamiento de interruptor. El proxy llama al método `fallback()` si falla el método `service()` o si el circuito está abierto.
 
 ```java
 @Autowired
@@ -95,7 +97,9 @@ Obtenga más información consultando el ejemplo de [Hystrix Circuit Breaker](ht
 ### Utilización de tiempos de espera
 {: #spring-timeout}
 
-Al invocar un servicio remoto, puede que no vuelva de inmediato, puede que tarde un rato, o puede que se prolongue eternamente. Hystrix le da la posibilidad de definir lo que es aceptable para su aplicación. Se puede utilizar una adición simple a la anotación `HystrixCommand` para cambiar el valor de tiempo de espera del valor predeterminado de 1 segundo:
+¿Cómo responde la aplicación a un servicio remoto que no responde? La espera puede durar un poco, o durar para siempre. Hystrix le da la posibilidad de definir la cantidad de tiempo de espera que es aceptable para su aplicación.
+
+Se puede utilizar una adición simple a la anotación `HystrixCommand` para cambiar el valor de tiempo de espera del valor predeterminado de 1 segundo a 30 segundos:
 
 ```java
 @HystrixCommand(
@@ -110,7 +114,7 @@ Al invocar un servicio remoto, puede que no vuelva de inmediato, puede que tarde
 ### Utilización de barreras aislantes
 {: #spring-bulkhead}
 
-Hystrix soporta las barreras aislantes basadas en cola y semáforo. El fragmento de código siguiente muestra cómo configurar una barrera aislante basada en cola que asigna 4 hebras y limita el número de solicitudes pendientes a 10:
+Hystrix soporta las barreras aislantes basadas en cola y semáforo. El fragmento de código siguiente muestra cómo configurar una barrera aislante basada en cola que asigna cuatro hebras y limita el número de solicitudes pendientes a 10:
 
 ```java
 @HystrixCommand(
@@ -126,9 +130,11 @@ Hystrix soporta las barreras aislantes basadas en cola y semáforo. El fragmento
 ### Estado del interruptor automático
 {: #spring-breaker-status}
 
-El iniciador de Spring Hystrix tiene otro as en la manga, mejorará el punto final `/health` predeterminado para la aplicación (proporcionado a través de Spring Actuator; para más información, consulte el [tema sobre métricas](/docs/java?topic=java-spring-metrics#spring-metrics)).
+El iniciador de Spring de Hystrix tiene un truco adicional bajo la manga, mejora el punto final
+`/health` predeterminado para la aplicación, que se proporciona a través de Spring Actuator. Para obtener más información, consulte
+[Métricas con Spring](/docs/java?topic=java-spring-metrics#spring-metrics)).
 
-Si el punto final de estado está [configurado para incluir detalles adicionales](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo"), el estado del interruptor automático se incluirá con la información de comprobación de estado. (Este comportamiento está inhabilitado de forma predeterminada).
+Si el punto final de estado está [configurado para incluir detalles adicionales](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo"), el estado del interruptor se incluye con la información de comprobación de estado. (Este comportamiento está inhabilitado de forma predeterminada).
 
 ```
 {
