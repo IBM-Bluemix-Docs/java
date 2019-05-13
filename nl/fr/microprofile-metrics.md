@@ -1,8 +1,8 @@
----
+﻿---
 
 copyright:
   years: 2019
-lastupdated: "2019-03-27"
+lastupdated: "2019-04-22"
 
 keywords: mpmetrics microprofile, mpmetrics, prometheus java, metrics java, microprofile metrics
 
@@ -22,7 +22,7 @@ subcollection: java
 # Métriques avec MicroProfile
 {: #mp-metrics}
 
-MicroProfile offre la fonction Métriques qui vous permet d'utiliser des annotations simples pour ajouter des métriques personnalisées à votre application. Il vous suffit d'ajouter la fonction `mpMetrics-1.1` à votre fichier `server.xml` pour l'activer. Notez que vous pouvez également ajouter la fonction `monitor-1.0`, si vous souhaitez des métriques supplémentaires spécifiques au serveur d'application (comme par exemple, des pools de connexion JDBC).
+MicroProfile inclut une fonction Metrics permettant d'ajouter des métriques personnalisées à votre application en utilisant des annotations simples. Pour activer cette fonction, ajoutez la fonction `mpMetrics-1.1` à votre fichier `server.xml`. Vous pouvez éventuellement ajouter la fonction `monitor-1.0` si vous souhaitez voir plus de métriques spécifiques au serveur d'applications (par exemple, sur les pools de connexions JDBC).
 
 Importez l'annotation `@Counted` pour créer un compteur simple :
 
@@ -31,7 +31,7 @@ import org.eclipse.microprofile.metrics.annotation.Counted;
 ```
 {: codeblock}
 
-Utilisez ensuite l'annotation `@Counted` pour créer un compteur simple. Cet exemple compte combien de fois la méthode `createPortfolio` a été appelée :
+Utilisez ensuite l'annotation `@Counted` pour créer un compteur simple, comme présenté dans l'exemple suivant, qui compte le nombre de fois où la méthode `createPortfoloio` est appelée : 
 
 ```java
 @POST
@@ -43,7 +43,7 @@ public JsonObject createPortfolio(@PathParam("owner") String owner) throws SQLEx
 ```
 {: codeblock}
 
-Pour générer ce code, nous devons ajouter la strophe suivante à notre fichier maven `pom.xml` :
+Pour générer ce code, ajoutez la strophe suivante au fichier `pom.xml` de Maven :
 
 ```xml
 <dependency>
@@ -56,7 +56,11 @@ Pour générer ce code, nous devons ajouter la strophe suivante à notre fichier
 ```
 {: codeblock}
 
-Une fois que cela est fait, le compteur est incrémenté chaque fois que la méthode createPortfolio JAX-RS est appelée. Nous pouvons invoquer l'URI `GET /metrics` pour voir les métriques définies au niveau de l'application et au niveau de la machine virtuelle Java (statistiques sur le chargement des classes, les tas et le nettoyage de la mémoire). L'URI `GET /metrics/application` reverra uniquement les métriques définies au niveau de l'application. Nous pouvons accéder à cette API REST GET via le CLI de curl, en utilisant le port assigné (32388 dans cet exemple) :
+Une fois que cela est fait, le compteur est incrémenté chaque fois que la méthode JAX-RS `createPortfolio` est appelée. 
+
+Vous pouvez appeler l'URI `GET /metrics` pour voir les métriques définies au niveau de l'application et au niveau de la machine virtuelle Java (statistiques sur le chargement des classes, les segments de mémoire et le nettoyage de la mémoire). L'URI `GET /metrics/application` renvoie uniquement des métriques définies par l'application. 
+
+Vous pouvez accéder à l'API REST GET via l'interface de ligne de commande curl en utilisant le port affecté (32388 dans cet exemple) :
 
 ```
 Johns-MacBook-Pro-8:StockTrader jalcorn$ curl http://9.42.2.107:32388/metrics/application
@@ -71,19 +75,20 @@ Johns-MacBook-Pro-8:StockTrader jalcorn$
 ```
 {: screen}
 
-Comme vous pouvez le voir, le comptage fait apparaître la création de 2 portefeuilles. Notez les points suivants :
+Comme vous le voyez, deux portefeuilles sont comptabilisés, comme prévu. 
 
-- Il s'agit d'un compteur en mémoire : si le pod est redémarré, la valeur sera remise à zéro ; s'il y a plusieurs répliques, chacune aura sa propre valeur (localisée).
-- Le texte "# HELP" est ce que nous avons spécifié comme description dans l'annotation `@Counted`.
+Notez les points suivants :
+- Il s'agit d'un compteur en mémoire : si le pod est redémarré, la valeur est réinitialisée à zéro ; s'il y a plusieurs répliques, chacune a sa propre valeur unique.
+- Le texte "# HELP" est celui spécifié comme description dans l'annotation `@Counted`.
 
 Vous pouvez également afficher la sortie de ce noeud final REST GET dans votre navigateur Web :
 
 ![Noeud final REST GET - Navigateur Web](images/microprofile-metrics-image1.png "Noeud final REST GET - Navigateur Web"){: caption="Figure 1. Noeud final REST GET - Navigateur Web" caption-side="bottom"}
 
-Notez que par défaut, le noeud final `/metrics` nécessite que le https et les informations de connexion soient transmis. Liberty 18.0.0.3 a introduit la strophe suivante que vous pouvez ajouter à votre fichier server.xml pour dire que vous voulez que ce noeud final autorise http et soit non authentifié :
+Par défaut, le noeud final `/metrics` exige que les données d'identification de connexion et https soient transmises. Liberty 18.0.0.3 a introduit la chaîne suivante que vous pouvez ajouter à votre fichier `server.xml` pour faire en sorte que ce noeud final autorise http et soit non authentifié :
 
 ```xml
 <mpMetrics authentication="false"/>
 ```
 
-La configuration du scraper de Prometheus est simplifiée pour accéder plus facilement au noeud final.
+La configuration du programme d'extraction Prometheus est simplifiée afin de faciliter l'accès au noeud final.

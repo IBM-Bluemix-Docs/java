@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-22"
 
 keywords: health check spring, spring health endpoint, spring-boot-actuator, liveness probe spring, readiness probe spring, spring kubernetes probe
 
@@ -80,7 +80,7 @@ Vous pouvez remplacer le comportement par défaut du noeud final d'intégrité a
 ### Sonde d'activité dans Spring Boot 2
 {: #spring-liveness-boot2}
 
-L'infrastructure de l'actionneur dans Spring Boot 2 est sa propre mini infrastructure REST qui peut être étendue avec des noeuds finaux personnalisés. Ceci signifie que nous pouvons ajouter un simple noeud final d'activité qui est géré de la même façon que l'indicateur d'intégrité qui est intégré. Un noeud final d'activité personnalisé peut être défini trivialement de la manière suivante :
+L'infrastructure d'Actuator dans Spring Boot 2 est sa propre mini infrastructure REST qui peut être étendue avec des noeuds finaux personnalisés. Ceci signifie que nous pouvons ajouter un simple noeud final d'activité qui est géré de la même façon que l'indicateur d'intégrité qui est intégré. Un noeud final d'activité personnalisé peut être défini trivialement de la manière suivante :
 
 ```java
 @Endpoint(id="liveness")

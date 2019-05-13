@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-22"
 
 keywords: spring framework, spring reference, spring boot, boot actuator, spring kubernetes
 
@@ -22,14 +22,14 @@ subcollection: java
 # Spring
 {: #spring-overview}
 
-La plateforme Spring est un écosystème de projets visant à simplifier la création d'applications Java. Habituellement, le terme "Spring" fait référence au Spring Framework, mais il est également utilisé de manière générique pour désigner tout projet qui fait partie de, ou utilise des technologies basées sur Spring, y compris Spring Boot.
+La plateforme Spring est un écosystème de projets visant à simplifier la création d'applications Java. Habituellement, le terme "Spring" fait référence à Spring Framework, mais il est également utilisé de manière générique pour désigner tout projet qui fait partie de, ou utilise des technologies basées sur Spring, y compris Spring Boot.
 
 ## Spring Framework
 {: #spring-framework}
 
-Spring Framework a été introduit en 2002 et a publié une nouvelle version majeure environ tous les trois ans depuis. L'infrastructure comprend un large ensemble de composants (appelés modules Spring) qui couvrent tout, des noeuds finaux REST aux abstractions de base de données. Dans sa dernière version datant de 2017, Spring Framework 5 a introduit une prise en charge actualisée de JDK, ainsi que WebFlux, un nouveau module pour la programmation réactive basé sur [Project Reactor](https://projectreactor.io/){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe").
+Spring Framework est sorti en 2002 et depuis cette date, une version majeure a été publiée environ tous les trois ans. L'infrastructure comprend un large ensemble de composants (appelés modules Spring) qui couvrent tout, des noeuds finaux REST aux abstractions de base de données. Dans sa dernière version datant de 2017, Spring Framework 5 inclut une prise en charge actualisée de JDK, ainsi que WebFlux. WebFlux est un nouveau module pour la programmation réactive s'appuyant sur [Project Reactor](https://projectreactor.io/){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe").
 
-Spring Framework 4.3 est la dernière branche de fonctions, avec une prise en charge jusqu'en 2020. Il est recommandé de faire migrer les applications qui utilisent des versions plus anciennes de Spring à Spring Framework 5.
+Spring Framework 4.3 est la dernière branche de fonctions pour Spring Framework 4.x, avec une prise en charge jusqu'en 2020. Il est recommandé de faire migrer les applications qui utilisent des versions plus anciennes de Spring vers Spring Framework 5.
 
 Vous trouverez une documentation complète de Spring Framework ici :
 
@@ -42,19 +42,19 @@ Vous trouverez une documentation complète de Spring Framework ici :
 
 Spring Boot a été lancé en 2014, pour "améliorer les architectures d'applications web sans conteneur". Son but était de faire passer la configuration du XML au code. Spring Boot fournit des mécanismes de création d'applications basés sur une analyse raisonnée des technologies à utiliser. Les applications Spring Boot sont des applications Spring et elles utilisent un modèle de programmation unique à cet écosystème.
 
-Spring Boot met l'accent sur les conventions plutôt que sur la configuration, et utilise une combinaison d'annotations et de reconnaissance de chemins de classes pour activer des fonctions supplémentaires. Par défaut, les applications Spring Boot sont intégrées dans un fichier jar exécutable autonome qui inclut toutes les dépendances requises (y compris un serveur Tomcat intégré). Les applications peuvent également être packagées sous forme de fichiers WAR déployés sur un serveur d'application.
+Spring Boot met l'accent sur les conventions plutôt que sur la configuration, et utilise une combinaison d'annotations et d'opérations de reconnaissance de chemins de classes pour activer des fonctions supplémentaires. Par défaut, les applications Spring Boot sont intégrées dans un fichier JAR exécutable autonome qui inclut toutes les dépendances requises (y compris un serveur Tomcat intégré). Les applications peuvent également être packagées sous forme de fichiers WAR déployés sur un serveur d'application.
 
 Spring Boot en est actuellement à la version 2.0, sortie en 2018. La maintenance de la branche 1.5.x cessera en août 2019.
 
 La documentation complète de Spring Boot est disponible ici :
 
-* [Guide de référence de Spring Boot 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")
+* [Guide de référence de Spring Boot 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")
 * [Guide de référence de Spring Boot 1.5.x](https://docs.spring.io/spring-boot/docs/1.5.x/reference/){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")
 
 ## Sélection de Spring Framework ou Spring Boot
 {: #spring-framework-or-boot}
 
-Pour les nouvelles applications natives du cloud, si vous choisissez d'utiliser Spring Framework, vous devez également utiliser Spring Boot. Spring Boot simplifie la configuration et l'assemblage d'applications basées sur Spring, et offre des fonctionnalités, comme Spring Boot Actuator, qui simplifient la création d'[applications natives du cloud](/docs/cloud-native?topic=cloud-native-overview#overview).
+Pour les nouvelles applications natives du cloud, si vous choisissez d'utiliser Spring Framework, vous devez également utiliser Spring Boot. Spring Boot simplifie la configuration et l'assemblage d'applications basées sur Spring, et offre des fonctionnalités, comme Spring Boot Actuator, qui simplifient la création d'[applications natives du cloud](/docs/java?topic=cloud-native-overview#overview).
 
 ### Spring Boot Actuator
 {: #spring-boot-actuator}
@@ -76,7 +76,7 @@ Les changements de comportement sont particulièrement importants si vous migrez
 
 Dans Boot 2, l'actionneur agit en tant qu'infrastructure mini-REST. Tous les noeuds finaux se trouvent sous un contexte `/actuator`. Des noeuds finaux sont fournis pour effectuer des diagnostics d'intégrité ou recueillir des métriques, des applications ou d'autres informations sur l'environnement. Pour obtenir une liste complète, consultez la [documentation d'Actuator](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/production-ready-features.html#production-ready){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe").
 
-Pour créer votre propre noeud final Actuator, il vous suffit d'utiliser un `@Component` Spring :
+Pour créer votre propre noeud final Actuator, il vous suffit d'utiliser un élément `@Component` Spring :
 
 ```java
 @Endpoint(id="example")
@@ -98,7 +98,7 @@ L'actionneur dans Spring Boot 1 a sa propre configuration de sécurité, génér
 ## Spring Cloud
 {: #spring-cloud}
 
-Spring Cloud est une collection d'intégrations entre les technologies de cloud tiers et le modèle de programmation Spring. Il vise à fournir une assistance aux développeurs qui développent des applications Spring en vue d'un déploiement dans le cloud. L'étendue de la couverture atteinte par Spring Cloud est rendue possible par sa nature modulaire. En effet, chaque projet au sein de Spring Cloud est centré sur une technologie ou un ensemble de technologies particulières.
+Spring Cloud est une collection d'intégrations entre les technologies de cloud tiers et le modèle de programmation Spring. Son but est d'assister les développeurs qui créent des applications Spring en vue d'un déploiement dans le cloud. L'étendue de la couverture atteinte par Spring Cloud est rendue possible par sa nature modulaire. En effet, chaque projet au sein de Spring Cloud est centré sur une technologie ou un ensemble de technologies particulières.
 
 Les projets Spring Cloud suivent l'approche générale de Spring qui consiste à privilégier les conventions plutôt que la configuration. La plupart des fonctionnalités sont activées en ajoutant la dépendance adéquate au moment de la compilation.
 
@@ -109,14 +109,14 @@ Voir le [site officiel Projets de Spring Cloud](https://spring.io/projects/sprin
 
 Spring Cloud Kubernetes est un projet Spring Cloud destiné à faciliter diverses tâches pour les applications Spring fonctionnant dans Kubernetes. Spring Cloud Kubernetes propose des implémentations d'interfaces Spring communes qui correspondent aux concepts et services de Kubernetes.
 
-Historiquement, Spring a utilisé les bibliothèques Netflix comme 'Eureka as a Service Registry' et 'Ribbon as a client side Load Balancer'. Dans les environnements Kubernetes, ces deux rôles sont assumés par Kubernetes lui-même, ce qui rend superflues les fonctionnalités au niveau applicatif. Spring Cloud Kubernetes adapte les abstractions Spring comme `DiscoveryClient` aux mécanismes Kubernetes sous-jacents.
+Historiquement, Spring utilise les bibliothèques Netflix comme Eureka en tant que registre de services et Ribbon en tant qu'équilibreur de charge côté client. Dans les environnements Kubernetes, ces deux rôles sont assumés par Kubernetes lui-même, ce qui rend superflues les fonctionnalités au niveau applicatif. Spring Cloud Kubernetes adapte les abstractions Spring comme `DiscoveryClient` aux mécanismes Kubernetes sous-jacents.
 
-Soyez prudent si vous utilisez Ribbon discovery via Spring Cloud Kubernetes dans un cluster avec Istio installé, où Istio est utilisé pour affecter le routage des services. L'équilibrage de charge côté client implique que le client souhaite sélectionner le service de destination lui-même, tandis que Istio peut tenter d'acheminer l'appel ailleurs. Un seul d'entre eux peut gagner, ce qui entraîne un désaccord sur la façon dont un appel aurait dû être acheminé. Cette combinaison doit être évitée dans la mesure du possible.
+Soyez prudent si vous utilisez la reconnaissance Ribbon via Spring Cloud Kubernetes dans un cluster avec Istio installé, où Istio est utilisé pour affecter le routage des services. L'équilibrage de charge côté client implique que le client souhaite sélectionner le service de destination lui-même, tandis que Istio peut tenter d'acheminer l'appel ailleurs. Une seule de ces solutions est possible, ce qui entraîne un désaccord sur la façon dont un appel peut être acheminé. Cette combinaison doit être évitée dans la mesure du possible.
 {: note}
 
-En outre, Spring Cloud Kubernetes offre l'intégration entre Kubernetes ConfigMaps et Secrets aux beans de configuration Spring `@Autowired`. Cela inclut des stratégies pour gérer les modifications dynamiques apportées à ConfigMaps et aux Secrets pendant l'exécution de l'application.
+En outre, Spring Cloud Kubernetes offre l'intégration entre Kubernetes ConfigMaps et Secrets aux beans de configuration Spring `@Autowired`. Cela inclut des stratégies pour gérer les modifications dynamiques apportées à `ConfigMaps` et aux `Secrets` pendant l'exécution de l'application.
 
-Enfin, Spring Cloud Kubernetes augmente le noeud final d'intégrité par défaut de l'actionneur Spring Boot pour inclure des informations supplémentaires relatives au déploiement.
+Enfin, Spring Cloud Kubernetes augmente le noeud final d'intégrité par défaut de Spring Boot Actuator pour inclure des informations supplémentaires relatives au déploiement.
 
 Pour plus d'informations, consultez la [documentation de Spring Cloud Kubernetes](https://cloud.spring.io/spring-cloud-static/spring-cloud-kubernetes/2.1.0.RC1/single/spring-cloud-kubernetes.html){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")
 

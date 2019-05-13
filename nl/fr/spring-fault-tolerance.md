@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-22"
 
 keywords: fault tolerance spring, hystrix spring, netflix spring, hystrixcommand spring, bulkhead spring, circuit breaker spring
 
@@ -16,13 +16,14 @@ subcollection: java
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
+{:note: .note}
 
 # Tolérance aux pannes avec Spring
 {: #spring-tolerance}
 
-La création d'un système résilient place des exigences sur tous les services qu'il inclut. La nature dynamique des environnements de cloud exige que ces services soient conçus pour être préparés et répondre aux imprévus.
+La création d'un système résilient place des exigences sur tous les services qu'il inclut. La nature dynamique d'un environnement cloud exige que des services soient conçus pour répondre à des situations inattendues.
 
-Spring utilise la bibliothèque de tolérance aux pannes [Netflix Hystrix](https://github.com/Netflix/Hystrix/wiki){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe") pour prendre en charge les problème de tolérance aux pannes au niveau de l'application. Hystrix offre un support en terme de rétromigrations, de disjoncteur, de cloison et de mesures associées. 
+Spring utilise la bibliothèque de tolérance aux pannes [Netflix Hystrix](https://github.com/Netflix/Hystrix/wiki){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe") pour prendre en charge les problème de tolérance aux pannes au niveau de l'application. Avec Hystrix, vous pouvez créer des rétromigrations, des disjoncteurs, des cloisons et des métriques associées.
 
 Ces informations reposent sur les pratiques de tolérances aux pannes décrites dans [Développement cloud natif : Tolérance aux pannes](/docs/java?topic=cloud-native-fault-tolerance#fault-tolerance).
 {: note}
@@ -32,7 +33,7 @@ Ces informations reposent sur les pratiques de tolérances aux pannes décrites 
 
 Pour que Hystrix soit plus facile à utiliser au sein d'une application Spring, le module de démarrage Spring Boot active une approche annotée pour intégrer Hystrix dans votre application.
 
-L'ajout de cette simple dépendance à votre application initiera Hystrix. 
+Pour ajouter Hystrix, ajoutez la dépendance suivante :
 
 ```xml
 <dependency>
@@ -42,7 +43,7 @@ L'ajout de cette simple dépendance à votre application initiera Hystrix.
 ```
 {: codeblock}
 
-Comme beaucoup d'autres modules de démarrage Spring, pour indiquer à Spring que vous souhaitez utiliser la fonctionnalité dans l'application, vous devez ajouter une annotation à votre classe d'application principale. Pour activer le traitement par Spring des annotations Hystrix pour la coupure de circuit, ajoutez `@EnableCircuitBreaker`.
+Pour que Spring puisse utiliser cette nouvelle fonction, ajoutez une annotation à votre classe d'application principale et activez le traitement de Spring des annotations Hystrix pour la disjonction en ajoutant `@EnableCircuitBreaker`.
 
 ```java
 @SpringBootApplication
@@ -58,11 +59,12 @@ public class MyApplication {
 ### Utilisation de HystrixCommand pour définir une rétromigration
 {: #spring-fallback}
 
-Pour ajouter un comportement de coupure de circuit à une méthode, vous devez l'annoter avec `@HystrixCommand`. Spring trouvera ces méthodes au sein d'une application annotées avec l'annotation `@EnableCircuitBreaker` et les encapsulera avec la fonctionnalité Hystrix pour surveiller les erreurs ou dépassements de délai d'attente, et appellera un comportement alternatif au besoin. 
+Pour ajouter un comportement de disjoncteur à une méthode, annotez-la avec `@HystrixCommand`. Spring détecte les méthodes dans une application annotée avec `@EnableCircuitBreaker` et les encapsule avec le support Hystrix afin de surveiller les erreurs et les dépassements de délai d'attente. Spring appelle ensuite l'alternative appropriée lorsque cela est nécessaire.
 
-`@HystrixCommand` est uniquement pris en charge sur les méthodes dans un `@Component` ou un `@Service` {: note}
+L'annotation `@HystrixCommand` est prise en charge uniquement sur les méthodes dans un élément `@Component` ou `@Service`.
+{: note}
 
-L'annotation `@HystrixCommand` suivante encapsule l'invocation `service()` pour fournir le comportement de coupure de circuit. Le proxy appellera la méthode `fallback()` si la méthode `service()` échoue ou si le circuit est ouvert.
+L'annotation `@HystrixCommand` suivante encapsule l'appel `service()` pour fournir le comportement de disjoncteur. Le proxy appelle la méthode `fallback()` si la méthode `service()` échoue ou si le circuit est ouvert.
 
 ```java
 @Autowired
@@ -95,7 +97,9 @@ Pour en savoir plus, consultez l'exemple de [disjoncteur Hystrix](https://spring
 ### Utilisation des délais d'attente
 {: #spring-timeout}
 
-Lorsqu'un service distant est appelé, il est possible qu'il ne soit pas retourné immédiatement, que l'opération prenne un certain temps, ou qu'elle n'aboutisse jamais. Hystrix vous offre la possibilité de définir ce qui est acceptable pour votre application. Une simple addition à l'annotation `HystrixCommand` peut être utilisée pour remplacer la valeur par défaut du délai d'attente par 1 seconde :
+Comment votre application répond-elle à un service distant qui ne répond pas ? L'attente peut être longue ou elle peut durer indéfiniment. Hystrix vous offre la possibilité de définir la durée d'attente acceptable pour votre application.
+
+Un simple ajout à l'annotation `HystrixCommand` peut permettre de modifier la valeur par défaut du délai d'attente (de 1 seconde à 30 secondes, par exemple) :
 
 ```java
 @HystrixCommand(
@@ -110,7 +114,7 @@ Lorsqu'un service distant est appelé, il est possible qu'il ne soit pas retourn
 ### Utilisation des cloisons
 {: #spring-bulkhead}
 
-Hystrix prend en charge à la fois les cloisons sémaphores et les cloisons basées sur les files d'attente. Le fragment suivant montre comment configurer une cloison basée sur une file d'attente qui alloue 4 unités d'exécution et limite le nombre de demandes en suspens à 10 :
+Hystrix prend en charge à la fois les cloisons sémaphores et les cloisons basées sur les files d'attente. Le fragment suivant présente comment configurer une cloison basée sur une file d'attente qui alloue quatre unités d'exécution et limite le nombre de demandes en suspens à 10 :
 
 ```java
 @HystrixCommand(
@@ -126,9 +130,9 @@ Hystrix prend en charge à la fois les cloisons sémaphores et les cloisons bas�
 ### Statut du disjoncteur
 {: #spring-breaker-status}
 
-Le module de démarrage Hystrix Spring possède une astuce supplémentaire : il améliore le noeud final par défaut de l'application, `/health` (fourni via un actionneur Spring). Pour plus d'informations, voir la rubrique [Métriques](/docs/java?topic=java-spring-metrics#spring-metrics).
+Le module de démarrage Hystrix Spring permet également, par l'intermédiaire d'un élément Spring Actuator, d'améliorer le noeud final `/health` par défaut pour l'application. Pour plus d'informations, voir [Métriques avec Spring](/docs/java?topic=java-spring-metrics#spring-metrics).
 
-Si le noeud final d'intégrité est [configuré pour inclure des détails supplémentaires ](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe"), le statut du disjoncteur sera inclus dans les informations de diagnostic d'intégrité (ce comportement est désactivé par défaut).
+Si le noeud final d'intégrité est [configuré pour inclure des détails supplémentaires](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe"), le statut du disjoncteur est inclus dans les informations de diagnostic d'intégrité (ce comportement est désactivé par défaut).
 
 ```
 {

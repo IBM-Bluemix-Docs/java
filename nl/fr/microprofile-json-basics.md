@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-27"
+lastupdated: "2019-04-30"
 
 keywords: json-b, json-p, json-binding, json response, pojo object, pojo, jsonobject, jsonobjectbuilder, java api json
 
@@ -27,8 +27,9 @@ subcollection: java
 ## JSON-B
 {: #java-json-b}
 
-Avec **JSON-B**, la conversion vers et depuis JSON est réalisée à l'aide d'un objet Java simple (POJO) avec une méthode getter/setter pour chaque zone. Exemple :
+Avec **JSON-B**, la conversion vers et depuis JSON est réalisée à l'aide d'un objet Java simple (POJO) avec une méthode getter et setter pour chaque zone.
 
+Exemple :
 ```java
 public class Employee {
   private String fName;
@@ -84,9 +85,9 @@ public class Address {
 ```
 {: codeblock}
 
-Pour utiliser JSON-B avec Liberty, la fonction `jsonb-1.0` doit être activée dans votre fichier `server.xml`. Vous pouvez également utiliser `microProfile-2.0`, qui offre toutes les fonctions de MP, y compris JSON-B et JSON-P.
+Pour pouvoir utiliser JSON-B avec Liberty, la fonction `jsonb-1.0` doit être activée dans votre fichier `server.xml`. Vous pouvez également utiliser `microProfile-2.0`, qui offre toutes les fonctions de MP, y compris JSON-B et JSON-P.
 
-Dans votre classe JAX-RS, utilisez ce qui suit pour créer un objet Person avec les zones indiquées précédemment :
+Dans votre classe JAX-RS, utilisez ce qui suit pour créer un objet `Person` avec les zones indiquées précédemment :
 
 ```java
 Address myAddress = new Address("501-B101", "4205 S Miami Blvd", "Durham", "NC", "27703");
@@ -94,7 +95,7 @@ Employee me = new Employee("John Alcorn", 228264, "Senior Software Engineer", my
 ```
 {: codeblock}
 
-JSON-B convertira automatiquement JSON en un objet défini. Par exemple, si vous utilisez le client REST MicroProfile pour effectuer un appel sortant vers un service avec un objet POJO comme type de retour, JSON-B convertira automatiquement la réponse JSON en un objet POJO, que vous pouvez ensuite utiliser pour extraire des attributs :
+JSON-B convertit automatiquement JSON en un objet défini. Par exemple, si vous utilisez le client REST MicroProfile pour effectuer un appel sortant vers un service avec un objet POJO comme type de retour, JSON-B convertit automatiquement la réponse JSON en objet POJO, que vous pouvez ensuite utiliser pour extraire des attributs :
 
 ```java
 // mpRestClient: outbound client request returning a POJO
@@ -106,7 +107,7 @@ String city = address.getCity();
 ```
 {: codeblock}
 
-JSON-B fournit également un analyseur qui prendra une représentation de chaîne d'un objet JSON et vous rendra l'objet JSON-B correspondant. Pour l'utiliser, vous devez ajouter les instructions d'importation suivantes à votre classe microservice :
+JSON-B fournit également un analyseur qui extrait une représentation de chaîne d'un objet JSON et affiche l'objet JSON-B correspondant. Pour utiliser l'analyseur syntaxique, vous devez ajouter les instructions d'importation suivantes à votre classe de microservice :
 
 ```java
 import javax.json.bind.Jsonb;
@@ -130,7 +131,7 @@ Evitez la surexposition des détails internes. Plusieurs annotations peuvent vou
 ## JSON-P
 {: #java-json-p}
 
-Avant l'existence de JSON-B (qui faisait partie de Java EE 8), **JSON-P** (JSON-Processing) était un moyen standardisé d'interagir avec JSON dans le code Java. Auparavant, il existait plusieurs bibliothèques d'analyse JSON propriétaires, telles que la bibliothèque JSON4J d'IBM. JSON-P peut être utilisé pour analyser le JSON que vous avez reçu d'un appel REST, ou pour construire un JSON, auquel cas vous pouvez vous en servir pour analyser vos propres méthodes JAX-RS.
+Avant l'existence de JSON-B (qui faisait partie de Java EE 8), **JSON-P** (JSON-Processing) était un moyen standardisé d'interagir avec JSON dans le code Java. Auparavant, il existait plusieurs bibliothèques d'analyse JSON propriétaires, telles que la bibliothèque JSON4J d'IBM. JSON-P peut être utilisé pour analyser l'élément JSON reçu d'un appel REST, ou pour construire un élément JSON, auquel cas vous pouvez vous en servir pour analyser vos propres méthodes JAX-RS.
 
 L'utilisation de JSON-P nécessite que la fonction `jsonp-1.0` soit activée dans votre fichier `server.xml` (ou la fonction `microProfile-2.0`, qui active toutes les technologies MP).
 
@@ -145,7 +146,7 @@ import javax.json.JsonObjectBuilder;
 ```
 {: codeblock}
 
-Pour travailler avec un JSON reçu d'un appel d'API REST, vous appelez la méthode `get` sur un `JsonObject`, en spécifiant la clé de la zone souhaitée. Pour reprendre notre exemple `Employee` ci-dessus, si vous avez reçu un `JsonObject` que vous avez appelé `employee`, vous appelez `employee.get("name")` pour connaître le nom de la personne ou `employee.get("title")` pour connaître son titre. A titre de comparaison, JSON-P ressemble beaucoup à un `Map` dans Java.
+Pour travailler avec un JSON reçu d'un appel d'API REST, vous appelez la méthode `get` sur un `JsonObject`, en spécifiant la clé de la zone souhaitée. Pour reprendre l'exemple `Employee`, si vous avez reçu un élément `JsonObject` que vous avez appelé `employee`, vous appelez `employee.get("name")` pour connaître le nom de la personne ou `employee.get("title")` pour connaître son titre. A titre de comparaison, JSON-P ressemble fortement à un élément `Map` dans Java.
 
 Maintenant, imaginons que vous voulez construire un objet JSON de ce type dans votre code Java. JSON-P utilise un modèle de constructeur : utilisez un `JsonObjectBuilder` pour ajouter chaque valeur, puis appelez `build()` pour produire le `JsonObject`, comme suit :
 
@@ -170,6 +171,6 @@ JsonObject employee = employeeBuilder.build();
 ```
 {: codeblock}
 
-Notez que contrairement à JSON-B, un `JsonObject` n'est pas modifiable dans JSON-P. Si vous souhaitez mettre à jour des zones, vous devez créer un nouveau `JsonObject`, dupliquer les zones et effectuer vos modifications. Il peut être utile ici de créer vos propres objets Java simples (POJO) avec des constructeurs de copie.
+Un élément `JsonObject` n'est pas modifiable dans JSON-P. Si vous souhaitez mettre à jour des zones, vous devez créer un nouvel élément `JsonObject`, dupliquer les zones et effectuer vos modifications. Il peut être utile ici de créer vos propres objets Java simples (POJO) avec des constructeurs de copie.
 
 JSON-B et JSON-P sont tous les deux pris en charge par le client REST MicroProfile pour une sérialisation et une désérialisation appropriées, mais le feedback obtenu en terme de cohérence des types et de temps de compilation fait de JSON-B la meilleure option.
