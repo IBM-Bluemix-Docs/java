@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-04-09"
+lastupdated: "2019-04-23"
 
 keywords: spring metrics, configure metrics spring, micrometer spring, micrometer, spring boot 2, spring actuator, prometheus spring
 
@@ -22,14 +22,14 @@ subcollection: java
 # Spring 的度量
 {: #spring-metrics}
 
-從 Spring Framework 5 開始，Spring 中的度量現在由 Micrometer 處理。Micrometer 是一個架構，說明其本身為 "SLF4J for Metrics"。就像 SLF4J 作為用於記載的供應商中立的 API，可連接至各種不同的記載後端，Micrometer 也提供一個供應商中立的 API，用來檢測和測量您的程式碼，然後將這些度量值提供給各種度量聚集器，例如，Prometheus、DataDog 或 Influx/Telegraph。
+從 Spring Framework 5 開始，Spring 中的度量現在由 Micrometer 處理。Micrometer 是一個架構，說明其本身為 "SLF4J for Metrics"。就像 SLF4J 作為用於記載的供應商中立 API，可連接至各種不同的記載後端，Micrometer 也提供一個供應商中立 API，用來檢測和測量您的程式碼，然後將這些度量提供給各種度量聚集器，例如，Prometheus、DataDog 或 Influx/Telegraph。
 
 Micrometer 架構可讓 Spring 整合至各種雲端原生架構。只要新增 Prometheus 或 Statsd 支援，即可簡單地修改相依關係，如果度量值收集器是推送型，請在 `application.properties` 中提供目的地資訊。Spring 及 Micrometer 會根據在應用程式的類別路徑上所找到的相依關係，來決定運行環境所要執行的動作。
 
 ## 啟用度量
 {: #spring-metrics-enabling}
 
-Spring Boot Actuator 會提供基本的現成度量值，其需要 `pom.xml` 檔中的 `spring-boot-starter-actuator` 相依關係：
+Spring Boot Actuator 會提供基本度量，其需要 `pom.xml` 檔中的 `spring-boot-starter-actuator` 相依關係：
 
 ```xml
 <dependency>
@@ -45,18 +45,18 @@ Spring Boot Actuator 會提供基本的現成度量值，其需要 `pom.xml` �
 ## Micrometer 度量
 {: #spring-metrics-micrometer}
 
-Micrometer 會透過其介面 `MeterRegistry`，來提供度量目的地的概念摘要。`MeterRegistry` 提供的方法可讓應用程式取得自訂計數器、量規、計時器等。如果需要多個目的地，Micrometer 會提供 `CompositeMeterRegistry` 實作，容許從度量的實際配置目的地隔離應用程式。
+Micrometer 會透過其介面 `MeterRegistry`，來提供度量目的地的概念摘要。`MeterRegistry` 提供的方法可讓應用程式取得自訂計數器、量規及計時器。如果需要多個目的地，Micrometer 會提供 `CompositeMeterRegistry` 實作，容許從度量的實際配置目的地隔離應用程式。
 
 在 Spring Boot 任一版本中，當啟用 Micrometer 型度量端點時，Spring Boot 會自動建立 `CompositeMeterRegistry`，並使它可供應用程式當作 `Bean` 使用。登錄會自動移入在類別路徑中找到的受支援 `MeterRegistry` 實作。支援多個監視系統（或在它們之間切換），即可簡單地在 pom.xml 中變更相依關係。
 
-Spring 容許透過 `MeterRegistryCustomizer` 自訂 `MeterRegistry` Bean，它本身就是一個 Bean。當 Spring 識別這類 Bean 的顯示狀態時，會在報告任何度量之前，有機會先配置廣域 `MeterRegistry`。這通常用來新增一般標籤至 `MeterRegistry`，例如，DataCenter 或 EnvironmentType。
+Spring 容許透過本身就是 Bean 的 `MeterRegistryCustomizer` 自訂 `MeterRegistry` Bean。當 Spring 識別到這類 Bean 存在時，會在報告任何度量之前，先配置廣域 `MeterRegistry`。這通常用來將一般標籤新增至 `MeterRegistry`、DataCenter 或 EnvironmentType。
 
-命名度量時，Spring 及 Micrometer 建議遵循命名慣例，使用 `.` 來分割單字，而非使用駝峰式大小寫或 `_`，或其他方法。這是因為 Micrometer 會將那些度量值轉遞至已配置的目的地，且會依需要來執行任何名稱轉換，以符合目的地的需求。
+命名度量時，Spring 及 Micrometer 建議遵循命名慣例，使用 `.` 來分割單字，而非使用駝峰式大小寫或 `_`，或是其他方法。這是因為 Micrometer 會將那些度量轉遞至已配置的目的地，且會視需要來執行任何名稱轉換，以符合目的地的需求。
 
 ## 使用 Spring Boot 配置度量
 {: #spring-metrics-configuration}
 
-下列各節將概述如何使用 Micrometer 來啟用 Spring Boot Actuator 度量，以收集度量值，並為每個版本的 Prometheus 提供一個端點，從 Spring Boot 2 開始作為最新版本。
+下列各節概述如何使用 Micrometer 來啟用 Spring Boot Actuator 度量，以收集度量值，並為每個版本的 Prometheus 提供一個端點，從 Spring Boot 2 開始作為最新版本。
 
 ### 在 Spring Boot 2 中配置度量
 {: #spring-metrics-boot2}
@@ -70,7 +70,7 @@ management.endpoints.web.exposure.include=health,metrics
 ```
 {: codeblock}
 
-透過檢查 `/actuator` 端點來驗證是否已啟用度量端點。在本端執行應用程式（使用 `jq` 來清楚顯示 JSON 回應）時，輸出看起來如下所示：
+透過檢查 `/actuator` 端點來驗證是否已啟用度量端點。當您在本端執行應用程式，並使用 `jq` 來細緻列印 Json 回應時，輸出會看起來如下所示：
 
 ```
 $ curl -s localhost:8080/actuator | jq .
@@ -95,7 +95,7 @@ $ curl -s localhost:8080/actuator | jq .
 ```
 {: screen}
 
-造訪 `/actuator/metrics` 端點會發出 JSON 格式的可用度量清單，其看起來如下所示：
+存取 `/actuator/metrics` 端點會顯示 JSON 格式的可用度量清單，其看起來如下所示：
 
 ```
 $ curl -s localhost:8080/actuator/metrics | jq .
@@ -147,9 +147,9 @@ $ curl -s localhost:8080/actuator/metrics/jvm.threads.states | jq .
 ### 在 Spring Boot 2 中啟用 Prometheus 支援
 {: #spring-prometheus-boot2}
 
-Prometheus 需要應用程式管理 Prometheus Server 將從中讀取以取得度量的端點。在 Spring 中管理此端點須仰賴已具備提供資料能力的應用程式，這表示 Prometheus 端點僅支援使用 Spring MVC、Spring WebFlux 或 Jersey 的 Spring Boot 應用程式。
+Prometheus 需要應用程式管理 Prometheus Server 從中讀取以取得度量的端點。在 Spring 中管理此端點須仰賴已具備提供資料能力的應用程式，這表示 Prometheus 端點僅支援使用 Spring MVC、Spring WebFlux 或 Jersey 的 Spring Boot 應用程式。
 
-若要啟用 Prometheus 端點，請在 `pom.xml` 中新增下列其他相依關係：
+若要啟用 Prometheus 端點，請在 `pom.xml` 中新增下列相依關係：
 
 ```xml
 <dependency>
@@ -166,7 +166,7 @@ management.endpoints.web.exposure.include=health,metrics,prometheus
 ```
 {: codeblock}
 
-透過檢查 `/actuator` 端點來驗證是否已啟用 Prometheus 端點。在本端執行應用程式時，輸出看起來如下所示：
+藉由檢查 `/actuator` 端點來驗證是否已啟用 Prometheus 端點。在本端執行應用程式時，輸出看起來如下所示：
 
 ```
 $ curl -s localhost:8080/actuator | jq .
@@ -276,7 +276,7 @@ endpoints.prometheus.sensitive=false
 ```
 {: codeblock}
 
-/prometheus 端點所產生的輸出類似 Spring Boot 2 的輸出：
+`/prometheus` 端點所產生的輸出類似 Spring Boot 2 的輸出：
 
 ```
 $ curl -s localhost:8080/prometheus
@@ -344,13 +344,13 @@ public String getSomething() { ... }
 * `Counter` 可追蹤只能增加的值。
 * `Gauge` 可測量並在發佈（或查詢）計量時，傳回已觀察的值。
 * `Timer` 可追蹤事件發生的次數，以及該事件的累計經歷時間。 
-* `DistributionSummary` 類似 `Timer`，也可追蹤事件的配送，但不會測量時間。
+* `DistributionSummary` 類似 `Timer`，但也會追蹤事件的配送，且不會測量時間。
 
-新「計量」的建立方式是在 `MeterRegistry` 或「計量」的 fluent 建置器上使用 helper 方法。 
+新「計量」的建立方式是在 `MeterRegistry` 上使用 helper 方法，或使用「計量」的 fluent 建置器。 
 
 在應用程式碼中工作時，在注入 `MeterRegistry` 之後，於建構子中（將 `MeterRegistry`當作參數傳遞）或於 `@PostConstruct` 方法中，建立您的 `Meter`。
 
-例如，若要使用 `RestController` 內的 `Counter`，您可以執行下列動作：
+例如，若要使用 `RestController` 內的 `Counter`，您可以執行如下動作：
 
 ```java
 @RestController
@@ -367,7 +367,7 @@ public class MyController {
 ```
 {: codeblock}
 
-然後，在服務方法內，您可以適當地更新計量值：
+然後，在服務方法內，您可以更新計量值：
 
 ```java
 @GetMapping("/")

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-22"
 
 keywords: health check spring, spring health endpoint, spring-boot-actuator, liveness probe spring, readiness probe spring, spring kubernetes probe
 
@@ -34,7 +34,7 @@ Spring Boot Actuator 提供的性能端點與應用程式生命週期相關聯�
 ```
 {: codeblock}
 
-Spring Boot Actuator 的版本之間有一些行為差異。我們將使用接下來的兩個小節來探索在 Spring Boot 的兩個版本中，如何建立活躍度及備妥檢查，從 2 開始作為最新版本。
+Spring Boot Actuator 的版本之間有一些行為差異。我們將使用接下來的兩個小節來探索在 Spring Boot 的兩個版本中，如何建立存活性及備妥檢查，從 2 開始作為最新版本。
 
 ## Spring Boot 2 中的性能檢查
 {: #spring-health-boot2}
@@ -77,10 +77,10 @@ Date: Fri, 07 Dec 2018 23:09:09 GMT
 
 您可以將性能端點的預設行為置換為內容或程式碼，如 [Spring Boot Reference Guide for 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示") 中所述。
 
-### Spring Boot 2 中的活躍度探測
+### Spring Boot 2 中的存活性探測
 {: #spring-liveness-boot2}
 
-Spring Boot 2 的「掣動器」架構是它自己的迷你 REST 架構，可利用自訂端點來延伸。這表示我們可以新增簡單的活躍度端點，其管理方法同於內建的性能指示器。自訂的活躍度端點可以簡單宣告，如下所示：
+Spring Boot 2 中的「掣動器」架構是它自己的迷你 REST 架構，可利用自訂端點來延伸。這表示我們可以新增簡單的存活性端點，其管理方法同於內建的性能指示器。自訂的存活性端點可以簡單宣告，如下所示：
 
 ```java
 @Endpoint(id="liveness")
@@ -112,10 +112,10 @@ Date: Thu, 07 Feb 2019 22:38:27 GMT
 ```
 {: screen}
 
-### 在 Kubernetes 中配置 Spring Boot 2 備妥及活躍度探測
+### 在 Kubernetes 中配置 Spring Boot 2 備妥及存活性探測
 {: #spring-probe-config-2}
 
-將備妥及活躍度探測配置新增至 Kubernetes 部署資訊清單中的容器定義（請注意路徑及埠值）：
+將備妥及存活性探測配置新增至 Kubernetes 部署資訊清單中的容器定義（請注意路徑及埠值）：
 
 ```yaml
 spec:
@@ -186,10 +186,10 @@ Content-Length: 221
 
 您可以將性能端點的預設行為置換為內容或程式碼，如 [Spring Boot Reference v1.5.x](https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#_auto_configured_healthindicators){: new_window} ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示") 中所述。
 
-### Spring Boot 1 中的活躍度探測
+### Spring Boot 1 中的存活性探測
 {: #spring-liveness-boot1}
 
-對於 Spring Boot 1，簡單的活躍度 http 端點一律傳回 {"status": "UP"} 與狀態碼 200，看起來如下所示：
+對於 Spring Boot 1，簡單的存活性 http 端點一律傳回 {"status": "UP"} 與狀態碼 200，看起來如下所示：
 
 ```java
 @RestController
@@ -215,10 +215,10 @@ Date: Thu, 07 Feb 2019 22:43:32 GMT
 ```
 {: screen}
 
-### 在 Kubernetes 中配置 Spring Boot 1 備妥及活躍度探測
+### 在 Kubernetes 中配置 Spring Boot 1 備妥及存活性探測
 {: #spring-probe-config-1}
 
-將備妥及活躍度探測配置新增至 Kubernetes 部署資訊清單中的容器定義（請注意路徑及埠值）：
+將備妥及存活性探測配置新增至 Kubernetes 部署資訊清單中的容器定義（請注意路徑及埠值）：
 
 ```yaml
 spec:
