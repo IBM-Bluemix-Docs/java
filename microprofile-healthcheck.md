@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-04-23"
+lastupdated: "2019-05-20"
 
 keywords: health check jax-rs, jax-rs endpoint, jax-rs status, readiness jax-rs, liveness jax-rs, microprofile health
 
@@ -22,7 +22,7 @@ subcollection: java
 # Health checks with JAX-RS
 {: #jaxrs-healthcheck}
 
-As discussed in the prior section, Kubernetes provides multiple methods for integrating health probes, including execution of a command, as well as network checking through TCP or HTTP endpoints. Although it is possible to implement any of these probes in the Java&trade language, a JAX-RS implementation of HTTP probes and MicroProfile Health is discussed in detail here.
+As discussed in the prior section, Kubernetes provides multiple methods for integrating health probes that include execution of a command, and network checking through TCP or HTTP endpoints. Although you can implement any of these probes in the Java&trade; language, a JAX-RS implementation of HTTP probes and MicroProfile Health is discussed in detail here.
 
 ## Defining a readiness JAX-RS endpoint
 {: #mp-readiness}
@@ -44,14 +44,14 @@ public class ReadinessEndpoint {
 ```
 {: codeblock}
 
-An endpoint like this in an application that is deployed in WebSphere Liberty achieves a certain level of readiness behavior without more effort. Liberty fails requests to the health endpoint with an appropriate 503 response until the application is running. This basic implementation should be extended to include required capabilities. For example, consider evaluating `@ApplicationScoped` CDI resources to ensure that dependency injection processing has completed. Once the probe has been implemented, it can be enabled by configuring the HTTP probe type as noted in the prior section.
+An endpoint for an application that is deployed in WebSphere Liberty achieves a certain level of readiness behavior without extra effort. Liberty fails requests to the health endpoint with an appropriate 503 response until the application is running. This basic implementation can be extended to include required capabilities. For example, consider evaluating `@ApplicationScoped` CDI resources to ensure that dependency injection processing is complete. After the probe is implemented, it can be enabled by configuring the HTTP probe type as noted in the prior section.
 
-Always remember the role and purpose of fault tolerance: microservices are expected to handle failure and disruption in communications with downstream services. Only include checks for capabilities that have no feasible fallback inside a readiness check.
+Always remember the role and purpose of fault tolerance: microservices are expected to handle failure and disruption in communications with downstream services. You must include checks for capabilities that have no feasible fallback inside a readiness check.
 
 ## Defining a liveness JAX-RS endpoint
 {: #jaxrs-liveness}
 
-A liveness probe should be deliberate about what it checks, as a failure results in immediate termination of the process. A simple liveness endpoint can look something like this:
+A liveness probe is deliberate about what it checks, as a failure results in immediate termination of the process. A simple liveness endpoint can look something like the following example:
 
 ```java
 @Path("liveness")
@@ -65,9 +65,9 @@ public class LivenessEndpoint {
 ```
 {: codeblock}
 
-The liveness probe implementation can be extended to consult process local conditions, which indicate an unrecoverable process state. However, the challenge with such checks often lies in the fact that if the such processing is able to be performed, the server is likely sufficiently healthy to perform other requests. For this reason, a "keep it simple" mantra should be readily applied to the liveness check implementation. Once the liveness sources are coded to enable the probe endpoint, the http liveness endpoint can be enabled in the container orchestration sources as explained in the last chapter.
+The liveness probe implementation can be extended to check process local conditions, which indicate an unrecoverable process state. However, the challenge with these checks often lies in the fact that if such processing is possible, the server is likely working normally to process other requests. For this reason, a "keep it simple" mantra can be readily applied to the liveness check implementation. After the liveness sources are coded to enable the probe endpoint, the HTTP liveness endpoint can be enabled in the container orchestration sources as explained in the last chapter.
 
-To avoid restart cycles, the initialDelaySeconds attribute for the liveness check should be longer than the longest expected server start time. For a Java&trade application server that commonly takes 30 seconds to start, choose a larger value, such as 60 seconds.
+To avoid restart cycles, the `initialDelaySeconds` attribute for the liveness check must be longer than the longest expected server start time. For a Java&trade; application server that commonly takes 30 seconds to start, choose a larger value, such as 60 seconds.
 
 ## Using the MicroProfile Health API
 {: #mp-health-api}
@@ -83,7 +83,7 @@ To use the MicroProfile Health API with Liberty, add the `mpHealth` feature to `
 ```
 {: codeblock}
 
-You can then check the status of the application with a browser by accessing the `/health` endpoint. The code returns a payload `{"outcome": "UP"}` when all is well. The following code shows you how to use MicroProfile Health APIs to indicate whether the pod is healthy or ready. The `call` method allows developers to provide check algorithm to indicate the health status of a pod. Something like nearly running out of memory is a good indicator for the healthiness of a pod. Checking for downstream database connection might be a good check for the readiness of the pod. If there is no specific check, you can use the following to indicate whether a pod is alive or ready.
+You can then check the status of the application with a browser by accessing the `/health` endpoint. The code returns a payload `{"outcome": "UP"}` when all is well. The following code shows you how to use MicroProfile Health APIs to indicate whether the pod is working normally. The `call` method allows developers to provide check algorithm to indicate the health status of a pod. Something like nearly running out of memory is a good indicator for the healthiness of a pod. Checking for downstream database connection might be a good check for the readiness of the pod. If there is no specific check, you can use the following to indicate whether a pod is alive or ready.
 
 ```java
 import org.eclipse.microprofile.health.Health;
@@ -104,7 +104,7 @@ public class HealthResource implements HealthCheck {
 ```
 {: codeblock}
 
-Then, you need to specify the `livenessProbe` and `readinessProbe` for Kubernetes, as shown below.
+Then, you need to specify the `livenessProbe` and `readinessProbe` for Kubernetes, as shown in the following example.
 ```yaml
 livenessProbe:
   exec:
