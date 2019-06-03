@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-04-04"
+lastupdated: "2019-05-20"
 
 keywords: java logging, log level java, debug java, json log java, json log help, kibana liberty, liberty messages
 
@@ -22,7 +22,7 @@ subcollection: java
 # Registro
 {: #mp-logging}
 
-A abordagem recomendada para criação de log com aplicativos MicroProfile é o padrão de criação de log JSR-47 Java. Comece com as importações a seguir:
+A abordagem recomendada para criação de log com aplicativos MicroProfile é usar o padrão de criação de log Java&trade; JSR-47. É possível iniciar com as importações a seguir:
 
 ```java
 import java.util.logging.Level;
@@ -54,9 +54,9 @@ O nível de log é exibido quando essas mensagens são enviadas para o console.
 ```
 {: screen}
 
-Os níveis de log fornecem a flexibilidade para escolher dinamicamente quais logs seu aplicativo gravará. Isso permite que você grave o código de log que descreve o estado do aplicativo de alto nível e o conteúdo de depuração detalhado na frente, mas filtre o conteúdo de depuração mais detalhado até que seja necessário. O nível de log `info` é geralmente o nível de saída mínimo, seguido por `fine`, `finer`, `finest` e `debug`.
+Os níveis de log fornecem a flexibilidade para escolher dinamicamente quais logs seu aplicativo grava. Esse recurso permite gravar o código de log que descreve o estado do aplicativo de alto nível e o conteúdo de depuração detalhado antecipados. Portanto, é possível filtrar o conteúdo de depuração mais detalhado até que seja necessário. O nível de log `info` é geralmente o nível de saída mínimo, seguido por `fine`, `finer`, `finest` e `debug`.
 
-Quando as entradas de log requerem múltiplas linhas de código ou envolvem operações caras, como concatenação de sequência, considere guardá-las com um teste para determinar se o nível de log está ativado. Isso garante que seu aplicativo não gaste o tempo crucial construindo mensagens de log acabarão apenas sendo filtradas. O exemplo a seguir verifica se o nível de log desejado de `fine` está ativado antes de tentar construir a saída de mensagem.
+Se uma entrada de log requer múltiplas linhas de código ou envolve operações caras, como concatenação de sequências, considere protegê-las com um teste para determinar se o nível de log está ativado. Incluir a verificação assegura que seu aplicativo não gaste um tempo crucial construindo mensagens de log que acabam sendo filtradas. No exemplo a seguir, o nível de log desejado de `fine` é ativado antes de tentar construir a saída da mensagem.
 
 ```java
 if (logger.isLoggable(Level.FINE)) {
@@ -67,19 +67,19 @@ if (logger.isLoggable(Level.FINE)) {
 ```
 {: codeblock}
 
-Para obter mais informações sobre os níveis de log e detalhes de configuração, consulte [Guia de Resolução de Problemas do WebSphere Liberty](https://www.ibm.com/support/knowledgecenter/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_logging.html){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo") e a [Documentação da API java.util.logging](https://docs.oracle.com/javase/8/docs/api/java/util/logging/package-summary.html){: new_window} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo").
+Para obter mais informações sobre níveis de log e detalhes de configuração, consulte o [Guia de Resolução de Problemas do WebSphere Liberty](https://www.ibm.com/support/knowledgecenter/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_logging.html){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo") e a [Documentação da API java.util.logging](https://docs.oracle.com/javase/8/docs/api/java/util/logging/package-summary.html){: new_window} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo").
 
 ## Criação de log JSON com Liberty
 {: #mp-json-logging}
 
-O Liberty suporta a criação de log formatada por JSON. Quando ativadas, as mensagens de log serão gravadas no console no formato JSON. Ative isso usando a sub-rotina de criação de log a seguir em seu `server.xml`:
+O Liberty suporta a criação de log formatada por JSON. Quando ativadas, as mensagens de log são gravadas no console em formato JSON. Ative isso usando a sub-rotina de criação de log a seguir em seu `server.xml`:
 
 ```xml
 <logging consoleLogLevel="INFO" consoleFormat="json" consoleSource="message,trace,accessLog,ffdc" />
 ```
 {: codeblock}
 
-Observe que, enquanto `accessLog` é incluído na lista de origens do console acima, a criação de log de acesso HTTP deve ser ativada antes que esses logs sejam gravados no console. O fragmento a seguir mostra como incluir o subelemento `accessLogging` no elemento `httpEndpoint` em seu `server.xml`:
+Mesmo que `accessLog` esteja incluído na lista de origens de console, a criação de log de acesso HTTP deve ser ativada antes de esses logs serem gravados no console. O fragmento a seguir mostra como incluir o subelemento `accessLogging` no elemento `httpEndpoint` em seu `server.xml`:
 
 ```xml
 <httpEndpoint id="defaultHttpEndpoint" host="\*" httpPort="9080" httpsPort="9443">
@@ -99,7 +99,7 @@ if (logger.isLoggable(Level.AUDIT)) {
 }
 ```
 
-você localizará algo como isso nos logs:
+É possível ver a saída a seguir nos logs:
 
 ```json
 { "type":"liberty_message",
@@ -117,23 +117,23 @@ você localizará algo como isso nos logs:
 ### Lendo a saída de log JSON
 {: #mp-json-log-output}
 
-A saída JSON completa é muito útil para armazenamento de log e procuras, mas não é tão fácil de ler. Talvez seja necessário examinar o conteúdo do log em uma janela do terminal usando `kubectl`. Felizmente, há uma ferramenta de linha de comandos chamada `jq` para ajudar.
+A saída JSON integral é útil para o armazenamento de log e procuras, mas não é tão fácil de ler. É possível examinar o conteúdo do log em uma janela do terminal usando o comando `kubectl`. Felizmente, há uma ferramenta de linha de comandos chamada `jq` para ajudar.
 
-`jq` permite que você filtre e se concentre no campo ou campos que você precisa. Por exemplo, se você desejar apenas ver o campo `message` e filtrar todo o restante:
+Com o comando `jq`, é possível filtrar e focar no campo ou campos que você precisar. Se desejar ver o campo `message` e filtrar todo o resto, consulte o exemplo a seguir:
 
 ```
 kubectl logs trader-54b4d579f7-4zvzk -n stock-trader -c trader | grep message | jq .message -r
 ```
 {: pre}
 
-O Liberty possui algumas mensagens do console primitivas que não são formatadas em JSON. Usar o `grep` assegura que `jq` somente analisará linhas contendo um campo de mensagem.
+O Liberty possui algumas mensagens do console primitivas que não são formatadas em JSON. É possível usar o comando `grep` para assegurar que `jq` analise especificamente linhas que contenham um campo de mensagem.
 
 ## Recursos adicionais
 {: #mp-log-features}
 
-Diretrizes para usar níveis de log, como quando usar `logger.info` ou `logger.fine`, são algo que cada organização ou projeto tem que tomar decisões. No entanto, esperamos que essas interfaces sejam necessárias e úteis em quase todos os projetos.
+Diretrizes para usar níveis de log, como quando usar `logger.info` ou `logger.fine`, são algo que cada organização ou projeto deve decidir. Em geral, essas interfaces são necessárias e úteis em quase qualquer projeto.
 
-Uma melhor prática é usar variáveis de ambiente (alimentadas para o pod por meio de mapas de configuração do Kube ou segredos) em cada campo relevante no `server.xml`. Isso permite mudar a configuração de criação de log sem a necessidade de reconstruir e reimplementar sua imagem do Docker.
+Uma melhor prática é usar variáveis de ambiente (alimentadas no pod por meio de mapas de configuração ou segredos do Kubernetes) em cada campo relevante no arquivo `server.xml`. Ao usar esse método, é possível mudar a configuração de criação de log sem precisar reconstruir e reimplementar sua imagem do Docker.
 
 Por exemplo, para usar variáveis de ambiente para configurar atributos de criação de log de baixa granularidade, você mudaria a sub-rotina do exemplo anterior:
 
@@ -142,36 +142,36 @@ Por exemplo, para usar variáveis de ambiente para configurar atributos de cria�
 ```
 {: codeblock}
 
-Para algo mais parecido com isso:
+Para a entrada a seguir:
 
 ```xml
 <logging consoleLogLevel="${env.LOG_LEVEL}" consoleFormat="${env.LOG_FORMAT}" consoleSource="${env.LOG_SOURCE}" />
 ```
 {: codeblock}
 
-Outra alternativa é usar a variável de ambiente `WLP_LOGGING_CONSOLE_FORMAT`, conforme descrito em [Documentação de criação de log e rastreio](https://www.ibm.com/support/knowledgecenter/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_logging.html){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo"). Isso é semelhante ao exemplo acima: é possível configurar a variável `WLP_LOGGING_CONSOLE_FORMAT` para `basic` (o padrão) ou `json`.
+Outra alternativa é usar a variável de ambiente `WLP_LOGGING_CONSOLE_FORMAT`, conforme descrito em [Documentação de criação de log e rastreio](https://www.ibm.com/support/knowledgecenter/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_logging.html){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo"). Esse método é semelhante ao exemplo anterior e é possível configurar a variável `WLP_LOGGING_CONSOLE_FORMAT` como `basic` (o padrão) ou `json`.
 
 ## Painéis do Kibana para o Liberty
 {: #liberty-kibana}
 
-Junto com o novo recurso de criação de log JSON, o Liberty fornece painéis do Kibana pré-construídos [que podem ser transferidos por download pelo GitHub](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_icp_json_logging.html){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo"). Siga as instruções no link para instalá-los. Dois novos painéis devem estar disponíveis:
+Junto com o novo recurso de criação de log JSON, o Liberty fornece painéis do Kibana pré-construídos [que podem ser transferidos por download pelo GitHub](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_icp_json_logging.html){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo"). Siga as instruções no link para instalá-los. Dois novos painéis agora estão disponíveis:
 
 ![Painéis Kibana](images/microprofile-logging-image4.png "Painéis Kibana")
 
-Quando você clica no painel para determinação de problema, isso é exibido:
+Ao selecionar o painel para determinação de problema, é possível ver:
 
 ![Detalhes do painel Kibana](images/microprofile-logging-image5.png "Detalhes do painel Kibana")
 
-O painel é interativo. Por exemplo, se você clicar em **INFO** na legenda para o widget **Mensagem do Liberty**, o widget **Procura de mensagens do Liberty** abaixo se filtrará apenas para as mensagens `loglevel=INFO`. O painel federará os dados do log de todos os microsserviços baseados no Liberty, filtrando outros logs do sistema.
+O painel é interativo. Por exemplo, se você escolher **INFO** na legenda para o widget **Liberty Message**, o widget **Liberty Messages Search** filtrará a si mesmo apenas para as mensagens `loglevel=INFO`. O painel federa dados de log de todos os microsserviços baseados em Liberty, filtrando outros logs do sistema.
 
-Há painéis adicionais do Kibana e do Grafana associados ao gráfico do Helm do Liberty. Eles estão disponíveis como [extensões para o pak de nuvem do Liberty](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo").
+Há mais painéis do Kibana e do Grafana que estão associados ao gráfico do Helm do Liberty. Eles estão disponíveis como [extensões para o pak de nuvem do Liberty](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo").
 
 ## Próximas etapas
 {: #mp-logging-next-steps notoc}
 
 Para obter mais informações sobre como customizar mensagens de log com anexadores, níveis de log e detalhes de configuração, consulte a [Referência oficial do Spring Boot para criação de log](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo").
 
-Saiba mais sobre como visualizar os logs em cada um dos nossos ambientes de implementação:
+Saiba mais sobre como visualizar os logs em cada um dos ambientes de implementação a seguir:
 
 * [Logs do Kubernetes](https://kubernetes.io/docs/concepts/cluster-administration/logging/){: new_window} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")
 * [{{site.data.keyword.openwhisk}} Logs & Monitoramento](/docs/openwhisk?topic=cloud-functions-openwhisk_logs#openwhisk_logs)

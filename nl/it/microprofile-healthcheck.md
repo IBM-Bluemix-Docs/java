@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-04-23"
+lastupdated: "2019-05-20"
 
 keywords: health check jax-rs, jax-rs endpoint, jax-rs status, readiness jax-rs, liveness jax-rs, microprofile health
 
@@ -22,7 +22,7 @@ subcollection: java
 # Controlli di integrità con JAX-RS
 {: #jaxrs-healthcheck}
 
-Come discusso nella sezione precedente, Kubernetes fornisce diversi metodi per integrare i probe di integrità, compresa l'esecuzione di un comando, e il controllo di rete tramite gli endpoint TCP o HTTP. Anche se è possibile implementare uno qualsiasi di questi probe nel linguaggio Java&trade, un'implementazione JAX-RS di probe HTTP e MicroProfile Health viene qui discussa in modo dettagliato.
+Come discusso nella sezione precedente, Kubernetes fornisce diversi metodi per integrare i probe di integrità, compresa l'esecuzione di un comando e il controllo di rete tramite gli endpoint TCP o HTTP. Anche se puoi implementare uno qualsiasi di questi probe nel linguaggio Java&trade;, un'implementazione JAX-RS di probe HTTP e MicroProfile Health viene qui discussa in modo dettagliato.
 
 ## Definizione di un endpoint JAX-RS di disponibilità
 {: #mp-readiness}
@@ -44,14 +44,14 @@ public class ReadinessEndpoint {
 ```
 {: codeblock}
 
-Un endpoint come questo in un'applicazione distribuita in WebSphere Liberty raggiunge un certo livello di modalità di funzionamento di disponibilità senza ulteriori sforzi. Liberty indica come non riuscite le richieste all'endpoint di integrità con una risposta 503 appropriata finché l'applicazione è in esecuzione. Questa implementazione di base deve essere ampliata per includere le funzionalità richieste. Prendi ad esempio in considerazione la valutazione delle risorse CDI `@ApplicationScoped` per garantire che l'elaborazione di inserimento delle dipendenze sia stata completata. Dopo essere stato implementato, il probe può essere abilitato configurando il tipo di probe HTTP, come indicato nella sezione precedente.
+Un endpoint per un'applicazione distribuita in WebSphere Liberty raggiunge un certo livello di modalità di funzionamento di disponibilità senza ulteriori sforzi. Liberty indica come non riuscite le richieste all'endpoint di integrità con una risposta 503 appropriata finché l'applicazione è in esecuzione. Questa implementazione di base può essere ampliata per includere le funzionalità richieste. Prendi ad esempio in considerazione la valutazione delle risorse CDI `@ApplicationScoped` per garantire che l'elaborazione di inserimento delle dipendenze sia stata completata. Dopo essere stato implementato, il probe può essere abilitato configurando il tipo di probe HTTP, come indicato nella sezione precedente.
 
-Ricordati sempre il ruolo e lo scopo della tolleranza di errore: ci si aspetta che i microservizi gestiscano gli errori e le interruzioni nelle comunicazioni con i servizi di downstream. Includi i controlli solo per le funzionalità che non hanno alcun fallback fattibile all'interno di un controllo di disponibilità.
+Ricordati sempre il ruolo e lo scopo della tolleranza di errore: ci si aspetta che i microservizi gestiscano gli errori e le interruzioni nelle comunicazioni con i servizi di downstream. Devi includere i controlli per le funzionalità che non hanno alcun fallback fattibile all'interno di un controllo di disponibilità.
 
 ## Definizione di un endpoint JAX-RS di attività
 {: #jaxrs-liveness}
 
-Un probe di attività deve essere cauto in merito a cosa controlla, perché un errore causa una terminazione immediata del processo. Un semplice endpoint di attività può essere simile al seguente:
+Un probe di attività è cauto in merito a cosa controlla, perché un errore causa una terminazione immediata del processo. Un semplice endpoint di attività può essere simile al seguente esempio:
 
 ```java
 @Path("liveness")
@@ -65,9 +65,9 @@ public class LivenessEndpoint {
 ```
 {: codeblock}
 
-L'implementazione del probe di attività può essere estesa per consultare le condizioni locali del processo, che indicano uno stato del processo irreversibile. Tuttavia la sfida spesso rappresentata da questo tipo di controlli consiste nel fatto che, se è possibile eseguire una tale elaborazione, il server è probabilmente sufficientemente integro per eseguire altre richieste. Per tale motivo, all'implementazione del controllo di attività dovrebbe essere prontamente applicato un principio di semplicità. Dopo che le origini di attività sono state codificate per abilitare l'endpoint di probe, l'endpoint di attività http può essere abilitato nelle origini di orchestrazione del contenitore, come spiegato nell'ultimo capitolo.
+L'implementazione del probe di attività può essere estesa per controllare le condizioni locali del processo, che indicano uno stato del processo irreversibile. Tuttavia la sfida spesso rappresentata da questi controlli consiste nel fatto che, se è possibile eseguire una tale elaborazione, il server sta probabilmente lavorando normalmente per elaborare altre richieste. Per tale motivo, all'implementazione del controllo di attività può essere prontamente applicato un principio di semplicità. Dopo che le origini di attività sono state codificate per abilitare l'endpoint di probe, l'endpoint di attività HTTP può essere abilitato nelle origini di orchestrazione del contenitore, come spiegato nell'ultimo capitolo.
 
-Per evitare cicli di riavvio, l'attributo initialDelaySeconds per il controllo di attività deve essere più lungo del tempo di avvio del server massimo previsto. Per un server delle applicazioni Java&trade che di norma impiega 30 secondi per l'avvio, scegli un valore maggiore, come ad esempio 60 secondi.
+Per evitare cicli di riavvio, l'attributo `initialDelaySeconds` per il controllo di attività deve essere più lungo del tempo di avvio del server massimo previsto. Per un server delle applicazioni Java&trade; che di norma impiega 30 secondi per l'avvio, scegli un valore maggiore, come ad esempio 60 secondi.
 
 ## Utilizzo dell'API MicroProfile Health
 {: #mp-health-api}
@@ -83,7 +83,7 @@ Per utilizzare l'API MicroProfile Health con Liberty, aggiungi la funzione `mpHe
 ```
 {: codeblock}
 
-Puoi controllare lo stato dell'applicazione con un browser accedendo all'endpoint `/health`. Il codice restituisce un payload `{"outcome": "UP"}` quando va tutto bene. Il seguente codice mostra come utilizzare le API MicroProfile per indicare se il pod è integro o disponibile. Il metodo `call` consente agli sviluppatori di fornire un algoritmo di controllo per indicare lo stato di integrità di un pod. Riuscire a identificare se un pod sta esaurendo la memoria è un buon indicatore della sua integrità. Controllare la connessione al database di downstream può essere un buon controllo per la disponibilità del pod. Se non c'è alcun controllo specifico, puoi utilizzare quanto segue per indicare se un pod è attivo o disponibile.
+Puoi controllare lo stato dell'applicazione con un browser accedendo all'endpoint `/health`. Il codice restituisce un payload `{"outcome": "UP"}` quando va tutto bene. Il seguente codice mostra come utilizzare le API di integrità MicroProfile per indicare se il pod sta funzionando normalmente. Il metodo `call` consente agli sviluppatori di fornire un algoritmo di controllo per indicare lo stato di integrità di un pod. Riuscire a identificare se un pod sta esaurendo la memoria è un buon indicatore della sua integrità. Controllare la connessione al database di downstream può essere un buon controllo per la disponibilità del pod. Se non c'è alcun controllo specifico, puoi utilizzare quanto segue per indicare se un pod è attivo o disponibile.
 
 ```java
 import org.eclipse.microprofile.health.Health;
@@ -104,7 +104,7 @@ public class HealthResource implements HealthCheck {
 ```
 {: codeblock}
 
-Devi quindi specificare `livenessProbe` e `readinessProbe` per Kubernetes, come mostrato di seguito.
+Devi quindi specificare `livenessProbe` e `readinessProbe` per Kubernetes, come mostrato nel seguente esempio.
 ```yaml
 livenessProbe:
   exec:
