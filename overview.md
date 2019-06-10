@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-04-01"
+lastupdated: "2019-06-07"
 
 keywords: openjdk, open j9, download openjdk, java frameworks, adoptopenjdk, eclipse openj9, openj9 binaries, openjdk binaries, microprofile framework, jakarta
 
@@ -19,8 +19,8 @@ subcollection: java
 {:note: .note}
 {:important: .important}
 
-# Java on {{site.data.keyword.cloud_notm}}
-{: #overview}
+# Getting started tutorial
+{: #getting-started}
 
 Java&trade; applications come in all shapes and sizes, everything from standalone applications to Java EE / Jakarta EE, MicroProfile or Spring applications.
 
