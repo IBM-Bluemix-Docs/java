@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-04-22"
+lastupdated: "2019-06-10"
 
 keywords: health check spring, spring health endpoint, spring-boot-actuator, liveness probe spring, readiness probe spring, spring kubernetes probe
 
@@ -22,7 +22,7 @@ subcollection: java
 # Health checks with Spring
 {: #spring-healthcheck}
 
-The health endpoint provided by Spring Boot actuator is tied to the application lifecycle: it won't be reachable until the application has started, and will be unavailable as soon as the application is stopped (which happens before the process shuts down). Spring Boot Actuator will automatically add additional health indicators for technologies detected on the classpath. For example, if your application uses JDBC, the health endpoint will include some basic tests to ensure the backing datastore can be reached. The Actuator-defined health endpoint is better suited for use as a readiness probe for this reason.
+The health endpoint that is provided by Spring Boot actuator is tied to the application lifecycle and is not reachable until the application is started. Likewise, it is disabled as soon as the application is stopped (which happens before the process shuts down). Spring Boot Actuator automatically adds health indicators for technologies that are detected on the class path. For example, if your application uses JDBC, the health endpoint includes some basic tests to ensure that the backing data store can be reached. The Actuator-defined health endpoint is better suited for use as a readiness probe for this reason.
 
 Enable Spring Boot Actuator by adding the `spring-boot-actuator` dependency to your `pom.xml` file:
 
@@ -34,14 +34,14 @@ Enable Spring Boot Actuator by adding the `spring-boot-actuator` dependency to y
 ```
 {: codeblock}
 
-There are some behavior differences with Spring Boot actuator between versions. We’ll use the next two sections to explore how to create liveness and readiness checks in both versions of Spring Boot, starting with 2 as the most current.
+There are some behavior differences with Spring Boot actuator between versions. The next two sections explore how to create liveness and readiness checks in both versions of Spring Boot, starting with 2 as the most current.
 
 ## Health checks Spring Boot 2
 {: #spring-health-boot2}
 
 The Spring Boot 2 actuator defines an `/actuator/health endpoint`, which returns a `{"status": "UP"}` payload when all is well. This endpoint is enabled by default, and requires no application code.
 
-An example of an unauthenticated successful health check using the Spring Boot 2 Actuator:
+See the following example of an unauthenticated successful health check that uses the Spring Boot 2 Actuator:
 <!-- Spring Boot 2 test project: https://github.com/IBM/spring-alarm-application -->
 
 ```
@@ -73,14 +73,14 @@ Date: Fri, 07 Dec 2018 23:09:09 GMT
 ```
 {: screen}
 
-Note the inclusion of some H2 data base information. This is an example of Spring Actuator automatically adding checks for backing services. In this case, the application is using JDBC, and the H2 driver was discovered on the classpath.
+Note the inclusion of some H2 database information. This example of Spring Actuator automatically adds checks for backing services. In this case, the application is using JDBC, and the H2 driver was discovered on the class path.
 
 You can override the default behavior of the health endpoint with properties or code, as described in the [Spring Boot Reference Guide for 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
 ### Liveness probe in Spring Boot 2
 {: #spring-liveness-boot2}
 
-The Actuator framework in Spring Boot 2 is its own mini-REST-framework that can be extended with custom endpoints. This means that we can add a simple liveness endpoint that is managed in the same way the built-in health indicator is. A custom liveness endpoint can be trivially declared like this:
+The Actuator framework in Spring Boot 2 is its own mini-REST-framework that can be extended with custom endpoints. Which means that you can add a simple liveness endpoint that is managed in the same way the built-in health indicator is. A custom liveness endpoint can be trivially declared like in the following example:
 
 ```java
 @Endpoint(id="liveness")
@@ -143,10 +143,9 @@ To avoid restart cycles, set `livenessProbe.initialDelaySeconds` to be safely lo
 ## Health checks in Spring Boot 1
 {: #spring-health-boot1}
 
-The Spring Boot 1 actuator defines a `/health` endpoint, which returns a `{"status": "UP"}` payload when all is well. The endpoint does not require authorization, but if authorization is configured and the caller is authorized, additional information will be included in the response.
+The Spring Boot 1 actuator defines a `/health` endpoint, which returns a `{"status": "UP"}` payload when all is well. The endpoint does not require authorization, but if authorization is configured and the caller is authorized, additional information is included in the response.
 
-An example of an unauthenticated successful health check using the Spring Boot 1 Actuator:
-
+See the following example of an unauthenticated successful health check that uses the Spring Boot 1 Actuator:
 ```
 $ curl -i localhost:8080/health
 HTTP/1.1 200
@@ -189,7 +188,7 @@ You can override the default behavior of the health endpoint with properties or 
 ### Liveness probe in Spring Boot 1
 {: #spring-liveness-boot1}
 
-For Spring Boot 1, a simple http endpoint for liveness that always returns {"status": "UP"} with status code 200 would look something like this:
+For Spring Boot 1, a simple HTTP endpoint for liveness that always returns {"status": "UP"} with status code 200 would look something like the following snippet:
 
 ```java
 @RestController

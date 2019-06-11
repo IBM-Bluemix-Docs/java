@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-06-07"
+lastupdated: "2019-06-10"
 
 keywords: java logging, log level java, debug java, json log java, json log help, kibana liberty, liberty messages
 
@@ -54,7 +54,7 @@ The log level is displayed when these messages are output to the console.
 ```
 {: screen}
 
-Log levels give you the flexibility to dynamically choose which logs your application writes. This feature enables you to write log code that describes both high-level application state and detailed debug content up front. So you can filter out the more verbose debug content until it is needed. The log level `info` is typically the minimum output level, followed by `fine`, `finer`, `finest`, and `debug`.
+Log levels give you the flexibility to dynamically choose which logs your application writes. By using log levels, you can write log code that describes both high-level application state and detailed debug content up front. So you can filter out the more verbose debug content until it is needed. The log level `info` is typically the minimum output level, followed by `fine`, `finer`, `finest`, and `debug`.
 
 If a log entry requires multiple lines of code, or involves expensive operations such as string concatenation, consider guarding them with a test to determine whether the log level is enabled. Adding the check ensures that your application doesn't spend crucial time building log messages that end up being filtered out. In the following example, the intended log level of `fine` is enabled before it attempts to build the message output.
 
@@ -117,7 +117,7 @@ You can see the following output in the logs:
 ### Reading JSON log output
 {: #mp-json-log-output}
 
-The full JSON output is helpful for log storage and searches, but not as easy to read. You can examine the contents of the log in a terminal window by using the `kubectl` command. Fortunately there's a command-line tool that is named `jq` to help.
+The full JSON output is helpful for log storage and searches, but not as easy to read. You can examine the contents of the log in a terminal window by using the `kubectl` command. Fortunately there's a command line tool that is named `jq` to help.
 
 With the `jq` command, you can filter down and focus on the field or fields that you need. If you want to see the `message` field and filter everything else out, see the following example:
 
@@ -164,7 +164,7 @@ When you select the dashboard for problem determination, you can see:
 
 The dashboard is interactive. For example, if you choose **INFO** in the legend for the **Liberty Message** widget, the **Liberty Messages Search** widget filters itself to just the `loglevel=INFO` messages. The dashboard federates log data from all of your Liberty-based microservices, filtering out other system logs.
 
-There are more Kibana and Grafana dashboards that are associated with the Liberty helm chart. They are available as [extensions to the Liberty cloud pak](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+There are more Kibana and Grafana dashboards that are associated with the Liberty helm chart. They are available as [extensions to the Liberty cloud `pak`](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
 ## Next Steps
 {: #mp-logging-next-steps notoc}

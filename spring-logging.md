@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-07"
+lastupdated: "2019-06-10"
 
 keywords: spring logging, spring logger, logback spring, debug spring, json log spring, consoleappender spring, spring boot log
 
@@ -22,9 +22,9 @@ subcollection: java
 
 Log messages are strings of contextual information that pertain to the state and activity of a microservice when a log entry is created. You can use logging to diagnose how and why services fail, and to assist with metrics for monitoring application health.
 
-Log entries should be written directly to standard output and error streams. This makes log entries viewable using command line tools, and allows log forwarding services configured at the infrastructure level, like Logstash, Filebeat, or Fluentd, to manage log collection.
+Log entries are to be written directly to standard output and error streams, which makes log entries viewable using command line tools. You can then use log forwarding services that are configured at the infrastructure level, like Logstash, Filebeat, or Fluentd, to manage log collection.
 
-## Adding Logback support to Spring applications
+## Adding Logback support to Spring apps
 {: #spring-log4j}
 
 [Logback](https://logback.qos.ch/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") is the default log engine that is used by Spring Boot, and is used automatically when found in the class path. Most Spring Boot starters transitively depend on Logback through `spring-boot-starter-logging`.
@@ -62,7 +62,7 @@ public class SampleLogbackApplication {
 ```
 {: codeblock}
 
-The default log level is `INFO`. You can specify different logging levels for specific Java packages in `application.properties`. For example, to set the default log level to `WARN`, the level for package `sample.logging` to `DEBUG`, and the level for the Spring package `org.springframework.web` to `ERROR`, add the following to `application.properties`:
+The default log level is `INFO`. You can specify different logging levels for specific Java&trade; packages in `application.properties`. For example, to set the default log level to `WARN`, the level for package `sample.logging` to `DEBUG`, and the level for the Spring package `org.springframework.web` to `ERROR`, add the following to `application.properties`:
 
 ```properties
 logging.level.root=WARN
@@ -78,7 +78,7 @@ By default, Logback produces messages with the following elements:
 - Log Level: `ERROR`, `WARN`, `INFO`, `DEBUG`, or `TRACE`.
 - Process ID.
 - A "`---`" separator to define the start of actual log messages.
-- [Thread name (may be truncated for console output)]
+- [Thread name (might be truncated for console output)]
 - Logger name: The name is usually the source class name (often abbreviated).
 - The log message.
 
@@ -94,7 +94,7 @@ Log messages look something like the following example:
 ### Creating JSON Logs
 {: #spring-json-logs}
 
-Enable JSON logging in Spring applications using the `logstash-logback-encoder`.
+Enable JSON logging in Spring apps by using the `logstash-logback-encoder`.
 
 Add the logback encoder as a dependency:
 
@@ -107,7 +107,7 @@ Add the logback encoder as a dependency:
 ```
 {: codeblock}
 
-Configure logback to use the new encoder with a `ConsoleAppender` in `logback.xml`. It should look something like the following:
+Configure logback to use the new encoder with a `ConsoleAppender` in `logback.xml` as seen in the following example:
 
 ```xml
 <configuration>
@@ -124,7 +124,7 @@ Configure logback to use the new encoder with a `ConsoleAppender` in `logback.xm
 ```
 {: codeblock}
 
-With this configuration, you'll now see JSON-formatted logs:
+With this configuration, you can see JSON-formatted logs:
 
 ```
 {"@timestamp":"2018-10-11T23:48:57.215+00:00","@version":1,"message":"Sample TRACE Message","logger_name":"com.example.demo.LoggingExample","thread_name":"http-nio-8080-exec-1","level":"TRACE","level_value":5000}
@@ -165,7 +165,7 @@ $ docker logs --tail 5 -f <container-id> | jq .message
 
 For more information about customizing log messages with appenders, log levels, and configuration details, see the official [Spring Boot reference for logging](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
-Learn more about viewing the logs in each of our deployment environments:
+Learn more about viewing logs in each of the following deployment environments:
 
 * [Kubernetes Logs](https://kubernetes.io/docs/concepts/cluster-administration/logging/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
 * [{{site.data.keyword.openwhisk}} Logs & Monitoring](/docs/openwhisk?topic=cloud-functions-logs)

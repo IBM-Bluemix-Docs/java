@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-04-22"
+lastupdated: "2019-06-10"
 
 keywords: mpmetrics microprofile, mpmetrics, prometheus java, metrics java, microprofile metrics
 
@@ -78,7 +78,7 @@ Johns-MacBook-Pro-8:StockTrader jalcorn$
 As you can see, two portfolios are counted as expected. 
 
 A few things of note:
-- This is an in-memory counter: If the pod is restarted, the value is reset to zero; if there are multiple replicas, each has its own unique value.
+- An in-memory counter is used: If the pod is restarted, the value is reset to zero; if there are multiple replicas, each has its own unique value.
 - The "# HELP" text is what is specified as the description in the `@Counted` annotation.
 
 You can view the output of this REST GET endpoint in your web browser as well:
