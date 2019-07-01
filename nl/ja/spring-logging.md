@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-06-10"
 
 keywords: spring logging, spring logger, logback spring, debug spring, json log spring, consoleappender spring, spring boot log
 
@@ -22,12 +22,12 @@ subcollection: java
 
 ログ・メッセージは、ログ・エントリーが生成された時のマイクロサービスの状態やアクティビティーに関するコンテキスト情報を記録したストリングです。 ロギングは、サービスが失敗した状況や理由の診断に活用できます。アプリケーションの正常性をモニターするためのメトリックを補完する情報として利用することもできます。
 
-ログ・エントリーは、標準出力やエラー・ストリームに直接書き込む必要があります。これにより、コマンド・ライン・ツールを使用してログ・エントリーを表示できるようになり、インフラストラクチャー・レベルで構成するログ転送サービス (Logstash、Filebeat、Fluentd など) によるログ収集の管理が可能になります。
+ログ・エントリーは標準出力およびエラー・ストリームに直接書き込まれるので、コマンド・ライン・ツールを使用してログ・エントリーを表示できます。その後、インフラストラクチャー・レベルで構成された転送サービス (Logstash、Filebeat、Fluentd など) を使用して、ログ・コレクションを管理できます。
 
-## Spring アプリケーションへの Logback サポートの追加
+## Spring アプリへの Logback サポートの追加
 {: #spring-log4j}
 
-[Logback](https://logback.qos.ch/){: new_window} ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン") は、Spring Boot でデフォルトで使用されるログ・エンジンです。クラスパスで検出されると自動的に使用されます。ほとんどの Spring Boot スターターは、過渡的に `spring-boot-starter-logging` の Logback を使用します。
+[Logback](https://logback.qos.ch/){: new_window} ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン") は、Spring Boot でデフォルトで使用されるログ・エンジンです。クラスパスで検出されると自動的に使用されます。 ほとんどの Spring Boot スターターは、過渡的に `spring-boot-starter-logging` の Logback を使用します。
 
 以下の例 ([Spring Boot のサンプル](https://github.com/spring-projects/spring-boot/blob/master/spring-boot-samples/spring-boot-sample-logback/src/main/java/sample/logback/SampleLogbackApplication.java)に基づく例){: new_window} ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン") では、Logback に実装されている SLF4J ロギング API を使用して `Logger` を初期化し、さまざまなログ・レベルでメッセージを生成します。
 
@@ -62,7 +62,7 @@ public class SampleLogbackApplication {
 ```
 {: codeblock}
 
-デフォルトのログ・レベルは `INFO` です。 `application.properties` で、特定の Java パッケージ用に別のロギング・レベルを指定できます。 例えば、デフォルトのログ・レベルを `WARN` に、パッケージ `sample.logging` のレベルを `DEBUG` に、Spring パッケージ `org.springframework.web` のレベルを `ERROR` にそれぞれ設定する場合は、以下のコードを `application.properties` に追加します。
+デフォルトのログ・レベルは `INFO` です。 `application.properties` で、特定の Java&trade; パッケージ用に別のロギング・レベルを指定できます。 例えば、デフォルトのログ・レベルを `WARN` に、パッケージ `sample.logging` のレベルを `DEBUG` に、Spring パッケージ `org.springframework.web` のレベルを `ERROR` にそれぞれ設定する場合は、以下のコードを `application.properties` に追加します。
 
 ```properties
 logging.level.root=WARN
@@ -94,7 +94,7 @@ logging.level. sample.logging=DEBUG
 ### JSON ログの作成
 {: #spring-json-logs}
 
-Spring アプリケーションで JSON ロギングを有効にするには、`logstash-logback-encoder` を使用します。
+Spring アプリで JSON ロギングを有効にするには、`logstash-logback-encoder` を使用します。
 
 logback エンコーダーを依存項目として追加します。
 
@@ -107,7 +107,7 @@ logback エンコーダーを依存項目として追加します。
 ```
 {: codeblock}
 
-`logback.xml` で logback を構成し、その新しいエンコーダーと一緒に `ConsoleAppender` を使用するようにします。 以下のように記述します。
+次の例のように、`logback.xml` で logback を構成して、その新しいエンコーダーと一緒に `ConsoleAppender` を使用するようにします。
 
 ```xml
 <configuration>
@@ -124,7 +124,7 @@ logback エンコーダーを依存項目として追加します。
 ```
 {: codeblock}
 
-この構成では、以下のような JSON 形式のログが表示されます。
+この構成にすると、以下のような JSON 形式のログになります。
 
 ```
 {"@timestamp":"2018-10-11T23:48:57.215+00:00","@version":1,"message":"Sample TRACE Message","logger_name":"com.example.demo.LoggingExample","thread_name":"http-nio-8080-exec-1","level":"TRACE","level_value":5000}
@@ -161,14 +161,14 @@ $ docker logs --tail 5 -f <container-id> | jq .message
 ```
 {: screen}
 
-## 次の手順
+## 次のステップ
 {: #spring-logging-next-steps notoc}
 
 アペンダー、ログ・レベル、構成の詳細を指定してログ・メッセージをカスタマイズする方法について詳しくは、公式サイトの[Spring Boot 解説書のロギングに関する情報](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html){: new_window} ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン") を参照してください。
 
-各デプロイメント環境でのログの表示方法について詳しくは、次の各ページを参照してください。
+以下の各デプロイメント環境でのログの表示方法について詳しくは、次の各ページを参照してください。
 
 * [Kubernetes のログ](https://kubernetes.io/docs/concepts/cluster-administration/logging/){: new_window} ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")
-* [{{site.data.keyword.openwhisk}} のログおよびモニタリング](/docs/openwhisk?topic=cloud-functions-openwhisk_logs#openwhisk_logs)
+* [{{site.data.keyword.openwhisk}} のログおよびモニタリング](/docs/openwhisk?topic=cloud-functions-logs)
 * [{{site.data.keyword.cloud_notm}} Log Analysis](/docs/services/CloudLogAnalysis?topic=cloudloganalysis-log_analysis_ov#log_analysis_ov)
 * [{{site.data.keyword.cloud_notm}} Private ELK スタック](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.2/manage_metrics/logging_elk.html){: new_window} ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")

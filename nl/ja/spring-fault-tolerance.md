@@ -59,12 +59,12 @@ public class MyApplication {
 ### HystrixCommand を使用してフォールバックを定義する
 {: #spring-fallback}
 
-回路ブレーカー動作をメソッドに追加するには、メソッドに `@HystrixCommand` アノテーションを追加します。Spring は、`@EnableCircuitBreaker` でアノテーションが付けられているアプリケーション内のメソッドを発見し、エラーとタイムアウトをモニターするための Hystrix サポートでそれらをラップします。次に、Spring は、必要なときに適切な代替動作を呼び出します。
+回路ブレーカー動作をメソッドに追加するには、メソッドに `@HystrixCommand` アノテーションを追加します。 Spring は、`@EnableCircuitBreaker` でアノテーションが付けられているアプリケーション内のメソッドを発見し、エラーとタイムアウトをモニターするための Hystrix サポートでそれらをラップします。 次に、Spring は、必要なときに適切な代替動作を呼び出します。
 
 `@HystrixCommand` アノテーションは、`@Component` または `@Service` 内のメソッドでのみサポートされます。
 {: note}
 
-以下の `@HystrixCommand` アノテーションは、`service()` 呼び出しをラップして回路ブレーカー動作を指定します。`service()` メソッドが失敗した、または回路がオープンの場合、プロキシーは `fallback()` メソッドを呼び出します。
+以下の `@HystrixCommand` アノテーションは、`service()` 呼び出しをラップして回路ブレーカー動作を指定します。 `service()` メソッドが失敗した、または回路がオープンの場合、プロキシーは `fallback()` メソッドを呼び出します。
 
 ```java
 @Autowired
@@ -97,7 +97,7 @@ class MicroService {
 ### タイムアウトの使用
 {: #spring-timeout}
 
-アプリケーションは、応答していないリモート・サービスに対してどのように応答しますか? しばらく待機するか、非常に時間がかかる可能性があります。Hystrix には、アプリケーションに許容できる待機時間をユーザーが定義できる機能があります。
+アプリケーションは、応答していないリモート・サービスに対してどのように応答しますか? しばらく待機するか、非常に時間がかかる可能性があります。 Hystrix には、アプリケーションに許容できる待機時間をユーザーが定義できる機能があります。
 
 単純に `HystrixCommand` アノテーションに追加するだけで、タイムアウト値をデフォルト値の 1 秒から 30 秒の範囲で変更できます。
 
@@ -130,9 +130,9 @@ Hystrix はセマフォー・ベースとキュー・ベースの両方のバル
 ### 回路ブレーカーのステータス
 {: #spring-breaker-status}
 
-Hystrix Spring スターターには特別の切り札があります。アプリケーションのデフォルトの `/health` エンドポイントを拡張できるのです。この機能は Spring Actuator を介して提供されます。詳しくは、[Spring によるメトリック](/docs/java?topic=java-spring-metrics#spring-metrics)を参照してください。
+Hystrix Spring スターターには特別の切り札があります。アプリケーションのデフォルトの `/health` エンドポイントを拡張できるのです。この機能は Spring Actuator を介して提供されます。 詳しくは、[Spring によるメトリック](/docs/java?topic=java-spring-metrics#spring-metrics)を参照してください。
 
-ヘルス・エンドポイントが[追加の詳細情報を含めて構成されている](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health){: new_window}![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")場合、回路ブレーカーのステータスはヘルス・チェック情報とともに含まれます。(この振る舞いはデフォルトでは無効になっています。)
+ヘルス・エンドポイントが[追加の詳細情報を含めて構成されている](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health){: new_window}![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")場合、回路ブレーカーのステータスはヘルス・チェック情報とともに含まれます。 (この振る舞いはデフォルトでは無効になっています。)
 
 ```
 {
@@ -147,7 +147,7 @@ Hystrix Spring スターターには特別の切り札があります。アプ�
 ```
 {: screen}
 
-## 次の手順
+## 次のステップ
 {: #spring-tolerance-next-steps notoc}
 
 Hystrix の構成について詳しくは、「[Hystrix Configuration Wiki](https://github.com/Netflix/Hystrix/wiki/Configuration){: new_window}」![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")を参照してください。

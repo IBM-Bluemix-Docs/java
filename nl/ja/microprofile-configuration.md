@@ -22,7 +22,7 @@ subcollection: java
 # MicroProfile による構成
 {: #mp-configuration}
 
-MicroProfile Config API を使用すると、アプリケーション構成プロパティーを複数のソースに保管できるため、環境固有のコード・パスなしでコードを書くことができます。API は [CDI](/docs/java?topic=java-mp-cdi#mp-cdi) を使用して、値が指定されたプロパティーをアプリケーションに注入します。
+MicroProfile Config API を使用すると、アプリケーション構成プロパティーを複数のソースに保管できるため、環境固有のコード・パスなしでコードを書くことができます。 API は [CDI](/docs/java?topic=java-mp-cdi#mp-cdi) を使用して、値が指定されたプロパティーをアプリケーションに注入します。
 
 ## 前提条件
 {: #mp-config-prereq}
