@@ -1,8 +1,8 @@
-﻿---
+---
 
 copyright:
   years: 2019
-lastupdated: "2019-04-22"
+lastupdated: "2019-06-10"
 
 keywords: mpmetrics microprofile, mpmetrics, prometheus java, metrics java, microprofile metrics
 
@@ -78,12 +78,12 @@ Johns-MacBook-Pro-8:StockTrader jalcorn$
 Comme vous le voyez, deux portefeuilles sont comptabilisés, comme prévu. 
 
 Notez les points suivants :
-- Il s'agit d'un compteur en mémoire : si le pod est redémarré, la valeur est réinitialisée à zéro ; s'il y a plusieurs répliques, chacune a sa propre valeur unique.
+- Un compteur en mémoire est utilisé : Si le pod est redémarré, la valeur est réinitialisée à zéro ; s'il y a plusieurs répliques, chacune a sa propre valeur unique.
 - Le texte "# HELP" est celui spécifié comme description dans l'annotation `@Counted`.
 
 Vous pouvez également afficher la sortie de ce noeud final REST GET dans votre navigateur Web :
 
-![Noeud final REST GET - Navigateur Web](images/microprofile-metrics-image1.png "Noeud final REST GET - Navigateur Web"){: caption="Figure 1. Noeud final REST GET - Navigateur Web" caption-side="bottom"}
+![Noeud final REST GET - Navigateur Web](images/microprofile-metrics-image1.png "Noeud final REST GET - Navigateur Web")
 
 Par défaut, le noeud final `/metrics` exige que les données d'identification de connexion et https soient transmises. Liberty 18.0.0.3 a introduit la chaîne suivante que vous pouvez ajouter à votre fichier `server.xml` pour faire en sorte que ce noeud final autorise http et soit non authentifié :
 

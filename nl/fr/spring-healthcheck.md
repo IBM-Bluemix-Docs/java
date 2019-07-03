@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-04-22"
+lastupdated: "2019-06-10"
 
 keywords: health check spring, spring health endpoint, spring-boot-actuator, liveness probe spring, readiness probe spring, spring kubernetes probe
 
@@ -22,7 +22,7 @@ subcollection: java
 # Diagnostics d'intégrité avec Spring
 {: #spring-healthcheck}
 
-Le noeud final d'intégrité fourni par l'actionneur Spring Boot est lié au cycle de vie de l'application. Il ne sera pas accessible tant que l'application n'aura pas été démarrée, et cessera d'être disponible dès que l'application sera arrêtée (ce qui se produit avant que le processus s'arrête). Spring Boot Actuator ajoutera automatiquement des indicateurs d'intégrité supplémentaires pour les technologies détectées sur le chemin d'accès aux classes. Par exemple, si votre application utilise JDBC, le noeud final d'intégrité inclura des tests de base pour s'assurer que le magasin de données de secours est accessible. Le noeud final d'intégrité défini par l'actionneur est mieux adapté aux sondes de disponibilité pour cette raison.
+Le noeud final d'intégrité fourni par l'actionneur Spring Boot Actuator est lié au cycle de vie de l'application et n'est pas accessible tant que l'application n'a pas été démarrée. De la même façon, il cesse d'être disponible dès que l'application est arrêtée (ce qui se produit avant que le processus ne s'arrête). Spring Boot Actuator ajoute automatiquement des indicateurs de santé pour les technologies détectées dans le chemin d'accès aux classes. Par exemple, si votre application utilise JDBC, le noeud final d'intégrité va inclure des tests de base pour s'assurer que le magasin de données de secours est accessible. Le noeud final d'intégrité défini par l'actionneur est mieux adapté aux sondes de disponibilité pour cette raison.
 
 Activez Spring Boot Actuator en ajoutant la dépendance `spring-boot-actuator` à votre fichier `pom.xml` :
 
@@ -34,14 +34,14 @@ Activez Spring Boot Actuator en ajoutant la dépendance `spring-boot-actuator` �
 ```
 {: codeblock}
 
-Il existe des différences de comportement avec Spring Boot Actuator entre les différentes versions. Dans les deux prochaines sections, nous étudierons la façon dont vous pouvez créer des vérifications d'activité et de disponibilité dans les deux versions de Spring Boot, en commençant par la version 2 qui est la plus récente.
+Il existe des différences de comportement avec Spring Boot Actuator entre les différentes versions. Les deux prochaines sections explorent la façon de créer des vérifications d'activité et de disponibilité dans les deux versions de Spring Boot, en commençant par la version 2 qui est la plus récente.
 
 ## Diagnostics d'intégrité de Spring Boot 2
 {: #spring-health-boot2}
 
-L'actionneur Spring Boot 2 définit un noeud final `/actuator/health`, qui renvoie un contenu `{"status": "UP"}` lorsque tout est en ordre. Ce noeud final est activé par défaut et ne nécessite aucun code d'application.
+L'actionneur Spring Boot Actuator 2 définit un noeud final `/actuator/health`, qui renvoie un contenu `{"status": "UP"}` lorsque tout est en ordre. Ce noeud final est activé par défaut et ne nécessite aucun code d'application.
 
-Exemple de diagnostic d'intégrité non authentifié réussi à l'aide de l'actionneur Spring Boot 2 :
+Consultez l'exemple suivant d'un diagnostic d'intégrité non authentifié réussi qui utilise l'actionneur Spring Boot 2 :
 <!-- Spring Boot 2 test project: https://github.com/IBM/spring-alarm-application -->
 
 ```
@@ -73,14 +73,14 @@ Date: Fri, 07 Dec 2018 23:09:09 GMT
 ```
 {: screen}
 
-Notez l'inclusion de certaines informations de base de données H2. Cet exemple montre un actionneur Spring qui ajouter des diagnostics automatiquement pour les services de secours. Dans ce cas, l'application utilise JDBC et le pilote H2 a été reconnu sur le chemin d'accès aux classes.
+Notez l'inclusion de certaines informations de base de données H2. Cet exemple d'actionneur Spring ajoute des diagnostics automatiquement pour les services de secours. Dans ce cas, l'application utilise JDBC et le pilote H2 a été reconnu sur le chemin d'accès aux classes.
 
 Vous pouvez remplacer le comportement par défaut du noeud final d'intégrité avec des propriétés ou du code, comme décrit dans le [Guide de référence de Spring Boot 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe").
 
 ### Sonde d'activité dans Spring Boot 2
 {: #spring-liveness-boot2}
 
-L'infrastructure d'Actuator dans Spring Boot 2 est sa propre mini infrastructure REST qui peut être étendue avec des noeuds finaux personnalisés. Ceci signifie que nous pouvons ajouter un simple noeud final d'activité qui est géré de la même façon que l'indicateur d'intégrité qui est intégré. Un noeud final d'activité personnalisé peut être défini trivialement de la manière suivante :
+L'infrastructure d'Actuator dans Spring Boot 2 est sa propre mini infrastructure REST qui peut être étendue avec des noeuds finaux personnalisés. En d'autres termes, vous pouvez ajouter un simple noeud final d'activité qui est géré de la même façon que l'indicateur d'intégrité intégré. Un noeud final d'activité personnalisé peut être défini trivialement comme dans l'exemple suivant :
 
 ```java
 @Endpoint(id="liveness")
@@ -143,10 +143,9 @@ Pour éviter les cycles de redémarrage, réglez `livenessProbe.initialDelaySeco
 ## Diagnostics d'intégrité dans Spring Boot 1
 {: #spring-health-boot1}
 
-L'actionneur Spring Boot 1 définit un noeud final `/health` qui renvoie un contenu `{"status": "UP"}` lorsque tout est en ordre. Le noeud final ne nécessite pas d'autorisation mais si une autorisation est configurée et l'appelant est autorisé, des informations additionnelles seront incluses dans la réponse.
+L'actionneur Spring Boot Actuator 1 définit un noeud final `/health` qui renvoie un contenu `{"status": "UP"}` lorsque tout est en ordre. Le noeud final ne nécessite pas d'autorisation mais si une autorisation est configurée et l'appelant est autorisé, des informations additionnelles sont incluses dans la réponse.
 
-Exemple de diagnostic d'intégrité non authentifié réussi à l'aide de l'actionneur Spring Boot 1 :
-
+Consultez l'exemple suivant d'un diagnostic d'intégrité non authentifié réussi qui utilise l'actionneur Spring Boot 1 :
 ```
 $ curl -i localhost:8080/health
 HTTP/1.1 200
@@ -189,7 +188,7 @@ Vous pouvez redéfinir le comportement par défaut du noeud final d'intégrité 
 ### Sonde d'activité dans Spring Boot 1
 {: #spring-liveness-boot1}
 
-Dans Spring Boot 1, un simple noeud final http pour l'activité, qui renvoie toujours {"status": "UP"} avec le code de statut 200 ressemblerait à ceci :
+Pour Spring Boot 1, un simple noeud final HTTP pour l'activité, qui renvoie toujours {"status": "UP"} avec le code de statut 200, ressemblerait au fragment suivant :
 
 ```java
 @RestController

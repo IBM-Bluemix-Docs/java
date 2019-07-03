@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-06-10"
 
 keywords: spring logging, spring logger, logback spring, debug spring, json log spring, consoleappender spring, spring boot log
 
@@ -22,7 +22,7 @@ subcollection: java
 
 Les messages de journal sont des chaînes d'informations contextuelles qui se rapportent à l'état et l'activité d'un microservice quand une entrée de journal est créée. Vous pouvez utiliser la consignation pour diagnostiquer pourquoi et comment des services échouent, ainsi que comme aide pour des métriques de surveillance de la santé des applications.
 
-Les entrées de journal doivent être consignées directement dans la sortie standard et les flux d'erreurs. Ceci vous permet de les afficher à l'aide des outils de ligne de commande et d'utiliser les services de transfert de journaux configurés au niveau de l'infrastructure (par exemple Logstash, Filebeat ou Fluentd) pour gérer la collecte des journaux.
+Les entrées de journal doivent être écrites directement dans la sortie standard et les flux d'erreurs, ce qui rend les entrées de journal consultables via les outils de ligne de commande. Vous pouvez ensuite utiliser des services d'acheminement des journaux configurés au niveau de l'infrastructure, comme Logstash, Filebeat ou Fluentd, pour gérer la collecte de journaux.
 
 ## Ajout d'un support Logback aux applications Spring
 {: #spring-log4j}
@@ -62,7 +62,7 @@ public class SampleLogbackApplication {
 ```
 {: codeblock}
 
-Le niveau de consignation par défaut est `INFO`. Vous pouvez spécifier différents niveaux de consignation pour certains modules Java dans `application.properties`. Ainsi, pour définir le niveau de consignation par défaut sur `WARN` (avertissement), le niveau du package `sample.logging` sur `DEBUG` (débogage) et le niveau du package Spring `org.springframework.web` sur `ERROR` (erreur), ajoutez le code suivant à `application.properties` :
+Le niveau de consignation par défaut est `INFO`. Vous pouvez spécifier différents niveaux de consignation pour certains modules Java&trade; dans `application.properties`. Ainsi, pour définir le niveau de consignation par défaut sur `WARN` (avertissement), le niveau du package `sample.logging` sur `DEBUG` (débogage) et le niveau du package Spring `org.springframework.web` sur `ERROR` (erreur), ajoutez le code suivant à `application.properties` :
 
 ```properties
 logging.level.root=WARN
@@ -107,7 +107,7 @@ Ajoutez le codeur logback comme dépendance :
 ```
 {: codeblock}
 
-Configurez logback pour qu'il utilise le nouveau codeur avec `ConsoleAppender` dans `logback.xml`. Le code doit ressembler à l'exemple suivant :
+Configurez logback pour qu'il utilise le nouveau codeur avec `ConsoleAppender` dans `logback.xml`, comme illustré dans l'exemple suivant :
 
 ```xml
 <configuration>
@@ -124,7 +124,7 @@ Configurez logback pour qu'il utilise le nouveau codeur avec `ConsoleAppender` d
 ```
 {: codeblock}
 
-Avec cette configuration, vous voyez à présent des journaux au format JSON :
+Avec cette configuration, vous pouvez voir des journaux au format JSON : 
 
 ```
 {"@timestamp":"2018-10-11T23:48:57.215+00:00","@version":1,"message":"Sample TRACE Message","logger_name":"com.example.demo.LoggingExample","thread_name":"http-nio-8080-exec-1","level":"TRACE","level_value":5000}
@@ -168,6 +168,6 @@ Pour en savoir plus sur la personnalisation des messages de journal à l'aide de
 En savoir plus sur l'affichage des journaux dans chacun des environnements de déploiement :
 
 * [Journaux de Kubernetes](https://kubernetes.io/docs/concepts/cluster-administration/logging/){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")
-* [{{site.data.keyword.openwhisk}} - Journaux & surveillance](/docs/openwhisk?topic=cloud-functions-openwhisk_logs#openwhisk_logs)
+* [Journaux & surveillance d'{{site.data.keyword.openwhisk}}](/docs/openwhisk?topic=cloud-functions-logs)
 * [{{site.data.keyword.cloud_notm}} - Analyse des journaux](/docs/services/CloudLogAnalysis?topic=cloudloganalysis-log_analysis_ov#log_analysis_ov)
 * [{{site.data.keyword.cloud_notm}} - Pile ELK privée](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.2/manage_metrics/logging_elk.html){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")

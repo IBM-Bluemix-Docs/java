@@ -51,7 +51,7 @@ N'oubliez jamais le rôle et l'objectif de la tolérance aux pannes : les micros
 ## Définition d'un noeud final JAX-RS d'activité
 {: #jaxrs-liveness}
 
-Une sonde d'activité doit faire l'objet d'une réflexion quant à ce qui vérifié, car toute défaillance entraîne l'arrêt immédiat du processus. Un noeud final d'activité simple se présente comme suit : 
+Une sonde d'activité doit faire l'objet d'une réflexion quant à ce qui vérifié, car toute défaillance entraîne l'arrêt immédiat du processus. Un noeud final d'activité simple se présente comme suit :
 
 ```java
 @Path("liveness")

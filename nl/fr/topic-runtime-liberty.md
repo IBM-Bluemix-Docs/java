@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-05-20"
+lastupdated: "2019-06-10"
 
 keywords: open liberty java, websphere liberty java, jakarta, webpshere docker, liberty docker, liberty docker images, installutility, microprofile java, dual layer docker, develop microservices
 
@@ -11,6 +11,7 @@ subcollection: java
 ---
 
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:codeblock: .codeblock}
@@ -26,8 +27,8 @@ subcollection: java
 
 Les fonctionnalités de Liberty prennent en charge les structures d'application suivantes :
 
-* [MicroProfile](https://microprofile.io/){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe"), un un projet open source qui définit de nouvelles normes et API pour accélérer et simplifier la création de microservices. 
-* [Jakarta EE](https://jakarta.ee){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe") et [Java EE](https://www.oracle.com/technetwork/java/javaee/overview/index.html){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe"), qui incluent des fonctions pour des spécifications individuelles, comme JNDI ou JAX-RS.
+* [MicroProfile](https://microprofile.io/){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe"), un projet open source qui définit de nouvelles normes et API pour accélérer et simplifier la création de microservices.
+* [Jakarta EE](https://jakarta.ee){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe") et [Java&trade; EE](https://www.oracle.com/technetwork/java/javaee/overview/index.html){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe"), qui incluent des fonctions pour des spécifications individuelles, comme JNDI ou JAX-RS.
 * [Spring Framework and Spring Boot](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_dep_springboot.html){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe"), qui incluent des mécanismes pour fabriquer des conteneurs compacts à partir des fichiers JAR volumineux de Spring Boot.
 
 Vous trouverez un grand nombre de guides de développement pratiques pour créer des microservices et des applications natives du cloud avec Liberty à l'adresse [https://openliberty.io/guides/](https://openliberty.io/guides/){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe").
@@ -48,7 +49,7 @@ Open Liberty et WebSphere Liberty fournissent une variété d'images de base que
 2. `open-liberty:javaee8` ou `websphere-liberty:javaee8`
 3. `open-liberty:springBoot2` ou `websphere-liberty:springBoot2`
 
-Consultez [`websphere-liberty`](https://hub.docker.com/_/websphere-liberty/){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe") ou [`open-liberty`](https://hub.docker.com/_/open-liberty/){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "External link icon") sur Docker Hub pour obtenir une liste actualisée des images de base.
+Consultez [`websphere-liberty`](https://hub.docker.com/_/websphere-liberty/){: external} ou [`open-liberty`](https://hub.docker.com/_/open-liberty/){: external} sur le hub Docker pour avoir la liste la plus récente des images de base.
 
 ### Open Liberty et Docker
 {: #openliberty-docker}
@@ -72,7 +73,7 @@ Pour obtenir d'autres exemples et le code de travail, consultez les guides Open 
 
 Il existe quelques différences entre Open Liberty et sa version commerciale, WebSphere Liberty. L'une des différences les plus importantes pour la création d'images Docker est que la commande `installUtility` n'est pas disponible dans Open Liberty.
 
-WebSphere Liberty prend en charge les mêmes modèles de personnalisation de base qu'Open Liberty pour les images Docker, mais la conception modulaire inhérente à Liberty simplifie la création d'une image personnalisée contenant une application et l'ensemble de fonctionnalités spécifique qu'elle nécessite. WebSphere Liberty possède une image pour un noyau sans fonctionnalité, [`websphere-liberty:kernel`](https://github.com/WASdev/ci.docker/blob/9d28dfba4d20596f89b393bc9e3ae8295feec469/ga/developer/kernel/Dockerfile){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe"), qui constitue une base solide pour une image vraiment personnalisée.
+WebSphere Liberty prend en charge les mêmes modèles de personnalisation qu'Open Liberty pour les images Docker. Cependant, la conception modulaire inhérente à Liberty simplifie la création d'une image personnalisée contenant une application et l'ensemble de fonctionnalités spécifique qu'elle nécessite. WebSphere Liberty possède une image pour un noyau sans fonctionnalité, [`websphere-liberty:kernel`](https://github.com/WASdev/ci.docker/blob/9d28dfba4d20596f89b393bc9e3ae8295feec469/ga/developer/kernel/Dockerfile){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe"), qui constitue une base solide pour une image vraiment personnalisée.
 
 La [documentation sur l'image `websphere-liberty` ](https://hub.docker.com/_/websphere-liberty/){: new_window} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe") décrit le fichier Docker simple suivant de 3 lignes nécessaire pour créer une image personnalisée :
 
@@ -103,7 +104,7 @@ COPY server.xml /config/
 La manière dont vous structurez votre image Docker dépend de quelques facteurs :
 
 1. Dans quelle mesure voulez-vous que votre image de base soit réutilisable ou personnalisée ?
-    Ces étapes produisent la plus petite image possible, potentiellement au détriment de la réutilisation si les caractéristiques de chaque application sont différentes. Cependant, le fait d'avoir de petites images personnalisées signifie que l'application peut être rapidement déployée sur les hôtes Docker. Si vous n'êtes pas sûr, commencez par l'une des images prégénérées du hub Docker pour une réutilisation maximale. 
+    Ces étapes produisent la plus petite image possible, potentiellement au détriment de la réutilisation si les caractéristiques de chaque application sont différentes. Cependant, le fait d'avoir de petites images personnalisées signifie que l'application peut être rapidement déployée sur les hôtes Docker. Si vous n'êtes pas sûr, commencez par l'une des images prégénérées du hub Docker pour une réutilisation maximale.
 2. A quelle fréquence mettez-vous à jour cette image ?
     Si l'application est mise à jour fréquemment, par exemple dans un pipeline CI/CD, il est avantageux de structurer l'image de manière à ce que le calque le plus fréquemment modifié (souvent vos classes d'application ou binaires applicatifs) soit en haut. Cette structure réduit le nombre de calques qui doivent être reconstruits lorsque l'application change et lorsque l'image est reconstruite, ce qui accélère les temps de construction et de déploiement.
 
