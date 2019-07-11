@@ -29,7 +29,7 @@ Log entries are to be written directly to standard output and error streams, whi
 
 [Logback](https://logback.qos.ch/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") is the default log engine that is used by Spring Boot, and is used automatically when found in the class path. Most Spring Boot starters transitively depend on Logback through `spring-boot-starter-logging`.
 
-The following example (based on a [Spring Boot sample](https://github.com/spring-projects/spring-boot/blob/master/spring-boot-samples/spring-boot-sample-logback/src/main/java/sample/logback/SampleLogbackApplication.java)){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") uses the SLF4J logging API, which Logback implements, to initialize a `Logger` and emit messages at various log levels:
+The following example <!--(based on a [Spring Boot sample](https://github.com/spring-projects/spring-boot/blob/master/spring-boot-samples/spring-boot-sample-logback/src/main/java/sample/logback/SampleLogbackApplication.java)){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") this link is broken and {: new_window} is rendering with the icon--> uses the SLF4J logging API, which Logback implements, to initialize a `Logger` and emit messages at various log levels:
 
 ```java
 package sample.logging;
