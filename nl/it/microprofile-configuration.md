@@ -22,7 +22,7 @@ subcollection: java
 # Configurazione con MicroProfile
 {: #mp-configuration}
 
-L'API MicroProfile Config consente la memorizzazione delle proprietà di configurazione dell'applicazione in più origini, in modo che puoi scrivere il tuo codice senza percorsi di codice specifici per l'ambiente.L'API utilizza [CDI](/docs/java?topic=java-mp-cdi#mp-cdi) per inserire le proprietà con dei valori specificati nella tua applicazione.
+L'API MicroProfile Config consente la memorizzazione delle proprietà di configurazione dell'applicazione in più origini, in modo che puoi scrivere il tuo codice senza percorsi di codice specifici per l'ambiente. L'API utilizza [CDI](/docs/java?topic=java-mp-cdi#mp-cdi) per inserire le proprietà con dei valori specificati nella tua applicazione.
 
 ## Prerequisiti
 {: #mp-config-prereq}

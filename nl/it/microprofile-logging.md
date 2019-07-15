@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-05-20"
+lastupdated: "2019-06-10"
 
 keywords: java logging, log level java, debug java, json log java, json log help, kibana liberty, liberty messages
 
@@ -54,7 +54,7 @@ Il livello di log viene visualizzato quando questi messaggi vengono generati in 
 ```
 {: screen}
 
-I livelli di log ti offrono la flessibilità di scegliere dinamicamente quali log scrive la tua applicazione. Questa funzione ti consente di scrivere del codice di log che descrive sia lo stato delle applicazioni di alto livello che il contenuto di debug dettagliato senza molto sforzo. Per cui puoi escludere mediante filtro il contenuto di debug più dettagliato finché non ne hai bisogno. Il livello di log `info` è di norma il livello di output minimo, seguito da `fine`, `finer`, `finest` e `debug`.
+I livelli di log ti offrono la flessibilità di scegliere dinamicamente quali log scrive la tua applicazione. Utilizzando i livelli di log, puoi scrivere del codice di log che descrive sia lo stato delle applicazioni di alto livello che il contenuto di debug dettagliato senza molto sforzo. Per cui puoi escludere mediante filtro il contenuto di debug più dettagliato finché non ne hai bisogno. Il livello di log `info` è di norma il livello di output minimo, seguito da `fine`, `finer`, `finest` e `debug`.
 
 Se una voce di log richiede più righe di codice, o comporta delle operazioni che utilizzano molta potenza di elaborazione come la concatenazione di stringhe, devi valutarne la protezione con un test per determinare se il livello di log è abilitato. Aggiungendo il controllo si garantisce che la tua applicazione non dedichi tempo prezioso a creare dei messaggi di log che finiscono per essere esclusi mediante filtro. Nel seguente esempio, il livello di log previsto di `fine` viene abilitato prima di provare a creare l'output del messaggio.
 
@@ -131,9 +131,9 @@ Liberty ha alcuni messaggi della console primitiva che non hanno una formattazio
 ## Funzioni aggiuntive
 {: #mp-log-features}
 
-Le linee guida per l'utilizzo dei livelli di log, come quando utilizzi `logger.info` o `logger.fine`, sono elementi che devono essere decisi da ciascun progetto o da ciascuna organizzazione. In generale, queste interfacce sono necessarie e utili in quasi tutti i progetti. 
+Le linee guida per l'utilizzo dei livelli di log, come quando utilizzi `logger.info` o `logger.fine`, sono elementi che devono essere decisi da ciascun progetto o da ciascuna organizzazione. In generale, queste interfacce sono necessarie e utili in quasi tutti i progetti.
 
-Una prassi ottimale consiste nell'utilizzare le variabili di ambiente (fornite al pod tramite le mappe di configurazione Kubernetes o i segreti) in ogni campo pertinente nel file `server.xml`. Utilizzando questo metodo, puoi modificare la configurazione della registrazione senza dover ricreare e ridistribuire la tua immagine Docker. 
+Una prassi ottimale consiste nell'utilizzare le variabili di ambiente (fornite al pod tramite le mappe di configurazione Kubernetes o i segreti) in ogni campo pertinente nel file `server.xml`. Utilizzando questo metodo, puoi modificare la configurazione della registrazione senza dover ricreare e ridistribuire la tua immagine Docker.
 
 Ad esempio, per utilizzare le variabili di ambiente per impostare gli attributi di registrazione dettagliati, devi modificare la stanza proveniente dall'esempio precedente:
 
@@ -154,17 +154,17 @@ Un'altra alternativa consiste nell'utilizzare la variabile di ambiente `WLP_LOGG
 ## Dashboard Kibana per Liberty
 {: #liberty-kibana}
 
-Insieme alla nuova funzione di registrazione JSON, Liberty fornisce dashboard Kibana precostruiti [che puoi scaricare da GitHub](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_icp_json_logging.html){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno"). Segui le istruzioni presenti nel link per installarli. Sono ora disponibili due nuovi dashboard: 
+Insieme alla nuova funzione di registrazione JSON, Liberty fornisce dashboard Kibana precostruiti [che puoi scaricare da GitHub](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_icp_json_logging.html){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno"). Segui le istruzioni presenti nel link per installarli. Sono ora disponibili due nuovi dashboard:
 
 ![Dashboard Kibana](images/microprofile-logging-image4.png "Dashboard Kibana")
 
-Quando selezioni il dashboard per la determinazione dei problemi, puoi vedere: 
+Quando selezioni il dashboard per la determinazione dei problemi, puoi vedere:
 
 ![Dettagli dashboard Kibana](images/microprofile-logging-image5.png "Dettagli dashboard Kibana")
 
-Il dashboard è interattivo. Ad esempio, se scegli **INFO** nella legenda del widget **Liberty Message**, il widget **Liberty Messages Search** si filtrerà alla ricerca dei soli messaggi `loglevel=INFO`. Il dashboard federa i dati di log da tutti i tuoi microservizi basati su Liberty, escludendo dal filtro gli altri log di sistema. 
+Il dashboard è interattivo. Ad esempio, se scegli **INFO** nella legenda del widget **Liberty Message**, il widget **Liberty Messages Search** si filtrerà alla ricerca dei soli messaggi `loglevel=INFO`. Il dashboard federa i dati di log da tutti i tuoi microservizi basati su Liberty, escludendo dal filtro gli altri log di sistema.
 
-Ci sono altri dashboard Kibana e Grafana associati al grafico helm Liberty. Sono disponibili come [estensioni al pacchetto cloud Liberty](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno").
+Ci sono altri dashboard Kibana e Grafana associati al grafico helm Liberty. Sono disponibili come [estensioni `pak` cloud Liberty](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno").
 
 ## Passi successivi
 {: #mp-logging-next-steps notoc}
@@ -174,6 +174,6 @@ Per ulteriori informazioni sulla personalizzazione dei messaggi di log con gli a
 Ulteriori informazioni sulla visualizzazione dei log in ognuno dei seguenti ambienti di distribuzione:
 
 * [Log Kubernetes](https://kubernetes.io/docs/concepts/cluster-administration/logging/){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")
-* [{{site.data.keyword.openwhisk}} Logs & Monitoring](/docs/openwhisk?topic=cloud-functions-openwhisk_logs#openwhisk_logs)
+* [{{site.data.keyword.openwhisk}} Logs & Monitoring](/docs/openwhisk?topic=cloud-functions-logs)
 * [{{site.data.keyword.cloud_notm}} Log Analysis](/docs/services/CloudLogAnalysis?topic=cloudloganalysis-log_analysis_ov#log_analysis_ov)
 * [{{site.data.keyword.cloud_notm}} Stack ELK privato stack](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.2/manage_metrics/logging_elk.html){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-05-20"
+lastupdated: "2019-06-10"
 
 keywords: java logging, log level java, debug java, json log java, json log help, kibana liberty, liberty messages
 
@@ -22,7 +22,7 @@ subcollection: java
 # Registro
 {: #mp-logging}
 
-A abordagem recomendada para criação de log com aplicativos MicroProfile é usar o padrão de criação de log Java&trade; JSR-47. É possível iniciar com as importações a seguir:
+A abordagem recomendada para criação de log com aplicativos do MicroProfile é usar o padrão de criação de log do Java&trade; JSR-47. É possível iniciar com as importações a seguir:
 
 ```java
 import java.util.logging.Level;
@@ -54,7 +54,7 @@ O nível de log é exibido quando essas mensagens são enviadas para o console.
 ```
 {: screen}
 
-Os níveis de log fornecem a flexibilidade para escolher dinamicamente quais logs seu aplicativo grava. Esse recurso permite gravar o código de log que descreve o estado do aplicativo de alto nível e o conteúdo de depuração detalhado antecipados. Portanto, é possível filtrar o conteúdo de depuração mais detalhado até que seja necessário. O nível de log `info` é geralmente o nível de saída mínimo, seguido por `fine`, `finer`, `finest` e `debug`.
+Os níveis de log fornecem a flexibilidade para escolher dinamicamente quais logs seu aplicativo grava. Usando níveis de log, é possível gravar o código de log que descreve o estado do aplicativo de alto nível e o conteúdo de depuração detalhado na frente. Portanto, é possível filtrar o conteúdo de depuração mais detalhado até que seja necessário. O nível de log `info` é geralmente o nível de saída mínimo, seguido por `fine`, `finer`, `finest` e `debug`.
 
 Se uma entrada de log requer múltiplas linhas de código ou envolve operações caras, como concatenação de sequências, considere protegê-las com um teste para determinar se o nível de log está ativado. Incluir a verificação assegura que seu aplicativo não gaste um tempo crucial construindo mensagens de log que acabam sendo filtradas. No exemplo a seguir, o nível de log desejado de `fine` é ativado antes de tentar construir a saída da mensagem.
 
@@ -117,7 +117,7 @@ if (logger.isLoggable(Level.AUDIT)) {
 ### Lendo a saída de log JSON
 {: #mp-json-log-output}
 
-A saída JSON integral é útil para o armazenamento de log e procuras, mas não é tão fácil de ler. É possível examinar o conteúdo do log em uma janela do terminal usando o comando `kubectl`. Felizmente, há uma ferramenta de linha de comandos chamada `jq` para ajudar.
+A saída JSON integral é útil para o armazenamento de log e procuras, mas não é tão fácil de ler. É possível examinar o conteúdo do log em uma janela do terminal usando o comando `kubectl`. Felizmente, há uma ferramenta de linha de comandos que é denominada `jq` para ajudar.
 
 Com o comando `jq`, é possível filtrar e focar no campo ou campos que você precisar. Se desejar ver o campo `message` e filtrar todo o resto, consulte o exemplo a seguir:
 
@@ -164,7 +164,7 @@ Ao selecionar o painel para determinação de problema, é possível ver:
 
 O painel é interativo. Por exemplo, se você escolher **INFO** na legenda para o widget **Liberty Message**, o widget **Liberty Messages Search** filtrará a si mesmo apenas para as mensagens `loglevel=INFO`. O painel federa dados de log de todos os microsserviços baseados em Liberty, filtrando outros logs do sistema.
 
-Há mais painéis do Kibana e do Grafana que estão associados ao gráfico do Helm do Liberty. Eles estão disponíveis como [extensões para o pak de nuvem do Liberty](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo").
+Há mais painéis do Kibana e do Grafana que estão associados ao gráfico do Helm do Liberty. Eles estão disponíveis como [extensões para a nuvem do Liberty `pak`](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo").
 
 ## Próximas etapas
 {: #mp-logging-next-steps notoc}
@@ -174,6 +174,6 @@ Para obter mais informações sobre como customizar mensagens de log com anexado
 Saiba mais sobre como visualizar os logs em cada um dos ambientes de implementação a seguir:
 
 * [Logs do Kubernetes](https://kubernetes.io/docs/concepts/cluster-administration/logging/){: new_window} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")
-* [{{site.data.keyword.openwhisk}} Logs & Monitoramento](/docs/openwhisk?topic=cloud-functions-openwhisk_logs#openwhisk_logs)
+* [{{site.data.keyword.openwhisk}} Logs & Monitoramento](/docs/openwhisk?topic=cloud-functions-logs)
 * [{{site.data.keyword.cloud_notm}} Log Analysis](/docs/services/CloudLogAnalysis?topic=cloudloganalysis-log_analysis_ov#log_analysis_ov)
 * [Pilha ELK do {{site.data.keyword.cloud_notm}} Private](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.2/manage_metrics/logging_elk.html){: new_window} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")

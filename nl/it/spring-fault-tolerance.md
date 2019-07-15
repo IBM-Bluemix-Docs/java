@@ -97,7 +97,7 @@ class MicroService {
 ### Utilizzo dei timeout
 {: #spring-timeout}
 
-Come la tua applicazione risponde a un servizio remoto che non risponde? L'attesa può essere breve o durare per sempre. Hystrix ti consente di definire qual è la quantità di tempo accettabile per la tua applicazione. 
+Come la tua applicazione risponde a un servizio remoto che non risponde? L'attesa può essere breve o durare per sempre. Hystrix ti consente di definire qual è la quantità di tempo accettabile per la tua applicazione.
 
 È possibile utilizzare una semplice aggiunta all'annotazione `HystrixCommand` per modificare il valore di timeout dal valore predefinito di 1 secondo con 30 secondi:
 

@@ -43,7 +43,7 @@ Hystrix를 추가하려면 다음 종속성을 추가하십시오.
 ```
 {: codeblock}
 
-Spring에서 이 새 기능을 사용하려면 기본 애플리케이션 클래스에 어노테이션을 추가하고 `@EnableCircuitBreaker`를 추가하여 회로를 차단하도록 Spring의 Hystrix 어노테이션 처리를 사용으로 설정하십시오. 
+Spring에서 이 새 기능을 사용하려면 기본 애플리케이션 클래스에 어노테이션을 추가하고 `@EnableCircuitBreaker`를 추가하여 회로를 차단하도록 Spring의 Hystrix 어노테이션 처리를 사용으로 설정하십시오.
 
 ```java
 @SpringBootApplication
@@ -91,7 +91,7 @@ class MicroService {
 ```
 {: codeblock}
 
-Spring 기반 [Hystrix Circuit Breaker](https://spring.io/guides/gs/circuit-breaker/){: new_window} ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘") 예를 참조하여 자세히 보십시오.
+Spring 기반 [Hystrix Circuit Breaker](https://spring.io/guides/gs/circuit-breaker/){: new_window} ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘") 예를 참조하여 자세히 알아보십시오.
 {: tip}
 
 ### 제한시간 사용

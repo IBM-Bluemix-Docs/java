@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-04-22"
+lastupdated: "2019-06-10"
 
 keywords: mpmetrics microprofile, mpmetrics, prometheus java, metrics java, microprofile metrics
 
@@ -56,7 +56,7 @@ public JsonObject createPortfolio(@PathParam("owner") String owner) throws SQLEx
 ```
 {: codeblock}
 
-이 스탠자가 있으면 `createPortfolio` JAX-RS 메소드를 호출할 때마다 카운터가 증분됩니다.  
+이 스탠자가 있으면 `createPortfolio` JAX-RS 메소드를 호출할 때마다 카운터가 증분됩니다. 
 
 `GET /metrics` URI를 호출하여 JVM(클래스 로딩, 힙 및 가비지 콜렉션 통계)과 애플리케이션 정의 메트릭을 둘 다 볼 수 있습니다. `GET /metrics/application` URI는 애플리케이션 정의 메트릭만 리턴합니다. 
 
@@ -78,12 +78,12 @@ Johns-MacBook-Pro-8:StockTrader jalcorn$
 두 개의 포트폴리오가 예상대로 계수되는 것을 확인할 수 있습니다. 
 
 다음은 몇 가지 참고사항입니다.
-- 이는 인메모리 카운터입니다. 팟(Pod)이 다시 시작되면 값이 0으로 재설정됩니다. 복제본이 여러 개인 경우 각각의 값은 고유합니다.
+- 인메모리 카운터가 사용됩니다. 팟(Pod)이 다시 시작되면 값이 0으로 재설정됩니다. 복제본이 여러 개인 경우 각각의 값은 고유합니다.
 - "# HELP" 텍스트는 `@Counted` 어노테이션에 설명으로 지정한 내용입니다.
 
 웹 브라우저에서도 이 REST GET 엔드포인트의 출력을 볼 수 있습니다.
 
-![REST GET 엔드포인트 웹 브라우저](images/microprofile-metrics-image1.png "REST GET 엔드포인트 웹 브라우저"){: caption="그림 1. REST GET 엔드포인트 웹 브라우저" caption-side="bottom"}
+![REST GET 엔드포인트 웹 브라우저](images/microprofile-metrics-image1.png "REST GET 엔드포인트 웹 브라우저")
 
 기본적으로 `/metrics` 엔드포인트에서는 https 및 로그인 인증 정보를 전달해야 합니다. Liberty 18.0.0.3에서는 http를 허용하고 인증되지 않도록 이 엔드포인트를 정의하기 위해 `server.xml`에 둘 수 있는 다음 스탠자를 소개합니다.
 

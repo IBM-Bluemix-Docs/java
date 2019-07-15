@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-06-10"
 
 keywords: spring logging, spring logger, logback spring, debug spring, json log spring, consoleappender spring, spring boot log
 
@@ -22,7 +22,7 @@ subcollection: java
 
 I messaggi di log sono stringhe di informazioni contestuali che riguardano lo stato e l'attività del microservizio nel momento in cui viene creata una voce di log. Puoi utilizzare la registrazione per diagnosticare modalità e causa dei malfunzionamenti dei servizi e per un ausilio con le metriche per il monitoraggio dell'integrità delle applicazioni.
 
-Le voci di log devono essere scritte direttamente nei flussi di errore e nell'output standard. Ciò rende le voci di log visibili utilizzando gli strumenti di riga di comando e consente ai servizi di inoltro dei log configurati a livello dell'infrastruttura, come Logstash, Filebeat o Fluentd, di gestire la raccolta di log.
+Le voci di log devono essere scritte direttamente nei flussi di errore e nell'output standard che rende le voci di log visualizzabili tramite gli strumenti di riga di comando. Per gestire la raccolta di log, puoi quindi utilizzare i log tramite l'inoltro dei servizi configurati a livello dell'infrastruttura, come Logstash, Filebeat o Fluentd.
 
 ## Aggiunta del supporto Logback alle applicazioni Spring
 {: #spring-log4j}
@@ -62,7 +62,7 @@ public class SampleLogbackApplication {
 ```
 {: codeblock}
 
-Il livello di log predefinito è `INFO`. Puoi specificare diversi livelli di registrazione per pacchetti Java specifici in `application.properties`. Ad esempio, per impostare il livello di log predefinito su `WARN`, il livello di log per il pacchetto `sample.logging` su `DEBUG` e il livello di log per il pacchetto Spring `org.springframework.web` su `ERROR`, aggiungi quanto segue a `application.properties`:
+Il livello di log predefinito è `INFO`. Puoi specificare diversi livelli di registrazione per pacchetti Java&trade; specifici in `application.properties`. Ad esempio, per impostare il livello di log predefinito su `WARN`, il livello di log per il pacchetto `sample.logging` su `DEBUG` e il livello di log per il pacchetto Spring `org.springframework.web` su `ERROR`, aggiungi quanto segue a `application.properties`:
 
 ```properties
 logging.level.root=WARN
@@ -78,7 +78,7 @@ Per impostazione predefinita, Logback produce messaggi con i seguenti elementi:
 - Livello di log: `ERROR`, `WARN`, `INFO`, `DEBUG` o `TRACE`.
 - ID processo.
 - Un separatore "`---`" per definire l'inizio degli effettivi messaggi di log.
-- [Nome thread (può essere troncato per l'output della console)]
+- [Nome thread (potrebbe essere troncato per l'output della console)]
 - Nome logger: il nome di norma è il nome della classe di origine (spesso abbreviato).
 - Il messaggio di log.
 
@@ -107,7 +107,7 @@ Aggiungi il codificatore di logback come una dipendenza:
 ```
 {: codeblock}
 
-Configura il logback per utilizzare il nuovo codificatore con un `ConsoleAppender` in `logback.xml`. Dovrebbe essere qualcosa di simile al seguente:
+Configura il logback per utilizzare il nuovo codificatore con un `ConsoleAppender` in `logback.xml` come mostrato nel seguente esempio. 
 
 ```xml
 <configuration>
@@ -124,7 +124,7 @@ Configura il logback per utilizzare il nuovo codificatore con un `ConsoleAppende
 ```
 {: codeblock}
 
-Con questa configurazione, vedrai ora i log con formattazione JSON:
+Con questa configurazione, puoi vedere i log con formattazione JSON:
 
 ```
 {"@timestamp":"2018-10-11T23:48:57.215+00:00","@version":1,"message":"Sample TRACE Message","logger_name":"com.example.demo.LoggingExample","thread_name":"http-nio-8080-exec-1","level":"TRACE","level_value":5000}
@@ -165,9 +165,9 @@ $ docker logs --tail 5 -f <container-id> | jq .message
 
 Per ulteriori informazioni sulla personalizzazione dei messaggi di log con gli appender, i livelli di log e i dettagli di configurazione, consulta la [guida di riferimento di Spring Boot per la registrazione](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno").ufficiale.
 
-Ulteriori informazioni sulla visualizzazione dei log in ognuno dei nostri ambienti di distribuzione:
+Ulteriori informazioni sulla visualizzazione dei log in ognuno dei seguenti ambienti di distribuzione:
 
 * [Log Kubernetes](https://kubernetes.io/docs/concepts/cluster-administration/logging/){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")
-* [{{site.data.keyword.openwhisk}} Logs & Monitoring](/docs/openwhisk?topic=cloud-functions-openwhisk_logs#openwhisk_logs)
+* [{{site.data.keyword.openwhisk}} Logs & Monitoring](/docs/openwhisk?topic=cloud-functions-logs)
 * [{{site.data.keyword.cloud_notm}} Log Analysis](/docs/services/CloudLogAnalysis?topic=cloudloganalysis-log_analysis_ov#log_analysis_ov)
 * [{{site.data.keyword.cloud_notm}} Stack ELK privato stack](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.2/manage_metrics/logging_elk.html){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-06-10"
 
 keywords: fault tolerance microprofile, retries microprofile, circuit breakers microprofile, bulkhead microprofile, microprofile limits
 
@@ -22,11 +22,11 @@ subcollection: java
 # Tolleranza di errore con MicroProfile
 {: #mp-fault-tolerance}
 
-L'approccio da noi consigliato per questi argomenti di tolleranza di errore è di avvalersi principalmente delle funzioni di Istio. Vedi "Istio -- Fault Tolerance" nel capitolo "Creating Microservices -- Polyglot Capabilities" di questo manuale. Questa sezione tratta argomenti come nuovi tentativi, timeout, interruttori, bulkhead e limitazioni della frequenza.
+L'approccio consigliato per questi argomenti di tolleranza di errore è di utilizzare le funzioni di Istio. Consulta la guida intitolata "Istio - Fault Tolerance" e seleziona il capitolo "Creating Microservices - Polyglot Capabilities". Vengono spiegati molti argomenti inclusi nuovi tentativi, timeout, interruttori, bulkhead e limitazioni della frequenza.
 
-MicroProfile offre anche un approccio, descritto nel capitolo "Additional Java Features of Note" sotto l'intestazione "MicroProfile Fault Tolerance". Tale sezione illustra come la funzionalità di fallback può essere utilizzata insieme a Istio, oltre ad altri dettagli su coloro che sono interessati ad un approccio che utilizza mpFaultTolerance invece di Istio.
+MicroProfile offre anche un approccio, descritto nel capitolo "Additional Java Features of Note" sotto l'intestazione "MicroProfile Fault Tolerance". Tale sezione illustra come la funzionalità di fallback può essere utilizzata insieme a Istio, oltre ai dettagli sull'utilizzo di `mpFaultTolerance` invece di Istio.
 
-Istio non è in grado di offrire funzionalità di fallback in quanto il fallback richiede una conoscenza dell'attività di business. Un approccio più avanzato consiste nell'utilizzare la tolleranza dell'errore Istio insieme alle funzionalità di fallback di MicroProfile per raggiungere il massimo della resilienza. Ad esempio, puoi specificare un backup di fallback quando richiami un servizio di backend. Se Istio non è in grado di ottenere una risposta corretta, verrà richiamato il metodo di fallback.
+Istio non è in grado di offrire funzionalità di fallback in quanto il fallback richiede una conoscenza dell'attività di business. Un approccio più avanzato consiste nell'utilizzare la tolleranza dell'errore Istio insieme alle funzionalità di fallback di MicroProfile per raggiungere il massimo della resilienza. Ad esempio, puoi specificare un backup di fallback quando richiami un servizio di backend. Se Istio non è in grado di ottenere una risposta corretta, viene richiamato il metodo di fallback. 
 
 ```java
 @GET
@@ -58,4 +58,4 @@ data:
 ```
 {: codeblock}
 
-Per ulteriori informazioni sul confronto tra la tolleranza dell'errore di Istio e quella di MicroProfile, fai riferimento a [questo blog](https://www.eclipse.org/community/eclipse_newsletter/2018/september/MicroProfile_istio.php){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno") scritto da Emily Jiang.
+Per ulteriori informazioni sul confronto tra la tolleranza dell'errore di Istio e quella di MicroProfile, vedi [questo blog](https://www.eclipse.org/community/eclipse_newsletter/2018/september/MicroProfile_istio.php){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno") scritto da Emily Jiang.

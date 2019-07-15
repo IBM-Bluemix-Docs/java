@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-04-22"
+lastupdated: "2019-06-10"
 
 keywords: mpmetrics microprofile, mpmetrics, prometheus java, metrics java, microprofile metrics
 
@@ -58,7 +58,7 @@ Per creare questo codice, aggiungi la seguente stanza al file `pom.xml` di Maven
 
 Quando ne viene eseguita l'implementazione, il contatore viene incrementato ogni volta che viene richiamato il metodo JAX-RS `createPortfolio`. 
 
-Puoi richiamare l'URI `GET /metrics` per visualizzare sia le metriche JVM (statistiche di raccolte di dati obsoleti, heap e caricamento classi) che quelle definite dall'applicazione. L'URI `GET /metrics/application` restituisce solo le metriche definite dall'applicazione.  
+Puoi richiamare l'URI `GET /metrics` per visualizzare sia le metriche JVM (statistiche di raccolte di dati obsoleti, heap e caricamento classi) che quelle definite dall'applicazione. L'URI `GET /metrics/application` restituisce solo le metriche definite dall'applicazione. 
 
 Puoi accedere all'API REST mediante la CLI curl utilizzando la porta assegnata (32388 in questo esempio).
 
@@ -78,7 +78,7 @@ Johns-MacBook-Pro-8:StockTrader jalcorn$
 Come puoi vedere, vengono contati due portofli come previsto. 
 
 Alcuni elementi degni di nota:
-- Questo è un contatore in memoria; se il pod viene riavviato, il valore viene reimpostato su zero; se ci sono più repliche, ciascuna ha un suo valore univoco.
+- Viene utilizzato un contatore in memoria; se il pod viene riavviato, il valore viene reimpostato su zero; se ci sono più repliche, ciascuna ha un suo valore univoco.
 - Il testo "# HELP" è quello che viene specificato come descrizione nell'annotazione `@Counted`.
 
 Puoi anche visualizzare l'output di questo endpoint REST GET nel tuo browser web:

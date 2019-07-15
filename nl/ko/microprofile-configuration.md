@@ -22,9 +22,9 @@ subcollection: java
 # MicroProfile을 사용한 구성
 {: #mp-configuration}
 
-MicroProfile Config API를 사용하면 애플리케이션 구성 특성을 여러 소스에 저장할 수 있으며 이를 통해 사용자는 환경 특정 코드 경로 없이 코드를 작성할 수 있습니다. API는 [CDI](/docs/java?topic=java-mp-cdi#mp-cdi)를 사용하여 값 지정 특성을 애플리케이션에 삽입합니다.
+MicroProfile Config API를 사용하면 애플리케이션 구성 특성을 여러 소스에 저장할 수 있으며 이를 통해 사용자는 환경별 코드 경로 없이 코드를 작성할 수 있습니다. API는 [CDI](/docs/java?topic=java-mp-cdi#mp-cdi)를 사용하여 값 지정 특성을 애플리케이션에 삽입합니다.
 
-## 선행 조건
+## 전제조건
 {: #mp-config-prereq}
 
 애플리케이션에서 MicroProfile Config API를 사용하려면 다음 종속성을 `pom.xml` 파일에 추가해야 합니다.

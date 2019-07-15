@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-04-23"
+lastupdated: "2019-06-10"
 
 keywords: spring metrics, configure metrics spring, micrometer spring, micrometer, spring boot 2, spring actuator, prometheus spring
 
@@ -22,9 +22,9 @@ subcollection: java
 # Metriche con Spring
 {: #spring-metrics}
 
-A partire da Spring Framework 5, le metriche in Spring sono ora gestite da Micrometer. Micrometer è un framework che descrive se stesso come "SLF4J per le metriche". Proprio come SLF4J funge da API indipendente dal fornitore per la registrazione che può connettersi a diversi backend di registrazione, Micrometer fornisce un'API indipendente dal fornitore con cui strumentare e misurare il tuo codice e inoltrare quindi tali metriche a una gamma di aggregatori di metriche, come Prometheus, DataDog o Influx/Telegraph. 
+A partire da Spring Framework 5, le metriche in Spring sono ora gestite da Micrometer. Micrometer è un framework che descrive se stesso come "SLF4J per le metriche". Proprio come SLF4J funge da API indipendente dal fornitore per la registrazione che si connette a diversi backend di registrazione, Micrometer fornisce un'API indipendente dal fornitore che può strumentare e misurare il tuo codice. Quindi, può inoltrare tali metriche agli aggregatori di metriche, come Prometheus, DataDog, Influx e Telegraph 
 
-Il framework Micrometer consente a Spring di integrarsi in un'ampia gamma di architetture native del cloud. L'aggiunta del supporto per Prometheus o Statsd è una semplice questione di modifica delle dipendenze e, se il raccoglitore di metriche è basato sui push, fornendo le informazioni sulla destinazione in `application.properties`, Spring and Micrometer determinano cosa fare al runtime in base a quali dipendenze trovano nel percorso classi dell'applicazione.
+Il framework Micrometer consente a Spring di integrarsi in un'ampia gamma di architetture native del cloud. L'aggiunta del supporto per Prometheus o Statsd è una semplice questione di modifica delle dipendenze e, se il raccoglitore di metriche è basato sui push, fornendo le informazioni sulla destinazione in `application.properties`, Spring e Micrometer determinano cosa fare al runtime in base a quali dipendenze trovano nel percorso classi dell'applicazione.
 
 ## Abilitazione delle metriche
 {: #spring-metrics-enabling}
@@ -39,7 +39,7 @@ Spring Boot Actuator fornisce delle metriche di base, cosa che richiede la dipen
 ```
 {: codeblock}
 
-Se sei ancora su Spring Boot 1.5.x, le metriche (e gli actuator) funzionano in modo leggermente diverso. Micrometer è stato indicato come standard per le metriche Spring in Spring Boot 2.0, ma sono stati resi disponibili dei backport per Boot 1.5.x, abilitando delle prassi congruenti per la creazione e la raccolta di metriche nelle applicazioni Spring Boot native del cloud. Ancora più importante, Micrometer supporta una gamma di sistemi di monitoraggio, compreso Prometheus, che lo rende la scelta migliore rispetto al sistema di metriche Boot 1,5,x per le distribuzioni cloud.
+Se sei ancora su Spring Boot 1.5.x, le metriche (e gli actuator) funzionano in modo leggermente diverso. Micrometer è stato indicato come standard per le metriche Spring in Spring Boot 2.0, ma sono stati resi disponibili dei backport per Boot 1.5.x che abilitano delle prassi congruenti per la creazione e la raccolta di metriche. Ancora più importante, Micrometer supporta una gamma di sistemi di monitoraggio, compreso Prometheus, che lo rende la scelta migliore rispetto al sistema di metriche Boot 1,5,x per le distribuzioni cloud.
 {: note}
 
 ## Metriche di Micrometer
@@ -49,14 +49,14 @@ Micrometer astrae il concetto di una destinazione per le metriche mediante la su
 
 In entrambe le versioni di Spring Boot, quando un endpoint delle metriche basato su Micrometer viene abilitato, Spring Boot crea automaticamente un `CompositeMeterRegistry` e lo rende disponibile all'applicazione come un `Bean`. Il registro viene popolato automaticamente con le implementazioni `MeterRegistry` supportate rilevate nel percorso classi. Supportare più sistemi di monitoraggio, o passare dall'uno all'altro, è quindi una semplice questione di modifica delle dipendenze in pom.xml. 
 
-Spring consente la personalizzazione del Bean `MeterRegistry` mediante un `MeterRegistryCustomizer`, esso stesso un bean. Quando Spring identifica la presenza di un tale bean, può configurare il `MeterRegistry` globale prima che venga notificata alcuna metrica. Ciò viene spesso utilizzato per aggiungere tag comuni al `MeterRegistry`, DataCenter o EnvironmentType.
+Spring consente la personalizzazione del Bean `MeterRegistry` mediante un `MeterRegistryCustomizer`, esso stesso un bean. Quando Spring identifica la presenza di un tale bean, può configurare il `MeterRegistry` globale prima che venga notificata alcuna metrica. Questa personalizzazione viene spesso utilizzata per aggiungere tag comuni al `MeterRegistry`, DataCenter o EnvironmentType.
 
-Quando si denominano le metriche, Spring e Micrometer raccomandano di rispettare una convenzione di denominazione che suddivide le parole con un `.` invece di utilizzare la notazione a cammello (ossia le parole unite tra di loro lasciando però le loro lettere iniziali in maiuscolo), `_` o altri approcci. Questo perché Micrometer inoltra queste metriche alla destinazione o alle destinazioni configurate ed esegue le eventuali conversioni di nome come necessario per soddisfare i requisiti delle destinazioni.
+Quando denomini le metriche, Spring e Micrometer raccomandano di rispettare una convenzione di denominazione che suddivide le parole con un `.` invece di utilizzare la notazione a cammello (ossia le parole unite tra di loro lasciando però le loro lettere iniziali in maiuscolo), `_` o altri approcci. La denominazione è importante perché Micrometer inoltra queste metriche a una o più destinazioni configurate ed esegue le eventuali conversioni di nome come necessario per soddisfare i requisiti delle destinazioni.
 
 ## Configurazione delle metriche con Spring Boot
 {: #spring-metrics-configuration}
 
-Le seguenti sezioni descrivono come abilitare le metriche Spring Boot Actuator utilizzando Micrometer per raccogliere le metriche e fornire un endpoint per Prometheus per ciascuna release, iniziando con Spring Boot 2 come la più corrente.
+Le seguenti sezioni illustrano come abilitare le metriche Spring Boot Actuator con Micrometer. Impara a raccogliere le metriche e fornisci un endpoint a Prometheus (per ogni release) iniziando con Spring Boot 2 come la più corrente.
 
 ### Configurazione delle metriche in Spring Boot 2
 {: #spring-metrics-boot2}
@@ -70,7 +70,7 @@ management.endpoints.web.exposure.include=health,metrics
 ```
 {: codeblock}
 
-Verifica che l'endpoint delle metriche sia stato abilitato controllando l'endpoint `/actuator`. L'output è simile a quanto segue quando esegui l'applicazione in locale e utilizzi `jq` per stampare la risposta json:
+Verifica che l'endpoint delle metriche sia abilitato controllando l'endpoint `/actuator`. L'output è simile al seguente quando esegui l'applicazione in locale e utilizzi `jq` per stampare la risposta JSON:
 
 ```
 $ curl -s localhost:8080/actuator | jq .
@@ -95,8 +95,7 @@ $ curl -s localhost:8080/actuator | jq .
 ```
 {: screen}
 
-L'accesso all'endpoint `/actuator/metrics` visualizza un elenco con formattazione JSON di metriche disponibili che ha un aspetto simile al seguente:
-
+Accedi all'endpoint `/actuator/metrics` per visualizzare un elenco con formattazione JSON di metriche disponibili simile al seguente output:
 ```
 $ curl -s localhost:8080/actuator/metrics | jq .
 {
@@ -111,7 +110,7 @@ $ curl -s localhost:8080/actuator/metrics | jq .
 ```
 {: screen}
 
-È necessaria una richiesta aggiuntiva per visualizzare il valore effettivo di una singola metrica (come si può dedurre dall'elenco di URL degli actuator). Per richiamare gli stati dei thread jvm, ad esempio:
+È necessaria un'altra richiesta per visualizzare il valore effettivo di una singola metrica (come si può dedurre dall'elenco di URL degli actuator). Per richiamare gli stati dei thread jvm, ad esempio:
 
 ```
 $ curl -s localhost:8080/actuator/metrics/jvm.threads.states | jq .
@@ -147,10 +146,9 @@ Per ulteriori informazioni su come personalizzare la modalità di funzionamento 
 ### Abilitazione del supporto Prometheus in Spring Boot 2
 {: #spring-prometheus-boot2}
 
-Prometheus richiede che l'applicazione ospiti un endpoint da cui legge il server Prometheus per ottenere le metriche. L'hosting di questo endpoint in Spring si basa sul fatto che l'applicazione sia già in grado di servire i dati, il che significa che l'endpoint Prometheus supporta solo le applicazioni Spring Boot che utilizzano Spring MVC, Spring WebFlux o Jersey.
+Prometheus richiede che l'applicazione ospiti un endpoint da cui legge il server Prometheus per ottenere le metriche. L'hosting di questo endpoint in Spring si basa sull'applicazione che serve i dati. Il che significa che l'endpoint Prometheus supporta le applicazioni Spring Boot che utilizzano Spring MVC, Spring WebFlux o Jersey.
 
 Per abilitare l'endpoint Prometheus, aggiungi la seguente dipendenza in `pom.xml`:
-
 ```xml
 <dependency>
   <groupId>io.micrometer</groupId>
@@ -159,14 +157,14 @@ Per abilitare l'endpoint Prometheus, aggiungi la seguente dipendenza in `pom.xml
 ```
 {: codeblock}
 
-Spring rileverà la dipendenza e configurerà automaticamente PrometheusMeterRegistry come uno dei registri configurati nel bean MeterRegistry globale. Tuttavia, come per l'endpoint delle metriche, l'endpoint Prometheus deve essere abilitato ed esposto per l'accesso web aggiungendo quanto segue alle proprietà dell'applicazione.
+Spring vede la dipendenza e configura automaticamente `PrometheusMeterRegistry` come uno dei registri configurati nel bean `MeterRegistry` globale. Tuttavia, come per l'endpoint delle metriche, l'endpoint Prometheus deve essere abilitato ed esposto per l'accesso web aggiungendo quanto segue a `application.properties`.
 
 ```properties
 management.endpoints.web.exposure.include=health,metrics,prometheus
 ```
 {: codeblock}
 
-Verifica che l'endpoint Prometheus sia abilitato controllando l'endpoint `/actuator`. L'output è simile al seguente, in caso di esecuzione dell'applicazione in locale:
+Verifica che l'endpoint Prometheus sia abilitato controllando l'endpoint `/actuator`. L'output è simile al seguente se esegui l'applicazione in locale:
 
 ```
 $ curl -s localhost:8080/actuator | jq .
@@ -187,7 +185,7 @@ $ curl -s localhost:8080/actuator | jq .
 ```
 {: screen}
 
-L'endpoint `/actuator/prometheus` emetterà tutte le metriche configurate in formato di scraping Prometheus.
+L'endpoint `/actuator/prometheus` emette tutte le metriche configurate in formato di scraping Prometheus.
 
 ```
 $ curl -s localhost:8080/actuator/prometheus
@@ -217,15 +215,15 @@ metadata:
 ### Configurazione delle metriche in Spring Boot 1
 {: #spring-metrics-boot1}
 
-L'endpoint `/metrics` di Spring Boot Actuator è abilitato per impostazione predefinita in Spring Boot 1, ma è considerato sensibile (“sensitive”) e richiede l'autorizzazione. Per alcuni ambienti, la protezione dell'endpoint delle metriche potrebbe essere la risposta giusta, ma autorizzare ogni richiesta all'endpoint delle metriche introduce una latenza eccessiva per il controllo automatizzato con Kubernetes. Disabilita l'attributo sensitive dell'endpoint delle metriche per rimuovere il requisito di autorizzazione aggiungendo quanto segue ad application.properties:
+L'endpoint `/metrics` di Spring Boot Actuator è abilitato per impostazione predefinita in Spring Boot 1, ma è considerato sensibile (“sensitive”) e richiede l'autorizzazione. Per alcuni ambienti, la protezione dell'endpoint delle metriche potrebbe essere la risposta giusta, ma autorizzare ogni richiesta all'endpoint delle metriche introduce una latenza eccessiva per il controllo automatizzato con Kubernetes.
 
+Disabilita l'attributo sensitive dell'endpoint delle metriche per rimuovere il requisito di autorizzazione aggiungendo quanto segue a `application.properties`:
 ```properties
 endpoints.metrics.sensitive=false
 ```
 {: codeblock}
 
-Questo abilita il supporto delle metriche Spring Boot 1 predefinito, che produce un output simile al seguente:
-
+Ora il supporto delle metriche Spring Boot 1 predefinito è abilitato, che produce il seguente output:
 ```
 $ curl -s localhost:8080/metrics | jq .
 {
@@ -245,9 +243,9 @@ Per ulteriori informazioni su come personalizzare la modalità di funzionamento 
 ### Abilitazione del supporto Prometheus in Spring Boot 1
 {: #spring-prometheus-boot1}
 
-Il supporto Prometheus non è integrato nelle metriche di Spring Boot 1 Actuator ma possiamo aggiungerne il supporto mediante Micrometer.
+Il supporto Prometheus non è integrato nelle metriche di Spring Boot 1 Actuator ma può essere aggiunto mediante Micrometer.
 
-Come menzionato nella [panoramica](#spring-metrics), è stata eseguita una modifica della versione di Micrometer a Spring Boot 1 perché ha un insieme più ricco di primitive delle metriche e un migliore supporto per i sistemi di monitoraggio come Prometheus e StatsD. L'utilizzo di Micrometer con Spring Boot 1 è piuttosto semplice: richiede una specifica libreria di adattatori e almeno un registro. Aggiungi quanto segue al tuo `pom.xml` per includere le dipendenze per le librerie di adattatori e il registro Prometheus:
+Come menzionato nella [panoramica](#spring-metrics), è stata eseguita una modifica della versione di Micrometer a Spring Boot 1 perché ha un insieme più ricco di primitive delle metriche e un migliore supporto per i sistemi di monitoraggio come Prometheus e StatsD. L'utilizzo di Micrometer con Spring Boot 1 è semplice: richiede una specifica libreria di adattatori e almeno un registro. Aggiungi quanto segue al tuo `pom.xml` per includere le dipendenze per le librerie di adattatori e il registro Prometheus:
 
 ```xml
 <properties>
@@ -269,7 +267,7 @@ Come menzionato nella [panoramica](#spring-metrics), è stata eseguita una modif
 ```
 {: codeblock}
 
-Queste dipendenze creeranno ed esporranno un endpoint delle metriche `/prometheus`. Come succede con l'endpoint `/metrics` predefinito, l'endpoint `/prometheus` è, per impostazione predefinita, considerato sensibile (sensitive). Per rimuovere il requisito di autorizzazione, aggiungi quanto segue ad application.properties:
+Queste dipendenze creano ed espongono un endpoint delle metriche `/prometheus`. Come succede con l'endpoint `/metrics` predefinito, l'endpoint `/prometheus` è, per impostazione predefinita, considerato sensibile (sensitive). Per rimuovere il requisito di autorizzazione, aggiungi quanto segue a `application.properties`:
 
 ```properties
 endpoints.prometheus.sensitive=false
@@ -308,7 +306,7 @@ Per ulteriori informazioni sull'utilizzo di Micrometer con Spring Boot 1, vedi [
 ## Richiami della tempistica con Micrometer
 {: #spring-metrics-timing}
 
-Spring MVC, WebFlux e Jersey Server forniscono ognuno una configurazione automatica per Spring che raccoglie automaticamente le informazioni sulla tempistica per tutte le richieste quando la proprietà `management.metrics.web.server.auto-time-requests` è impostata su `true`. Questo è il valore predefinito.
+Spring MVC, WebFlux e Jersey Server forniscono ognuno una configurazione automatica per Spring che raccoglie automaticamente le informazioni sulla tempistica per tutte le richieste quando la proprietà `management.metrics.web.server.auto-time-requests` è impostata su `true`. L'impostazione predefinita è `true`.
 
 ```properties
 management.metrics.web.server.auto-time-requests=true
@@ -340,14 +338,14 @@ public String getSomething() { ... }
 
 Per effettuare delle misurazioni specifiche per il dominio dell'applicazione, devi creare delle tue metriche personalizzate. Micrometer definisce alcuni tipi `Meter` di base.
 
-* Un `Counter` traccia un valore che può solo aumentare.
+* Un `Counter` traccia un valore che può aumentare.
 * Un `Gauge` misura e restituisce il valore osservato quando il contatore viene pubblicato (o ne viene eseguita la query).
 * Un `Timer` tiene traccia di quante volte si è verificato un evento e il tempo trascorso cumulativo per tale evento. 
 * Un `DistributionSummary` è simile a un `Timer`, ma tiene anche traccia di una distribuzione di eventi e non misura il tempo.
 
 I nuovi contatori vengono creati utilizzando i metodi helper sul `MeterRegistry` oppure il fluent builder di Meter. 
 
-Quando lavori nel tuo codice applicativo, crea il tuo `Meter` nel constructor (passando il `MeterRegistry` come un parametro) oppure in un metodo `@PostConstruct` dopo che viene inserito il `MeterRegistry`.
+Crea il tuo `Meter` nel constructor (passando il `MeterRegistry` come un parametro) oppure in un metodo `@PostConstruct` dopo che viene inserito il `MeterRegistry`.
 
 Ad esempio, per utilizzare un `Counter` in un `RestController` puoi fare qualcosa di simile a quanto segue:
 

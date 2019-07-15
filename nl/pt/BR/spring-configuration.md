@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-04-09"
+lastupdated: "2019-06-10"
 
 keywords: spring environment, spring credentials, ibm-cloud-spring-boot-service-bind, service bindings spring, vcap_services spring, access credential spring
 
@@ -22,16 +22,16 @@ subcollection: java
 # Configurando o ambiente Spring
 {: #spring-configuration}
 
-O gerenciamento de configuração de serviço e de credenciais (ligações de serviço) varia entre as plataformas. O Cloud Foundry armazena detalhes de ligação de serviço em um objeto JSON em sequência que é passado para o aplicativo como uma variável de ambiente `VCAP_SERVICES`. O Kubernetes armazena ligações de serviço como atributos de JSON em sequência ou atributos simples em `ConfigMaps` ou `Secrets`, que podem ser passados para o aplicativo conteinerizado como variáveis de ambiente ou montados como volumes temporários. O desenvolvimento local variará. Trabalhar por essas variações de uma maneira móvel sem ter caminhos de código específicos do ambiente pode ser desafiador.
+O gerenciamento de configuração de serviço e de credenciais (ligações de serviço) varia entre as plataformas. O Cloud Foundry armazena detalhes de ligação de serviço em um objeto JSON em sequência que é passado para o aplicativo como uma variável de ambiente `VCAP_SERVICES`. O Kubernetes armazena ligações de serviço como atributos de JSON em sequência ou atributos simples em `ConfigMaps` ou `Secrets`, o que pode ser passado para o app conteinerizado como variáveis de ambiente ou montado como volumes temporários. O desenvolvimento local pode variar. Trabalhar por essas variações de uma maneira móvel sem ter caminhos de código específicos do ambiente pode ser desafiador.
 
-## Incluindo a  {{site.data.keyword.cloud_notm}}  configuração em aplicativos Spring existentes
+## Incluindo a configuração do {{site.data.keyword.cloud_notm}} em apps do Spring existentes
 {: #spring-cloud-env}
 
-A biblioteca de [Ligações do serviço {{site.data.keyword.cloud_notm}} Spring](https://github.com/ibm-developer/ibm-cloud-spring-bind){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo") fornece uma maneira consistente para que seu aplicativo Spring acesse a configuração, abstraindo informações de diferentes ambientes de nuvem, incluindo local, Cloud Foundry, Cloud Foundry Enterprise Environment, Kubernetes, máquinas virtuais e {{site.data.keyword.openwhisk}} em uma matriz de padrões de procura em um arquivo `mappings.json`. Quando o aplicativo Spring é iniciado, a biblioteca lê o arquivo e aplica os padrões a fim de descobrir e designar valores de configuração.
+A biblioteca do [{{site.data.keyword.cloud_notm}} Spring Service Bindings](https://github.com/ibm-developer/ibm-cloud-spring-bind){: new_window} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo") fornece uma maneira consistente para que o seu app do Spring acesse a configuração, abstraindo informações de diferentes ambientes de nuvem. O que inclui o Cloud Foundry, o Cloud Foundry Enterprise Environment, o Kubernetes, as máquinas virtuais e o {{site.data.keyword.openwhisk}} locais em uma matriz de padrões de procura em um arquivo `mappings.json`. Quando o app do Spring iniciar, a biblioteca lerá o arquivo e aplicará os padrões a fim de descobrir e designar valores de configuração.
 
 Para obter mais informações sobre o arquivo `mappings.json`, consulte [Trabalhando com credenciais de serviço injetadas](/docs/java?topic=cloud-native-configuration#portable-credentials).
 
-### Incluindo a biblioteca em seu aplicativo Spring
+### Incluindo a biblioteca em seu app do Spring
 {: #spring-add-service-library}
 
 Para usar a biblioteca de Ligações de Serviços do {{site.data.keyword.cloud_notm}} Spring, inclua a dependência `ibm-cloud-spring-boot-service-bind` em seu arquivo `pom.xml` ou `build.gradle`:
@@ -85,7 +85,7 @@ Para obter mais informações sobre o Spring Boot:
 * [Spring Boot 1.5.x](https://docs.spring.io/spring-boot/docs/1.5.x/reference/html/){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")
 * [Spring Boot 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/html/){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")
 
-Para saber mais sobre a IBM e o Spring:
+Para saber mais sobre o {{site.data.keyword.IBM}} e o Spring:
 
 * [IBM Developer: Spring](https://developer.ibm.com/technologies/spring/){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")
 * [Ligações do serviço IBM Spring](https://github.com/ibm-developer/ibm-cloud-spring-bind){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")

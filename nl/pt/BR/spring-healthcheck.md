@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-04-22"
+lastupdated: "2019-06-10"
 
 keywords: health check spring, spring health endpoint, spring-boot-actuator, liveness probe spring, readiness probe spring, spring kubernetes probe
 
@@ -22,7 +22,7 @@ subcollection: java
 # Verificações de funcionamento com Spring
 {: #spring-healthcheck}
 
-O terminal de funcionamento fornecido pelo atuador do Spring Boot é ligado ao ciclo de vida do aplicativo: ele não estará acessível até que o aplicativo tenha sido iniciado e estará indisponível assim que o aplicativo for interrompido (o que acontece antes que o processo seja encerrado). O Spring Boot Actuator incluirá automaticamente indicadores de funcionamento adicionais para tecnologias detectadas no caminho de classe. Por exemplo, se seu aplicativo usar JDBC, o terminal de funcionamento incluirá alguns testes básicos para assegurar que o armazenamento de dados de suporte possa ser acessado. O terminal de funcionamento definido pelo Actuator é mais adequado para uso como uma análise de prontidão para esse motivo.
+O terminal de funcionamento que é fornecido pelo atuador do Spring Boot é ligado ao ciclo de vida do aplicativo e não é atingível até que o aplicativo seja iniciado. Da mesma forma, ele é desativado assim que o aplicativo é interrompido (o que ocorre antes de o processo ser encerrado). O Spring Boot Actuator inclui automaticamente os indicadores de funcionamento para tecnologias que são detectadas no caminho de classe. Por exemplo, se o seu aplicativo usar o JDBC, o terminal de funcionamento incluirá alguns testes básicos para assegurar que o armazenamento de dados auxiliar possa ser alcançado. O terminal de funcionamento definido pelo Actuator é mais adequado para uso como uma análise de prontidão para esse motivo.
 
 Ative o Spring Boot Actuator incluindo a dependência `spring-boot-actuator` em seu arquivo `pom.xml`:
 
@@ -34,14 +34,14 @@ Ative o Spring Boot Actuator incluindo a dependência `spring-boot-actuator` em 
 ```
 {: codeblock}
 
-Há algumas diferenças de comportamento com o atuador do Spring Boot entre as versões. Usaremos as duas próximas seções para explorar como criar verificações de atividade e prontidão em ambas as versões do Spring Boot, começando com 2 como a mais atual.
+Há algumas diferenças de comportamento com o atuador do Spring Boot entre as versões. As próximas duas seções exploram como criar verificações de atividade e de prontidão em ambas as versões do Spring Boot, começando com 2 como a mais atual.
 
 ## Verificações de funcionamento do Spring Boot 2
 {: #spring-health-boot2}
 
 O atuador do Spring Boot 2 define um `/actuator/health endpoint`, que retorna uma carga útil `{"status": "UP"}` quando tudo está bem. Esse terminal é ativado por padrão e não requer nenhum código do aplicativo.
 
-Um exemplo de uma verificação de funcionamento bem-sucedida não autenticada usando o Spring Boot 2 Actuator:
+Consulte o exemplo a seguir de uma verificação de funcionamento bem-sucedida não autenticada que usa o Spring Boot 2 Actuator:
 <!-- Spring Boot 2 test project: https://github.com/IBM/spring-alarm-application -->
 
 ```
@@ -73,14 +73,14 @@ Date: Fri, 07 Dec 2018 23:09:09 GMT
 ```
 {: screen}
 
-Observe a inclusão de algumas informações de base de dados H2. Este é um exemplo de Spring Actuator que inclui automaticamente verificações para serviços auxiliares. Nesse caso, o aplicativo está usando JDBC, e o driver H2 foi descoberto no caminho de classe.
+Observe a inclusão de algumas informações do banco de dados do H2. Este exemplo do Spring Actuator automaticamente inclui verificações para serviços auxiliares. Nesse caso, o aplicativo está usando o JDBC e o driver do H2 foi descoberto no caminho de classe.
 
 É possível substituir o comportamento padrão do terminal de funcionamento com propriedades ou código, conforme descrito no [Guia de referência do Spring Boot para 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/html/production-ready-endpoints.html#production-ready-health){: new_window}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo").
 
 ### Análise de atividade no Spring Boot 2
 {: #spring-liveness-boot2}
 
-A estrutura do Actuador no Spring Boot 2 é sua própria miniestrutura REST que pode ser ampliada com terminais customizados. Isso significa que podemos incluir um terminal de atividade simples que é gerenciado da mesma maneira que o indicador de funcionamento integrado. Um terminal de atividade customizado pode ser declarado trivialmente assim:
+A estrutura do Actuador no Spring Boot 2 é sua própria miniestrutura REST que pode ser ampliada com terminais customizados. O que significa que é possível incluir um terminal de atividade simples que é gerenciado da mesma maneira que o indicador de funcionamento integrado é. Um terminal de atividade customizado pode ser declarado trivialmente, como no exemplo a seguir:
 
 ```java
 @Endpoint(id="liveness")
@@ -145,8 +145,7 @@ Para evitar os ciclos de reinicialização, configure `livenessProbe.initialDela
 
 O atuador do Spring Boot 1 define um terminal `/health`, que retorna uma carga útil `{"status": "UP"}` quando tudo está bem. O terminal não requer autorização, mas se a autorização estiver configurada e o responsável pela chamada estiver autorizado, informações adicionais serão incluídas na resposta.
 
-Um exemplo de uma verificação de funcionamento bem-sucedida não autenticada usando o Spring Boot 1 Actuator:
-
+Consulte o exemplo a seguir de uma verificação de funcionamento bem-sucedida não autenticada que usa o Spring Boot 1 Actuator:
 ```
 $ curl -i localhost:8080/health
 HTTP/1.1 200
@@ -189,7 +188,7 @@ Content-Length: 221
 ### Análise de atividade no Spring Boot 1
 {: #spring-liveness-boot1}
 
-Para o Spring Boot 1, um terminal http simples para a atividade que sempre retorna {"status": "UP"} com código de status 200 seria algo semelhante a isto:
+Para o Spring Boot 1, um terminal de HTTP simples para a atividade que sempre retorna {"status": "UP"} com o código de status 200 seria semelhante ao fragmento a seguir:
 
 ```java
 @RestController

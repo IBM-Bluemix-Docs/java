@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-04-30"
+lastupdated: "2019-06-10"
 
 keywords: json-b, json-p, json-binding, json response, pojo object, pojo, jsonobject, jsonobjectbuilder, java api json
 
@@ -22,12 +22,12 @@ subcollection: java
 # Manipulação JSON com JSON-P e JSON-B
 {: #mp-json}
 
-[JSON-B (JSON-Binding, JSR 367)](http://json-b.net/){: new_window} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo") e [JSON-P (JSON-Processing, JSR 374)](https://javaee.github.io/jsonp/){: new_window} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo") são duas especificações de API Java&trade que definem como as classes Java&trade e os objetos JSON podem interagir. O JSON-P fornece uma API Java&trade para processar dados formatados por JSON. O JSON-B fornece uma camada de ligação sobre o JSON-P, tornando mais fácil converter objetos para e por meio do JSON. Na maioria dos casos, o JSON-B deve ser usado em preferência ao JSON-P de nível inferior.
+[JSON-B (JSON-Binding, JSR 367)](http://json-b.net/){: new_window} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo") e [JSON-P (JSON-Processing, JSR 374)](https://javaee.github.io/jsonp/){: new_window} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo") são duas especificações de API Java&trade que definem como as classes Java&trade e os objetos JSON podem interagir. O JSON-P fornece uma API Java&trade para processar dados formatados por JSON. O JSON-B fornece uma camada de ligação sobre o JSON-P, tornando mais fácil converter objetos para e por meio do JSON. Na maioria dos casos, o JSON-B deve ser usado em preferência para o JSON-P de nível inferior.
 
 ## JSON-B
 {: #java-json-b}
 
-Com o **JSON-B**, a conversão para e de JSON é obtida usando um Plain Old Java Object (POJO) com um método getter e setter para cada campo.
+Com o **JSON-B**, a conversão para e do JSON é obtida usando um Plain Old Java&trade; Object (POJO) com um método getter e setter para cada campo.
 
 Por exemplo:
 ```java
@@ -123,15 +123,15 @@ Employee employee = jsonb.fromJson(myJSON, Employee.class);
 ```
 {: codeblock}
 
-Tudo é fortemente digitado com JSON-B. Se você obtivesse um nome de campo incorreto, por exemplo, você veria uma falha de compilação, uma vez que não haveria tal método. A criação de POJOs pode ser tediosa, mas a maioria dos IDEs suporta a geração de getters e setters quando os campos são definidos, o que ajuda.
+Tudo é fortemente digitado com JSON-B. Se você obtivesse um nome de campo incorreto, por exemplo, você veria uma falha de compilação, uma vez que não haveria tal método. A criação de POJOs pode ser tediosa, mas a maioria do suporte do IDE gera getters e setters depois que os campos são definidos, o que ajuda.
 
-Evite a exposição excessiva dos detalhes internos. Várias anotações podem ajudá-lo a controlar como seus objetos são convertidos para e de JSON: `@JsonbTransient` identifica campos que não devem ser convertidos de forma alguma, e `@JsonbNillable` especifica como os valores nulos devem ser manipulados. As implementações `@JsonbAdapter` podem customizar ainda mais como os dados são serializados e desserializados para o isolamento incluído entre o formato de ligação e a implementação interna.
+Evite a exposição excessiva dos detalhes internos. Várias anotações podem ajudá-lo a controlar como os seus objetos são convertidos para e do JSON: `@JsonbTransient` identifica campos que não devem ser convertidos e `@JsonbNillable` especifica como os valores nulos devem ser manipulados. As implementações `@JsonbAdapter` podem customizar ainda mais como os dados são serializados e desserializados para o isolamento incluído entre o formato de ligação e a implementação interna.
 {: tip}
 
 ## JSON-P
 {: #java-json-p}
 
-Antes da existência do JSON-B (que chegou como parte do Java EE 8), o **JSON-P** (JSON-Processing) era uma maneira padronizada de interagir com o JSON dentro do código Java. Antes disso, havia várias bibliotecas de análise JSON proprietárias, como a JSON4J da IBM. O JSON-P pode ser usado para analisar o JSON recebido de uma chamada REST ou para construir o JSON que pode ser retornado de seus próprios métodos JAX-RS.
+Antes que o JSON-B existisse (que chegou como parte do Java&trade; EE 8), o **JSON-P** (Processamento do JSON) era uma maneira padronizada de interagir com o JSON dentro do código Java&trade;. Antes disso, havia várias bibliotecas de análise de JSON proprietárias, como o JSON4J da IBM O JSON-P pode ser usado para analisar o JSON recebido de uma chamada REST ou para construir o JSON que pode ser retornado de seus próprios métodos JAX-RS.
 
 O uso do JSON-P requer que o recurso `jsonp-1.0` esteja ativado em seu `server.xml` (ou no recurso de conveniência `microProfile-2.0`, que ativa todas as tecnologias MP).
 
@@ -148,7 +148,7 @@ import javax.json.JsonObjectBuilder;
 
 Para trabalhar com JSON recebido de uma chamada de API de REST, você chama o método `get` em um `JsonObject`, transmitindo a chave para o campo que você deseja. Para continuar o exemplo `Employee`, se você recebesse um `JsonObject` chamado `employee`, chamaria `employee.get("name")` para descobrir o nome da pessoa ou `employee.get("title")` para obter o cargo. O JSON-P é muito semelhante a lidar com um `Map` no Java&trade, como uma comparação.
 
-Agora, vamos supor que você deseja construir esse objeto JSON em seu código Java&trade. O JSON-P usa um padrão de construtor: use um `JsonObjectBuilder` para incluir cada valor e, em seguida, chame `build()` para produzir o `JsonObject`, como:
+Se você desejar construir esse objeto do JSON em seu código Java&trade;. O JSON-P usa um padrão de construtor: use um `JsonObjectBuilder` para incluir cada valor e, em seguida, chame `build()` para produzir o `JsonObject`, como:
 
 ```java
 JsonObjectBuilder addressBuilder = Json.createObjectBuilder();

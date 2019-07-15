@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-04-22"
+lastupdated: "2019-06-10"
 
 keywords: health check spring, spring health endpoint, spring-boot-actuator, liveness probe spring, readiness probe spring, spring kubernetes probe
 
@@ -22,7 +22,7 @@ subcollection: java
 # Controlli di integrità con Spring
 {: #spring-healthcheck}
 
-L'endpoint di integrità fornito da Spring Boot Actuator è legato al ciclo di vita dell'applicazione; sarà raggiungibile solo dopo che l'applicazione sarà stata avviata e smetterà di essere disponibile appena l'applicazione verrà arrestata (cosa che avviene prima dell'arresto del processo). Spring Boot Actuator aggiungerà automaticamente degli indicatori di integrità aggiuntivi per le tecnologie rilevate nel percorso classi. Ad esempio, se l'applicazione utilizza JDBC, l'endpoint di integrità includerà dei test di base per garantire che sia possibile raggiungere l'archivio dati di supporto. L'endpoint di integrità definito dall'Actuator è particolarmente indicato per l'utilizzo come un probe di disponibilità per tale motivo.
+L'endpoint di integrità fornito da Spring Boot Actuator è legato al ciclo di vita dell'applicazione e non è raggiungibile finché l'applicazione non viene avviata. Altrimenti viene disabilitato appena l'applicazione viene arrestata (cosa che avviene prima dell'arresto del processo). Spring Boot Actuator aggiunge automaticamente gli indicatori di integrità per le tecnologie rilevate sul percorso classi. Ad esempio, se l'applicazione utilizza JDBC, l'endpoint di integrità include dei test di base per garantire che sia possibile raggiungere l'archivio dati di supporto. L'endpoint di integrità definito dall'Actuator è particolarmente indicato per l'utilizzo come un probe di disponibilità per tale motivo.
 
 Abilita Spring Boot Actuator aggiungendo la dipendenza `spring-boot-actuator` al tuo file `pom.xml`.
 
@@ -34,14 +34,14 @@ Abilita Spring Boot Actuator aggiungendo la dipendenza `spring-boot-actuator` al
 ```
 {: codeblock}
 
-Ci sono alcune differenze nella modalità di funzionamento con Spring Boot Actuator tra le versioni. Useremo le prossime due sezioni per esplorare come creare controlli di attività e disponibilità in entrambe le versioni di Spring Boot, iniziando con la 2 come la più corrente.
+Ci sono alcune differenze nella modalità di funzionamento con Spring Boot Actuator tra le versioni. Le prossime due sezioni esplorano come creare controlli di attività e disponibilità in entrambe le versioni di Spring Boot, iniziando con la 2 come la più corrente.
 
 ## Controlli di integrità di Spring Boot 2
 {: #spring-health-boot2}
 
 L'Actuator di Spring Boot 2 definisce un endpoint `/actuator/health`, che restituisce un payload `{"status": "UP"}` quando va tutto bene. Questo endpoint è abilitato per impostazione predefinita e non richiede alcun codice applicativo.
 
-Un esempio di un controllo di integrità riuscito e non autenticato utilizzando l'Actuator di Spring Boot 2:
+Vedi il seguente esempio di un controllo di integrità riuscito e non autenticato utilizzando l'Actuator di Spring Boot 2:
 <!-- Spring Boot 2 test project: https://github.com/IBM/spring-alarm-application -->
 
 ```
@@ -73,14 +73,14 @@ Date: Fri, 07 Dec 2018 23:09:09 GMT
 ```
 {: screen}
 
-Nota l'inclusione di alcune informazioni di base sui dati H2. Questo è un esempio di Spring Actuator che aggiunge automaticamente dei controlli per i servizi di supporto. In questo caso, l'applicazione sta utilizzando JDBC e il driver H2 è stato rilevato nel percorso classi.
+Nota l'inclusione di alcune informazioni del database H2. Questo esempio di Spring Actuator aggiunge automaticamente dei controlli per i servizi di supporto. In questo caso, l'applicazione sta utilizzando JDBC e il driver H2 è stato rilevato nel percorso classi.
 
 Puoi sovrascrivere la modalità di funzionamento predefinita dell'endpoint di integrità con le proprietà o il codice, come descritto nel manuale [Spring Boot Reference Guide for 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno").
 
 ### Probe di attività in Spring Boot 2
 {: #spring-liveness-boot2}
 
-Il framework Actuator in Spring Boot 2 è il suo stesso mini-framework REST che può essere esteso con degli endpoint personalizzati. Questo significa che possiamo aggiungere un semplice endpoint di attività gestito nello stesso modo in cui viene gestito l'indicatore di integrità incorporato. Un endpoint di attività personalizzato può essere banalmente dichiarato in questo modo:
+Il framework Actuator in Spring Boot 2 è il suo stesso mini-framework REST che può essere esteso con degli endpoint personalizzati. Questo significa che puoi aggiungere un semplice endpoint di attività gestito nello stesso modo in cui viene gestito l'indicatore di integrità incorporato. Un endpoint di attività personalizzato può essere banalmente dichiarato come nel seguente esempio:
 
 ```java
 @Endpoint(id="liveness")
@@ -143,10 +143,9 @@ Per evitare i cicli di riavvio, imposta `livenessProbe.initialDelaySeconds` in m
 ## Controlli di integrità in Spring Boot 1
 {: #spring-health-boot1}
 
-L'Actuator di Spring Boot 1 definisce un endpoint `/health`, che restituisce un payload `{"status": "UP"}` quando va tutto bene. L'endpoint non richiede l'autorizzazione, ma se viene configurata e il chiamante è autorizzato, verranno incluse nella risposta ulteriori informazioni.
+L'Actuator di Spring Boot 1 definisce un endpoint `/health`, che restituisce un payload `{"status": "UP"}` quando va tutto bene. L'endpoint non richiede l'autorizzazione, ma se viene configurata e il chiamante è autorizzato, vengono incluse nella risposta ulteriori informazioni.
 
-Un esempio di un controllo di integrità riuscito e non autenticato utilizzando l'Actuator di Spring Boot 1:
-
+Vedi il seguente esempio di un controllo di integrità riuscito e non autenticato utilizzando l'Actuator di Spring Boot 1:
 ```
 $ curl -i localhost:8080/health
 HTTP/1.1 200
@@ -189,7 +188,7 @@ Puoi sovrascrivere la modalità di funzionamento predefinita dell'endpoint di in
 ### Probe di attività in Spring Boot 1
 {: #spring-liveness-boot1}
 
-Per Spring Boot 1, un semplice endpoint http per l'attività che restituisce sempre {"status": "UP"} con il codice di stato 200 avrà un aspetto simile al seguente:
+Per Spring Boot 1, un semplice endpoint HTTP per l'attività che restituisce sempre {"status": "UP"} con il codice di stato 200 avrà un aspetto simile al seguente frammento di codice:
 
 ```java
 @RestController

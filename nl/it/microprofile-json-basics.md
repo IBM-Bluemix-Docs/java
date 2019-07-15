@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-04-30"
+lastupdated: "2019-06-10"
 
 keywords: json-b, json-p, json-binding, json response, pojo object, pojo, jsonobject, jsonobjectbuilder, java api json
 
@@ -27,7 +27,7 @@ subcollection: java
 ## JSON-B
 {: #java-json-b}
 
-Con **JSON-B** , la conversione in e da JSON viene ottenuta utilizzando un POJO (Plain Old Java Object) con un metodo getter e sender per ciascun campo. 
+Con **JSON-B** , la conversione in e da JSON viene ottenuta utilizzando un POJO (Plain Old Java&trade; Object) con un metodo getter e sender per ciascun campo. 
 
 Ad esempio:
 ```java
@@ -131,7 +131,7 @@ Evita una sovraesposizione di dettagli interni. Diverse annotazioni possono aiut
 ## JSON-P
 {: #java-json-p}
 
-Prima che esistesse JSON-B (che è arrivato come parte di Java EE 8), **JSON-P** (JSON-Processing) era un modo standardizzato per interagire con JSON all'interno del codice Java. Prima di questo, c'erano diverse librerie di analisi JSON proprietarie, come ad esempio JSON4J di IBM. JSON-P può essere utilizzato per analizzare il JSON ricevuto da una chiamata REST o per creare il JSON che puoi restituire dai tuoi metodi JAX-RS.
+Prima che esistesse JSON-B (che è arrivato come parte di Java&trade; EE 8), **JSON-P** (JSON-Processing) era un modo standardizzato per interagire con JSON all'interno del codice Java&trade;. Prima di questo, c'erano diverse librerie di analisi JSON proprietarie, come ad esempio JSON4J di IBM. JSON-P può essere utilizzato per analizzare il JSON ricevuto da una chiamata REST o per creare il JSON che puoi restituire dai tuoi metodi JAX-RS.
 
 L'utilizzo di JSON-P richiede che la funzione `jsonp-1.0` sia abilitata nel tuo `server.xml` (oppure la comoda funzione `microProfile-2.0`, che abilita tutte le tecnologie MP).
 
@@ -148,7 +148,7 @@ import javax.json.JsonObjectBuilder;
 
 Per lavorare con il JSON ricevuto da una chiamata API REST, richiami il metodo `get` su un `JsonObject`, passando la chiave per il campo che desideri. Per continuare l'esempio `Employee`, se hai ricevuto un `JsonObject` che hai denominato `employee`, richiamerai `employee.get("name")` per rilevare il nome della persona oppure `employee.get("title")` per ottenere la sua posizione professionale. JSON-P è molto simile a un `Map` in Java&trade, come paragone.
 
-Poniamo ora che vuoi creare un tale oggetto JSON nel tuo codice Java&trade. JSON-P utilizza un modello di builder: utilizza un `JsonObjectBuilder` per aggiungere ciascun valore e richiama quindi `build()` per produrre il `JsonObject`, in questo modo:
+Se vuoi creare un tale oggetto JSON nel tuo codice Java&trade;. JSON-P utilizza un modello di builder: utilizza un `JsonObjectBuilder` per aggiungere ciascun valore e richiama quindi `build()` per produrre il `JsonObject`, in questo modo:
 
 ```java
 JsonObjectBuilder addressBuilder = Json.createObjectBuilder();

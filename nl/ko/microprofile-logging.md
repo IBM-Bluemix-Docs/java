@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-05-20"
+lastupdated: "2019-06-10"
 
 keywords: java logging, log level java, debug java, json log java, json log help, kibana liberty, liberty messages
 
@@ -54,7 +54,7 @@ logger.warning("Unable to send message to JMS provider. Continuing without notif
 ```
 {: screen}
 
-로그 레벨은 애플리케이션이 작성하는 로그를 동적으로 선택할 수 있는 유연성을 제공합니다. 이 기능을 사용하면 상위 레벨 애플리케이션 상태와 자세한 디버그 컨텐츠 모두에 대해 미리 설명하는 로그 코드를 작성할 수 있습니다. 따라서 필요할 때까지 더 자세한 디버그 컨텐츠를 필터링할 수 있습니다. 로그 레벨 `info`는 일반적으로 최소 출력 레벨이며, 그 다음에 `fine`, `finer`, `finest` 및 `debug`가 옵니다.
+로그 레벨은 애플리케이션이 작성하는 로그를 동적으로 선택할 수 있는 유연성을 제공합니다. 로그 레벨을 사용하면 상위 레벨 애플리케이션 상태와 자세한 디버그 컨텐츠 모두에 대해 미리 설명하는 로그 코드를 작성할 수 있습니다. 따라서 필요할 때까지 더 자세한 디버그 컨텐츠를 필터링할 수 있습니다. 로그 레벨 `info`는 일반적으로 최소 출력 레벨이며, 그 다음에 `fine`, `finer`, `finest` 및 `debug`가 옵니다.
 
 로그 항목에 여러 코드 행이 필요하거나 이 로그 항목이 문자열 연결과 같은 비용이 많이 드는 오퍼레이션과 관련된 경우, 테스트로 확인하여 로그 레벨이 사용 가능한지 판별해야 합니다. 이 검사를 추가하면 애플리케이션이 결국 필터링으로 제외되는 로그 메시지를 빌드하는 데 중요한 시간을 보내지 않게 됩니다. 다음 예에서는 메시지 출력을 빌드하기 전에 `fine`이라는 의도한 로그 레벨이 사용으로 설정됩니다.
 
@@ -156,15 +156,15 @@ Liberty에는 JSON 형식이 아닌 몇 가지 기본 콘솔 메시지가 있습
 
 새 JSON 로깅 기능과 함께 Liberty는 [GitHub에서 다운로드할 수 있는](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_icp_json_logging.html){: new_window} ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘") 사전 빌드된 Kibana 대시보드를 제공합니다. 링크의 지시사항에 따라 이 대시보드를 설치하십시오. 이제 두 개의 새 대시보드를 사용할 수 있습니다.
 
-![Kibana 대시보드](images/microprofile-logging-image4.png "Kibana 대시보드"){: caption="그림 1. Kibana 대시보드" caption-side="bottom"}
+![Kibana 대시보드](images/microprofile-logging-image4.png "Kibana 대시보드")
 
 문제점 판별을 위해 대시보드를 클릭하면 다음을 확인할 수 있습니다.
 
-![Kibana 대시보드 세부사항](images/microprofile-logging-image5.png "Kibana 대시보드 세부사항"){: caption="그림 2. Kibana 대시보드 세부사항" caption-side="bottom"}
+![Kibana 대시보드 세부사항](images/microprofile-logging-image5.png "Kibana 대시보드 세부사항")
 
 대시보드는 대화식입니다. 예를 들어, **Liberty 메시지** 위젯에 대한 범례에서 **INFO**를 선택하면 **Liberty 메시지 검색** 위젯이 `loglevel=INFO` 메시지에 대해 자체 필터링합니다. 대시보드는 모든 Liberty 기반 마이크로서비스의 로그 데이터를 연합하여 다른 시스템 로그를 필터링합니다.
 
-Liberty helm 차트와 연관된 추가 Kibana 및 Grafana 대시보드가 있습니다. 이러한 대시보드는 [Liberty 클라우드 pak 확장](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window} ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")으로 사용 가능합니다.
+Liberty helm 차트와 연관된 추가 Kibana 및 Grafana 대시보드가 있습니다. 이러한 대시보드는 [Liberty 클라우드 `pak` 확장](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window} ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")으로 사용 가능합니다.
 
 ## 다음 단계
 {: #mp-logging-next-steps notoc}
@@ -174,6 +174,6 @@ Liberty helm 차트와 연관된 추가 Kibana 및 Grafana 대시보드가 있�
 다음 각 배치 환경에서 로그를 보는 방법에 대해 자세히 알아보십시오.
 
 * [Kubernetes 로그](https://kubernetes.io/docs/concepts/cluster-administration/logging/){: new_window} ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")
-* [{{site.data.keyword.openwhisk}} 로그 및 모니터링](/docs/openwhisk?topic=cloud-functions-openwhisk_logs#openwhisk_logs)
+* [{{site.data.keyword.openwhisk}} 로그 및 모니터링](/docs/openwhisk?topic=cloud-functions-logs)
 * [{{site.data.keyword.cloud_notm}} Log Analysis](/docs/services/CloudLogAnalysis?topic=cloudloganalysis-log_analysis_ov#log_analysis_ov)
 * [{{site.data.keyword.cloud_notm}} Private ELK 스택](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.2/manage_metrics/logging_elk.html){: new_window} ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")
