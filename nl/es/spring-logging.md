@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-06-10"
 
 keywords: spring logging, spring logger, logback spring, debug spring, json log spring, consoleappender spring, spring boot log
 
@@ -22,9 +22,9 @@ subcollection: java
 
 Los mensajes de registro son cadenas de información contextual que pertenecen al estado y actividad de un microservicio cuando se crea una entrada de registro. Puede utilizar el registro para diagnosticar cómo y por qué fallan los servicios y para ayudar con las métricas para supervisar el estado de las aplicaciones.
 
-Las entradas de registro se deben escribir directamente en los flujos de salida estándar y de errores. Esto hace que las entradas de registro se puedan ver utilizando las herramientas de línea de mandatos y permite utilizar servicios de reenvío configurados a nivel de infraestructura, como Logstash, Filebeat o Fluentd, para gestionar la recopilación de registros.
+Las entradas de registro se deben escribir directamente en los flujos de salida estándar y de error, lo que hace que puedan visualizarse las entradas de registro utilizando herramientas de línea de mandatos. A continuación, puede utilizar servicios de reenvío de registro que estén configurados a nivel de infraestructura, como Logstash, Filebeat o Fluentd, para gestionar la recopilación de registros.
 
-## Adición de soporte para Logback a las aplicaciones Spring
+## Adición de soporte para Logback a las apps Spring
 {: #spring-log4j}
 
 [Logback](https://logback.qos.ch/){: new_window} ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo") es el motor de registro predeterminado que utiliza Spring Boot, y se utiliza automáticamente cuando se encuentra en la vía de acceso de clase. La mayoría de los arrancadores de Spring Boot dependen transitivamente del Logback a través de `spring-boot-starter-logging`.
@@ -62,7 +62,7 @@ public class SampleLogbackApplication {
 ```
 {: codeblock}
 
-El nivel de registro predeterminado es `INFO`. Puede especificar distintos niveles de registro para paquetes de Java específicos en `application.properties`. Por ejemplo, para establecer el nivel de registro predeterminado en `WARN`, el nivel para el paquete `sample.logging` en `DEBUG`, y el nivel para el paquete Spring `org.springframework.web` en `ERROR`, añada lo siguiente en `application.properties`:
+El nivel de registro predeterminado es `INFO`. Puede especificar distintos niveles de registro para paquetes de Java&trade; específicos en `application.properties`. Por ejemplo, para establecer el nivel de registro predeterminado en `WARN`, el nivel para el paquete `sample.logging` en `DEBUG`, y el nivel para el paquete Spring `org.springframework.web` en `ERROR`, añada lo siguiente en `application.properties`:
 
 ```properties
 logging.level.root=WARN
@@ -94,7 +94,7 @@ Los mensajes de registro se parecen al siguiente ejemplo:
 ### Creación de registros JSON
 {: #spring-json-logs}
 
-Habilitar el registro JSON en aplicaciones Spring utilizando `logstash-logback-encoder`.
+Habilitar el registro JSON en apps Spring utilizando `logstash-logback-encoder`.
 
 Añadir el codificador de logback como una dependencia:
 
@@ -107,7 +107,7 @@ Añadir el codificador de logback como una dependencia:
 ```
 {: codeblock}
 
-Configurar logback para usar el nuevo codificador con un `ConsoleAppender` en `logback.xml`. Debe parecerse al siguiente ejemplo:
+Configurar logback para usar el nuevo codificador con un `ConsoleAppender` en `logback.xml`:
 
 ```xml
 <configuration>
@@ -124,7 +124,7 @@ Configurar logback para usar el nuevo codificador con un `ConsoleAppender` en `l
 ```
 {: codeblock}
 
-Con esta configuración, ahora verá los registros formateados en JSON:
+Con esta configuración, puede ver los registros formateados en JSON:
 
 ```
 {"@timestamp":"2018-10-11T23:48:57.215+00:00","@version":1,"message":"Sample TRACE Message","logger_name":"com.example.demo.LoggingExample","thread_name":"http-nio-8080-exec-1","level":"TRACE","level_value":5000}
@@ -165,9 +165,9 @@ $ docker logs --tail 5 -f <container-id> | jq .message
 
 Para obtener más información sobre la personalización de los mensajes de registro con agregadores, niveles de registro y detalles de configuración, consulte la [referencia de Spring Boot para el registro](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html){: new_window} ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo").
 
-Obtenga más información sobre la visualización de los registros en cada uno de los entornos de despliegue:
+Obtenga más información sobre la visualización de registros en cada uno de los siguientes entornos de despliegue:
 
 * [Registros de Kubernetes](https://kubernetes.io/docs/concepts/cluster-administration/logging/){: new_window} ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")
-* [Registros y supervisión de {{site.data.keyword.openwhisk}}](/docs/openwhisk?topic=cloud-functions-openwhisk_logs#openwhisk_logs)
+* [Registros y supervisión de {{site.data.keyword.openwhisk}}](/docs/openwhisk?topic=cloud-functions-logs)
 * [{{site.data.keyword.cloud_notm}} Log Analysis](/docs/services/CloudLogAnalysis?topic=cloudloganalysis-log_analysis_ov#log_analysis_ov)
 * [Pila de ELK de {{site.data.keyword.cloud_notm}} Private](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.2/manage_metrics/logging_elk.html){: new_window} ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")

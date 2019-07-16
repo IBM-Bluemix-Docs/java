@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="java" audience="platform" arm="4088036" href="/docs/java/overview.html" path="java"}
+{: .toc subcollection="java" category="devops" audience="platform" arm="4088036" href="/docs/java?topic=java-getting-started" path="java"}
 Programación con Java en IBM Cloud
 
     {: .navgroup id="learn"}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-04-22"
+lastupdated: "2019-06-10"
 
 keywords: health check spring, spring health endpoint, spring-boot-actuator, liveness probe spring, readiness probe spring, spring kubernetes probe
 
@@ -22,7 +22,7 @@ subcollection: java
 # Comprobaciones de estado con Spring
 {: #spring-healthcheck}
 
-El punto final de estado proporcionado por Spring Boot Actuator está enlazado con el ciclo de vida de aplicación: no será accesible hasta que se haya iniciado la aplicación y no estará disponible tan pronto como se detenga la aplicación (lo que sucede antes de que el proceso concluya). Spring Boot Actuator añadirá automáticamente indicadores de estado adicionales para las tecnologías detectadas en la vía de acceso de clases. Por ejemplo, si la aplicación utiliza JDBC, el punto final de estado incluirá algunas pruebas básicas para asegurarse de que se puede acceder al almacén de datos de reserva. El punto final de estado definido por el Actuator es más adecuado para su uso como prueba de preparación por esta razón.
+El punto final de estado proporcionado por Spring Boot Actuator está vinculado al ciclo de vida de la aplicación y no estará disponible hasta que se inicie la aplicación. Del mismo modo, se inhabilita tan pronto como se detiene la aplicación (lo que ocurre antes de que concluya el proceso). Spring Boot Actuator añade automáticamente indicadores de estado para las tecnologías detectadas en la vía de acceso de clase. Por ejemplo, si la aplicación utiliza JDBC, el punto final de estado incluirá algunas pruebas básicas para asegurarse de que se puede acceder al almacén de datos de reserva. El punto final de estado definido por el Actuator es más adecuado para su uso como prueba de preparación por esta razón.
 
 Habilite Spring Boot Actuator añadiendo la dependencia `spring-boot-actuator` al archivo `pom.xml`:
 
@@ -34,14 +34,14 @@ Habilite Spring Boot Actuator añadiendo la dependencia `spring-boot-actuator` a
 ```
 {: codeblock}
 
-Hay algunas diferencias de comportamiento con Spring Boot Actuator entre las versiones. Utilizaremos las dos secciones siguientes para explorar cómo crear comprobaciones de actividad y preparación en ambas versiones de Spring Boot, empezando por la 2 como la más actual.
+Hay algunas diferencias de comportamiento con Spring Boot Actuator entre las versiones. Las dos secciones siguientes exploran cómo crear comprobaciones de actividad y preparación en ambas versiones de Spring Boot, empezando por la 2 como la más actual.
 
 ## Comprobaciones de estado en Spring Boot 2
 {: #spring-health-boot2}
 
 Spring Boot 2 Actuator define un punto final `/actuator/health endpoint`, que devuelve una carga útil `{"status": "UP"}` cuando todo está bien. Este punto final está habilitado de forma predeterminada, y no requiere ningún código de aplicación.
 
-Un ejemplo de una comprobación de estado correcta sin autenticación utilizando Spring Boot 2 Actuator:
+Consulte el ejemplo siguiente de comprobación de estado correcta sin autenticación que utiliza Spring Boot 2 Actuator:
 <!-- Spring Boot 2 test project: https://github.com/IBM/spring-alarm-application -->
 
 ```
@@ -73,14 +73,14 @@ Date: Fri, 07 Dec 2018 23:09:09 GMT
 ```
 {: screen}
 
-Observe la inclusión de cierta información de base de datos H2. Este es un ejemplo en el que Spring Actuator añade automáticamente comprobaciones para los servicios de reserva. En este caso, la aplicación utiliza JDBC, y el controlador de H2 se ha descubierto en la vía de acceso de clases.
+Observe la inclusión de cierta información de base de datos H2. Este ejemplo de Spring Actuator añade automáticamente comprobaciones para los servicios de reserva. En este caso, la aplicación utiliza JDBC, y el controlador de H2 se ha descubierto en la vía de acceso de clases.
 
 Puede alterar temporalmente el comportamiento predeterminado del punto final health con propiedades o código, tal como se describe en la [Guía de referencia de Spring Boot para 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo").
 
 ### Prueba de actividad en Spring Boot 2
 {: #spring-liveness-boot2}
 
-La infraestructura de Actuator en Spring Boot 2 es su propia infraestructura miniREST que se puede ampliar con puntos finales personalizados. Esto significa que podemos añadir un punto final de actividad simple que se gestiona de la misma forma que el indicador de estado incorporado. Un punto final de actividad personalizado puede declararse de forma trivial de este modo:
+La infraestructura de Actuator en Spring Boot 2 es su propia infraestructura miniREST que se puede ampliar con puntos finales personalizados. Esto significa que puede añadir un punto final de actividad simple que se gestiona de la misma forma que el indicador de estado incorporado. Un punto final de actividad personalizado puede declararse de forma de forma similar al ejemplo siguiente:
 
 ```java
 @Endpoint(id="liveness")
@@ -145,8 +145,7 @@ Para evitar los ciclos de reinicio, establezca `livenessProbe.initialDelaySecond
 
 Spring Boot 1 Actuator define un punto final `/health`, que devuelve una carga útil `{"status": "UP"}` cuando todo está bien. El punto final no requiere autorización, pero si la autorización está configurada y el emisor de la llamada está autorizado, se incluye información adicional en la respuesta.
 
-Un ejemplo de una comprobación de estado correcta sin autenticación utilizando Spring Boot 1 Actuator:
-
+Consulte el ejemplo siguiente de comprobación de estado correcta sin autenticación que utiliza Spring Boot 1 Actuator:
 ```
 $ curl -i localhost:8080/health
 HTTP/1.1 200
@@ -189,7 +188,7 @@ Puede alterar temporalmente el comportamiento predeterminado del punto final hea
 ### Prueba de actividad en Spring Boot 1
 {: #spring-liveness-boot1}
 
-Para Spring Boot 1, un punto final HTTP simple para la actividad que siempre devuelva {"status": "UP"} con el código de estado 200 sería algo así:
+Para Spring Boot 1, un punto final HTTP simple para la actividad que siempre devuelva {"status": "UP"} con el código de estado 200 sería algo similar al fragmento de código siguiente:
 
 ```java
 @RestController

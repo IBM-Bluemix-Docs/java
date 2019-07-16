@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-04-22"
+lastupdated: "2019-06-10"
 
 keywords: mpmetrics microprofile, mpmetrics, prometheus java, metrics java, microprofile metrics
 
@@ -78,7 +78,7 @@ Johns-MacBook-Pro-8:StockTrader jalcorn$
 Como puede ver, se cuentan dos portfolios tal como se esperaba. 
 
 Varios puntos destacados:
-- Se trata de un contador en memoria: si se reinicia el pod, el valor se restablece a cero; si hay varias réplicas, cada una tiene su propio valor exclusivo.
+- Se utiliza un contador en memoria: si se reinicia el pod, el valor se restablece a cero; si hay varias réplicas, cada una tiene su propio valor exclusivo.
 - El texto de "# HELP" es lo que se especifica como descripción en la anotación `@Counted`.
 
 También puede ver la salida de este punto final GET de REST en el navegador web:

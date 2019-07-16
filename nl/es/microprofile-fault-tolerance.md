@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-06-10"
 
 keywords: fault tolerance microprofile, retries microprofile, circuit breakers microprofile, bulkhead microprofile, microprofile limits
 
@@ -22,11 +22,11 @@ subcollection: java
 # Tolerancia a errores con MicroProfile
 {: #mp-fault-tolerance}
 
-Nuestro enfoque recomendado para estos temas de tolerancia a errores es principalmente aprovechar las características de Istio. Consulte "Istio -- Tolerancia a errores" en el capítulo "Creación de microservicios -- funciones de varios lenguajes" de este manual. Se tratan temas como los reintentos, los tiempos de espera, los interruptores, las barreras aislantes y los límites de velocidad.
+El enfoque recomendado para estos temas de tolerancia a errores es utilizar las características de Istio. Consulte el libro titulado "Istio - Tolerancia a errores", y vaya al capítulo "Creación de microservicios - Funciones de varios idiomas". Se explican muchos temas, entre los que se incluyen reintentos, tiempos de espera, interruptores, barreras y límites de velocidad.
 
-MicroProfile también ofrece un enfoque que se describe en el capítulo "Características destacadas adicionales de Java" bajo la cabecera "Tolerancia de errores de MicroProfile". En esta sección, se muestra cómo se puede utilizar la capacidad de reserva en combinación con Istio, así como algunos detalles más sobre los casos de interés para utilizar un enfoque con mpFaultTolerance en lugar de Istio.
+MicroProfile también ofrece un enfoque que se describe en el capítulo "Características destacadas adicionales de Java" bajo la cabecera "Tolerancia de errores de MicroProfile". En esta sección se muestra cómo se puede utilizar la capacidad de reserva en combinación con Istio, así como detalles acerca del uso de `mpFaultTolerance` en lugar de Istio.
 
-Istio no es capaz de ofrecer funciones de reserva, porque la reserva requiere conocimientos empresariales. Un enfoque más avanzado consiste en utilizar la tolerancia a errores de Istio junto con las funciones de reserva de MicroProfile para lograr el máximo de resiliencia. Por ejemplo, puede especificar una copia de seguridad de reserva al llamar a un servicio de fondo. Si Istio no puede gestionar un retorno satisfactorio, se invocará el método de reserva.
+Istio no es capaz de ofrecer funciones de reserva, porque la reserva requiere conocimientos empresariales. Un enfoque más avanzado consiste en utilizar la tolerancia a errores de Istio junto con las funciones de reserva de MicroProfile para lograr el máximo de resiliencia. Por ejemplo, puede especificar una copia de seguridad de reserva al llamar a un servicio de fondo. Si Istio no puede gestionar un retorno satisfactorio, se invoca el método de reserva.
 
 ```java
 @GET

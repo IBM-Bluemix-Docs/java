@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-05-20"
+lastupdated: "2019-06-10"
 
 keywords: java logging, log level java, debug java, json log java, json log help, kibana liberty, liberty messages
 
@@ -54,7 +54,7 @@ El nivel de registro se visualiza cuando estos mensajes se producen en la consol
 ```
 {: screen}
 
-Los niveles de registro le proporcionan la flexibilidad necesaria para elegir dinámicamente qué registros escribe la aplicación. Esta característica le permite escribir código de registro que describe tanto el estado de aplicación de alto nivel como el contenido de depuración detallado por adelantado. De este modo puede filtrar el contenido de depuración más detallado hasta que lo necesite. El nivel de registro `info` es normalmente el nivel de salida mínimo, seguido por `fine`, `finer`, `finest` y `debug`.
+Los niveles de registro le proporcionan la flexibilidad necesaria para elegir dinámicamente qué registros escribe la aplicación. Al utilizar los niveles de registro, puede escribir código de registro que describe tanto el estado de aplicación de alto nivel como el contenido de depuración detallado por adelantado. De este modo puede filtrar el contenido de depuración más detallado hasta que lo necesite. El nivel de registro `info` es normalmente el nivel de salida mínimo, seguido por `fine`, `finer`, `finest` y `debug`.
 
 Si la entrada de registro requiere varias líneas de código, o implica operaciones costosas como, por ejemplo, concatenación de series, tenga en cuenta la posibilidad de protegerlas con una prueba para determinar si el nivel de registro está habilitado. La adición de la comprobación garantiza que su aplicación no dedique un tiempo crucial a crear mensajes de registro que acaban siendo filtrados. El ejemplo siguiente verifica, el nivel de registro previsto `fine` se habilita antes de generar la salida de mensaje.
 
@@ -72,14 +72,14 @@ Para obtener más información sobre los niveles de registro y los detalles de c
 ## Registro de JSON con Liberty
 {: #mp-json-logging}
 
-Liberty da soporte al registro con formato JSON. Cuando está habilitado, los mensajes de registro se graban en la consola en formato JSON. Habilite esta opción utilizando la stanza de registro siguiente en `server.xml`:
+Liberty da soporte al registro con formato JSON. Cuando está habilitado, los mensajes de registro se escriben en la consola en formato JSON. Habilite esta opción utilizando la stanza de registro siguiente en `server.xml`:
 
 ```xml
 <logging consoleLogLevel="INFO" consoleFormat="json" consoleSource="message,trace,accessLog,ffdc" />
 ```
 {: codeblock}
 
-Aunque `accessLog` se incluya en la lista anterior de orígenes de la consola, el registro de acceso HTTP debe estar habilitado para que dichos registros se graben en la consola. El siguiente fragmento de código muestra cómo añadir el subelemento `accessLogging` al elemento `httpEndpoint` en el archivo `server.xml`:
+Aunque `accessLog` se incluya en la lista anterior de orígenes de la consola, el registro de acceso HTTP debe estar habilitado para que dichos registros se escriban en la consola. El siguiente fragmento de código muestra cómo añadir el subelemento `accessLogging` al elemento `httpEndpoint` en el archivo `server.xml`:
 
 ```xml
 <httpEndpoint id="defaultHttpEndpoint" host="\*" httpPort="9080" httpsPort="9443">
@@ -164,7 +164,7 @@ Cuando selecciona el panel de control para la determinación de problemas, ve lo
 
 El panel de control es interactivo. Por ejemplo, si selecciona **INFO** en la descripción del widget **Mensaje de Liberty**, el widget siguiente **Búsqueda de mensajes de Liberty** filtra solo los mensajes de `loglevel=INFO`. El panel de control federa los datos de registro de todos los microservicios basados en Liberty y filtra los demás registros del sistema.
 
-Hay más paneles de control de Kibana y Grafana asociados con la gráfica de Helm de Liberty. Están disponibles como [extensiones del paquete de nube de Liberty](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window} ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo").
+Hay más paneles de control de Kibana y Grafana asociados con la gráfica de Helm de Liberty. Están disponibles como [extensiones de cloud `pak` de Liberty](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window} ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo").
 
 ## Pasos siguientes
 {: #mp-logging-next-steps notoc}
@@ -174,6 +174,6 @@ Para obtener más información sobre la personalización de los mensajes de regi
 Obtenga más información sobre la visualización de los registros en cada uno de los siguientes entornos de despliegue:
 
 * [Registros de Kubernetes](https://kubernetes.io/docs/concepts/cluster-administration/logging/){: new_window} ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")
-* [Registros y supervisión de {{site.data.keyword.openwhisk}}](/docs/openwhisk?topic=cloud-functions-openwhisk_logs#openwhisk_logs)
+* [Registros y supervisión de {{site.data.keyword.openwhisk}}](/docs/openwhisk?topic=cloud-functions-logs)
 * [{{site.data.keyword.cloud_notm}} Log Analysis](/docs/services/CloudLogAnalysis?topic=cloudloganalysis-log_analysis_ov#log_analysis_ov)
 * [Pila de ELK de {{site.data.keyword.cloud_notm}} Private](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.2/manage_metrics/logging_elk.html){: new_window} ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")

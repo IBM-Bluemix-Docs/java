@@ -29,7 +29,7 @@ Las especificaciones de MicroProfile (por ejemplo, MicroProfile Config, MicroPro
 ## Beans de CDI
 {: #cdi-bean}
 
-CDI opera en _beans_. Los beans de CDI se crean utilizando [Anotaciones de definición de bean](https://docs.jboss.org/cdi/spec/2.0/cdi-spec.html){: new_window}![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo"). Casi todos los objetos POJO (plain old Java object) que tienen un constructor sin argumentos o un constructor con la anotación `@Inject` pueden ser un bean.
+CDI opera en _beans_. Los beans de CDI se crean utilizando [Anotaciones de definición de bean](https://docs.jboss.org/cdi/spec/2.0/cdi-spec.html){: new_window} ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo"). Casi todos los objetos POJO (plain old Java object) que tienen un constructor sin argumentos o un constructor con la anotación `@Inject` pueden ser un bean.
 
 Anotaciones que definen que se deben descubrir beans de CDI. Se puede habilitar la exploración de anotaciones de CDI utilizando un archivo
 `beans.xml` en la carpeta `META-INF` para un archivado .jar, o en la carpeta `WEB-INF` para un archivado .war. Este archivo puede estar vacío, o incluir un contenido similar al siguiente:
