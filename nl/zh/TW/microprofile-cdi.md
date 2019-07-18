@@ -29,7 +29,7 @@ MicroProfile 規格（例如，MicroProfile Config、MicroProfile JWT）採用 C
 ## CDI Bean
 {: #cdi-bean}
 
-CDI 在 _Bean_ 上操作。CDI Bean 是使用 [Bean 定義註釋](https://docs.jboss.org/cdi/spec/2.0/cdi-spec.html){: new_window} ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示") 來建立的。幾乎所有的一般舊 Java&trade 物件 (POJO) 都可以是 Bean，該 POJO 具有不含引數的建構子，或者具有含 `@Inject` 註釋的建構子。
+CDI 在 _Bean_ 上操作。CDI Bean 是使用 [Bean 定義註釋](https://docs.jboss.org/cdi/spec/2.0/cdi-spec.html){: new_window} ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示") 來建立的。幾乎所有的一般舊 Java&trade; 物件 (POJO) 都可以是 Bean，該 POJO 具有不含引數的建構子，或者具有含 `@Inject` 註釋的建構子。
 
 必須探索定義 CDI Bean 的註釋。可以藉由使用 `META-INF` 資料夾（適用於 .jar 保存檔）或 `WEB-INF` 資料夾（適用於 .war 保存檔）中的 `beans.xml` 檔，來啟用 CDI 註釋掃描。此檔案可以是空的，也可以包含類似於下列的內容：
 

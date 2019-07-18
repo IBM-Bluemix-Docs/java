@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-04-22"
+lastupdated: "2019-06-10"
 
 keywords: health check spring, spring health endpoint, spring-boot-actuator, liveness probe spring, readiness probe spring, spring kubernetes probe
 
@@ -22,7 +22,7 @@ subcollection: java
 # 使用 Spring 進行性能檢查
 {: #spring-healthcheck}
 
-Spring Boot Actuator 提供的性能端點與應用程式生命週期相關聯：在應用程式啟動之後才可以呼叫到，而且一旦應用程式停止（在處理程序關閉之前發生），便無法使用。Spring Boot Actuator 會自動為在類別路徑上偵測到的技術，新增其他性能指示器。例如，若您的應用程式使用 JDBC，則性能端點會包含一些基本測試，以確保可以呼叫支持的資料儲存庫。基於此原因，「掣動器」定義的性能端點更適合用作備妥探測。
+Spring Boot 掣動器提供的性能端點與應用程式生命週期連結，且在應用程式啟動之前無法聯繫該端點。同樣，一旦應用程式停止（在處理程序關閉之前停止），該端點即會停用。Spring Boot 掣動器會自動為類別路徑上偵測到的技術新增性能指示器。例如，如果應用程式使用了 JDBC，則性能端點將包含一些基本測試，以確保可以呼叫支持的資料儲存庫。基於此原因，掣動器定義的性能端點更適合用作就緒探測。
 
 透過將 `spring-boot-actuator` 相依關係新增至 `pom.xml` 檔，來啟用 Spring Boot Actuator：
 
@@ -34,14 +34,14 @@ Spring Boot Actuator 提供的性能端點與應用程式生命週期相關聯�
 ```
 {: codeblock}
 
-Spring Boot Actuator 的版本之間有一些行為差異。我們將使用接下來的兩個小節來探索在 Spring Boot 的兩個版本中，如何建立存活性及備妥檢查，從 2 開始作為最新版本。
+Spring Boot 掣動器的版本之間有一些行為差異。接下來的兩個小節會探索在 Spring Boot 的兩個版本中，如何建立存活性及就緒檢查，從 2 開始作為最新版本。
 
 ## Spring Boot 2 中的性能檢查
 {: #spring-health-boot2}
 
-Spring Boot 2 Actuator 定義 `/actuator/health endpoint`，其會在一切正常時傳回 `{"status": "UP"}` 有效負載。依預設會啟用這個端點，且不需要任何應用程式碼。
+Spring Boot 2 掣動器定義 `/actuator/health endpoint`，其會在一切正常時傳回 `{"status": "UP"}` 有效負載。依預設會啟用這個端點，且不需要任何應用程式碼。
 
-使用 Spring Boot 2 Actuator 進行未經鑑別的成功性能檢查範例：
+請參閱下列使用 Spring Boot 2 掣動器的未經鑑別的成功性能檢查範例：
 <!-- Spring Boot 2 test project: https://github.com/IBM/spring-alarm-application -->
 
 ```
@@ -73,14 +73,14 @@ Date: Fri, 07 Dec 2018 23:09:09 GMT
 ```
 {: screen}
 
-請注意是否包含部分 H2 資料庫資訊。這是 Spring Actuator 自動為支援的服務新增檢查的範例。在此情況下，應用程式使用 JDBC，但在類別路徑上探索到 H2 驅動程式。
+請注意，上例併入了一些 H2 資料庫資訊。此 Spring 掣動器範例自動新增了對支持服務的檢查。在本例中，應用程式使用的是 JDBC，並且在類別路徑上探索了 H2 驅動程式。
 
 您可以將性能端點的預設行為置換為內容或程式碼，如 [Spring Boot Reference Guide for 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示") 中所述。
 
 ### Spring Boot 2 中的存活性探測
 {: #spring-liveness-boot2}
 
-Spring Boot 2 中的「掣動器」架構是它自己的迷你 REST 架構，可利用自訂端點來延伸。這表示我們可以新增簡單的存活性端點，其管理方法同於內建的性能指示器。自訂的存活性端點可以簡單宣告，如下所示：
+Spring Boot 2 中的「掣動器」架構是它自己的迷你 REST 架構，可利用自訂端點來延伸。這表示您可以新增簡單的存活性端點，其管理方法同於內建的性能指示器。自訂的存活性端點可以簡單宣告，如下所示：
 
 ```java
 @Endpoint(id="liveness")
@@ -112,10 +112,10 @@ Date: Thu, 07 Feb 2019 22:38:27 GMT
 ```
 {: screen}
 
-### 在 Kubernetes 中配置 Spring Boot 2 備妥及存活性探測
+### 在 Kubernetes 中配置 Spring Boot 2 就緒及存活性探測
 {: #spring-probe-config-2}
 
-將備妥及存活性探測配置新增至 Kubernetes 部署資訊清單中的容器定義（請注意路徑及埠值）：
+將就緒及存活性探測配置新增至 Kubernetes 部署資訊清單中的容器定義（請注意路徑及埠值）：
 
 ```yaml
 spec:
@@ -143,10 +143,9 @@ spec:
 ## Spring Boot 1 中的性能檢查
 {: #spring-health-boot1}
 
-Spring Boot 1 Actuator 定義 `/health` 端點，其會在一切正常時傳回 `{"status": "UP"}` 有效負載。此端點不需要授權，但如果已配置授權且授權了呼叫者，則額外的資訊會包含在回應中。
+Spring Boot 1 掣動器定義 `/health` 端點，其會在一切正常時傳回 `{"status": "UP"}` 有效負載。此端點不需要授權，但如果已配置授權且授權了呼叫者，則額外的資訊會包含在回應中。
 
-使用 Spring Boot 1 Actuator 進行未經鑑別的成功性能檢查範例：
-
+請參閱下列使用 Spring Boot 1 掣動器的未經鑑別的成功性能檢查範例：
 ```
 $ curl -i localhost:8080/health
 HTTP/1.1 200
@@ -189,7 +188,7 @@ Content-Length: 221
 ### Spring Boot 1 中的存活性探測
 {: #spring-liveness-boot1}
 
-對於 Spring Boot 1，簡單的存活性 http 端點一律傳回 {"status": "UP"} 與狀態碼 200，看起來如下所示：
+對於 Spring Boot 1，簡單的存活性 HTTP 端點一律傳回 {"status": "UP"} 和狀態碼 200，看起來如下所示：
 
 ```java
 @RestController
@@ -215,10 +214,10 @@ Date: Thu, 07 Feb 2019 22:43:32 GMT
 ```
 {: screen}
 
-### 在 Kubernetes 中配置 Spring Boot 1 備妥及存活性探測
+### 在 Kubernetes 中配置 Spring Boot 1 就緒及存活性探測
 {: #spring-probe-config-1}
 
-將備妥及存活性探測配置新增至 Kubernetes 部署資訊清單中的容器定義（請注意路徑及埠值）：
+將就緒及存活性探測配置新增至 Kubernetes 部署資訊清單中的容器定義（請注意路徑及埠值）：
 
 ```yaml
 spec:

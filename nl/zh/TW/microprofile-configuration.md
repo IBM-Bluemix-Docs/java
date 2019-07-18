@@ -54,7 +54,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 ```
 {: codeblock}
 
-若要將名為 `WATSON_URL` 的內容值注入至 `watsonService` 變數，請使用下列範例：
+若要將名稱為 `WATSON_URL` 的內容值注入至 `watsonService` 變數，請使用下列範例：
 
 ```java
 @Inject 

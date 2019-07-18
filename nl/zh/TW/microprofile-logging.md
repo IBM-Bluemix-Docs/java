@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-05-20"
+lastupdated: "2019-06-10"
 
 keywords: java logging, log level java, debug java, json log java, json log help, kibana liberty, liberty messages
 
@@ -54,7 +54,7 @@ logger.warning("Unable to send message to JMS provider. Continuing without notif
 ```
 {: screen}
 
-記載層次可讓您彈性選擇應用程式要寫入的日誌。這項特性可讓您寫入日誌碼，以說明高階應用程式狀態和詳細除錯內容。因此您可以過濾掉較詳細的除錯內容，直到有需要為止。記載層次 `info` 通常是最低的輸出層次，後面接著 `fine`、`finer`、`finest` 及 `debug`。
+記載層次可讓您彈性選擇應用程式要寫入的日誌。透過使用記載層次，可以撰寫用於說明高層次應用程式狀態和詳細除錯內容的日誌代碼。因此您可以過濾掉較詳細的除錯內容，直到有需要為止。記載層次 `info` 通常是最低的輸出層次，後面接著 `fine`、`finer`、`finest` 及 `debug`。
 
 如果日誌項目需要多行程式碼，或涉及諸如字串連結之類的昂貴作業時，請考慮使用測試來保護它們，以判定是否啟用記載層次。新增檢查可確保您的應用程式不會花費重要的時間，來建置最終被過濾掉的日誌訊息。在下列範例中，在嘗試建置訊息輸出之前，會先啟用想要的日誌層次 `fine`。
 
@@ -117,7 +117,7 @@ if (logger.isLoggable(Level.AUDIT)) {
 ### 讀取 JSON 日誌輸出
 {: #mp-json-log-output}
 
-完整 JSON 輸出對於日誌儲存和搜尋非常有用，但不容易閱讀。您可以使用 `kubectl` 指令，在終端機視窗中檢查日誌的內容。幸好，有一個名稱為 `jq` 的指令行工具可以協助您。
+完整 JSON 輸出對於日誌儲存和搜尋非常有用，但不容易閱讀。您可以使用 `kubectl` 指令，在終端機視窗中檢查日誌的內容。幸好，有一個名稱為 `jq` 的指令行工具可提供協助。
 
 使用 `jq` 指令，您可以進行過濾並著重於您需要的欄位。若您想要看到 `message` 欄位，並過濾掉其他所有內容，請參閱下列範例：
 
@@ -164,7 +164,7 @@ Liberty 具有一些不是 JSON 格式的基本主控台訊息。您可以使用
 
 儀表板是互動式的。例如，若您在 **Liberty 訊息**小組件的圖註中，選擇**資訊**，則 **Liberty 訊息搜尋**小組件會自行過濾為只有 `loglevel=INFO` 訊息。儀表板會聯合來自所有以 Liberty 為基礎之微服務的日誌資料，並過濾掉其他系統日誌。
 
-另外還有其他 Kibana 和 Grafana 儀表板與 Liberty helm 圖表相關聯。這些儀表板可作為 [Liberty Cloud Pak](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window} ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示") 的延伸。
+另外還有其他 Kibana 和 Grafana 儀表板與 Liberty helm 圖表相關聯。這些儀表板作為 [Liberty Cloud `pak` 的延伸](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window} ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示") 提供。
 
 ## 後續步驟
 {: #mp-logging-next-steps notoc}
@@ -174,6 +174,6 @@ Liberty 具有一些不是 JSON 格式的基本主控台訊息。您可以使用
 進一步瞭解在下列每一個部署環境中檢視日誌：
 
 * [Kubernetes 日誌](https://kubernetes.io/docs/concepts/cluster-administration/logging/){: new_window} ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")
-* [{{site.data.keyword.openwhisk}} Logs & Monitoring](/docs/openwhisk?topic=cloud-functions-openwhisk_logs#openwhisk_logs)
+* [{{site.data.keyword.openwhisk}} Logs & Monitoring](/docs/openwhisk?topic=cloud-functions-logs)
 * [{{site.data.keyword.cloud_notm}} Log Analysis](/docs/services/CloudLogAnalysis?topic=cloudloganalysis-log_analysis_ov#log_analysis_ov)
 * [{{site.data.keyword.cloud_notm}} Private ELK stack](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.2/manage_metrics/logging_elk.html){: new_window} ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")

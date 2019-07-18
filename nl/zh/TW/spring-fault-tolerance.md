@@ -23,7 +23,7 @@ subcollection: java
 
 建立回復型系統會將需求放在其中的所有服務上。雲端環境的動態本質需要服務設計成溫和地回應非預期情況。
 
-Spring 使用 [Netflix Hystrix](https://github.com/Netflix/Hystrix/wiki){: new_window} ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示") 容錯程式庫來支援應用程式層次的容錯問題。您可以使用 Hystrix，來建立撤回、斷路器、隔板及相關聯的度量。
+Spring 使用 [Netflix Hystrix](https://github.com/Netflix/Hystrix/wiki){: new_window} ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示") 容錯程式庫來支援應用程式層次的容錯問題。您可以使用 Hystrix，來建立撤回、斷路器、隔板及相關聯的度量值。
 
 本資訊以[雲端原生開發：容錯](/docs/java?topic=cloud-native-fault-tolerance#fault-tolerance)中所述的容錯實務，作為建置基礎。
 {: note}
@@ -64,7 +64,7 @@ public class MyApplication {
 只有 `@Component` 或 `@Service` 中的方法，才支援 `@HystrixCommand` 註釋。
 {: note}
 
-下列 `@HystrixCommand` 註釋會包裝 `service()` 呼叫，以提供斷路器行為。如果 `service()` 方法失敗，或開啟電路，則 Proxy 會呼叫 `fallback()` 方法。
+下列 `@HystrixCommand` 註釋會包裝 `service()` 呼叫，以提供斷路器行為。如果 `service()` 方法失敗，或是線路未封閉，則 Proxy 會呼叫 `fallback()` 方法。
 
 ```java
 @Autowired
@@ -130,9 +130,9 @@ Hystrix 同時支援信號及佇列型隔板。下列 Snippet 顯示如何配置
 ### 斷路器狀態
 {: #spring-breaker-status}
 
-Hystrix Spring 入門範本有一個額外的秘訣，它將加強應用程式的預設 `/health` 端點（透過 Spring Actuator 提供的端點）。如需相關資訊，請參閱[度量與 Spring](/docs/java?topic=java-spring-metrics#spring-metrics)。
+Hystrix Spring 入門範本有一個額外的秘訣，它將加強應用程式的預設 `/health` 端點（透過 Spring 掣動器提供的端點）。如需相關資訊，請參閱[度量值與 Spring](/docs/java?topic=java-spring-metrics#spring-metrics)。
 
-如果性能端點[配置為包括額外詳細資料](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")，則斷路器狀態會併入性能檢查資訊中。（依預設會停用此行為）。
+如果性能端點[配置為包括額外詳細資料](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")，則斷路器狀態會與性能檢查資訊一起包含。（依預設會停用此行為）。
 
 ```
 {
