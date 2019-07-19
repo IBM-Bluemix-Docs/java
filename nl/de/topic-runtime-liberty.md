@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-05-20"
+lastupdated: "2019-06-10"
 
 keywords: open liberty java, websphere liberty java, jakarta, webpshere docker, liberty docker, liberty docker images, installutility, microprofile java, dual layer docker, develop microservices
 
@@ -11,6 +11,7 @@ subcollection: java
 ---
 
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:codeblock: .codeblock}
@@ -27,17 +28,17 @@ subcollection: java
 Liberty-Features unterstützen die folgenden Anwendungsframeworks:
 
 * [MicroProfile](https://microprofile.io/){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link"), ein Open-Source-Projekt, das neue Standards und APIs definiert, um die Erstellung von Mikroservices zu beschleunigen und zu vereinfachen.
-* [Jakarta EE](https://jakarta.ee){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link") und [Java EE](https://www.oracle.com/technetwork/java/javaee/overview/index.html){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link"), einschließlich Features für einzelne Spezifikationen, z. B. JNDI oder JAX-RS.
+* [Jakarta EE](https://jakarta.ee){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link") und [Java&trade; EE](https://www.oracle.com/technetwork/java/javaee/overview/index.html){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link") einschließlich Features für einzelne Spezifikationen wie JNDI oder JAX-RS. 
 * [Spring Framework und Spring Boot](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_dep_springboot.html){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link"), einschließlich Mechanismen zum Erstellen von Containern aus umfangreichen JAR-Dateien von Spring Boot.
 
-Es gibt eine Reihe praktischer Entwicklungshandbücher, die sich mit dem Erstellen von Mikroservices und cloudnativen Anwendungen mit Liberty beschäftigen. Diese finden Sie unter [https://openliberty.io/guides/](https://openliberty.io/guides/){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link").
+Es gibt eine breite Palette praxisorientierter Entwicklerhandbücher für die Erstellung von Mikroservices und cloudnativer Apps mit Liberty. Diese finden Sie unter [https://openliberty.io/guides/](https://openliberty.io/guides/){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link"). 
 
 ## Optimiert für Docker
 {: #liberty-optimized}
 
 Wenn automatisierte Systeme wie Kubernetes Container-Images übertragen, spielt die Image-Größe eine wichtige Rolle. Unterstützend werden zur Lösung des Problems die Layer in Docker-Images in den Cache gestellt. Mit seiner modularen Architektur stellt Liberty eine effiziente Paketierungspipeline für Docker-Container zur Verfügung und ist somit hervorragend für Cloud-Umgebungen geeignet. Ein Basisimage kann verwendet werden, um viele Workloads zu unterstützen, die es ermöglichen, dass der Ressourcenbedarf von aktiven Containern abhängig von den Anforderungen des Service variieren kann.
 
-Liberty bietet Tools und optimierte Unterstützung für die Konvertierung umfangreicher Spring Boot-JAR-Dateien in kompakte, optimierte Docker-Container, die die Vorteile der in den Cache gestellten Layer von Docker-Images nutzen, um Zyklus- und Publizierungszeiten zu verbessern. Iterative Neuerstellungen und Neuimplementierungen werden wesentlich schneller ausgeführt, wenn sich selten ändernden Bibliotheksabhängigkeiten in einen separaten Layer gestellt und nur die Anwendungsklassen im obersten Layer beibehalten werden. Weitere Informationen finden Sie in der Veröffentlichung zum [Erstellen von Dual-Docker-Images für Spring Boot-Apps](https://openliberty.io/blog/2018/07/02/creating-dual-layer-docker-images-for-spring-boot-apps.html){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link").
+Liberty bietet Tools und optimierte Unterstützung für die Konvertierung umfangreicher Spring Boot-JAR-Dateien in kompakte, optimierte Docker-Container, die die Vorteile der in den Cache gestellten Layer von Docker-Images nutzen, um Zyklus- und Publizierungszeiten zu verbessern. Iterative Neuerstellungen und Neubereitstellungen werden wesentlich schneller ausgeführt, wenn sich selten ändernde Bibliotheksabhängigkeiten in einen separaten Layer gestellt und nur die Anwendungsklassen im obersten Layer beibehalten werden. Weitere Informationen finden Sie in der Veröffentlichung zum [Erstellen von Dual-Docker-Images für Spring Boot-Apps](https://openliberty.io/blog/2018/07/02/creating-dual-layer-docker-images-for-spring-boot-apps.html){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link").
 
 ## Liberty-Docker-Images
 {: #liberty-images}
@@ -48,12 +49,12 @@ Sowohl Open Liberty als auch WebSphere Liberty stellen verschiedene Basisimages 
 2. `open-liberty:javaee8` oder `websphere-liberty:javaee8`
 3. `open-liberty:springBoot2` oder `websphere-liberty:springBoot2`
 
-Unter [`websphere-liberty`](https://hub.docker.com/_/websphere-liberty/){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link") oder [`open-liberty`](https://hub.docker.com/_/open-liberty/){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link") in Docker Hub finden Sie die aktuelle Liste der Basisimages.
+Unter [`websphere-liberty`](https://hub.docker.com/_/websphere-liberty/){: external} oder [`open-liberty`](https://hub.docker.com/_/open-liberty/){: external} auf dem Docker Hub finden Sie die aktuelle Liste der Basisimages. 
 
 ### Open Liberty und Docker
 {: #openliberty-docker}
 
-Wählen Sie das für Ihre Anwendung am besten geeignete Image aus der [Liste der Images in Docker Hub](https://hub.docker.com/_/open-liberty/){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link"), z. B. `open-liberty:microProfile`, aus und erstellen Sie eine Dockerfile für Ihren Service, der `FROM` erweitert. Fügen Sie die Befehle hinzu, um die App- und Serverkonfiguration in das neue Image zu kopieren. Beispiel:
+Wählen Sie das für Ihre App am besten geeignete Image in der [Liste der Images auf dem Docker Hub](https://hub.docker.com/_/open-liberty/){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link") aus (z. B. `open-liberty:microProfile`) und erstellen Sie mit `FROM` daraus eine Dockerfile für Ihren Service. Fügen Sie die Befehle hinzu, um die App- und Serverkonfiguration in das neue Image zu kopieren. Beispiel:
 
 ```docker
 FROM open-liberty:microProfile\
@@ -72,7 +73,7 @@ Weitere Beispiele und funktionierenden Code finden Sie in den folgenden Open Lib
 
 Es gibt einige Unterschiede zwischen Open Liberty und der kommerziellen Version, WebSphere Liberty. Einer der wichtigsten Unterschiede für die Erstellung von Docker-Images ist, dass der Befehl `installUtility` in Open Liberty nicht verfügbar ist.
 
-WebSphere Liberty unterstützt dieselben grundlegenden Anpassungsmuster, die Open Liberty für Docker-Images verwendet. Das inhärente modulare Design von Liberty macht es einfach (und typisch für Liberty), ein angepasstes Image zu erstellen, das eine Anwendung und die erforderliche Gruppe von Features enthält. WebSphere Liberty verfügt über ein Image für einen Feature-losen Kernel, [`websphere-liberty:kernel`](https://github.com/WASdev/ci.docker/blob/9d28dfba4d20596f89b393bc9e3ae8295feec469/ga/developer/kernel/Dockerfile){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link"), der eine solide Basis für ein richtiges angepasstes Image bildet.
+WebSphere Liberty unterstützt die gleichen grundlegenden Anpassungsmuster, die Open Liberty für Docker-Images unterstützt. Das inhärente modulare Design von Liberty macht es jedoch einfach (und typisch für Liberty), ein angepasstes Image zu erstellen, das eine App und die erforderliche Gruppe von Features enthält. WebSphere Liberty verfügt über ein Image für einen Feature-losen Kernel, [`websphere-liberty:kernel`](https://github.com/WASdev/ci.docker/blob/9d28dfba4d20596f89b393bc9e3ae8295feec469/ga/developer/kernel/Dockerfile){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link"), der eine solide Basis für ein richtiges angepasstes Image bildet.
 
 Die [Image-Dokumentation für `websphere-liberty`](https://hub.docker.com/_/websphere-liberty/){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link") beschreibt die folgende einfache dreizeilige Dockerfile, die zum Erstellen eines angepassten Image erforderlich ist:
 
@@ -85,7 +86,7 @@ RUN installUtility install --acceptLicense defaultServer
 
 Das Tool `installUtility` sucht nach Features, die Sie in der Datei `server.xml` benötigen, die noch nicht in Ihrem Liberty-Image verfügbar sind. Anschließend werden diese Features heruntergeladen und in Ihrem Docker-Image installiert. Bei diesem Ansatz wird ein minimales Image erstellt, aber die implizite Featureliste in der Datei `server.xml` funktioniert nicht gut mit den Cache-Docker-Layern. Jede Änderung in der Datei `server.xml` macht den Layer mit den installierten Features ungültig, so dass die fehlenden Features bei der nächsten Image-Installation erneut installiert werden müssen.
 
-Eine bessere Methode zum Erstellen von angepassten Images besteht darin, `installUtility` mit einer expliziten Liste der Features aufzurufen. Durch diese Methode wird zwar immer noch ein minimales Image erstellt, dieses wird sich jedoch zur Buildzeit besser verhalten, da der Layer des Images zwischengespeichert wird und unabhängig von Änderungen der Serverkonfiguration wiederverwendet werden kann. Mit dem folgenden Code wird beispielsweise ein angepasstes Image erstellt, das eine Untergruppe von Features für die Unterstützung einer Anwendung nutzt, die JAX-RS, JNDI und WebSockets verwendet:
+Eine bessere Methode zum Erstellen von angepassten Images besteht darin, `installUtility` mit einer expliziten Liste der Features aufzurufen. Durch diese Methode wird zwar immer noch ein minimales Image erstellt, dieses wird sich jedoch zur Buildzeit besser verhalten, da der Layer des Images zwischengespeichert wird und unabhängig von Änderungen der Serverkonfiguration wiederverwendet werden kann. Das mit dem folgenden Beispiel erstellte angepasste Image nutzt eine Untergruppe von Features für die Unterstützung einer App, die JAX-RS, JNDI und WebSockets verwendet: 
 
 ```docker
 FROM websphere-liberty:kernel
@@ -103,8 +104,8 @@ COPY server.xml /config/
 Wie Sie Ihr Docker-Image strukturieren, hängt von einigen Faktoren ab:
 
 1. In welchem Umfang soll das Basisimage wiederverwendbar oder angepasst sein?
-    Mit diesen Schritten wird das kleinstmögliche Image erstellt, möglicherweise auf Kosten der Wiederverwendung, wenn die Features der einzelnen Anwendungen unterschiedlich sind. Die Verwendung von kleinen angepassten Images bedeutet jedoch, dass die Anwendung schnell über Docker-Hosts hinweg implementiert werden kann. Wenn Sie sich nicht sicher sind, beginnen Sie mit einem der vorgenerierten Images von Docker Hub, um eine möglichst hohe Wiederverwendung zu erreichen.
+    Mit diesen Schritten wird das kleinstmögliche Image erstellt, möglicherweise auf Kosten der Wiederverwendung, wenn die Features der einzelnen Apps unterschiedlich sind. Die Verwendung von kleinen angepassten Images bedeutet jedoch, dass die App schnell über Docker-Hosts hinweg bereitgestellt werden kann. Wenn Sie sich nicht sicher sind, beginnen Sie mit einem der vorgenerierten Images von Docker Hub, um eine möglichst hohe Wiederverwendung zu erreichen.
 2. Wie oft aktualisieren Sie dieses Image?
-    Wenn die Anwendung häufig aktualisiert wird, z. B. in einer CI/CD-Pipeline, empfiehlt es sich, das Image so zu strukturieren, dass sich der am häufigsten geänderte Layer (oft die Anwendungsklassen oder App-Binärdatei) ganz oben befindet. Durch diese Struktur wird die Anzahl der Layer reduziert, die neu erstellt werden müssen, wenn die Anwendung geändert und das Image erneut erstellt wird, wodurch die Build- und Implementierungszeiten beschleunigt werden.
+    Wenn die App häufig aktualisiert wird, z. B. in einer CI/CD-Pipeline, empfiehlt es sich, das Image so zu strukturieren, dass sich der am häufigsten geänderte Layer (oft die App-Klassen oder die App-Binärdatei) ganz oben befindet. Durch diese Struktur wird die Anzahl der Layer reduziert, die neu erstellt werden müssen, wenn die App geändert und das Image erneut erstellt wird, wodurch der Build und die Bereitstellung beschleunigt werden. 
 
 Im Zweifelsfall folgen Sie als Einführung dem [Docker-Leitfaden von Open Liberty](https://openliberty.io/guides/docker.html){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link").

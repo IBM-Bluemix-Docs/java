@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-05-20"
+lastupdated: "2019-06-10"
 
 keywords: java logging, log level java, debug java, json log java, json log help, kibana liberty, liberty messages
 
@@ -54,7 +54,7 @@ Die Protokollebene wird angezeigt, wenn diese Nachrichten an die Konsole ausgege
 ```
 {: screen}
 
-Protokollebenen bieten Ihnen die Flexibilität, dynamisch auszuwählen, welche Protokolle Ihre Anwendung schreibt. Durch dieses Feature können Sie Protokollcode schreiben, der sowohl den allgemeinen Anwendungsstatus als auch den detaillierten Debuginhalt ohne Aufwand beschreibt. Sie können also den ausführlicheren Debuginhalt herausfiltern, bis Sie ihn benötigen. Die Protokollebene `info` ist in der Regel die minimale Ausgabeebene, gefolgt von `fine`, `finer`, `finest` und `debug`.
+Protokollebenen bieten Ihnen die Flexibilität, dynamisch auszuwählen, welche Protokolle Ihre Anwendung schreibt. Wenn Sie Protokollebenen verwenden, können Sie Protokollcode schreiben, der sowohl den übergeordneten Anwendungsstatus als auch den detaillierten Debuginhalt im Voraus beschreibt. Sie können also den ausführlicheren Debuginhalt herausfiltern, bis Sie ihn benötigen. Die Protokollebene `info` ist in der Regel die minimale Ausgabeebene, gefolgt von `fine`, `finer`, `finest` und `debug`.
 
 Wenn ein Protokolleintrag mehrere Codezeilen erfordert oder teure Operationen, wie z. B. Verkettung von Zeichenfolgen, erforderlich sind, müssen Sie sie mit einem Test überprüfen, um festzustellen, ob die Protokollebene aktiviert ist. Dadurch wird sichergestellt, dass die Anwendung nicht wichtige Zeit damit verbringt, Protokollnachrichten zu erstellen, die letztendlich wieder herausgefiltert werden. Im folgenden Beispiel wird die gewünschte Protokollebene `fine` aktiviert, bevor die Nachrichtenausgabe erstellt wird.
 
@@ -117,7 +117,7 @@ weisen die Protokolle die folgende Ausgabe auf:
 ### JSON-Protokollausgabe lesen
 {: #mp-json-log-output}
 
-Die gesamte JSON-Ausgabe ist zwar hilfreich für die Protokollspeicherung und -suche, jedoch nicht so einfach zu lesen. Sie können den Inhalt des Protokolls in einem Terminalfenster unter Verwendung des Befehls `kubectl` überprüfen. Das Befehlszeilentool `jq` kann Sie dabei unterstützen.
+Die gesamte JSON-Ausgabe ist zwar hilfreich für die Protokollspeicherung und -suche, jedoch nicht so einfach zu lesen. Sie können den Inhalt des Protokolls in einem Terminalfenster unter Verwendung des Befehls `kubectl` überprüfen. Das Befehlszeilentool `jq` kann Sie dabei unterstützen. 
 
 Mit dem Befehl `jq` können Sie nach unten filtern und sich auf das Feld oder die Felder konzentrieren, die Sie benötigen. Wenn Sie das Feld `message` anzeigen möchten und alles andere herausfiltern möchten, ziehen Sie das folgende Beispiel zurate:
 
@@ -164,7 +164,7 @@ Wenn Sie das Dashboard zur Problembestimmung auswählen, wird Folgendes angezeig
 
 Das Dashboard ist interaktiv. Wenn Sie beispielsweise in der Legende für das Widget **Liberty-Nachricht** die Option **INFO** auswählen, werden im Widget **Liberty-Nachrichtensuche** nur die Nachrichten des Typs `loglevel = INFO` herausgefiltert. Das Dashboard bindet die Protokolldaten aus allen Liberty-basierten Mikroservices ein und filtert andere Systemprotokolle heraus.
 
-Es gibt noch mehr Kibana- und Grafana-Dashboards, die dem Liberty-Helmdiagramm zugeordnet sind. Diese sind als [Erweiterungen für das Liberty-Cloud-Pak](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link") verfügbar.
+Es gibt noch mehr Kibana- und Grafana-Dashboards, die dem Liberty-Helmdiagramm zugeordnet sind. Sie sind als [Erweiterungen für die Liberty-Cloud `pak`](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link") verfügbar. 
 
 ## Nächste Schritte
 {: #mp-logging-next-steps notoc}
@@ -174,6 +174,6 @@ Weitere Informationen zum Anpassen von Protokollnachrichten mit Appendern, Proto
 Hier finden Sie Informationen zum Anzeigen der Protokolle in den folgenden Bereitstellungsumgebungen:
 
 * [Kubernetes-Protokolle](https://kubernetes.io/docs/concepts/cluster-administration/logging/){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")
-* [{{site.data.keyword.openwhisk}}-Protokolle & -Überwachung](/docs/openwhisk?topic=cloud-functions-openwhisk_logs#openwhisk_logs)
+* [Protokolle & Überwachung in {{site.data.keyword.openwhisk}}](/docs/openwhisk?topic=cloud-functions-logs)
 * [{{site.data.keyword.cloud_notm}} Log Analysis](/docs/services/CloudLogAnalysis?topic=cloudloganalysis-log_analysis_ov#log_analysis_ov)
 * [{{site.data.keyword.cloud_notm}} Private-ELK-Stack](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.2/manage_metrics/logging_elk.html){: new_window} ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")
