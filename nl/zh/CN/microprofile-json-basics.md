@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-04-30"
+lastupdated: "2019-06-10"
 
 keywords: json-b, json-p, json-binding, json response, pojo object, pojo, jsonobject, jsonobjectbuilder, java api json
 
@@ -22,12 +22,12 @@ subcollection: java
 # 使用 JSON-P 和 JSON-B 进行 JSON 处理
 {: #mp-json}
 
-[JSON-B (JSON-Binding, JSR 367)](http://json-b.net/){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标") 和 [JSON-P (JSON-Processing, JSR 374)](https://javaee.github.io/jsonp/){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标") 是两个 Java&trade API 规范，用于定义 Java&trade 类与 JSON 对象如何进行交互。JSON-P 提供的 Java&trade API 用于处理 JSON 格式数据。JSON-B 在 JSON-P 的基础上提供了一个绑定层，能更轻松地在对象与 JSON 之间进行相互转换。在大多数情况下，JSON-B 应优先于较低级别的 JSON-P 进行使用。
+[JSON-B (JSON-Binding, JSR 367)](http://json-b.net/){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标") 和 [JSON-P (JSON-Processing, JSR 374)](https://javaee.github.io/jsonp/){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标") 是两个 Java&trade API 规范，用于定义 Java&trade 类与 JSON 对象如何进行交互。JSON-P 提供的 Java&trade API 用于处理 JSON 格式数据。JSON-B 在 JSON-P 的基础上提供了一个绑定层，能更轻松地在对象与 JSON 之间进行相互转换。在大多数情况下，JSON-B 将优先于较低级别的 JSON-P 进行使用。
 
 ## JSON-B
 {: #java-json-b}
 
-使用 **JSON-B** 将普通旧式 Java 对象 (POJO) 用于每个字段的 getter 方法和 setter 方法，可实现与 JSON 之间的相互转换。
+使用 **JSON-B** 将普通旧式 Java&trade; 对象 (POJO) 用于每个字段的 getter 方法和 setter 方法，可实现与 JSON 之间的相互转换。
 
 例如：
 ```java
@@ -123,15 +123,15 @@ Employee employee = jsonb.fromJson(myJSON, Employee.class);
 ```
 {: codeblock}
 
-对于 JSON-B，所有内容都是强类型的。例如，如果您错误地收到某个字段名称，那么将看到编译失败，因为不存在此类方法。创建 POJO 可能很繁琐，但大多数 IDE 支持在定义字段后生成 getter 和 setter 方法，这会很有帮助。
+对于 JSON-B，所有内容都是强类型的。例如，如果您错误地收到某个字段名称，那么将看到编译失败，因为不存在此类方法。创建 POJO 可能很繁琐，但大多数 IDE 支持在定义字段后会生成 getter 和 setter 方法，这会很有帮助。
 
-避免过度公开内部细节。有若干注释可以帮助您控制对象与 JSON 之间相互转换的方式：`@JsonbTransient` 用于标识完全不应进行转换的字段，`@JsonbNillable` 用于指定应如何处理 null 值。`@JsonbAdapter` 实现可以进一步定制如何对数据进行序列化和反序列化，从而加强有线格式和内部实现之间的隔离。
+避免过度公开内部细节。有若干注释可以帮助您控制对象与 JSON 之间相互转换的方式：`@JsonbTransient` 用于标识完全无需转换的字段，`@JsonbNillable` 用于指定如何处理空值。`@JsonbAdapter` 实现可以进一步定制如何对数据进行序列化和反序列化，从而加强有线格式和内部实现之间的隔离。
 {: tip}
 
 ## JSON-P
 {: #java-json-p}
 
-在 JSON-B（作为 Java EE 8 的一部分推出）出现之前，**JSON-P** (JSON-Processing) 是与 Java 代码中的 JSON 进行交互的标准化方式。在此之前，有各种专有 JSON 解析库，例如 IBM 的 JSON4J。JSON-P 可用于解析从 REST 调用收到的 JSON，或者用于构造 JSON，供您通过自己的 JAX-RS 方法返回。
+在 JSON-B（作为 Java&trade; EE 8 的一部分推出）出现之前，**JSON-P** (JSON-Processing) 是与 Java&trade; 代码中的 JSON 进行交互的标准化方式。在此之前，有各种专有 JSON 解析库，例如 IBM 的 JSON4J。JSON-P 可用于解析从 REST 调用收到的 JSON，或者用于构造 JSON，供您通过自己的 JAX-RS 方法返回。
 
 使用 JSON-P 需要在 `server.xml` 中启用 `jsonp-1.0` 功能（或启用方便的 `microProfile-2.0` 功能，这将启用所有 MP 技术）。
 
@@ -148,7 +148,7 @@ import javax.json.JsonObjectBuilder;
 
 要使用从 REST API 调用收到的 JSON，可以对 `JsonObject` 调用 `get` 方法，并传入所需字段的键。继续上面的 `Employee` 示例，如果收到名为 `employee` 的 `JsonObject`，那么将调用 `employee.get("name")` 来查找此人的姓名，或者调用 `employee.get("title")` 来获取其职位。作为对照，JSON-P 非常类似于在 Java&trade 中处理 `Map`。
 
-现在，假设要在 Java&trade 代码中构建此类 JSON 对象。JSON-P 使用的构建器模式为：使用 `JsonObjectBuilder` 添加每个值，然后调用 `build()` 以生成 `JsonObject`，如下所示：
+假设要在 Java&trade; 代码中构建此类 JSON 对象。JSON-P 使用的构建器模式为：使用 `JsonObjectBuilder` 添加每个值，然后调用 `build()` 以生成 `JsonObject`，如下所示：
 
 ```java
 JsonObjectBuilder addressBuilder = Json.createObjectBuilder();

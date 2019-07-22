@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-04-22"
+lastupdated: "2019-06-10"
 
 keywords: health check spring, spring health endpoint, spring-boot-actuator, liveness probe spring, readiness probe spring, spring kubernetes probe
 
@@ -22,7 +22,7 @@ subcollection: java
 # 使用 Spring 进行运行状况检查
 {: #spring-healthcheck}
 
-Spring Boot Actuator 提供的运行状况端点与应用程序生命周期绑定：在应用程序启动之前，无法访问该端点，并且在应用程序停止（在进程关闭之前就会停止）后，该端点即不可用。Spring Boot Actuator 将自动为在类路径上检测到的技术添加其他运行状况指示器。例如，如果应用程序使用了 JDBC，那么运行状况端点将包含一些基本测试，以确保可以访问支持数据存储。由于此原因，Actuator 定义的运行状况端点更适合用作就绪性探测器。
+Spring Boot Actuator 提供的运行状况端点与应用程序生命周期绑定，且在应用程序启动之前无法访问该端点。同样，一旦应用程序停止（在进程关闭之前停止），该端点即会禁用。Spring Boot Actuator 会自动为类路径上检测到的技术添加运行状况指示器。例如，如果应用程序使用了 JDBC，那么运行状况端点将包含一些基本测试，以确保可以访问支持数据存储。由于此原因，Actuator 定义的运行状况端点更适合用作就绪性探测器。
 
 通过将 `spring-boot-actuator` 依赖项添加到 `pom.xml` 文件来启用 Spring Boot Actuator：
 
@@ -34,14 +34,14 @@ Spring Boot Actuator 提供的运行状况端点与应用程序生命周期绑�
 ```
 {: codeblock}
 
-Spring Boot Actuator 的不同版本之间存在一些行为差异。接下来的两个部分将用于探讨如何在两个版本的 Spring Boot 中创建活性和就绪性检查，首先描述最新的 Spring Boot 2。
+Spring Boot Actuator 的不同版本之间存在一些行为差异。接下来的两个部分将探讨如何在两个版本的 Spring Boot 中创建活性和就绪性检查，首先描述最新的 Spring Boot 2。
 
 ## Spring Boot 2 中的运行状况检查
 {: #spring-health-boot2}
 
 Spring Boot 2 Actuator 定义了 `/actuator/health` 端点，当一切正常时，此端点会返回 `{"status": "UP"}` 有效内容。缺省情况下，此端点已启用，并且不需要应用程序代码。
 
-使用 Spring Boot 2 Actuator 的未经认证的成功运行状况检查示例：
+请查看以下使用 Spring Boot 2 Actuator 的未经认证的成功运行状况检查示例：
 <!-- Spring Boot 2 test project: https://github.com/IBM/spring-alarm-application -->
 
 ```
@@ -73,14 +73,14 @@ Date: Fri, 07 Dec 2018 23:09:09 GMT
 ```
 {: screen}
 
-请注意，上例包含了一些 H2 数据库信息。这是 Spring Actuator 自动添加对支持服务的检查的示例。在本例中，应用程序使用的是 JDBC，并且在类路径上发现了 H2 驱动程序。
+请注意，上例包含了一些 H2 数据库信息。此 Spring Actuator 示例自动添加了对支持服务的检查。在本例中，应用程序使用的是 JDBC，并且在类路径上发现了 H2 驱动程序。
 
 可以使用属性或代码来覆盖运行状况端点的缺省行为，如 [Spring Boot 2.1.x 参考指南](https://docs.spring.io/spring-boot/docs/2.1.x/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标") 中所述。
 
 ### Spring Boot 2 中的活性探测器
 {: #spring-liveness-boot2}
 
-Spring Boot 2 的 Actuator 框架是其自己的微型 REST 框架，可以使用定制端点进行扩展。这意味着可以添加一个简单的活性端点，其管理方式与内置运行状况指示器相同。定制活性端点可以如下所示进行详细声明：
+Spring Boot 2 的 Actuator 框架是其自己的微型 REST 框架，可以使用定制端点进行扩展。这意味着可以添加一个简单的活性端点，其管理方式与内置运行状况指示器相同。定制活性端点可以如以下示例所示进行详细声明：
 
 ```java
 @Endpoint(id="liveness")
@@ -145,8 +145,7 @@ spec:
 
 Spring Boot 1 Actuator 定义了 `/health` 端点，当一切正常时，此端点会返回 `{"status": "UP"}` 有效内容。此端点不要求授权，但是如果配置了授权并且已授权调用者，响应中将包括其他信息。
 
-使用 Spring Boot 1 Actuator 的未经认证的成功运行状况检查示例：
-
+请查看以下使用 Spring Boot 1 Actuator 的未经认证的成功运行状况检查示例：
 ```
 $ curl -i localhost:8080/health
 HTTP/1.1 200
@@ -189,7 +188,7 @@ Content-Length: 221
 ### Spring Boot 1 中的活性探测器
 {: #spring-liveness-boot1}
 
-对于 Spring Boot 1，用于始终返回 {"status": "UP"} 和状态码 200 的简单活性 HTTP 端点将类似于以下内容：
+对于 Spring Boot 1，用于始终返回 {"status": "UP"} 和状态码 200 的简单活性 HTTP 端点将类似于以下片段：
 
 ```java
 @RestController

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-05-20"
+lastupdated: "2019-06-10"
 
 keywords: java logging, log level java, debug java, json log java, json log help, kibana liberty, liberty messages
 
@@ -54,7 +54,7 @@ logger.warning("Unable to send message to JMS provider. Continuing without notif
 ```
 {: screen}
 
-通过日志级别，可以灵活地动态选择应用程序写入的日志。此功能使您能够预先编写用于描述高级别应用程序状态和详细调试内容的日志代码。因此，您可以过滤掉更详细的调试内容，除非您需要这些内容。日志级别 `info` 通常是最低输出级别，之后的级别由低到高依次为 `fine`、`finer`、`finest` 和 `debug`。
+通过日志级别，可以灵活地动态选择应用程序写入的日志。通过使用日志级别，可以预先编写用于描述高级别应用程序状态和详细调试内容的日志代码。因此，您可以过滤掉更详细的调试内容，除非您需要这些内容。日志级别 `info` 通常是最低输出级别，之后的级别由低到高依次为 `fine`、`finer`、`finest` 和 `debug`。
 
 如果日志条目需要多行代码或涉及字符串并置等大开销操作，请考虑使用测试来对其进行防护，以确定是否启用了日志级别。进行这样的检查是为了确保应用程序不会花费关键的时间来构建最终会被过滤掉的日志消息。在以下示例中，预期的日志级别 `fine` 在尝试构建消息输出之前就已启用。
 
@@ -156,15 +156,15 @@ Liberty 具有一些非 JSON 格式的原始控制台消息。可以使用 `grep
 
 除了新的 JSON 日志记录功能，Liberty 还提供了[可从 GitHub 下载](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_icp_json_logging.html){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标") 的预构建 Kibana 仪表板。请遵循链接中的指示信息进行安装。现在提供了两个新仪表板：
 
-![Kibana 仪表板](images/microprofile-logging-image4.png "Kibana 仪表板"){: caption="图 1. Kibana 仪表板" caption-side="bottom"}
+![Kibana 仪表板](images/microprofile-logging-image4.png "Kibana 仪表板")
 
 选择仪表板以进行问题确定时，可以看到：
 
-![Kibana 仪表板详细信息](images/microprofile-logging-image5.png "Kibana 仪表板详细信息"){: caption="图 2. Kibana 仪表板详细信息" caption-side="bottom"}
+![Kibana 仪表板详细信息](images/microprofile-logging-image5.png "Kibana 仪表板详细信息")
 
 此仪表板是交互式的。例如，如果在 **Liberty 消息**窗口小部件的图注中选择 **INFO**，**Liberty 消息搜索**窗口小部件会自行进行过滤，以仅显示 `loglevel=INFO` 的消息。此仪表板会联合所有基于 Liberty 的微服务中的日志数据，并过滤掉其他系统日志。
 
-还有与 Liberty Helm 图表关联的更多 Kibana 和 Grafana 仪表板。这些仪表板作为 [Liberty Cloud Pak 的扩展](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标") 提供。
+还有与 Liberty Helm 图表关联的更多 Kibana 和 Grafana 仪表板。这些仪表板作为 [Liberty Cloud `pak` 的扩展](https://github.com/IBM/charts/tree/master/stable/ibm-websphere-liberty/ibm_cloud_pak/pak_extensions/dashboards){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标") 提供。
 
 ## 后续步骤
 {: #mp-logging-next-steps notoc}
@@ -174,6 +174,6 @@ Liberty 具有一些非 JSON 格式的原始控制台消息。可以使用 `grep
 了解有关查看以下每个部署环境中日志的更多信息：
 
 * [Kubernetes 日志](https://kubernetes.io/docs/concepts/cluster-administration/logging/){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")
-* [{{site.data.keyword.openwhisk}} 日志和监视](/docs/openwhisk?topic=cloud-functions-openwhisk_logs#openwhisk_logs)
+* [{{site.data.keyword.openwhisk}} 日志和监视](/docs/openwhisk?topic=cloud-functions-logs)
 * [{{site.data.keyword.cloud_notm}} Log Analysis](/docs/services/CloudLogAnalysis?topic=cloudloganalysis-log_analysis_ov#log_analysis_ov)
 * [{{site.data.keyword.cloud_notm}} Private ELK 堆栈](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.2/manage_metrics/logging_elk.html){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")

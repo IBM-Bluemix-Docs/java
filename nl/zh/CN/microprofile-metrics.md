@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-04-22"
+lastupdated: "2019-06-10"
 
 keywords: mpmetrics microprofile, mpmetrics, prometheus java, metrics java, microprofile metrics
 
@@ -78,12 +78,12 @@ Johns-MacBook-Pro-8:StockTrader jalcorn$
 如您所见，已按预期对两个产品服务组合进行计数。 
 
 需注意以下几点：
-- 这是一个内存中计数器：如果重新启动 pod，值将会重置为零；如果有多个副本，那么每个副本都有其自己的独特值。
+- 使用内存中的计数器：如果重新启动 pod，值将会重置为零；如果有多个副本，那么每个副本都有其自己的唯一值。
 - “#HELP”文本是我们在 `@Counted` 注释中指定为描述的内容。
 
 还可以在 Web 浏览器中查看此 REST GET 端点的输出：
 
-![REST GET 端点 Web 浏览器](images/microprofile-metrics-image1.png "REST GET 端点 Web 浏览器"){: caption="图 1. REST GET 端点 Web 浏览器" caption-side="bottom"}
+![REST GET 端点 Web 浏览器](images/microprofile-metrics-image1.png "REST GET 端点 Web 浏览器")
 
 缺省情况下，`/metrics` 端点需要传递 HTTPS 和登录凭证。Liberty 18.0.0.3 引入了以下节，您可以将其放入 `server.xml` 中，以将此端点定义为允许使用 HTTP，并且不对此端点进行认证：
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-06-10"
 
 keywords: spring logging, spring logger, logback spring, debug spring, json log spring, consoleappender spring, spring boot log
 
@@ -22,7 +22,7 @@ subcollection: java
 
 日志消息是上下文信息（与创建日志条目时微服务的状态和活动相关）的字符串。您可以使用日志记录来诊断服务发生故障的方式和原因，并帮助提供用于监视应用程序运行状况的度量值。
 
-日志条目应该直接写入到标准输出和错误流。这使日志条目可使用命令行工具进行查看，并允许使用在基础架构级别配置的日志转发服务（例如，Logstash、Filebeat 或 Fluentd）来管理日志收集。
+日志条目将直接写入到标准输出和错误流，可以使用命令行工具对其进行查看。然后，您可以使用在基础架构级别配置的日志转发服务（例如，Logstash、Filebeat 或 Fluentd）来管理日志收集。
 
 ## 向 Spring 应用程序添加 Logback 支持
 {: #spring-log4j}
@@ -62,7 +62,7 @@ public class SampleLogbackApplication {
 ```
 {: codeblock}
 
-缺省日志级别为 `INFO`。您可以在 `application.properties` 中为特定 Java 包指定不同的日志记录级别。例如，要将缺省日志级别设置为 `WARN`，将软件包 `sample.logging` 的级别设置为 `DEBUG`，并且将 Spring 软件包 `org.springframework.web` 的级别设置为 `ERROR`，请将以下行添加到 `application.properties`：
+缺省日志级别为 `INFO`。您可以在 `application.properties` 中为特定 Java&trade; 包指定不同的日志记录级别。例如，要将缺省日志级别设置为 `WARN`，将软件包 `sample.logging` 的级别设置为 `DEBUG`，并且将 Spring 软件包 `org.springframework.web` 的级别设置为 `ERROR`，请将以下行添加到 `application.properties`：
 
 ```properties
 logging.level.root=WARN
@@ -107,7 +107,7 @@ logging.level. sample.logging=DEBUG
 ```
 {: codeblock}
 
-配置 logback 以将新的编码器用于 `logback.xml` 中的 `ConsoleAppender`。应该类似于以下内容：
+配置 logback 以将新的编码器用于 `logback.xml` 中的 `ConsoleAppender`，如下例所示：
 
 ```xml
 <configuration>
@@ -124,7 +124,7 @@ logging.level. sample.logging=DEBUG
 ```
 {: codeblock}
 
-使用此配置，现在您将看到 JSON 格式化日志：
+使用此配置，您可以看到 JSON 格式的日志：
 
 ```
 {"@timestamp":"2018-10-11T23:48:57.215+00:00","@version":1,"message":"Sample TRACE Message","logger_name":"com.example.demo.LoggingExample","thread_name":"http-nio-8080-exec-1","level":"TRACE","level_value":5000}
@@ -165,9 +165,9 @@ $ docker logs --tail 5 -f <container-id> | jq .message
 
 有关使用附加器、日志级别和配置详细信息来定制日志消息的更多信息，请参阅官方的 [Spring Boot 日志记录参考指南](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")。
 
-了解有关查看每个部署环境中日志的详细信息：
+了解有关查看以下每个部署环境中日志的更多信息：
 
 * [Kubernetes 日志](https://kubernetes.io/docs/concepts/cluster-administration/logging/){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")
-* [{{site.data.keyword.openwhisk}} 日志和监视](/docs/openwhisk?topic=cloud-functions-openwhisk_logs#openwhisk_logs)
+* [{{site.data.keyword.openwhisk}} 日志和监视](/docs/openwhisk?topic=cloud-functions-logs)
 * [{{site.data.keyword.cloud_notm}} Log Analysis](/docs/services/CloudLogAnalysis?topic=cloudloganalysis-log_analysis_ov#log_analysis_ov)
 * [{{site.data.keyword.cloud_notm}} Private ELK 堆栈](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.2/manage_metrics/logging_elk.html){: new_window} ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")
