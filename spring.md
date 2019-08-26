@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-08-26"
 
 keywords: spring framework, spring reference, spring boot, boot actuator, spring kubernetes
 
@@ -22,7 +22,7 @@ subcollection: java
 # Spring
 {: #spring-overview}
 
-The Spring Platform is an ecosystem of projects that aim to make it simpler to create Java&trade; applications. Usually the term "Spring" refers to the Spring Framework, but it is also used generically to refer to any project that is part of, or uses Spring-based technologies, including Spring Boot.
+The Spring Platform is an ecosystem of projects that aim to make it simpler to create Java&trade; applications. The term "Spring" refers to the Spring Framework, and is also used generically to refer to any project that uses Spring-based technologies, including Spring Boot.
 
 ## Spring Framework
 {: #spring-framework}
@@ -54,7 +54,7 @@ The comprehensive documentation for Spring Boot is here:
 ## Selecting Spring Framework or Spring Boot
 {: #spring-framework-or-boot}
 
-For new cloud native apps, if you choose to use Spring Framework, you can also use Spring Boot. Spring Boot simplifies configuration and assembly of Spring-based apps, and provides features, like Spring Actuator, that simplify creating [cloud native apps](/docs/java?topic=cloud-native-overview#overview).
+For new cloud native apps, if you choose to use Spring Framework, you can also use Spring Boot. Spring Boot simplifies configuration and assembly of Spring-based apps by using features like Spring Actuator that simplify creating [cloud native apps](/docs/java?topic=cloud-native-overview#overview).
 
 ### Spring Boot Actuator
 {: #spring-boot-actuator}
@@ -69,9 +69,9 @@ Spring Boot Actuator defines a collection of endpoints that are useful for inspe
 ```
 {: codeblock}
 
-The structure and behavior of Spring Boot Actuator changed significantly between Spring Boot 1 and Spring Boot 2. The Boot 1 Actuator sat alongside the app, with separate configuration and security mechanisms. The Boot 2 version is more capable, and uses a security model that integrates with the rest of the Spring app.
+The structure and behavior of Spring Boot Actuator changed significantly between Spring Boot 1.0 and Spring Boot 2.0. The Boot 1.0 Actuator sat alongside the app, with separate configuration and security mechanisms. The Boot 2.0 version is more capable, and uses a security model that integrates with the rest of the Spring app.
 
-The behavior changes are relevant if you are migrating a Spring Boot 1.x app to Spring Boot 2.0. Read the Actuator section of the [Boot 1 to Boot 2 migration guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#spring-boot-actuator){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") for more details.
+The behavior changes are relevant if you are migrating a Spring Boot 1.x app to Spring Boot 2.0. Read the Actuator section of the [Boot 1.0 to Boot 2.0 migration guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#spring-boot-actuator){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") for more details.
 {: tip}
 
 In Boot 2, the Actuator acts as mini-REST framework. All endpoints are under an `/actuator` context. Endpoints for performing health checks, or gathering metrics, app, or other environment information are provided. For a complete list, check the [Actuator documentation](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/production-ready-features.html#production-ready){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
@@ -92,13 +92,13 @@ public class Example {
 
 Spring Boot has two controls to configure which Actuators are active at run time. Actuators can be "enabled" and "exposed". To be reachable, an Actuator must be both. By default many endpoints are enabled, but only health and information are exposed. Additionally if Spring Security is enabled for the app, access must be explicitly allowed to the Actuator endpoints.
 
-The Actuator in Spring Boot 1 has its own security configuration, usually configured in application.properties. Instead of "enabled" and "exposed", there is "enabled", and "sensitive". Sensitive endpoints require authentication if served over HTTP. By default, the /metrics endpoint of the Spring Boot Actuator is enabled in Spring Boot 1, but it is considered sensitive and thus requires authorization, or to be set as not sensitive. For some environments, configuring Spring Security might be the right answer, but in Kubernetes, metrics endpoints remain internal to the cluster. For more information, check the [Spring Boot 1 Actuator docs](https://docs.spring.io/spring-boot/docs/1.5.2.RELEASE/reference/htmlsingle/#production-ready){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+The Actuator in Spring Boot 1 has its own security configuration, usually configured in application.properties. Instead of "enabled" and "exposed", there is "enabled", and "sensitive". Sensitive endpoints require authentication if served over HTTP. By default, the /metrics endpoint of the Spring Boot Actuator is enabled in Spring Boot 1, but it is considered sensitive and thus requires authorization, or to be set as not sensitive. For some environments, configuring Spring Security might be the right answer, but in Kubernetes, metrics endpoints remain internal to the cluster. For more information, see [Spring Boot 1.0 Actuator](https://docs.spring.io/spring-boot/docs/1.5.2.RELEASE/reference/htmlsingle/#production-ready){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 {: note}
 
 ## Spring Cloud
 {: #spring-cloud}
 
-Spring Cloud is a collection of integrations between third-party cloud technologies and the Spring programming model. It aims to assist developers that build Spring apps for deployment to the cloud. The of coverage that is attained by Spring Cloud is made possible by its modular nature, as each project within Spring Cloud is focused on a particular technology or set of technologies.
+Spring Cloud is a collection of integrations between third-party cloud technologies and the Spring programming model. It aims to assist developers that build Spring apps for deployment to the cloud. The coverage that is attained by Spring Cloud is made possible by its modular nature, as each project within Spring Cloud is focused on a particular technology or set of technologies.
 
 Spring cloud projects follow the general Spring approach of favoring convention over configuration. Most capabilities are enabled by adding the right dependency at build time.
 

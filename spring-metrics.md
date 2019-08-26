@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-08-26"
 
 keywords: spring metrics, configure metrics spring, micrometer spring, micrometer, spring boot 2, spring actuator, prometheus spring
 
@@ -61,7 +61,7 @@ The following sections outline how to enable Spring Boot Actuator metrics with M
 ### Configuring metrics in Spring Boot 2
 {: #spring-metrics-boot2}
 
-The Spring Boot 2 Actuator metrics endpoint must be both enabled and exposed for web access. By default the endpoint is enabled, but not exposed (check [the Spring Endpoint Documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") for more information).  
+The Spring Boot 2.0 Actuator metrics endpoint must be both enabled and exposed for web access. By default the endpoint is enabled, but not exposed (check [the Spring Endpoint Documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") for more information).  
 
 Add the following to `application.properties` to expose the metrics endpoint:
 
@@ -212,7 +212,7 @@ metadata:
 ```
 {: codeblock}
 
-### Configuring metrics in Spring Boot 1
+### Configuring metrics in Spring Boot 1.0
 {: #spring-metrics-boot1}
 
 The `/metrics` endpoint of the Spring Boot Actuator is enabled by default in Spring Boot 1, but is considered “sensitive” and requires authorization. For some environments, securing the metrics endpoint might be the right answer, but authorizing each request to the metrics endpoint introduces too much latency for automated checking with Kubernetes.
@@ -223,7 +223,7 @@ endpoints.metrics.sensitive=false
 ```
 {: codeblock}
 
-Now the default Spring Boot 1 metrics support is enabled, which produces the following output:
+Now the default Spring Boot 1.0 metrics support is enabled, which produces the following output:
 ```
 $ curl -s localhost:8080/metrics | jq .
 {
@@ -238,12 +238,12 @@ $ curl -s localhost:8080/metrics | jq .
 ```
 {: screen}
 
-For more information about how to customize the behavior of the Spring Boot 1 metrics actuator, see the [official documentation](https://docs.spring.io/spring-boot/docs/1.5.x/reference/html/production-ready-metrics.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+For more information about how to customize the behavior of the Spring Boot 1.0 metrics actuator, see the [official documentation](https://docs.spring.io/spring-boot/docs/1.5.x/reference/html/production-ready-metrics.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
 
-### Enabling Prometheus support in Spring Boot 1
+### Enabling Prometheus support in Spring Boot 1.0
 {: #spring-prometheus-boot1}
 
-Prometheus support is not built into the Spring Boot 1 Actuator metrics, but can be added with Micrometer.
+Prometheus support is not built into the Spring Boot 1.0 Actuator metrics, but can be added with Micrometer.
 
 As mentioned in the [overview](#spring-metrics), Micrometer was backported to Spring Boot 1 because it has a richer set of meter primitives and better support for monitoring systems like Prometheus and StatsD. Using Micrometer with Spring Boot 1 is straight-forward: it requires a specific adapter library, and at least one registry. Add the following to your `pom.xml` to include dependencies for the adapter library and the Prometheus registry:
 
@@ -338,7 +338,7 @@ public String getSomething() { ... }
 
 To make application-domain-specific measurements, you need to create your own custom metrics. Micrometer defines a few basic `Meter` types:
 
-* A `Counter` tracks a value that can increases.
+* A `Counter` tracks a value that can increase.
 * A `Gauge` measures and returns the observed value when the meter is published (or queried).
 * A `Timer` tracks how many times an event occurs, and the cumulative elapsed time for that event. 
 * A `DistributionSummary` is similar to a `Timer`, but it also tracks a distribution of events, and does not measure time.

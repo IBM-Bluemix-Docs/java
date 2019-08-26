@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-04-22"
+lastupdated: "2019-08-26"
 
 keywords: dependency injection, cdi jakarta, cdi beans, cdi scopes, bean lifecycle, context injection microprofile, microprofile cdi
 
@@ -52,7 +52,7 @@ The presence of an empty `beans.xml` file, or a `beans.xml` with `bean-discovery
 
 CDI scope type annotations control the bean's lifecycle:
 
-* Use the `@ApplicationScoped` class-level annotation if an instance is to live as long as the application is active.
+* Use the `@ApplicationScoped` class-level annotation if an instance is to live alongside the application is active.
 * Use the `@RequestScoped` class-level annotation if a new instance of the bean is to be created for every request (a servlet request, for example).
 * Use the `@Dependent` class-level annotation if the new instance belongs to another object. An instance of a dependent bean is never shared between different clients or different injection points. It is instantiated when the object it belongs to is created, and then destroyed when the object it belongs is destroyed.
 * If no class-level annotation is defined, `@Dependent` is the default.

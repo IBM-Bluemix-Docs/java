@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-05-20"
+lastupdated: "2019-08-26"
 
 keywords: health check jax-rs, jax-rs endpoint, jax-rs status, readiness jax-rs, liveness jax-rs, microprofile health
 
@@ -121,4 +121,4 @@ As mentioned earlier, you can use different logics to indicate readiness and liv
 
 OpenLiberty has a hands-on guide that provides an example of how to add custom checks to the MicroProfile Health endpoint: https://openliberty.io/guides/microprofile-health.html
 
-You can override the default behavior of the MicroProfile health endpoint as described in [Performing MicroProfile health checks](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_microprofile_healthcheck.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+You can override the default behavior of the MicroProfile health endpoint as described in [MicroProfile health checks](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_microprofile_healthcheck.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-08-26"
 
 keywords: health check spring, spring health endpoint, spring-boot-actuator, liveness probe spring, readiness probe spring, spring kubernetes probe
 
@@ -36,12 +36,12 @@ Enable Spring Boot Actuator by adding the `spring-boot-actuator` dependency to y
 
 There are some behavior differences with Spring Boot actuator between versions. The next two sections explore how to create liveness and readiness checks in both versions of Spring Boot, starting with 2 as the most current.
 
-## Health checks Spring Boot 2
+## Health checks Spring Boot 2.0
 {: #spring-health-boot2}
 
-The Spring Boot 2 actuator defines an `/actuator/health endpoint`, which returns a `{"status": "UP"}` payload when all is well. This endpoint is enabled by default, and requires no application code.
+The Spring Boot 2.0 actuator defines an `/actuator/health endpoint`, which returns a `{"status": "UP"}` payload when all is well. This endpoint is enabled by default, and requires no application code.
 
-See the following example of an unauthenticated successful health check that uses the Spring Boot 2 Actuator:
+See the following example of an unauthenticated successful health check that uses the Spring Boot 2.0 Actuator:
 <!-- Spring Boot 2 test project: https://github.com/IBM/spring-alarm-application -->
 
 ```
@@ -112,7 +112,7 @@ Date: Thu, 07 Feb 2019 22:38:27 GMT
 ```
 {: screen}
 
-### Configuring Spring Boot 2 readiness and liveness probes in Kubernetes
+### Configuring Spring Boot 2.0 readiness and liveness probes in Kubernetes
 {: #spring-probe-config-2}
 
 Add readiness and liveness probe configuration to the container definition in a Kubernetes deployment manifest (note the path and port values):
@@ -140,12 +140,12 @@ spec:
 
 To avoid restart cycles, set `livenessProbe.initialDelaySeconds` to be safely longer than it takes your service to initialize. You can then use a shorter value for `readinessProbe.initialDelaySeconds` to route requests to the service as soon as it's ready.
 
-## Health checks in Spring Boot 1
+## Health checks in Spring Boot 1.0
 {: #spring-health-boot1}
 
-The Spring Boot 1 actuator defines a `/health` endpoint, which returns a `{"status": "UP"}` payload when all is well. The endpoint does not require authorization, but if authorization is configured and the caller is authorized, additional information is included in the response.
+The Spring Boot 1.0 actuator defines a `/health` endpoint, which returns a `{"status": "UP"}` payload when all is well. The endpoint does not require authorization, but if authorization is configured and the caller is authorized, additional information is included in the response.
 
-See the following example of an unauthenticated successful health check that uses the Spring Boot 1 Actuator:
+See the following example of an unauthenticated successful health check that uses the Spring Boot 1.0 Actuator:
 ```
 $ curl -i localhost:8080/health
 HTTP/1.1 200
@@ -214,7 +214,7 @@ Date: Thu, 07 Feb 2019 22:43:32 GMT
 ```
 {: screen}
 
-### Configuring Spring Boot 1 readiness and liveness probes in Kubernetes
+### Configuring Spring Boot 1.0 readiness and liveness probes in Kubernetes
 {: #spring-probe-config-1}
 
 Add readiness and liveness probe configuration to the container definition in a Kubernetes deployment manifest (note the path and port values):

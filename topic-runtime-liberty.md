@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-08-26"
 
 keywords: open liberty java, websphere liberty java, jakarta, webpshere docker, liberty docker, liberty docker images, installutility, microprofile java, dual layer docker, develop microservices
 
@@ -104,8 +104,8 @@ COPY server.xml /config/
 How you structure your Docker image depends on a few factors:
 
 1. How reusable or customized do you want your base image to be?
-    These steps produce the smallest possible image, potentially at the expense of reuse if each apps features are different. However, having small custom images means that the app can be rapidly deployed across Docker hosts. If you're not sure, start with one of the pre-generated images from Docker Hub for the greatest reusability.
+    These steps produce the smallest possible image, potentially at the expense of reuse if each app's features are different. However, having small custom images means that the app can be rapidly deployed across Docker hosts. If you're not sure, start with one of the pre-generated images from Docker Hub for the greatest reusability.
 2. How often do you update this image?
-    If the app is updated frequently, for example in a CI/CD pipeline, it is beneficial to structure the image so that the most frequently changed layer (often your app classes or app binary) is at the top-most layer. This structure reduces the number of layers that need to be rebuilt when the app changes and the image is rebuilt, speeding up build and deployment times.
+    If the app is updated frequently, it is beneficial to structure the image so that the most frequently changed layer (often your app classes or app binary) is at the top-most layer. This structure reduces the number of layers that need to be rebuilt when the app changes and the image is rebuilt, speeding up build and deployment times.
 
 When in doubt, follow the [Open Liberty Docker guide](https://openliberty.io/guides/docker.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") to get started.

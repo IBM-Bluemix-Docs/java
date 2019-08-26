@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-08-26"
 
 keywords: spring environment, spring credentials, ibm-cloud-spring-boot-service-bind, service bindings spring, vcap_services spring, access credential spring
 
@@ -27,7 +27,7 @@ Management of service configuration and credentials (service bindings) varies be
 ## Adding {{site.data.keyword.cloud_notm}} configuration to existing Spring apps
 {: #spring-cloud-env}
 
-The [{{site.data.keyword.cloud_notm}} Spring Service Bindings](https://github.com/ibm-developer/ibm-cloud-spring-bind){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") library provides a consistent way for your Spring app to access configuration by abstracting information from different cloud environments. Which includes local, Cloud Foundry, Cloud Foundry Enterprise Environment, Kubernetes, virtual machines, and {{site.data.keyword.openwhisk}} into an array of search patterns in a `mappings.json` file. When the Spring app starts, the library reads the file and applies the patterns in order to discover and assign configuration values.
+The [{{site.data.keyword.cloud_notm}} Spring Service Bindings](https://github.com/ibm-developer/ibm-cloud-spring-bind){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") library provides a consistent way for your Spring app to access configuration by abstracting information from different cloud environments. Which includes local, Cloud Foundry, Cloud Foundry Enterprise Environment, Kubernetes, virtual machines, and {{site.data.keyword.openwhisk}} into an array of search patterns in a `mappings.json` file. When the Spring app starts, the library reads the file and applies the patterns to discover and assign configuration values.
 
 For more information about the `mappings.json` file, see [Working with injected service credentials](/docs/java?topic=cloud-native-configuration#portable-credentials).
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-08-26"
 
 keywords: json-b, json-p, json-binding, json response, pojo object, pojo, jsonobject, jsonobjectbuilder, java api json
 
@@ -123,7 +123,7 @@ Employee employee = jsonb.fromJson(myJSON, Employee.class);
 ```
 {: codeblock}
 
-Everything is strongly typed with JSON-B. If you get a field name wrong, for example, you would see a compile failure since there wouldn't be such a method. Creating POJOs can be tedious, but most IDE's support generating getters and setters once the fields are defined, which helps.
+Everything is strongly typed with JSON-B. If you get a field name wrong, for example, you would see a compile failure since there wouldn't be such a method. Creating POJOs can be tedious, but most IDE's support generating getters and setters after the fields are defined, which helps.
 
 Avoid over-exposure of internal details. Several annotations can help you control how your objects are converted to and from JSON: `@JsonbTransient` identifies fields that are not to be converted at all, and `@JsonbNillable` specifies how null values are to be handled. `@JsonbAdapter` implementations can further customize how data is serialized and deserialized for added isolation between the wire format and the internal implementation.
 {: tip}
