@@ -18,6 +18,7 @@ subcollection: java
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
+{:external: target="_blank" .external}
 
 # Health checks with Spring
 {: #spring-healthcheck}
@@ -75,7 +76,7 @@ Date: Fri, 07 Dec 2018 23:09:09 GMT
 
 Note the inclusion of some H2 database information. This example of Spring Actuator automatically adds checks for backing services. In this case, the application is using JDBC, and the H2 driver was discovered on the class path.
 
-You can override the default behavior of the health endpoint with properties or code, as described in the [Spring Boot Reference Guide for 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+You can override the default behavior of the health endpoint with properties or code, as described in the [Spring Boot Reference Guide for 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/html/production-ready-endpoints.html#production-ready-health){: external}.
 
 ### Liveness probe in Spring Boot 2
 {: #spring-liveness-boot2}
@@ -183,7 +184,7 @@ Content-Length: 221
 ```
 {: screen}
 
-You can override the default behavior of the health endpoint with properties or code, as described in the [Spring Boot Reference v1.5.x](https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#_auto_configured_healthindicators){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+You can override the default behavior of the health endpoint with properties or code, as described in the [Spring Boot Reference v1.5.x](https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#_auto_configured_healthindicators){: external}.
 
 ### Liveness probe in Spring Boot 1
 {: #spring-liveness-boot1}

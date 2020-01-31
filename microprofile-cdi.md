@@ -18,6 +18,7 @@ subcollection: java
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
+{:external: target="_blank" .external}
 
 # Contexts and Dependency Injection (CDI, JSR-365)
 {: #mp-cdi}
@@ -29,7 +30,7 @@ MicroProfile specifications (for example, MicroProfile Config, MicroProfile JWT)
 ## CDI beans
 {: #cdi-bean}
 
-CDI operates on _beans_. CDI beans are created by using [Bean-defining annotations](https://docs.jboss.org/cdi/spec/2.0/cdi-spec.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon"). Almost every plain old Java&trade object (POJO) that has either a constructor with no arguments or a constructor with the `@Inject` annotation can be a bean.
+CDI operates on _beans_. CDI beans are created by using [Bean-defining annotations](https://docs.jboss.org/cdi/spec/2.0/cdi-spec.html){: external}. Almost every plain old Java&trade object (POJO) that has either a constructor with no arguments or a constructor with the `@Inject` annotation can be a bean.
 
 Annotations that define CDI beans must be discovered. CDI annotation scanning can be enabled by using a `beans.xml` file in the `META-INF` folder for a .jar archive, or in the `WEB-INF` folder for a .war archive. This file can be empty, or it can contain something like the following content:
 

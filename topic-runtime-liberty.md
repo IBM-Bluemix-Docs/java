@@ -19,26 +19,27 @@ subcollection: java
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
+{:external: target="_blank" .external}
 
 # Open Liberty and WebSphere Liberty
 {: #liberty}
 
-[Open Liberty](https://openliberty.io/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") is a lightweight open source Java&trade; runtime that is built by using modular *features*. [WebSphere Liberty](https://developer.ibm.com/wasdev/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") is a commercial version of Open Liberty. 
+[Open Liberty](https://openliberty.io/){: external} is a lightweight open source Java&trade; runtime that is built by using modular *features*. [WebSphere Liberty](https://developer.ibm.com/wasdev/){: external} is a commercial version of Open Liberty. 
 
 Liberty features support for the following application frameworks:
 
-* [MicroProfile](https://microprofile.io/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon"), an open source project that defines new standards and APIs to accelerate and simplify the creation of microservices.
-* [Jakarta EE](https://jakarta.ee){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") and [Java&trade; EE](https://www.oracle.com/technetwork/java/javaee/overview/index.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon"), including features for individual specifications, like JNDI or JAX-RS.
-* [Spring Framework and Spring Boot](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_dep_springboot.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon"), including mechanisms to make compact containers from Spring Boot's fat .jar's.
+* [MicroProfile](https://microprofile.io/){: external}, an open source project that defines new standards and APIs to accelerate and simplify the creation of microservices.
+* [Jakarta EE](https://jakarta.ee){: external} and [Java&trade; EE](https://www.oracle.com/technetwork/java/javaee/overview/index.html){: external}, including features for individual specifications, like JNDI or JAX-RS.
+* [Spring Framework and Spring Boot](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_dep_springboot.html){: external}, including mechanisms to make compact containers from Spring Boot's fat .jar's.
 
-There is a wide set of practical developer guides for creating microservices and cloud-native apps with Liberty at [https://openliberty.io/guides/](https://openliberty.io/guides/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+There is a wide set of practical developer guides for creating microservices and cloud-native apps with Liberty at [https://openliberty.io/guides/](https://openliberty.io/guides/){: external}.
 
 ## Optimized for Docker
 {: #liberty-optimized}
 
 When automated systems like Kubernetes are pushing container images around, image size starts to matter. The layers in Docker images are cached to help with this problem. Given its modular architecture, Liberty provides an efficient packaging pipeline for Docker containers, making it a great operational fit for cloud environments. One base image can be used to support many workloads that allow the resource footprint of running containers to vary based on the requirements of the service.
 
-Liberty provides tools and optimized support for converting Spring Boot fat .jar's into compact, optimized Docker containers that take advantage of cached Docker image layers to improve cycle and publish times. By pushing the infrequently changing library dependencies down into a separate layer, and keeping only the app classes in the top layer, iterative rebuilds, and redeployments are much faster. See more at [Creating Dual Layer Docker images for Spring Boot apps](https://openliberty.io/blog/2018/07/02/creating-dual-layer-docker-images-for-spring-boot-apps.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+Liberty provides tools and optimized support for converting Spring Boot fat .jar's into compact, optimized Docker containers that take advantage of cached Docker image layers to improve cycle and publish times. By pushing the infrequently changing library dependencies down into a separate layer, and keeping only the app classes in the top layer, iterative rebuilds, and redeployments are much faster. See more at [Creating Dual Layer Docker images for Spring Boot apps](https://openliberty.io/blog/2018/07/02/creating-dual-layer-docker-images-for-spring-boot-apps.html){: external}.
 
 ## Liberty Docker Images
 {: #liberty-images}
@@ -54,7 +55,7 @@ Check [`websphere-liberty`](https://hub.docker.com/_/websphere-liberty/){: exter
 ### Open Liberty and Docker
 {: #openliberty-docker}
 
-Choose the most appropriate image for your app from the [list of images on Docker Hub](https://hub.docker.com/_/open-liberty/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") (for example, `open-liberty:microProfile`), and create a Dockerfile for your service that extends `FROM` it. Add the commands to copy your app and server configuration into the new image. As an example:
+Choose the most appropriate image for your app from the [list of images on Docker Hub](https://hub.docker.com/_/open-liberty/){: external} (for example, `open-liberty:microProfile`), and create a Dockerfile for your service that extends `FROM` it. Add the commands to copy your app and server configuration into the new image. As an example:
 
 ```docker
 FROM open-liberty:microProfile\
@@ -65,17 +66,17 @@ ADD Sample1.war /config/dropins/
 
 For more examples and working code, see the following Open Liberty guides:
 
-* [Using Docker containers to develop microservices](https://openliberty.io/guides/docker.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
-* [Running an application in a Docker container](https://openliberty.io/guides/getting-started.html#running-the-application-in-a-docker-container){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
+* [Using Docker containers to develop microservices](https://openliberty.io/guides/docker.html){: external}
+* [Running an application in a Docker container](https://openliberty.io/guides/getting-started.html#running-the-application-in-a-docker-container){: external}
 
 ### WebSphere Liberty and Docker
 {: #wlp-docker}
 
 There are some differences between Open Liberty and the commercial version, WebSphere Liberty. One of the most significant differences for creating Docker images is that the `installUtility` command is not available in Open Liberty.
 
-WebSphere Liberty supports the same basic customization patterns that Open Liberty does for Docker images. However, the inherently modular design of Liberty makes it simple (and typical) to create a custom image that contains an app and the specific set of features it requires. WebSphere Liberty has an image for a feature-less kernel, [`websphere-liberty:kernel`](https://github.com/WASdev/ci.docker/blob/9d28dfba4d20596f89b393bc9e3ae8295feec469/ga/developer/kernel/Dockerfile){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon"), which makes a solid base for a truly customized image.
+WebSphere Liberty supports the same basic customization patterns that Open Liberty does for Docker images. However, the inherently modular design of Liberty makes it simple (and typical) to create a custom image that contains an app and the specific set of features it requires. WebSphere Liberty has an image for a feature-less kernel, [`websphere-liberty:kernel`](https://github.com/WASdev/ci.docker/blob/9d28dfba4d20596f89b393bc9e3ae8295feec469/ga/developer/kernel/Dockerfile){: external}, which makes a solid base for a truly customized image.
 
-The [`websphere-liberty` image documentation](https://hub.docker.com/_/websphere-liberty/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") describes the following simple 3-line Dockerfile that is required to create a custom image:
+The [`websphere-liberty` image documentation](https://hub.docker.com/_/websphere-liberty/){: external} describes the following simple 3-line Dockerfile that is required to create a custom image:
 
 ```docker
 FROM websphere-liberty:kernel
@@ -108,4 +109,4 @@ How you structure your Docker image depends on a few factors:
 2. How often do you update this image?
     If the app is updated frequently, it is beneficial to structure the image so that the most frequently changed layer (often your app classes or app binary) is at the top-most layer. This structure reduces the number of layers that need to be rebuilt when the app changes and the image is rebuilt, speeding up build and deployment times.
 
-When in doubt, follow the [Open Liberty Docker guide](https://openliberty.io/guides/docker.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") to get started.
+When in doubt, follow the [Open Liberty Docker guide](https://openliberty.io/guides/docker.html){: external} to get started.

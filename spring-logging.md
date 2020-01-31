@@ -16,6 +16,7 @@ subcollection: java
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
+{:external: target="_blank" .external}
 
 # Logging in Spring
 {: #spring-logging}
@@ -27,9 +28,9 @@ Log entries are to be written directly to standard output and error streams, whi
 ## Adding Logback support to Spring apps
 {: #spring-log4j}
 
-[Logback](https://logback.qos.ch/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") is the default log engine that is used by Spring Boot, and is used automatically when found in the class path. Most Spring Boot starters transitively depend on Logback through `spring-boot-starter-logging`.
+[Logback](https://logback.qos.ch/){: external} is the default log engine that is used by Spring Boot, and is used automatically when found in the class path. Most Spring Boot starters transitively depend on Logback through `spring-boot-starter-logging`.
 
-The following example <!--(based on a [Spring Boot sample](https://github.com/spring-projects/spring-boot/blob/master/spring-boot-samples/spring-boot-sample-logback/src/main/java/sample/logback/SampleLogbackApplication.java)){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") this link is broken and {: new_window} is rendering with the icon--> uses the SLF4J logging API, which Logback implements, to initialize a `Logger` and emit messages at various log levels:
+The following example (based on a [Spring Boot sample](https://github.com/spring-projects/spring-boot/blob/master/spring-boot-samples/spring-boot-sample-logback/src/main/java/sample/logback/SampleLogbackApplication.java)){: external} uses the SLF4J logging API, which Logback implements, to initialize a `Logger` and emit messages at various log levels:
 
 ```java
 package sample.logging;
@@ -135,7 +136,7 @@ With this configuration, you can see JSON-formatted logs:
 ```
 {: screen}
 
-The [`logstash-logback-encoder`](https://github.com/logstash/logstash-logback-encoder){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") can be further customized to alter how JSON logs are captured and forwarded.
+The [`logstash-logback-encoder`](https://github.com/logstash/logstash-logback-encoder){: external} can be further customized to alter how JSON logs are captured and forwarded.
 
 Use `jq` to filter the JSON logs for easier reading. For example:
 
@@ -163,11 +164,11 @@ $ docker logs --tail 5 -f <container-id> | jq .message
 ## Next Steps
 {: #spring-logging-next-steps notoc}
 
-For more information about customizing log messages with appenders, log levels, and configuration details, see the official [Spring Boot reference for logging](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+For more information about customizing log messages with appenders, log levels, and configuration details, see the official [Spring Boot reference for logging](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html){: external}.
 
 Learn more about viewing logs in each of the following deployment environments:
 
-* [Kubernetes Logs](https://kubernetes.io/docs/concepts/cluster-administration/logging/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
+* [Kubernetes Logs](https://kubernetes.io/docs/concepts/cluster-administration/logging/){: external}
 * [{{site.data.keyword.openwhisk}} Logs & Monitoring](/docs/openwhisk?topic=cloud-functions-logs)
 * [{{site.data.keyword.cloud_notm}} Log Analysis](/docs/services/CloudLogAnalysis?topic=cloudloganalysis-log_analysis_ov#log_analysis_ov)
-* [{{site.data.keyword.cloud_notm}} Private ELK stack](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.2/manage_metrics/logging_elk.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
+* [{{site.data.keyword.cloud_notm}} Private ELK stack](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.2/manage_metrics/logging_elk.html){: external}

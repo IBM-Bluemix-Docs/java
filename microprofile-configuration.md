@@ -18,6 +18,7 @@ subcollection: java
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
+{:external: target="_blank" .external}
 
 # Configuration with MicroProfile
 {: #mp-configuration}
@@ -76,5 +77,5 @@ And that's all there is to it!
 
 For more information about MicroProfile Config, see:
 
-* [Eclipse MicroProfile Config – what is it?](https://www.eclipse.org/community/eclipse_newsletter/2017/september/article3.php){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
-* OpenLiberty Guide: [Configuring microservices](https://openliberty.io/guides/microprofile-config.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
+* [Eclipse MicroProfile Config – what is it?](https://www.eclipse.org/community/eclipse_newsletter/2017/september/article3.php){: external}
+* OpenLiberty Guide: [Configuring microservices](https://openliberty.io/guides/microprofile-config.html){: external}

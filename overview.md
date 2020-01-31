@@ -18,6 +18,7 @@ subcollection: java
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
+{:external: target="_blank" .external}
 
 # Getting started tutorial
 {: #getting-started}
@@ -27,16 +28,16 @@ Java&trade; applications come in all shapes and sizes, everything from stand-alo
 ## OpenJDK with Open J9
 {: #openjdk}
 
-The OpenJDK&trade; project is the open source reference implementation of the Java&trade; language and provides API stability and compatibility to user programs. The [Java&trade; SE platform](https://docs.oracle.com/javase/8/docs/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon"), consists of APIs and the Java&trade; virtual machine (JVM). The JVM is the execution engine responsible for running the Java&trade; app.
+The OpenJDK&trade; project is the open source reference implementation of the Java&trade; language and provides API stability and compatibility to user programs. The [Java&trade; SE platform](https://docs.oracle.com/javase/8/docs/){: external}, consists of APIs and the Java&trade; virtual machine (JVM). The JVM is the execution engine responsible for running the Java&trade; app.
 
-The [Eclipse OpenJ9 project](https://www.eclipse.org/openj9/index.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") provides an alternative JVM that replaces the Hotspot JVM in OpenJDK. The OpenJ9 JVM was open-sourced by {{site.data.keyword.IBM}} in September of 2017, though its lineage goes back much further. OpenJ9 powers over 3000 {{site.data.keyword.IBM}} products, including {{site.data.keyword.appserver_short}}, for over a decade.
+The [Eclipse OpenJ9 project](https://www.eclipse.org/openj9/index.html){: external} provides an alternative JVM that replaces the Hotspot JVM in OpenJDK. The OpenJ9 JVM was open-sourced by {{site.data.keyword.IBM}} in September of 2017, though its lineage goes back much further. OpenJ9 powers over 3000 {{site.data.keyword.IBM}} products, including {{site.data.keyword.appserver_short}}, for over a decade.
 
 Together, OpenJDK and Eclipse OpenJ9 provide improved performance and serviceability for cloud-native Java&trade; apps above and beyond traditional Hotspot-based Java&trade; runtimes.
 
 ### Downloading OpenJDK with OpenJ9
 {: #downloads}
 
-OpenJDK with OpenJ9 binary files are freely available from the Java&trade; community hub at [AdoptOpenJDK](https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon"). AdoptOpenJDK provides prebuilt OpenJDK binary files from a fully open source set of build scripts and infrastructure. Docker images are also available on [Docker hub](https://hub.docker.com/u/adoptopenjdk){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+OpenJDK with OpenJ9 binary files are freely available from the Java&trade; community hub at [AdoptOpenJDK](https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=openj9){: external}. AdoptOpenJDK provides prebuilt OpenJDK binary files from a fully open source set of build scripts and infrastructure. Docker images are also available on [Docker hub](https://hub.docker.com/u/adoptopenjdk){: external}.
 
 ## Java frameworks
 {: #frameworks}

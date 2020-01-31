@@ -18,6 +18,7 @@ subcollection: java
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
+{:external: target="_blank" .external}
 
 # Spring
 {: #spring-overview}
@@ -27,15 +28,15 @@ The Spring Platform is an ecosystem of projects that aim to make it simpler to c
 ## Spring Framework
 {: #spring-framework}
 
-The Spring Framework was introduced in 2002, and releases a major version approximately every 3 years. The framework comprises a large set of components (referred to as Spring Modules) that cover everything from REST endpoints to database abstractions. With its most recent release in 2017, Spring Framework 5 introduced updated JDK support, and WebFlux. WebFlux is a new module for reactive programming based on [Project Reactor](https://projectreactor.io/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+The Spring Framework was introduced in 2002, and releases a major version approximately every 3 years. The framework comprises a large set of components (referred to as Spring Modules) that cover everything from REST endpoints to database abstractions. With its most recent release in 2017, Spring Framework 5 introduced updated JDK support, and WebFlux. WebFlux is a new module for reactive programming based on [Project Reactor](https://projectreactor.io/){: external}.
 
 Spring Framework 4.3 is the last feature branch for Spring Framework 4.x, with support through 2020. Applications that use older versions of Spring must be migrated to Spring Framework 5.
 
 The comprehensive documentation for Spring Framework is here:
 
-* [Spring Framework Reference Guide for 5.1.x](https://docs.spring.io/spring/docs/5.1.x/spring-framework-reference/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
-* [Spring Framework Reference Guide for 4.3.x](https://docs.spring.io/spring/docs/4.3.x/spring-framework-reference/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
-* [Upgrading to Spring Framework 5.x](https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-5.x){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
+* [Spring Framework Reference Guide for 5.1.x](https://docs.spring.io/spring/docs/5.1.x/spring-framework-reference/){: external}
+* [Spring Framework Reference Guide for 4.3.x](https://docs.spring.io/spring/docs/4.3.x/spring-framework-reference/){: external}
+* [Upgrading to Spring Framework 5.x](https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-5.x){: external}
 
 ## Spring Boot
 {: #spring-boot}
@@ -48,8 +49,8 @@ Spring Boot is now at version 2.0, which released in 2018. Maintenance of 1.5.x 
 
 The comprehensive documentation for Spring Boot is here:
 
-* [Spring Boot Reference Guide for 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
-* [Spring Boot Reference Guide for 1.5.x](https://docs.spring.io/spring-boot/docs/1.5.x/reference/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
+* [Spring Boot Reference Guide for 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/){: external}
+* [Spring Boot Reference Guide for 1.5.x](https://docs.spring.io/spring-boot/docs/1.5.x/reference/){: external}
 
 ## Selecting Spring Framework or Spring Boot
 {: #spring-framework-or-boot}
@@ -71,10 +72,10 @@ Spring Boot Actuator defines a collection of endpoints that are useful for inspe
 
 The structure and behavior of Spring Boot Actuator changed significantly between Spring Boot 1.0 and Spring Boot 2.0. The Boot 1.0 Actuator sat alongside the app, with separate configuration and security mechanisms. The Boot 2.0 version is more capable, and uses a security model that integrates with the rest of the Spring app.
 
-The behavior changes are relevant if you are migrating a Spring Boot 1.x app to Spring Boot 2.0. Read the Actuator section of the [Boot 1.0 to Boot 2.0 migration guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#spring-boot-actuator){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") for more details.
+The behavior changes are relevant if you are migrating a Spring Boot 1.x app to Spring Boot 2.0. Read the Actuator section of the [Boot 1.0 to Boot 2.0 migration guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#spring-boot-actuator){: external} for more details.
 {: tip}
 
-In Boot 2, the Actuator acts as mini-REST framework. All endpoints are under an `/actuator` context. Endpoints for performing health checks, or gathering metrics, app, or other environment information are provided. For a complete list, check the [Actuator documentation](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/production-ready-features.html#production-ready){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+In Boot 2, the Actuator acts as mini-REST framework. All endpoints are under an `/actuator` context. Endpoints for performing health checks, or gathering metrics, app, or other environment information are provided. For a complete list, check the [Actuator documentation](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/production-ready-features.html#production-ready){: external}.
 
 It is easy to create your own Actuator endpoint by using a Spring `@Component`:
 
@@ -92,7 +93,7 @@ public class Example {
 
 Spring Boot has two controls to configure which Actuators are active at run time. Actuators can be "enabled" and "exposed". To be reachable, an Actuator must be both. By default many endpoints are enabled, but only health and information are exposed. Additionally if Spring Security is enabled for the app, access must be explicitly allowed to the Actuator endpoints.
 
-The Actuator in Spring Boot 1 has its own security configuration, usually configured in application.properties. Instead of "enabled" and "exposed", there is "enabled", and "sensitive". Sensitive endpoints require authentication if served over HTTP. By default, the /metrics endpoint of the Spring Boot Actuator is enabled in Spring Boot 1, but it is considered sensitive and thus requires authorization, or to be set as not sensitive. For some environments, configuring Spring Security might be the right answer, but in Kubernetes, metrics endpoints remain internal to the cluster. For more information, see [Spring Boot 1.0 Actuator](https://docs.spring.io/spring-boot/docs/1.5.2.RELEASE/reference/htmlsingle/#production-ready){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+The Actuator in Spring Boot 1 has its own security configuration, usually configured in application.properties. Instead of "enabled" and "exposed", there is "enabled", and "sensitive". Sensitive endpoints require authentication if served over HTTP. By default, the /metrics endpoint of the Spring Boot Actuator is enabled in Spring Boot 1, but it is considered sensitive and thus requires authorization, or to be set as not sensitive. For some environments, configuring Spring Security might be the right answer, but in Kubernetes, metrics endpoints remain internal to the cluster. For more information, see [Spring Boot 1.0 Actuator](https://docs.spring.io/spring-boot/docs/1.5.2.RELEASE/reference/htmlsingle/#production-ready){: external}.
 {: note}
 
 ## Spring Cloud
@@ -102,7 +103,7 @@ Spring Cloud is a collection of integrations between third-party cloud technolog
 
 Spring cloud projects follow the general Spring approach of favoring convention over configuration. Most capabilities are enabled by adding the right dependency at build time.
 
-For more information about Spring Cloud projects, see the official [Spring Cloud Project Site](https://spring.io/projects/spring-cloud){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+For more information about Spring Cloud projects, see the official [Spring Cloud Project Site](https://spring.io/projects/spring-cloud){: external}.
 
 ### Spring Cloud with Kubernetes
 {: #spring-cloud-kubernetes}
@@ -118,7 +119,7 @@ In addition, Spring Cloud Kubernetes offers integration between Kubernetes `Conf
 
 Finally, Spring Cloud Kubernetes augments the default Spring Boot Actuator health endpoint to include additional information that is related to the deployment.
 
-For more information, check the [Spring Cloud Kubernetes documentation](https://cloud.spring.io/spring-cloud-static/spring-cloud-kubernetes/2.1.0.RC1/single/spring-cloud-kubernetes.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
+For more information, check the [Spring Cloud Kubernetes documentation](https://cloud.spring.io/spring-cloud-static/spring-cloud-kubernetes/2.1.0.RC1/single/spring-cloud-kubernetes.html){: external}.
 
 
 <!--

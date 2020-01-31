@@ -18,11 +18,12 @@ subcollection: java
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
+{:external: target="_blank" .external}
 
 # JSON Handling with JSON-P and JSON-B
 {: #mp-json}
 
-[JSON-B (JSON-Binding, JSR 367)](http://json-b.net/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") and [JSON-P (JSON-Processing, JSR 374)](https://javaee.github.io/jsonp/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") are two Java&trade API specifications that define how Java&trade classes and JSON objects can interact. JSON-P provides a Java&trade API for processing JSON-formatted data. JSON-B provides a binding layer on top of JSON-P, making it easier to convert objects to and from JSON. In most cases, JSON-B is to be used in preference to the lower-level JSON-P.
+[JSON-B (JSON-Binding, JSR 367)](http://json-b.net/){: external} and [JSON-P (JSON-Processing, JSR 374)](https://javaee.github.io/jsonp/){: external} are two Java&trade API specifications that define how Java&trade classes and JSON objects can interact. JSON-P provides a Java&trade API for processing JSON-formatted data. JSON-B provides a binding layer on top of JSON-P, making it easier to convert objects to and from JSON. In most cases, JSON-B is to be used in preference to the lower-level JSON-P.
 
 ## JSON-B
 {: #java-json-b}

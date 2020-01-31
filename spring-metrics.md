@@ -18,6 +18,7 @@ subcollection: java
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
+{:external: target="_blank" .external}
 
 # Metrics with Spring
 {: #spring-metrics}
@@ -61,7 +62,7 @@ The following sections outline how to enable Spring Boot Actuator metrics with M
 ### Configuring metrics in Spring Boot 2
 {: #spring-metrics-boot2}
 
-The Spring Boot 2.0 Actuator metrics endpoint must be both enabled and exposed for web access. By default the endpoint is enabled, but not exposed (check [the Spring Endpoint Documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") for more information).  
+The Spring Boot 2.0 Actuator metrics endpoint must be both enabled and exposed for web access. By default the endpoint is enabled, but not exposed (check [the Spring Endpoint Documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html){: external} for more information).  
 
 Add the following to `application.properties` to expose the metrics endpoint:
 
@@ -141,7 +142,7 @@ $ curl -s localhost:8080/actuator/metrics/jvm.threads.states | jq .
 ```
 {: screen}
 
-For more information about how to customize the behavior of the metrics actuator, see the [official documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-metrics.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+For more information about how to customize the behavior of the metrics actuator, see the [official documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-metrics.html){: external}.
 
 ### Enabling Prometheus support in Spring Boot 2
 {: #spring-prometheus-boot2}
@@ -238,7 +239,7 @@ $ curl -s localhost:8080/metrics | jq .
 ```
 {: screen}
 
-For more information about how to customize the behavior of the Spring Boot 1.0 metrics actuator, see the [official documentation](https://docs.spring.io/spring-boot/docs/1.5.x/reference/html/production-ready-metrics.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+For more information about how to customize the behavior of the Spring Boot 1.0 metrics actuator, see the [official documentation](https://docs.spring.io/spring-boot/docs/1.5.x/reference/html/production-ready-metrics.html){: external}.
 
 ### Enabling Prometheus support in Spring Boot 1.0
 {: #spring-prometheus-boot1}
@@ -301,7 +302,7 @@ metadata:
 ```
 {: codeblock}
 
-For more information about using Micrometer with Spring Boot 1, see [https://micrometer.io/docs/ref/spring/1.5](https://micrometer.io/docs/ref/spring/1.5){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+For more information about using Micrometer with Spring Boot 1, see [https://micrometer.io/docs/ref/spring/1.5](https://micrometer.io/docs/ref/spring/1.5){: external}.
 
 ## Timing invocations with Micrometer
 {: #spring-metrics-timing}
@@ -378,5 +379,5 @@ public String getSomething() {
 
 To learn more about creating custom metrics in Spring:
 
-* [Spring Boot Metrics](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-metrics.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
-* [Micrometer concepts](https://micrometer.io/docs/concepts){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
+* [Spring Boot Metrics](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-metrics.html){: external}
+* [Micrometer concepts](https://micrometer.io/docs/concepts){: external}

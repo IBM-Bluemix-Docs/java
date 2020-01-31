@@ -17,13 +17,14 @@ subcollection: java
 {:pre: .pre}
 {:tip: .tip}
 {:note: .note}
+{:external: target="_blank" .external}
 
 # Fault tolerance with Spring
 {: #spring-tolerance}
 
 Creating a resilient system places requirements on all of the services within it. The dynamic nature of cloud environments demands that services be designed to respond gracefully to the unexpected.
 
-Spring uses the [Netflix Hystrix](https://github.com/Netflix/Hystrix/wiki){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") fault tolerance library to support application-level fault tolerance concerns. With Hystrix, you can create fallbacks, circuit breakers, bulkheads, and associated metrics.
+Spring uses the [Netflix Hystrix](https://github.com/Netflix/Hystrix/wiki){: external} fault tolerance library to support application-level fault tolerance concerns. With Hystrix, you can create fallbacks, circuit breakers, bulkheads, and associated metrics.
 
 This information builds on fault tolerance practices that are described in [Cloud-native development: Fault tolerance](/docs/java?topic=cloud-native-fault-tolerance#fault-tolerance).
 {: note}
@@ -91,7 +92,7 @@ class MicroService {
 ```
 {: codeblock}
 
-Learn more by checking out the Spring-based [Hystrix Circuit Breaker](https://spring.io/guides/gs/circuit-breaker/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") example.
+Learn more by checking out the Spring-based [Hystrix Circuit Breaker](https://spring.io/guides/gs/circuit-breaker/){: external} example.
 {: tip}
 
 ### Using timeouts
@@ -132,7 +133,7 @@ Hystrix supports both semaphore and queue-based bulkheads. The following snippet
 
 The Hystrix Spring starter has one extra trick up its sleeve, it enhances the default `/health` endpoint for the application, which is supplied through a Spring Actuator. For more information, see [Metrics with Spring](/docs/java?topic=java-spring-metrics#spring-metrics)).
 
-If the health endpoint is [configured to include extra detail](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon"), then the Circuit breaker status is included with the health check information. (This behavior is disabled by default).
+If the health endpoint is [configured to include extra detail](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health){: external}, then the Circuit breaker status is included with the health check information. (This behavior is disabled by default).
 
 ```
 {
@@ -150,9 +151,9 @@ If the health endpoint is [configured to include extra detail](https://docs.spri
 ## Next Steps
 {: #spring-tolerance-next-steps notoc}
 
-For more on Hystrix configuration, see the [Hystrix Configuration Wiki](https://github.com/Netflix/Hystrix/wiki/Configuration){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+For more on Hystrix configuration, see the [Hystrix Configuration Wiki](https://github.com/Netflix/Hystrix/wiki/Configuration){: external}.
 
 For more on Hystrix with Spring, see:
 
-* [A Guide to Spring Cloud Netflix](https://www.baeldung.com/spring-cloud-netflix-hystrix){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
-* [Spring Circuit Breaker Guide](https://spring.io/guides/gs/circuit-breaker/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
+* [A Guide to Spring Cloud Netflix](https://www.baeldung.com/spring-cloud-netflix-hystrix){: external}
+* [Spring Circuit Breaker Guide](https://spring.io/guides/gs/circuit-breaker/){: external}

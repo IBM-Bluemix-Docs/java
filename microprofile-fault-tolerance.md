@@ -18,6 +18,7 @@ subcollection: java
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
+{:external: target="_blank" .external}
 
 # Fault Tolerance with MicroProfile
 {: #mp-fault-tolerance}
@@ -58,4 +59,4 @@ data:
 ```
 {: codeblock}
 
-For more information about the comparison of Istio Fault Tolerance and MicroProfile Fault Tolerance, see [this blog](https://www.eclipse.org/community/eclipse_newsletter/2018/september/MicroProfile_istio.php){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") that is written by Emily Jiang.
+For more information about the comparison of Istio Fault Tolerance and MicroProfile Fault Tolerance, see [this blog](https://www.eclipse.org/community/eclipse_newsletter/2018/september/MicroProfile_istio.php){: external} that is written by Emily Jiang.

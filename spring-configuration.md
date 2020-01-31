@@ -18,6 +18,7 @@ subcollection: java
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
+{:external: target="_blank" .external}
 
 # Configuring the Spring environment
 {: #spring-configuration}
@@ -27,7 +28,7 @@ Management of service configuration and credentials (service bindings) varies be
 ## Adding {{site.data.keyword.cloud_notm}} configuration to existing Spring apps
 {: #spring-cloud-env}
 
-The [{{site.data.keyword.cloud_notm}} Spring Service Bindings](https://github.com/ibm-developer/ibm-cloud-spring-bind){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") library provides a consistent way for your Spring app to access configuration by abstracting information from different cloud environments. Which includes local, Cloud Foundry, Cloud Foundry Enterprise Environment, Kubernetes, and OpenShift into an array of search patterns in a `mappings.json` file. When the Spring app starts, the library reads the file and applies the patterns to discover and assign configuration values.
+The [{{site.data.keyword.cloud_notm}} Spring Service Bindings](https://github.com/ibm-developer/ibm-cloud-spring-bind){: external} library provides a consistent way for your Spring app to access configuration by abstracting information from different cloud environments. Which includes local, Cloud Foundry, Cloud Foundry Enterprise Environment, Kubernetes, and OpenShift into an array of search patterns in a `mappings.json` file. When the Spring app starts, the library reads the file and applies the patterns to discover and assign configuration values.
 
 For more information about the `mappings.json` file, see [Working with injected service credentials](/docs/java?topic=cloud-native-configuration#portable-credentials).
 
@@ -82,10 +83,10 @@ Example: Accessing configuration data for an IBM Cloudant NoSQL DB service:
 
 For more information on Spring Boot:
 
-* [Spring Boot 1.5.x](https://docs.spring.io/spring-boot/docs/1.5.x/reference/html/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
-* [Spring Boot 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/html/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
+* [Spring Boot 1.5.x](https://docs.spring.io/spring-boot/docs/1.5.x/reference/html/){: external}
+* [Spring Boot 2.1.x](https://docs.spring.io/spring-boot/docs/2.1.x/reference/html/){: external}
 
 To learn more about {{site.data.keyword.IBM}} and Spring:
 
-* [IBM Developer: Spring](https://developer.ibm.com/technologies/spring/){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
-* [IBM Spring Service Bindings](https://github.com/ibm-developer/ibm-cloud-spring-bind){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon")
+* [IBM Developer: Spring](https://developer.ibm.com/technologies/spring/){: external}
+* [IBM Spring Service Bindings](https://github.com/ibm-developer/ibm-cloud-spring-bind){: external}

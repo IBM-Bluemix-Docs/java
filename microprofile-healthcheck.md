@@ -18,6 +18,7 @@ subcollection: java
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
+{:external: target="_blank" .external}
 
 # Health checks with JAX-RS
 {: #jaxrs-healthcheck}
@@ -72,7 +73,7 @@ To avoid restart cycles, the `initialDelaySeconds` attribute for the liveness ch
 ## Using the MicroProfile Health API
 {: #mp-health-api}
 
-The [MicroProfile Health API](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_microprofile_healthcheck.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon") (mpHealth) defines a framework to simplify the implementation of health checks. Version 1.0 of the `mpHealth` API defines a single endpoint. The next version will provide two, one for liveness, and one for readiness.
+The [MicroProfile Health API](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_microprofile_healthcheck.html){: external} (mpHealth) defines a framework to simplify the implementation of health checks. Version 1.0 of the `mpHealth` API defines a single endpoint. The next version will provide two, one for liveness, and one for readiness.
 
 To use the MicroProfile Health API with Liberty, add the `mpHealth` feature to `server.xml`:
 
@@ -121,4 +122,4 @@ As mentioned earlier, you can use different logics to indicate readiness and liv
 
 OpenLiberty has a hands-on guide that provides an example of how to add custom checks to the MicroProfile Health endpoint: https://openliberty.io/guides/microprofile-health.html
 
-You can override the default behavior of the MicroProfile health endpoint as described in [MicroProfile health checks](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_microprofile_healthcheck.html){: new_window} ![External link icon](../icons/launch-glyph.svg "External link icon").
+You can override the default behavior of the MicroProfile health endpoint as described in [MicroProfile health checks](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_microprofile_healthcheck.html){: external}.
