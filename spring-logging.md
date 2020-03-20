@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2019
-lastupdated: "2019-06-10"
+  years: 2018, 2020
+lastupdated: "2020-03-19"
 
 keywords: spring logging, spring logger, logback spring, debug spring, json log spring, consoleappender spring, spring boot log
 
@@ -30,7 +30,7 @@ Log entries are to be written directly to standard output and error streams, whi
 
 [Logback](https://logback.qos.ch/){: external} is the default log engine that is used by Spring Boot, and is used automatically when found in the class path. Most Spring Boot starters transitively depend on Logback through `spring-boot-starter-logging`.
 
-The following example (based on a [Spring Boot sample](https://github.com/spring-projects/spring-boot/blob/master/spring-boot-samples/spring-boot-sample-logback/src/main/java/sample/logback/SampleLogbackApplication.java)){: external} uses the SLF4J logging API, which Logback implements, to initialize a `Logger` and emit messages at various log levels:
+The following example (based on a [Spring Boot sample](https://github.com/spring-projects/spring-boot){: external} uses the SLF4J logging API, which Logback implements, to initialize a `Logger` and emit messages at various log levels:
 
 ```java
 package sample.logging;
@@ -164,7 +164,7 @@ $ docker logs --tail 5 -f <container-id> | jq .message
 ## Next Steps
 {: #spring-logging-next-steps notoc}
 
-For more information about customizing log messages with appenders, log levels, and configuration details, see the official [Spring Boot reference for logging](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html){: external}.
+For more information about customizing log messages with appenders, log levels, and configuration details, see the official [Spring Boot reference for logging](https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-logging){: external}.
 
 Learn more about viewing logs in each of the following deployment environments:
 

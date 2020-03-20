@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2018, 2019
-lastupdated: "2019-04-22"
+  years: 2018, 2020
+lastupdated: "2020-03-19"
 
 keywords: fault tolerance spring, hystrix spring, netflix spring, hystrixcommand spring, bulkhead spring, circuit breaker spring
 
@@ -133,7 +133,7 @@ Hystrix supports both semaphore and queue-based bulkheads. The following snippet
 
 The Hystrix Spring starter has one extra trick up its sleeve, it enhances the default `/health` endpoint for the application, which is supplied through a Spring Actuator. For more information, see [Metrics with Spring](/docs/java?topic=java-spring-metrics#spring-metrics)).
 
-If the health endpoint is [configured to include extra detail](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-health){: external}, then the Circuit breaker status is included with the health check information. (This behavior is disabled by default).
+If the health endpoint is [configured to include extra detail](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-endpoints){: external}, then the Circuit breaker status is included with the health check information. (This behavior is disabled by default).
 
 ```
 {

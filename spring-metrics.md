@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019
-lastupdated: "2019-08-26"
+  years: 2019, 2020
+lastupdated: "2020-03-19"
 
 keywords: spring metrics, configure metrics spring, micrometer spring, micrometer, spring boot 2, spring actuator, prometheus spring
 
@@ -62,7 +62,7 @@ The following sections outline how to enable Spring Boot Actuator metrics with M
 ### Configuring metrics in Spring Boot 2
 {: #spring-metrics-boot2}
 
-The Spring Boot 2.0 Actuator metrics endpoint must be both enabled and exposed for web access. By default the endpoint is enabled, but not exposed (check [the Spring Endpoint Documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html){: external} for more information).  
+The Spring Boot 2.0 Actuator metrics endpoint must be both enabled and exposed for web access. By default the endpoint is enabled, but not exposed (check [the Spring Endpoint Documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-endpoints){: external} for more information).
 
 Add the following to `application.properties` to expose the metrics endpoint:
 
@@ -142,7 +142,7 @@ $ curl -s localhost:8080/actuator/metrics/jvm.threads.states | jq .
 ```
 {: screen}
 
-For more information about how to customize the behavior of the metrics actuator, see the [official documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-metrics.html){: external}.
+For more information about how to customize the behavior of the metrics actuator, see the [official documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-metrics){: external}.
 
 ### Enabling Prometheus support in Spring Boot 2
 {: #spring-prometheus-boot2}
@@ -379,5 +379,5 @@ public String getSomething() {
 
 To learn more about creating custom metrics in Spring:
 
-* [Spring Boot Metrics](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-metrics.html){: external}
+* [Spring Boot Metrics](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-metrics){: external}
 * [Micrometer concepts](https://micrometer.io/docs/concepts){: external}

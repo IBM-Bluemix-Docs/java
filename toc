@@ -1,13 +1,14 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="java" category="devops" audience="platform" arm="4088036" href="/docs/java?topic=java-getting-started" path="java"}
+{: .toc subcollection="java" audience="platform" arm="4088036" href="/docs/java?topic=java-getting-started" path="java"}
 Programming with Java on IBM Cloud
 
     {: .navgroup id="learn"}
     overview.md
     /cloud-native/toc
     topic-runtime-liberty.md
+    [What are cloud native apps?](https://www.ibm.com/cloud/learn/cloud-native)
     
     {:topicgroup}
     MicroProfile and Jakarta-EE

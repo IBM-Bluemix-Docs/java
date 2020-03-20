@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019
-lastupdated: "2019-08-26"
+  years: 2019, 2020
+lastupdated: "2020-03-19"
 
 keywords: java logging, log level java, debug java, json log java, json log help, kibana liberty, liberty messages
 
@@ -170,7 +170,7 @@ There are more Kibana and Grafana dashboards that are associated with the Libert
 ## Next Steps
 {: #mp-logging-next-steps notoc}
 
-For more information about customizing log messages with appenders, log levels, and configuration details, see the official [Spring Boot reference for logging](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html){: external}.
+For more information about customizing log messages with appenders, log levels, and configuration details, see the official [Spring Boot reference for logging](https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-logging){: external}.
 
 Learn more about viewing the logs in each of the following deployment environments:
 

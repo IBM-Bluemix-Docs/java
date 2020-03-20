@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019
-lastupdated: "2019-08-26"
+  years: 2019, 2020
+lastupdated: "2020-03-19"
 
 keywords: open liberty java, websphere liberty java, jakarta, webpshere docker, liberty docker, liberty docker images, installutility, microprofile java, dual layer docker, develop microservices
 
@@ -29,7 +29,7 @@ subcollection: java
 Liberty features support for the following application frameworks:
 
 * [MicroProfile](https://microprofile.io/){: external}, an open source project that defines new standards and APIs to accelerate and simplify the creation of microservices.
-* [Jakarta EE](https://jakarta.ee){: external} and [Java&trade; EE](https://www.oracle.com/technetwork/java/javaee/overview/index.html){: external}, including features for individual specifications, like JNDI or JAX-RS.
+* [Jakarta EE](https://jakarta.ee){: external} and [Java&trade; EE](https://www.oracle.com/java/technologies/java-ee-glance.html){: external}, including features for individual specifications, like JNDI or JAX-RS.
 * [Spring Framework and Spring Boot](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_dep_springboot.html){: external}, including mechanisms to make compact containers from Spring Boot's fat .jar's.
 
 There is a wide set of practical developer guides for creating microservices and cloud-native apps with Liberty at [https://openliberty.io/guides/](https://openliberty.io/guides/){: external}.
