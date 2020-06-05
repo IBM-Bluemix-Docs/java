@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-03-19"
+lastupdated: "2020-06-05"
 
 keywords: spring logging, spring logger, logback spring, debug spring, json log spring, consoleappender spring, spring boot log
 
@@ -166,9 +166,7 @@ $ docker logs --tail 5 -f <container-id> | jq .message
 
 For more information about customizing log messages with appenders, log levels, and configuration details, see the official [Spring Boot reference for logging](https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-logging){: external}.
 
-Learn more about viewing logs in each of the following deployment environments:
-
-* [Kubernetes Logs](https://kubernetes.io/docs/concepts/cluster-administration/logging/){: external}
-* [{{site.data.keyword.openwhisk}} Logs & Monitoring](/docs/openwhisk?topic=cloud-functions-logs)
-* [{{site.data.keyword.cloud_notm}} Log Analysis](/docs/services/CloudLogAnalysis?topic=cloudloganalysis-log_analysis_ov#log_analysis_ov)
-* [{{site.data.keyword.cloud_notm}} Private ELK stack](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.2/manage_metrics/logging_elk.html){: external}
+Learn more about viewing logs in each deployment environment:
+* [Managing Kubernetes cluster logs with IBM Log Analysis with LogDNA](/docs/Log-Analysis-with-LogDNA?topic=Log-Analysis-with-LogDNA-kube)
+* [Managing logs from CF resources](/docs/Log-Analysis-with-LogDNA?topic=Log-Analysis-with-LogDNA-monitor_cfapp_logs)
+* [{{site.data.keyword.openwhisk}} Logs & Monitoring](/docs/openwhisk?topic=openwhisk-logs)
