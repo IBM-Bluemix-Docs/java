@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="java" audience="platform" arm="4088036" href="/docs/java?topic=java-getting-started" path="java"}
+{: .toc subcollection="java" category="dev_ops" audience="platform" arm="4088036" href="/docs/java?topic=java-getting-started" path="java"}
 Programming with Java on IBM Cloud
 
     {: .navgroup id="learn"}
@@ -16,12 +16,6 @@ Programming with Java on IBM Cloud
         microprofile-cdi.md
         microprofile-json-basics.md
     spring.md
-
-    {: .topicgroup}
-    Related links
-        [IBM Developer: Java](https://developer.ibm.com/technologies/java/)
-        [IBM Developer: Spring](https://developer.ibm.com/technologies/spring/)
-        [Architecture Center](https://www.ibm.com/cloud/garage/category/architectures)
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
@@ -44,6 +38,12 @@ Programming with Java on IBM Cloud
 
     {: .navgroup id="reference"}
     [API Docs](https://cloud.ibm.com/apidocs)
+
+    {: .topicgroup}
+    Related links
+        [IBM Developer: Java](https://developer.ibm.com/technologies/java/)
+        [IBM Developer: Spring](https://developer.ibm.com/technologies/spring/)
+        [Architecture Center](https://www.ibm.com/cloud/garage/category/architectures)
     {: .navgroup-end}
 
     {: .navgroup id="help"}
