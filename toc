@@ -5,6 +5,7 @@
 Programming with Java on IBM Cloud
 
     {: .navgroup id="learn"}
+    index.md
     overview.md
     /cloud-native/toc
     topic-runtime-liberty.md
