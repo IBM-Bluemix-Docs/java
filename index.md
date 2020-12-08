@@ -2,10 +2,13 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-09-09"
+lastupdated: "2020-12-07"
 
 keywords: java getting started, java cloud native, create java app, add java service, java programming guide, java guide
-
+content-type: tutorial
+services: java
+account-plan: lite
+completion-time: 30m
 subcollection: java
 
 ---
@@ -16,14 +19,19 @@ subcollection: java
 {:pre: .pre}
 {:tip: .tip}
 {:external: target="_blank" .external}
+{:step: data-tutorial-type='step'}
 
 # Getting started tutorial
 {: #getting-started}
+{: toc-content-type="tutorial"} 
+{: toc-services=""} 
+{: toc-completion-time="30m"}
 
 The following tutorial walks you through the steps to build, run locally, and deploy a Java&trade; app by using {{site.data.keyword.cloud}} provided tools. You can use the [{{site.data.keyword.dev_cli_short}} (`ibmcloud dev`) commands](/docs/cli?topic=cli-getting-started) on the command line or the web-based [{{site.data.keyword.cloud_notm}} App Development console](https://{DomainName}/developer/appservice/dashboard){: external} as shown in the following tutorial steps. By using either of these methods, you can generate a production-ready Java application in just minutes.
 
 ## Creating a Java app
 {: #java-create-project}
+{: step}
 
 1. Log in to your {{site.data.keyword.cloud_notm}} account. If you don't have an account, you can [register for a free account](https://{DomainName}/registration){: external}. For more information, see [Setting up your IBM Cloud account](/docs/account?topic=account-account-getting-started).
 2. Go to the [{{site.data.keyword.cloud_notm}} App Development console](https://{DomainName}/developer/appservice/starter-kits){: external}, and select a starter kit that is written in `Java`, or select the **Create App** tile to use a blank starter kit. Then select the **Create** tab.
@@ -46,6 +54,7 @@ The following tutorial walks you through the steps to build, run locally, and de
 
 ## Adding a service
 {: #java-add-service}
+{: step}
 
 1. Return to your app in the {{site.data.keyword.cloud_notm}} {{site.data.keyword.dev_console}}.
 2. On the App details page, click **Create service** or **Connect existing services**, depending on whether you already have services that you want to connect to this app.
@@ -60,6 +69,7 @@ For more information, see [Adding a service to your app](/docs/apps?topic=apps-a
 
 ## Running apps locally
 {: #java-run-local}
+{: step}
 
 1. Use the `ibmcloud dev build` command to build your application.
 2. Use the `ibmcloud dev run` command to run the application locally. Your application is run in the Docker containers on your local system. You can test your application in a browser by accessing `http://localhost:3000`.
@@ -67,6 +77,7 @@ For more information, see [Adding a service to your app](/docs/apps?topic=apps-a
 
 ## Deploying to {{site.data.keyword.cloud_notm}}
 {: #java-deploy}
+{: step}
 
 Use the `ibmcloud dev deploy` command to deploy to {{site.data.keyword.cloud_notm}} as a Cloud Foundry application. 
 
