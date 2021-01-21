@@ -46,7 +46,3 @@ Programming with Java on IBM Cloud
         [IBM Developer: Spring](https://developer.ibm.com/technologies/spring/)
         [Architecture Center](https://www.ibm.com/cloud/garage/category/architectures)
     {: .navgroup-end}
-
-    {: .navgroup id="help"}
-    [dW Answers](https://developer.ibm.com/answers/topics/java.html)
-    {: .navgroup-end}
