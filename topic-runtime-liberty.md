@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2020
-lastupdated: "2020-03-19"
+  years: 2019, 2021
+lastupdated: "2021-03-19"
 
 keywords: open liberty java, websphere liberty java, jakarta, webpshere docker, liberty docker, liberty docker images, installutility, microprofile java, dual layer docker, develop microservices
 
@@ -23,7 +23,7 @@ subcollection: java
 # Open Liberty and WebSphere Liberty
 {: #liberty}
 
-[Open Liberty](https://openliberty.io/){: external} is a lightweight open source Java&trade; runtime that is built by using modular *features*. [WebSphere Liberty](https://developer.ibm.com/wasdev/){: external} is a commercial version of Open Liberty. 
+[Open Liberty](https://openliberty.io/){: external} is a lightweight open source Java&trade; runtime that is built by using modular *features*. [WebSphere Liberty](https://www.ibm.com/cloud/websphere-liberty){: external} is a commercial version of Open Liberty. 
 
 Liberty features support for the following application frameworks:
 
