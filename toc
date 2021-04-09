@@ -44,5 +44,5 @@ Programming with Java on IBM Cloud
     Related links
         [IBM Developer: Java](https://developer.ibm.com/languages/java/)
         [IBM Developer: Spring](https://developer.ibm.com/languages/spring/)
-        [IBM Cloud Architectures](https://www.ibm.com/cloud/garage/category/architectures)
+        [IBM Cloud Architectures](https://www.ibm.com/cloud/architecture/architectures)
     {: .navgroup-end}
