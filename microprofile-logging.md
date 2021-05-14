@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2021-04-01"
+lastupdated: "2021-05-14"
 
 keywords: java logging, log level java, debug java, json log java, json log help, kibana liberty, liberty messages
 
@@ -154,7 +154,7 @@ Another alternative is to use the `WLP_LOGGING_CONSOLE_FORMAT` environment varia
 ## Kibana dashboards for Liberty
 {: #liberty-kibana}
 
-Along with the new JSON logging feature, Liberty provides pre-built Kibana dashboards [that you can download from GitHub](https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/twlp_icp_json_logging.html){: external}. Follow the instructions at the link to install them. Two new dashboards are now available:
+Along with the new JSON logging feature, Liberty provides pre-built Kibana dashboards that you can download from GitHub. To install them, follow the instructions in [Analyzing logs with Elastic Stack](https://www.ibm.com/docs/en/was-liberty/core?topic=environment-analyzing-logs-elastic-stack){: external}. Two new dashboards are now available:
 
 ![Kibana dashboards](images/microprofile-logging-image4.png "Kibana dashboards"){: caption="Figure 1. Kibana dashboards" caption-side="bottom"}
 
